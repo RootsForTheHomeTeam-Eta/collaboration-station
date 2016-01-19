@@ -1,10 +1,11 @@
-// require dependencies
+// instantiate express
 var express = require('express');
+var app = express();
+//require dependencies
 var path = require('path');
 var bodyParser = require('body-parser');
 
-// instantiate express
-var app =  express();
+
 
 // app settings
 app.set('port', process.env.PORT || 3000);
@@ -20,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var index = require('./routes/index');
 
 // routing
-app.use('/', index);
+app.use('/*', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -35,9 +36,8 @@ app.use(function(err, req, res, next) {
 
 });
 
-app.listen(app.get('port', function() {
+app.listen(app.get('port'), function() {
   console.log('Listening on port: ', app.get('port'));
-}));
+});
 
-module.exports = app;
 
