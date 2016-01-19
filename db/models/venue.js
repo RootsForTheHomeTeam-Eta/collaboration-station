@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var VenueSchema = new Schema({
     venueName: String,
     location: String,
-    date: [{type: Date, default: Date.now }],
+    date: [{type: Date, default: Date.now }]
 
 });
 
