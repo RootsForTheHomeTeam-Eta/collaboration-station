@@ -1,0 +1,40 @@
+{
+  "name": "roots-app",
+  "version": "0.0.0",
+  "description": "An application for Roots for the Home Team to better schedule and communicate with garden program directors.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RootsForTheHomeTeam-Eta/roots-app.git"
+  },
+  "keywords": [
+    "garden",
+    "salad",
+    "roots",
+    "home",
+    "team",
+    "stadium",
+    "baseball",
+    "football",
+    "concessions",
+    "food"
+  ],
+  "author": "Team Roots for the Home Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RootsForTheHomeTeam-Eta/roots-app/issues"
+  },
+  "homepage": "https://github.com/RootsForTheHomeTeam-Eta/roots-app#readme",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "bcrypt": "^0.8.5",
+    "express": "^4.13.3",
+    "kerberos": "0.0.17",
+    "mongoose": "^4.3.6",
+    "passport": "^0.3.2",
+    "passport-jwt": "^1.2.1"
+  }
+}
