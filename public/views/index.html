@@ -9,14 +9,15 @@
     <link rel='stylesheet' type="text/css" href='/assets/css/12cols.css'>
     <link rel='stylesheet' type="text/css" href='/assets/css/styles.css'>
 </head>
-<body>
+<body class="yellow">
+
     <header class="section group green span_12_of_12" >
-        <div class="col span_2_of_12">
-        </div>
+        <section class="col span_2_of_12">
+        </section>
         <img class="icon col span_1_of_12" src="/assets/img/watercan.png">
-        <h2 class="col span_1_of_12">User Name</h2>
+        <h2 class="col span_2_of_12">User Name</h2>
         </div>
-        <div class="col span_5_of_12">
+        <div class="col span_4_of_12">
         </div>
         <div class="col span_1_of_12">
             <h2>Log Out</h2>
@@ -25,9 +26,10 @@
         </div>
 
     </header>
-    <main>
-        <div ng-view></div>
+    <main class="white mainContentArea">
+        <div ng-view>This is going to be content</div>
     </main>
+<div class="section group span_1_of_12"></div>
     <script src="/assets/vendors/angular.js"></script>
     <script src="/assets/js/app.js"></script>
 </body>
