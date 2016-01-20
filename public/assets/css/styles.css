@@ -40,10 +40,11 @@ h2 {
 }
 
 .icon {
-    width: 3.750em;
+    width: 3.33em;
+    float:left;
 }
 
 .mainContentArea {
-    max-width: 90%;
+    max-width: 100%;
     margin: auto;
 }
