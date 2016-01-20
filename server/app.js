@@ -20,7 +20,6 @@ app.set('port', process.env.PORT || 3000);
 var jwtCheck = expressJWT({
   secret: config.SECRET
 });
-
 // body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
