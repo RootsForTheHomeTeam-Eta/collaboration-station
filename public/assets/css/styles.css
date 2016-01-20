@@ -2,6 +2,12 @@ p {
     font-family: 'Roboto', sans-serif;
     font-weight: 400
 }
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500
+}
+
 .green {
     background-color: #55AC3A;
 }
@@ -16,6 +22,9 @@ p {
 
 .yellow {
     background-color: #EDB816;
+}
+.white {
+    background-color: white;
 }
 
 .light {
@@ -32,4 +41,9 @@ p {
 
 .icon {
     width: 40px;
+}
+
+.mainContentArea {
+    max-width: 90%;
+    margin: auto;
 }
