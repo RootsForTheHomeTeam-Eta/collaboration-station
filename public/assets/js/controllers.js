@@ -5,10 +5,9 @@ rootsApp.controller('loginCtrl', function ($scope, $http, $window) {
   $scope.submit = function () {
     $http
       .post('/login', $scope.user)
-      .success(function (data, status, headers, config) {
+      .then(function (data, status, headers, config) {
         $window.sessionStorage.token = data.token;
-      })
-      .error(function (data, status, headers, config) {
+      }, function (data, status, headers, config) {
         // Erase token if error
         delete $window.sessionStorage.token;
 
