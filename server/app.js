@@ -32,12 +32,18 @@ var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
 
-// routing
-app.use('/*', index);
-// check jwt for protected routes
+// ***** ROUTES *****
+
+app.use('/login', login);
+app.use('/register', register);
+
+// everything under /protected/* will verify the jwt
 app.use('/protected/*', jwtCheck);
-app.use('/protected/login', login);
-app.use('/protected/register', register);
+
+// catch all route:
+app.use('/*', index);
+
+// ***** ERROR HANDLERS *****
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -51,6 +57,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
 
 });
+
+// ***** LISTEN *****
 
 app.listen(app.get('port'), function() {
   console.log('Listening on port: ', app.get('port'));
