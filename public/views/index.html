@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="">
 <head>
     <meta charset="utf-8">
     <title>Roots for the Home Team</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,300' rel='stylesheet' type='text/css'>
-    <link rel='stylesheet' href='/public/assets/css/html5reset.css'>
-    <link rel='stylesheet' href='/public/assets/css/col.css'>
-    <link rel='stylesheet' href='/public/assets/css/12cols.css'>
-    <link rel='stylesheet' href='/public/assets/css/styles.css'>
+    <link rel='stylesheet' href='/assets/css/html5reset.css'>
+    <link rel='stylesheet' type="text/css" href='/assets/css/col.css'>
+    <link rel='stylesheet' type="text/css" href='/assets/css/12cols.css'>
+    <link rel='stylesheet' type="text/css" href='/assets/css/styles.css'>
 </head>
 <body>
-<header class="section group green span_12_of_12" >
-    <div class="col span_1_of_12">
-        <img class='icon' src="/public/assets/img/watercan.png"><h2>User Name</h2>
-    </div>
-    <div class="col span_1_of_12">
-        <h2>Log Out</h2>
-    </div>
+    <header class="section group green span_12_of_12" >
+        <div class="col span_1_of_12">
+            <img class='icon' src="/assets/img/watercan.png"><h2>User Name</h2>
+        </div>
+        <div class="col span_1_of_12">
+            <h2>Log Out</h2>
+        </div>
 
-</header>
-<main>
-    <div ng-view></div>
-</main>
-<script src="/public/assets/vendors/angular.js"></script>
+    </header>
+    <main>
+        <div ng-view></div>
+    </main>
+    <script src="/assets/vendors/angular.js"></script>
+    <script src="/assets/js/app.js"></script>
 </body>
 </html>
