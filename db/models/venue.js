@@ -4,7 +4,10 @@ var Schema = mongoose.Schema;
 var VenueSchema = new Schema({
     venueName: String,
     location: String,
-    date: [{type: Date}]
+    date: [{type:Date: [{
+                type:schema.Types.ObjectId, ref:'Users'[{first: Boolean}, {second:Boolean}, {cannot:Boolean}]},
+                arrivalTime:Date,
+                gameTime:Date}];
 
 });
 
