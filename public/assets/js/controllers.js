@@ -1,5 +1,7 @@
+var rootsAppControllers = angular.module('rootsAppControllers', [])
 // login controller
-rootsApp.controller('loginCtrl', function ($scope, $http, $window) {
+
+rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
   $scope.user = {username: req.body.username, password: req.body.password};
   $scope.message = req.body.message;
   $scope.submit = function () {
@@ -18,3 +20,7 @@ rootsApp.controller('loginCtrl', function ($scope, $http, $window) {
 });
 
 
+rootsAppControllers.controller('mainCtrl', function ($scope) {
+  $scope.hello = 'hello!'
+  console.log($scope.hello);
+})
