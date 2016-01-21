@@ -41,7 +41,7 @@ h2 {
 
 .icon {
     width: 3.33em;
-    float:left;
+    padding-top: 10px;
 }
 
 .mainContentArea {
