@@ -8,6 +8,10 @@ h2 {
     font-weight: 500
 }
 
+.slightSqound {
+    border-radius:3px;
+}
+
 .green {
     background-color: #55AC3A;
 }
@@ -44,6 +48,8 @@ h2 {
     padding-top: 10px;
 }
 
+/*----- Tab Stuff -----*/
+
 .tabs {
     width:100%;
     display:inline-block;
@@ -68,7 +74,7 @@ h2 {
     padding:15px;
     border-radius:3px;
     box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
-    background:#fff;
+    background: white;
 }
 
 .tab.active {
@@ -92,24 +98,22 @@ h2 {
     margin:0px 0px;
     float:left;
     list-style:none;
-    border-top:solid 1px;
-    border-left: solid 1px;
 }
 
 .tab-links a {
     padding:9px 10px;
     display:inline-block;
     text-decoration:none;
+    border-radius:3px;
 }
 
 .tab-links a:hover {
-    background:#6F6056;
     text-decoration:none;
-    color:#E3E0DC
+
 }
 
 li.active a, li.active a:hover {
-    background:#fff;
-    color:#6F6056;
+    background: white;
+    color:black;
 }
 
