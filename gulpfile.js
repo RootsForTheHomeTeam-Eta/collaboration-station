@@ -4,9 +4,10 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var jshint = require('gulp-jshint');
+var nodemon = require('gulp-nodemon');
 
 // create a default task to log a message
-gulp.task('default', ['watch']);
+gulp.task('default', ['nodemon']);
 
 // create a jshint task to quickly check all current files
 gulp.task('jshint', ['jshint-server', 'jshint-public', 'jshint-db', 'jshint-auth']);
@@ -37,6 +38,16 @@ gulp.task('jshint-auth', function() {
   return gulp.src('auth/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
+});
+
+// configure the nodemon task
+gulp.task('nodemon', function() {
+  nodemon({ script: './server/app.js',
+            ext: 'html js',
+            tasks: ['jshint'] })
+    .on('restart', function () {
+      console.log('Nodemon Restart!');
+    });
 });
 
 // configure which files to watch and what tasks to use on file changes
