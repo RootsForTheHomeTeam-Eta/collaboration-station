@@ -44,7 +44,72 @@ h2 {
     padding-top: 10px;
 }
 
-.mainContentArea {
-    max-width: 100%;
-    margin: auto;
+.tabs {
+    width:100%;
+    display:inline-block;
 }
+
+.tab-header {
+    width: 100%;
+    margin: 0;
+    padding: 9px;
+    color: white;
+}
+
+.tab-align-center {
+    text-align: center;
+}
+
+.tab-align-left {
+    text-align: left;
+}
+
+.tab-content {
+    padding:15px;
+    border-radius:3px;
+    box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    background:#fff;
+}
+
+.tab.active {
+    display:block;
+}
+
+/*----- Tab Links -----*/
+/* Clearfix */
+
+.tab-links {
+    margin:0px;
+}
+
+.tab-links:after {
+    display:block;
+    clear:both;
+    content:'';
+}
+
+.tab-links li {
+    margin:0px 0px;
+    float:left;
+    list-style:none;
+    border-top:solid 1px;
+    border-left: solid 1px;
+}
+
+.tab-links a {
+    padding:9px 10px;
+    display:inline-block;
+    text-decoration:none;
+}
+
+.tab-links a:hover {
+    background:#6F6056;
+    text-decoration:none;
+    color:#E3E0DC
+}
+
+li.active a, li.active a:hover {
+    background:#fff;
+    color:#6F6056;
+}
+

@@ -2,17 +2,40 @@
     <div class="row"><div><p><br></p></div>
     </div>
     <div class="row">
-        <div class="col-md-1 white"></div>
-        <div class="col-md-4 orange">This will be a tab menu</div>
-        <div class="col-md-1 white"></div>
-        <div class="col-md-5 orange">This will be a tab menu</div>
-        <div class="col-md-1 white"></div>
+        <div class="col-md-1 yellow"></div>
+        <div class="col-md-4 white">
+            <h2 class="orange">Notifications</h2>
+            <div><p>notification here</p></div>
+            <div><p>notification here</p></div>
+            <div><p>notification here</p></div>
+        </div>
+        <div class="col-md-1 yellow"></div>
+        <div class="col-md-5 yellow" ng-controller="tabController">
+            <ul class="tab-links tabs" ng-init="currentTab='tab1'">
+                <li ng-class="{active: isActive('tab1')}"><a ng-click="onTabClick('tab1')">Add Event</a></li>
+                <li ng-class="{active: isActive('tab2')}"><a ng-click="onTabClick('tab2')">Add User</a></li>
+            </ul>
+                <div class="tab-content">
+                    <div id="tab1" ng-show="isActive('tab1')"  ng-class="{active: isActive('tab1')}">
+                        <p>Here is some stuff</p>
+                    </div>
+                    </div>
+
+                <div class="tab-content">
+                    <div id="tab2" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}">
+                        <p>Here is some other stuff</p>
+                    </div>
+                </div>
+
+                </div>
+
+        <div class="col-md-1 yellow"></div>
     </div>
     <div class="row"><div><p><br></p></div>
     </div>
     <div class="row">
-        <div class="col-md-1 white"></div>
+        <div class="col-md-1 yellow"></div>
         <div class="col-md-10 orange">This will be a schedule menu</div>
-        <div class="col-md-1 white"></div>
+        <div class="col-md-1 yellow"></div>
     </div>
 </div>
