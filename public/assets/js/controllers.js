@@ -23,4 +23,4 @@ rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
 rootsAppControllers.controller('mainCtrl', function ($scope) {
   $scope.hello = 'hello!'
   console.log($scope.hello);
-})
+});
