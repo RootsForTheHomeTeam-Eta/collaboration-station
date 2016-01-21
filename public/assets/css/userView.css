@@ -1,0 +1,61 @@
+.venueContainer{
+    text-align:center;
+
+}
+
+.venueWrapper{
+    border-bottom: 3px solid #EDB816;
+}
+
+.venueHeader{
+    text-align:center;
+
+}
+
+.venueOptions{
+    padding: 5px 2px;
+}
+.venueOptions:nth-child(odd) {
+    background-color: lightgray;
+    text-align:center;
+}
+
+.vTop{
+    padding: 8px 0;
+
+}
+/*btn colors*/
+.btnPref{
+    height: 14px;
+    width: 16px;
+    border-radius: 3px;
+    border: none;
+}
+
+.go{
+    background-color: green;
+}
+
+.yield{
+    background-color: orange;
+}
+
+.stop{
+    background-color: red;
+}
+
+div.options{
+    vertical-align: bottom;
+}
+
+.userSubmit{
+    margin-top: 1.250em;
+    text-align: center;
+}
+
+.btnUser {
+    border-radius: 2px;
+    padding: .5em;
+    border: none;
+    color: white;
+}
