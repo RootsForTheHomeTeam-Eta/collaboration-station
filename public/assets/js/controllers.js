@@ -1,4 +1,4 @@
-var rootsAppControllers = angular.module('rootsAppControllers', [])
+var rootsAppControllers = angular.module('rootsAppControllers', []);
 // login controller
 
 rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
@@ -16,7 +16,7 @@ rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
         // Error message
         $scope.message = 'Error: Invalid username or password';
     });
-  }
+  };
 });
 
 
