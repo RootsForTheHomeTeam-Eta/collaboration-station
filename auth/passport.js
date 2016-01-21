@@ -25,7 +25,7 @@ passport.use('jwt-login', new JWTStrategy(options, function(req, jwt_payload, do
       done(null, false);
       // or create a new account
     }
-  })
+  });
 }));
 
 // register strategy named jwt-register
@@ -56,5 +56,5 @@ passport.use('jwt-register', new JWTStrategy(options, function(req, jwt_payload,
         return done(null, newUser);
       });
     }
-  })
+  });
 }));

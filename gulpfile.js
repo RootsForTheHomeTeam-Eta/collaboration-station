@@ -8,6 +8,9 @@ var jshint = require('gulp-jshint');
 // create a default task to log a message
 gulp.task('default', ['watch']);
 
+// create a jshint task to quickly check all current files
+gulp.task('jshint', ['jshint-server', 'jshint-public', 'jshint-db', 'jshint-auth']);
+
 // configure the jshint-server task
 gulp.task('jshint-server', function() {
   return gulp.src('server/**/*.js')
