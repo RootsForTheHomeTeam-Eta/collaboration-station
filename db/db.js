@@ -1,3 +1,3 @@
-/**
- * Created by kmjosephs on 1/22/16.
- */
+var mongoose = require('mongoose');
+var mongoURI = 'mongodb://localhost:27017';
+var MongoDB = mongooose.connect(mongoURI).connection;
