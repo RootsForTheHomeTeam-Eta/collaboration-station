@@ -56,3 +56,12 @@ rootsAppControllers.controller('userCtrl', function ($scope) {
   $scope.hello = 'hello!';
   console.log($scope.hello);
 });
+
+//controller that with function to tell you what partial you are on
+app.controller('navControl', ['$scope','$location', function($scope, $location) {
+  $scope.isPartial = function (viewLocation) {
+    var active = (viewLocation === $location.path());
+    return active;
+  };
+
+}]);
