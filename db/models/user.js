@@ -9,7 +9,6 @@ var UserSchema = new Schema({
     password: {type: String, required: true },
     created_at: Date,
     updated_at: Date
-
 });
 
 module.exports = mongoose.model("User", UserSchema);
