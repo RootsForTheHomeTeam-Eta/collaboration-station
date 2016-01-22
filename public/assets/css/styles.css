@@ -8,6 +8,10 @@ h2 {
     font-weight: 500
 }
 
+.slightSqound {
+    border-radius:3px;
+}
+
 .green {
     background-color: #55AC3A;
 }
@@ -41,10 +45,75 @@ h2 {
 
 .icon {
     width: 3.33em;
-    float:left;
+    padding-top: 10px;
 }
 
-.mainContentArea {
-    max-width: 100%;
-    margin: auto;
+/*----- Tab Stuff -----*/
+
+.tabs {
+    width:100%;
+    display:inline-block;
 }
+
+.tab-header {
+    width: 100%;
+    margin: 0;
+    padding: 9px;
+    color: white;
+}
+
+.tab-align-center {
+    text-align: center;
+}
+
+.tab-align-left {
+    text-align: left;
+}
+
+.tab-content {
+    padding:15px;
+    border-radius:3px;
+    box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    background: white;
+}
+
+.tab.active {
+    display:block;
+}
+
+/*----- Tab Links -----*/
+/* Clearfix */
+
+.tab-links {
+    margin:0px;
+}
+
+.tab-links:after {
+    display:block;
+    clear:both;
+    content:'';
+}
+
+.tab-links li {
+    margin:0px 0px;
+    float:left;
+    list-style:none;
+}
+
+.tab-links a {
+    padding:9px 10px;
+    display:inline-block;
+    text-decoration:none;
+    border-radius:3px;
+}
+
+.tab-links a:hover {
+    text-decoration:none;
+
+}
+
+li.active a, li.active a:hover {
+    background: white;
+    color:black;
+}
+
