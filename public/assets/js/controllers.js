@@ -57,9 +57,9 @@ rootsAppControllers.controller('userCtrl', function ($scope) {
   console.log($scope.hello);
 });
 
-//controller that know what partial you currently are on
+//controller that with function to tell you what partial you are on
 app.controller('navControl', ['$scope','$location', function($scope, $location) {
-  $scope.isActive = function (viewLocation) {
+  $scope.isPartial = function (viewLocation) {
     var active = (viewLocation === $location.path());
     return active;
   };
