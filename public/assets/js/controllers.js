@@ -44,3 +44,15 @@ rootsAppControllers.controller('tabController', function ($scope){
     return $scope.currentTab === id;
   };
 });
+
+//controller for admin forms
+
+rootsAppControllers.controller('formEventCtrl', function ($scope) {
+  $scope.hello = 'hello!';
+  console.log($scope.hello);
+});
+
+rootsAppControllers.controller('userCtrl', function ($scope) {
+  $scope.hello = 'hello!';
+  console.log($scope.hello);
+});
