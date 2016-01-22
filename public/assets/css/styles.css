@@ -8,8 +8,14 @@ h2 {
     font-weight: 500
 }
 
+.notification {
+    padding: 0 0 0 14px;
+}
+
 .slightSqound {
     border-radius:3px;
+    padding: inherit;
+    margin-top: 7px
 }
 
 .green {
@@ -73,19 +79,28 @@ h2 {
 .tab-content {
     padding:15px;
     border-radius:3px;
-    box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
     background: white;
+    text-align: center;
+
 }
 
 .tab.active {
     display:block;
 }
 
+.tabLabel {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin:0;
+    padding: 0;
+    font-size: 20px
+}
+
 /*----- Tab Links -----*/
 /* Clearfix */
 
 .tab-links {
-    margin:0px;
+    margin:-1px;
 }
 
 .tab-links:after {
@@ -101,10 +116,13 @@ h2 {
 }
 
 .tab-links a {
-    padding:9px 10px;
-    display:inline-block;
-    text-decoration:none;
-    border-radius:3px;
+    padding: 9px 10px;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 3px;
+    margin: 9px 0px -5px;
+    color: white;
+    background-color: #DA7400;
 }
 
 .tab-links a:hover {
@@ -116,4 +134,41 @@ li.active a, li.active a:hover {
     background: white;
     color:black;
 }
+
+/*----- Schedule parts -----*/
+.scheduleTitle {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin:0;
+    text-align: center;
+    padding:10px;
+    font-size: 22px;
+    color: white;
+
+}
+
+.scheduleLabel {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin:0;
+    text-align: left;
+    padding:0px;
+    font-size: 18px;
+    color: black;
+}
+
+.selectorStyle {
+    height: 46px;
+    width: 85px;
+    border-radius: 3px;
+    border: none;
+    margin: 0px 0px 0px 50px;
+}
+
+.wrapper {
+    margin: 0px 83px 3px 83px;
+    padding: 3px 0px 1px 0px;
+}
+
+
 
