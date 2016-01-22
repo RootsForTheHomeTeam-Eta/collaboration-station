@@ -12,7 +12,6 @@ var morgan = require('morgan');
 app.use(morgan('dev'));
 
 
-
 // app settings
 app.set('port', process.env.PORT || 3000);
 
