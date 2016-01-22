@@ -15,7 +15,7 @@ var options = {
 // login strategy named jwt-login
 passport.use('jwt-login', new JWTStrategy(options, function(req, jwt_payload, done) {
   // look in User model for
-  User.findOne({id: jwt_payload.sub}, function(err, user) {
+  User.findOne({email: req.body.email}, function(err, user) {
     if (err) {
       return done(err, false);
     }
@@ -31,7 +31,7 @@ passport.use('jwt-login', new JWTStrategy(options, function(req, jwt_payload, do
 // register strategy named jwt-register
 passport.use('jwt-register', new JWTStrategy(options, function(req, jwt_payload, done) {
   // look in User model for
-  User.findOne({id: jwt_payload.sub}, function(err, user) {
+  User.findOne({email: req.body.email}, function(err, user) {
     if (err) {
       return done(err, false);
     }

@@ -16,28 +16,28 @@ gulp.task('jshint', ['jshint-server', 'jshint-public', 'jshint-db', 'jshint-auth
 gulp.task('jshint-server', function() {
   return gulp.src('server/**/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint.reporter(require('jshint-table-reporter')));
 });
 
 // configure the jshint-public task
 gulp.task('jshint-public', function() {
   return gulp.src('public/assets/js/**/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint.reporter(require('jshint-table-reporter')));
 });
 
 // configure the jshint-db task
 gulp.task('jshint-db', function() {
-  return gulp.src('db/**/*.js')
+  return gulp.src('db/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint.reporter(require('jshint-table-reporter')));
 });
 
 // configure the jshint-auth task
 gulp.task('jshint-auth', function() {
   return gulp.src('auth/**/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint.reporter(require('jshint-table-reporter')));
 });
 
 // configure the nodemon task
@@ -54,6 +54,6 @@ gulp.task('nodemon', function() {
 gulp.task('watch', function() {
   gulp.watch('server/**/*.js', ['jshint-server']);
   gulp.watch('public/assets/js/**/*.js', ['jshint-public']);
-  gulp.watch('db/**/*.js', ['jshint-db']);
+  gulp.watch('db/*.js', ['jshint-db']);
   gulp.watch('auth/**/*.js', ['jshint-auth']);
 });

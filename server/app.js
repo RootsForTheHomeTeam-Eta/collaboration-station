@@ -11,9 +11,12 @@ var config = require('../config.js');
 var morgan = require('morgan');
 app.use(morgan('dev'));
 
-
 // app settings
 app.set('port', process.env.PORT || 3000);
+
+// pull in database connection
+require('../db/db');
+
 
 // instantiate expressJWT to check token
 var jwtCheck = expressJWT({
@@ -30,15 +33,16 @@ app.use(express.static(path.join(__dirname, '../public')));
 var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
+var admin = require('./routes/admin');
 
 // ***** ROUTES *****
 
 app.use('/login', login);
 app.use('/register', register);
 
-// everything under /protected/* will verify the jwt
-app.use('/protected/*', jwtCheck);
-
+// everything under /api/* will verify the jwt
+app.use('/api/*', jwtCheck);
+app.use('/api/admin', admin);
 // catch all route:
 app.use('/*', index);
 
