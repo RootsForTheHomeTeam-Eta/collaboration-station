@@ -1,7 +1,6 @@
 
 .loginContainer{
     padding-top: 2em;
-    background-color: red;
 }
 .loginHeader{
     padding: 0.25em;
@@ -18,6 +17,11 @@
     border-radius: 0 0 1em 1em;
 }
 
+.loginForm input{
+    width: 11em;
+    height: 2em;
+
+}
 .loginForm div{
     padding: 1em;
 
@@ -25,8 +29,26 @@
 
 .loginBtn{
     border-radius: 0;
-    padding: .5em;
+
     border: none;
-    width: 148px;
-    height: 30px;
+    width: 11em;
+    height: 2em;
+}
+
+/*nav bar stuff maybe move?*/
+.logOut{
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    .logOut{
+        text-align: right;
+    }
+}
+
+@media only screen and (min-width : 992px) {
+    .logOut{
+        text-align: right;
+    }
 }
