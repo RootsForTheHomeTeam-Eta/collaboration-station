@@ -54,6 +54,29 @@ h2 {
     padding-top: 10px;
 }
 
+.notifIcon {
+    width: 2em;
+    margin: 10px 0px 0px -20px;
+    float: left;
+}
+
+.notifButton {
+    background-color:white;
+    border-radius:2px;
+    border:1px solid #74ad5a;
+    display:inline-block;
+    cursor:pointer;
+    color:black;
+    font-family: 'Roboto', sans-serif;
+    font-size:13px;
+    font-weight:bold;
+    padding:0px 33px;
+    text-decoration:none;
+    width:100%;
+    margin: 0 0 0 -6px;
+}
+
+
 /*----- Tab Stuff -----*/
 
 .tabs {
@@ -66,6 +89,7 @@ h2 {
     margin: 0;
     padding: 9px;
     color: white;
+    border-color: #1caff6;
 }
 
 .tab-align-center {
@@ -81,7 +105,7 @@ h2 {
     border-radius:3px;
     background: white;
     text-align: center;
-
+    border-color: #1caff6;
 }
 
 .tab.active {
