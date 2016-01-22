@@ -5,35 +5,82 @@
         <div class="col-md-1 yellow"></div>
         <div class="col-md-4 white slightSqound">
             <h2 class="orange slightSqound tab-header">Notifications</h2>
-            <div><p>notification here</p></div>
-            <div><p>notification here</p></div>
-            <div><p>notification here</p></div>
+            <div><p class="notification">notification here</p></div>
+            <div><p class="notification">notification here</p></div>
+            <div><p class="notification">notification here</p></div>
         </div>
         <div class="col-md-1 yellow"></div>
         <div class="col-md-5 yellow" ng-controller="tabController">
             <ul class="tab-links tabs" ng-init="currentTab='tab1'">
-                <li ng-class="{active: isActive('tab1')}"><a ng-click="onTabClick('tab1')">Add Event</a></li>
-                <li ng-class="{active: isActive('tab2')}"><a ng-click="onTabClick('tab2')">Add User</a></li>
+                <li class="tabLabel" ng-class="{active: isActive('tab1')}"><a ng-click="onTabClick('tab1')"><p class="tabLabel">Add Event</p></a></li>
+                <li ng-class="{active: isActive('tab2')}"><a ng-click="onTabClick('tab2')"><p class="tabLabel">Add User</p></a></li>
             </ul>
-                <div class="tab-content">
-                    <div id="tab1" ng-show="isActive('tab1')"  ng-class="{active: isActive('tab1')}">
-                        <p>Here is some Event stuff</p>
-                    </div>
-
-                    <div id="tab2" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}">
-                        <p>Here is some User stuff</p>
-                    </div>
-
+                <div id="tab1" class="tab-content" ng-show="isActive('tab1')" ng-class="{active: isActive('tab1')}" ng-controller="formEventCtrl">
+                    <p>Here is some Event stuff</p>
+                        <form novalidate ng-submit="submitEventForm()">
+                            Venue:<br>
+                            <select name="Venue" ng-model="venue.name">
+                                <option value="Twins Stadium">Twins Stadium</option>
+                                <option value="US Bank Stadium">US Bank Stadium</option>
+                                <option value="Another Stadium">Another Stadium</option>
+                                <option value="create a new stadium">Create a Stadium</option>
+                            </select><br>
+                            Date:<br>
+                            <input type="date"><br>
+                            Start Time:<br>
+                            <input type="time"><br>
+                            End Time:<br>
+                            <input type="time"><br>
+                            Sign-up By:<br>
+                            <input type="date">
+                            <br><br>
+                            <button>Submit</button>
+                            </form>
                 </div>
 
+                    <div id="tab2" class="tab-content" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}" ng-controller="userCtrl">
+                        <p>This should be a user form only</p>
+                            <form novalidate ng-submit="submitUserForm()">
+                                First Name:<br>
+                                <input type="text"><br>
+                                Last Name:<br>
+                                <input type="text"><br>
+                                User Name:<br>
+                                <input type="text"><br>
+                                Password:<br>
+                                <input type="password">
+                                <br><br>
+                                <button>Submit</button>
+                            </form>
+                    </div>
+
+        </div>
+
         <div class="col-md-1 yellow"></div>
     </div>
-    <div class="row"><div><p><br></p></div>
+
     </div>
-    <div class="row">
-        <div class="col-md-1 yellow"></div>
-        <div class="col-md-10 orange">This will be a schedule menu</div>
-        <div class="col-md-1 yellow"></div>
-    </div>
+<div class="row"><br></div>
+
+<div class="row">
+    <div class = "col-md-1 yellow"></div>
+    <div class = "col-md-10  orange slightSqound"><h2 class = "scheduleTitle">Venue Name</h2></div>
+    <div class = "col-md-1 yellow"></div>
 </div>
+        <div class ="row wrapper">
+            <div class = "col-md-2"><p>Date:</p></div>
+            <div class = "col-md-2"><p>Arrival:</p></div>
+            <div class = "col-md-2"><p>Event:</p></div>
+            <div class = "col-md-2"><p>First Choice</p></div>
+            <div class = "col-md-2"><p>Second Choice</p></div>
+            <div class = "col-md-2"><p>Unavailable</p></div>
+        </div>
+        <div class = "row white wrapper">
+            <div class = "col-md-2 white"><p>Sat, 03/22</p></div>
+            <div class = "col-md-2 white"><p>10:00 AM</p></div>
+            <div class = "col-md-2 white"><p>1:00 PM</p></div>
+            <div class = "col-md-2"><button class = "selectorStyle"></button></div>
+            <div class = "col-md-2"><button class = "selectorStyle"></button></div>
+            <div class = "col-md-2"><button class = "selectorStyle"></button></div>
+
 </div>
