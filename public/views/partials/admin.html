@@ -1,12 +1,39 @@
-<section class="section group yellow span_12_of_12">
-    <div class ="col yellow span_1_of_12"></div>
-    <div class="col white span_5_of_12"><container><p>this will column one</p></container></div>
-    <div class="col white span_5_of_12"><container><p>this will column two</p></container></div>
-    <div class ="col yellow span_1_of_12"></div>
-</section>
+<div>
+    <div class="row"><div><p><br></p></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1 yellow"></div>
+        <div class="col-md-4 white slightSqound">
+            <h2 class="orange slightSqound tab-header">Notifications</h2>
+            <div><p>notification here</p></div>
+            <div><p>notification here</p></div>
+            <div><p>notification here</p></div>
+        </div>
+        <div class="col-md-1 yellow"></div>
+        <div class="col-md-5 yellow" ng-controller="tabController">
+            <ul class="tab-links tabs" ng-init="currentTab='tab1'">
+                <li ng-class="{active: isActive('tab1')}"><a ng-click="onTabClick('tab1')">Add Event</a></li>
+                <li ng-class="{active: isActive('tab2')}"><a ng-click="onTabClick('tab2')">Add User</a></li>
+            </ul>
+                <div class="tab-content">
+                    <div id="tab1" ng-show="isActive('tab1')"  ng-class="{active: isActive('tab1')}">
+                        <p>Here is some Event stuff</p>
+                    </div>
 
-<section class="section group yellow span_12_of_12">
-    <div class ="col white span_1_of_12"></div>
-    <div class="col white span_10_of_12"><p>this will be a single column</p><img class= "orange" src="/assets/img/watercan.png"></div>
-    <div class ="col yellow span_1_of_12"></div>
-</section>
+                    <div id="tab2" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}">
+                        <p>Here is some User stuff</p>
+                    </div>
+
+                </div>
+
+        <div class="col-md-1 yellow"></div>
+    </div>
+    <div class="row"><div><p><br></p></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1 yellow"></div>
+        <div class="col-md-10 orange">This will be a schedule menu</div>
+        <div class="col-md-1 yellow"></div>
+    </div>
+</div>
+</div>

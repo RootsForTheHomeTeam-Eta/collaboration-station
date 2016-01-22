@@ -7,20 +7,24 @@
 
     <link rel='stylesheet' type="text/css" href='/assets/css/bootstrap/css/bootstrap.css'>
     <link rel='stylesheet' type="text/css" href='/assets/css/styles.css'>
+    <link rel='stylesheet' type="text/css" href='/assets/css/userView.css'>
+    <link rel='stylesheet' type="text/css" href='/assets/css/loginView.css'>
     <div class="section group span_1_of_12"></div>
     <script src="/assets/vendors/angular.js"></script>
     <script src="/assets/vendors/angular-route.js"></script>
     <script src="/assets/js/app.js"></script>
     <script src="/assets/js/controllers.js"></script>
 </head>
-<body>
-    <header class="section group green span_12_of_12" >
-        <div class ="col span_2_of_12"></div>
-        <img class="col span_1_of_12 icon" src="/assets/img/watercan.png">
-        <h2 class="col span_3_of_12">User Name</h2>
-        <div class ="col span_2_of_12"></div>
-        <h2 class="col span_3_of_12">Log Out</h2>
-        <div class ="col span_1_of_12"></div>
+<body class="yellow container-fluid">
+    <header class="green" >
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-1"><img class="icon" src="/assets/img/watercan.png"></div>
+            <div class="col-md-3"><h2>Welcome Name</h2></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-3"><h2>Logout</h2></div>
+        </div>
+
     </header>
     <main>
         <div ng-view></div>
