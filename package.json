@@ -31,6 +31,7 @@
   "homepage": "https://github.com/RootsForTheHomeTeam-Eta/roots-app#readme",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-route": "^1.4.9",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.2",
     "connect-flash": "^0.1.1",
@@ -41,5 +42,13 @@
     "morgan": "^1.6.1",
     "passport": "^0.3.2",
     "passport-jwt": "^1.2.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0"
   }
 }

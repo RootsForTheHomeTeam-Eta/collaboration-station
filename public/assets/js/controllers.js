@@ -1,8 +1,10 @@
+var rootsAppControllers = angular.module('rootsAppControllers', []);
 // login controller
-rootsApp.controller('loginCtrl', function ($scope, $http, $window) {
-  $scope.user = {username: req.body.username, password: req.body.password};
-  $scope.message = req.body.message;
-  $scope.submit = function () {
+
+rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
+  //$scope.user = {username: req.body.username, password: req.body.password};
+  //$scope.message = req.body.message;
+  $scope.submit = function() {
     $http
       .post('/login', $scope.user)
       .then(function (data, status, headers, config) {
@@ -13,6 +15,12 @@ rootsApp.controller('loginCtrl', function ($scope, $http, $window) {
 
         // Error message
         $scope.message = 'Error: Invalid username or password';
-      });
+    });
   };
+});
+
+
+rootsAppControllers.controller('mainCtrl', function ($scope) {
+  $scope.hello = 'hello!';
+  console.log($scope.hello);
 });
