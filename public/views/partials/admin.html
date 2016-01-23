@@ -2,21 +2,47 @@
     <div class="row"><div><p><br></p></div>
     </div>
     <div class="row">
-        <div class="col-md-1 yellow"></div>
-        <div class="col-md-4 slightSqound">
-            <h2 class="orange slightSqound tab-header">Notifications</h2>
-            <div class="notification">
+        <div class="col-md-1 yellowTrans"></div>
+        <div class="col-md-4 yellowTrans slightSqound" ng-controller="tabController">
+            <ul class="tab-links tabs" ng-init="currentTab='tabA'">
+                <li class="tabLabel" ng-class="{active: isActive('tabA')}"><a ng-click="onTabClick('tabA')"><p class="tabLabel">Alerts</p></a></li>
+                <li ng-class="{active: isActive('tabB')}"><a ng-click="onTabClick('tabB')"><p class="tabLabel">Quick Send</p></a></li>
+            </ul>
+            <div id="tabA" class="tab-content" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="noticeAlertCtrl">
                 <button class="notifButton"><img class="notifIcon" src="/assets/img/pailorange.png"><h2>You have a Notification</h2></button>
                 <button class="notifButton"><img class="notifIcon" src="/assets/img/jargreen.png"><h2>You have a Notification</h2></button>
                 <button class="notifButton"><img class="notifIcon" src="/assets/img/pailorange.png"><h2>You have a Notification</h2></button>
                 <button class="notifButton"><img class="notifIcon" src="/assets/img/jargreen.png"><h2>You have a Notification</h2></button>
             </div>
+            <div id="tabB" class="tab-content align-left" ng-show="isActive('tabB')"  ng-class="{active: isActive('tab2')}" ng-controller="noticeSendCtrl">
+                <p>This should be a quick send form only</p>
+                <form novalidate ng-submit="submitQuickForm()">
+                    Groups:<br>
+                    <input type="checkbox" name="gardenGroupYFH" id="Youth Farm Hawthorne" value="Youth Farm Hawthorne" class="css-checkbox">
+                    <label for="Youth Farm Hawthorne" class="css-label">Youth Farm Hawthorn</label>
+                    <input type="checkbox" name="gardenGroupURF" id="Urban Roots Farm" value="Urban Roots Farm" class="css-checkbox">
+                    <label for="Urban Roots Farm" class="css-label">Urban Roots Farm</label>
+                    <input type="checkbox" name="gardenGroupYFW" id= "Youth Farm W. Side" value="Youth Farm W. Side" class="css-checkbox">
+                    <label for="Youth Farm W. Side" class="css-label">Youth Farm W. Side</label>
+                    <input type="checkbox" name="gardenGroupDWH" id= "Dream of Wild Health" value="Dream of Wild Health" class="css-checkbox">
+                    <label for="Dream of Wild Health" class="css-label">Dream of Wild Health</label>
+                    <input type="checkbox" name="gardenGroupAFC" id= "Appetite for Change" value="Appetite for Change" class="css-checkbox">
+                    <label for="Appetite for Change" class="css-label">Appetite for Change</label>
+
+                    <br><br>
+                    <button class="sendButton"><img class="buttonIcon" src="/assets/img/jargreen.png">Send Sign-up Request</button><br>
+                    <br><button>Send Quick Reminder</button><br>
+                    <br><button>Send Second Reminder</button>
+                </form>
+            </div>
         </div>
-        <div class="col-md-1 yellow"></div>
-        <div class="col-md-5 yellow" ng-controller="tabController">
+        <div class="col-md-1 yellowTrans"></div>
+
+        <div class="col-md-5 yellowTrans slightSqound" ng-controller="tabController">
             <ul class="tab-links tabs" ng-init="currentTab='tab1'">
                 <li class="tabLabel" ng-class="{active: isActive('tab1')}"><a ng-click="onTabClick('tab1')"><p class="tabLabel">Add Event</p></a></li>
                 <li ng-class="{active: isActive('tab2')}"><a ng-click="onTabClick('tab2')"><p class="tabLabel">Add User</p></a></li>
+                <li ng-class="{active: isActive('tab3')}"><a ng-click="onTabClick('tab3')"><p class="tabLabel">Send Notices</p></a></li>
             </ul>
                 <div id="tab1" class="tab-content" ng-show="isActive('tab1')" ng-class="{active: isActive('tab1')}" ng-controller="formEventCtrl">
                     <p>Here is some Event stuff</p>
@@ -57,33 +83,118 @@
                             </form>
                     </div>
 
+            <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="userCtrl">
+
+                <p>Here is some Sending stuff</p>
+                <form novalidate ng-submit="submitEventForm()">
+                    Email:<br>
+                    <input type="email"><br>
+                    Name:<br>
+                    <input type="text"><br>
+                    Message:<br>
+                    <input name="message" cols="40" rows="10">
+                    <br><br>
+                    <button>Submit</button>
+                </form>
+            </div>
         </div>
 
-        <div class="col-md-1 yellow"></div>
+        <div class="col-md-1 yellowTrans"></div>
     </div>
 
     </div>
 <div class="row"><br></div>
 
-<div class="row">
-    <div class = "col-md-1 yellow"></div>
-    <div class = "col-md-10  orange slightSqound"><h2 class = "scheduleTitle">Venue Name</h2></div>
-    <div class = "col-md-1 yellow"></div>
-</div>
-        <div class ="row wrapper">
-            <div class = "col-md-2"><p>Date:</p></div>
-            <div class = "col-md-2"><p>Arrival:</p></div>
-            <div class = "col-md-2"><p>Event:</p></div>
-            <div class = "col-md-2"><p>First Choice</p></div>
-            <div class = "col-md-2"><p>Second Choice</p></div>
-            <div class = "col-md-2"><p>Unavailable</p></div>
+<div class= 'col-md-12'>
+    <div  class = "col-md-12 venueContainer">
+        <div class = 'orange  row container-fluid venueWrapper' ng-click = 'display = !display'>
+            <div class = 'vTop orange col-md-12'><h2 class="tab-header">TCF Bank Stadium</h2></div>
         </div>
-        <div class = "row white wrapper">
-            <div class = "col-md-2 white"><p>Sat, 03/22</p></div>
-            <div class = "col-md-2 white"><p>10:00 AM</p></div>
-            <div class = "col-md-2 white"><p>1:00 PM</p></div>
-            <div class = "col-md-2"><button class = "selectorStyle"></button></div>
-            <div class = "col-md-2"><button class = "selectorStyle"></button></div>
-            <div class = "col-md-2"><button class = "selectorStyle"></button></div>
+        <div ng-show = 'display' >
+            <div class = "venueHeader yellow  row container-fluid">
+                <div class = "col-md-1 scheduleTitle">Date:</div>
+                <div class = "col-md-2 scheduleTitle">Arrival Time:</div>
+                <div class = "col-md-2 scheduleTitle">Event Time:</div>
+                <div class = "col-md-2"></div>
+                <div class = "col-md-1"><p>Youth Farm Hawthorne</p></div>
+                <div class = "col-md-1"><p>Urban Roots Garden</p></div>
+                <div class = "col-md-1"><p>Youth Farm W.Side</p></div>
+                <div class = "col-md-1"><p>Dream of Wild Health</p></div>
+                <div class = "col-md-1"><p>Appetite for Change</p></div>
+            </div>
+            <div class = "venueOptions row container-fluid">
+                <div class = "col-md-1 scheduleLabel">Sat, 03/22</div>
+                <div class = "col-md-2 scheduleLabel">10:00 AM</div>
+                <div class = "col-md-2 scheduleLabel">1:00 PM</div>
+                <div class = "col-md-2"></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle green"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle yellow"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+            </div>
+            <div class = "venueOptions row container-fluid">
+                <div class = "col-md-1 scheduleLabel">Sat, 03/22</div>
+                <div class = "col-md-2 scheduleLabel">10:00 AM</div>
+                <div class = "col-md-2 scheduleLabel">1:00 PM</div>
+                <div class = "col-md-2"></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle green"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle yellow"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+            </div>
+            <div class="venueOptions row container-fluid">
+                <div class = "col-md-12 white"><button type="button" class="generateStyle green"></button></div>
+            </div>
+        </div>
 
+    </div>
 </div>
+<div class= 'col-md-12'>
+    <div  class = "col-md-12 venueContainer">
+        <div class = 'orange  row container-fluid venueWrapper' ng-click = 'display2 = !display2'>
+            <div class = 'vTop orange col-md-12'><h2 class="tab-header">US Bank Stadium</h2></div>
+        </div>
+        <div ng-show = 'display2' >
+            <div class = "venueHeader yellow  row container-fluid">
+                <div class = "col-md-1 scheduleTitle">Date:</div>
+                <div class = "col-md-2 scheduleTitle">Arrival Time:</div>
+                <div class = "col-md-2 scheduleTitle">Event Time:</div>
+                <div class = "col-md-2"></div>
+                <div class = "col-md-1"><p>Youth Farm Hawthorne</p></div>
+                <div class = "col-md-1"><p>Urban Roots Garden</p></div>
+                <div class = "col-md-1"><p>Youth Farm W.Side</p></div>
+                <div class = "col-md-1"><p>Dream of Wild Health</p></div>
+                <div class = "col-md-1"><p>Appetite for Change</p></div>
+            </div>
+            <div class = "venueOptions row container-fluid">
+                <div class = "col-md-1 scheduleLabel">Sat, 03/22</div>
+                <div class = "col-md-2 scheduleLabel">10:00 AM</div>
+                <div class = "col-md-2 scheduleLabel">1:00 PM</div>
+                <div class = "col-md-2"></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle green"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle yellow"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+            </div>
+            <div class = "venueOptions row container-fluid">
+                <div class = "col-md-1 scheduleLabel">Sat, 03/22</div>
+                <div class = "col-md-2 scheduleLabel">10:00 AM</div>
+                <div class = "col-md-2 scheduleLabel">1:00 PM</div>
+                <div class = "col-md-2"></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle green"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle yellow"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+            </div>
+            <div class="venueOptions row container-fluid">
+                <div class = "col-md-12 white"><button type="button" class="generateStyle green"></button></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
