@@ -8,14 +8,38 @@ h2 {
     font-weight: 500
 }
 
+select, input {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: 6px;
+    display: inline;
+}
+
+textarea.style {
+    margin: 6px;
+    width: 366px;
+    height: 206px;
+}
+
 .notification {
     padding: 0 0 0 14px;
 }
 
 .slightSqound {
-    border-radius:3px;
+    border-radius: 3px;
     padding: inherit;
     margin-top: 7px
+}
+
+.center {
+    width: 62%;
+    margin: auto;
+}
+
+.higher {
+    padding: 4px 0px 0px 4px;
+    margin: 4px 0px 6px 4px;
 }
 
 .green {
@@ -33,6 +57,11 @@ h2 {
 .yellow {
     background-color: #EDB816;
 }
+
+.yellowTrans {
+    background-color: #FAEEC7;
+}
+
 .white {
     background-color: white;
 }
@@ -54,6 +83,36 @@ h2 {
     padding-top: 10px;
 }
 
+.backgroundIcon {
+    margin: 25px 0px 0px 0px;
+    width: 100%;
+}
+
+/*----- Notification Tab Elements -----*/
+
+.notifIcon {
+    width: 2em;
+    margin: 10px 0px 0px -20px;
+    float: left;
+}
+
+.notifButton {
+    background-color:white;
+    border-radius:2px;
+    border:1px solid #74ad5a;
+    display:inline-block;
+    cursor:pointer;
+    color:black;
+    font-family: 'Roboto', sans-serif;
+    font-size:13px;
+    font-weight:bold;
+    padding:0px 33px;
+    text-decoration:none;
+    width:100%;
+    margin: 0 0 0 -6px;
+}
+
+
 /*----- Tab Stuff -----*/
 
 .tabs {
@@ -66,6 +125,7 @@ h2 {
     margin: 0;
     padding: 9px;
     color: white;
+    border-color: #1caff6;
 }
 
 .tab-align-center {
@@ -81,7 +141,11 @@ h2 {
     border-radius:3px;
     background: white;
     text-align: center;
+    border-color: #1caff6;
+}
 
+.align-left {
+    text-align: left;
 }
 
 .tab.active {
@@ -135,39 +199,145 @@ li.active a, li.active a:hover {
     color:black;
 }
 
+
+/*----- Quicksend Tab Elements -----*/
+
+.formButton {
+    width: 80%;
+    height: 35px;
+    margin: 0px 0px 7px 0px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.buttonIcon {
+    width: 1.2em;
+    margin: 0px 25px 0px 0px;
+}
+
+.tabFormLabel {
+    color: Black;
+    text-align: left;
+}
+
+textarea#styled {
+    width: 80%;
+    height: 120px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*----- checkbox styling -----*/
+
+input[type=checkbox].css-checkbox {
+    position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+    padding-left:25px;
+    height:20px;
+    display:inline-block;
+    line-height:20px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    font-size:20px;
+    vertical-align:middle;
+    cursor:pointer;
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+    background-position: 0 -20px;
+}
+label.css-label {
+    background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_b3fece7d0aa398c0ac859f90f407ff84.png);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*----- Radio Buttons -----*/
+
+input[type=radio].css-checkbox-radio {
+    position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+}
+
+input[type=radio].css-checkbox-radio + label.css-label-radio {
+    padding-left:27px;
+    height:22px;
+    display:inline-block;
+    line-height:22px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    font-size:18px;
+    vertical-align:middle;
+    cursor:pointer;
+    margin-bottom: 7px;
+}
+
+input[type=radio].css-checkbox-radio:checked + label.css-label-radio {
+    background-position: 0 -22px;
+}
+label.css-label-radio {
+    background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_3808adeb8f529fab240b131f35f12199.png);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
 /*----- Schedule parts -----*/
 .scheduleTitle {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     margin:0;
     text-align: center;
-    padding:10px;
+    padding:20px 0 0 0;
     font-size: 22px;
     color: white;
-
 }
 
 .scheduleLabel {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     margin:0;
-    text-align: left;
-    padding:0px;
+    text-align: center;
+    padding:0px 0px 0px 20px;
     font-size: 18px;
     color: black;
 }
 
 .selectorStyle {
     height: 46px;
-    width: 85px;
+    width: 60px;
+    border-radius: 3px;
+    border: none;
+    margin: 0px 0px 0px 0px;
+    padding: 0;
+}
+
+.generateStyle {
+    height: 31px;
+    width: 181px;
     border-radius: 3px;
     border: none;
     margin: 0px 0px 0px 50px;
+    float: right;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
 }
 
-.wrapper {
-    margin: 0px 83px 3px 83px;
-    padding: 3px 0px 1px 0px;
-}
+
 
 
