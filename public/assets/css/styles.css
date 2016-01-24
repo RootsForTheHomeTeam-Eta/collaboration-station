@@ -8,6 +8,13 @@ h2 {
     font-weight: 500
 }
 
+select, input, textarea {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: 6px;
+}
+
 .notification {
     padding: 0 0 0 14px;
 }
@@ -69,6 +76,11 @@ h2 {
     padding-top: 10px;
 }
 
+.backgroundIcon {
+    margin: 25px 0px 0px 0px;
+    width: 100%;
+}
+
 /*----- Notification Tab Elements -----*/
 
 .notifIcon {
@@ -121,7 +133,7 @@ h2 {
     padding:15px;
     border-radius:3px;
     background: white;
-    text-align: center;
+    text-align: left;
     border-color: #1caff6;
 }
 
@@ -180,27 +192,30 @@ li.active a, li.active a:hover {
     color:black;
 }
 
+
 /*----- Quicksend Tab Elements -----*/
 
 .formButton {
     width: 80%;
     height: 35px;
     margin: 0px 0px 7px 0px;
-}
-.send {
-    height: 23px;
-    width: 100%;
-    border-radius: 3px;
-    border: none;
-    margin: 8px 0px 8px 0px;
-    float: left;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .buttonIcon {
-    width: 1.5em;
+    width: 1.2em;
     margin: 0px 25px 0px 0px;
-    padding: 0px 0px 0px 3px;
 }
+
+.tabFormLabel {
+    color: Black;
+    text-align: left;
+    padding: 9px
+}
+
 /*----- checkbox styling -----*/
 
 input[type=checkbox].css-checkbox {
@@ -297,12 +312,17 @@ label.css-label-radio {
 }
 
 .generateStyle {
-    height: 23px;
-    width: 85px;
+    height: 31px;
+    width: 181px;
     border-radius: 3px;
     border: none;
     margin: 0px 0px 0px 50px;
-    float: right
+    float: right;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+
 }
 
 
