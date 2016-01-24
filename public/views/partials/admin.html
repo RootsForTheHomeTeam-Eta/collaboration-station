@@ -15,9 +15,9 @@
                 <button class="notifButton"><img class="notifIcon" src="/assets/img/jargreen.png"><h2>You have a Notification</h2></button>
             </div>
             <div id="tabB" class="tab-content align-left" ng-show="isActive('tabB')"  ng-class="{active: isActive('tab2')}" ng-controller="noticeSendCtrl">
-                <p>This should be a quick send form only</p>
                 <form novalidate ng-submit="submitQuickForm()">
-                    Groups:<br>
+                    <h2 class="higher">Who do you want to notify?</h2>
+                    <div class="center">
                     <input type="checkbox" name="gardenGroupYFH" id="Youth Farm Hawthorne" value="Youth Farm Hawthorne" class="css-checkbox">
                     <label for="Youth Farm Hawthorne" class="css-label">Youth Farm Hawthorn</label>
                     <input type="checkbox" name="gardenGroupURF" id="Urban Roots Farm" value="Urban Roots Farm" class="css-checkbox">
@@ -28,11 +28,20 @@
                     <label for="Dream of Wild Health" class="css-label">Dream of Wild Health</label>
                     <input type="checkbox" name="gardenGroupAFC" id= "Appetite for Change" value="Appetite for Change" class="css-checkbox">
                     <label for="Appetite for Change" class="css-label">Appetite for Change</label>
-
-                    <br><br>
-                    <button class="sendButton"><img class="buttonIcon" src="/assets/img/jargreen.png">Send Sign-up Request</button><br>
-                    <br><button>Send Quick Reminder</button><br>
-                    <br><button>Send Second Reminder</button>
+                    </div>
+                    <h2>What do you want to send?</h2>
+                    <div class="center">
+                    <input type="radio" name="sign-up" id="radio1" class="css-checkbox-radio"/>
+                    <label for="radio1" class="css-label-radio radGroup1">Sign-up Request</label>
+                    <br>
+                    <input type="radio" name="sign-up" id="radio2" class="css-checkbox-radio"/>
+                    <label for="radio2" class="css-label-radio radGroup1">Quick Reminder</label>
+                    <br>
+                    <input type="radio" name="sign-up" id="radio3" class="css-checkbox-radio"/>
+                    <label for="radio3" class="css-label-radio radGroup1">Second Reminder</label>
+                    </div>
+                    <br>
+                    <button class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
                 </form>
             </div>
         </div>
@@ -55,15 +64,15 @@
                                 <option value="create a new stadium">Create a Stadium</option>
                             </select><br>
                             Date:<br>
-                            <input type="date"><br>
+                            <input type="date" ng-model="venue.date"><br>
                             Start Time:<br>
-                            <input type="time"><br>
+                            <input type="time" ng-model="venue.startTime"><br>
                             End Time:<br>
-                            <input type="time"><br>
+                            <input type="time" ng-model="venue.endTime"><br>
                             Sign-up By:<br>
-                            <input type="date">
+                            <input type="date" ng-model="venue.dueBy">
                             <br><br>
-                            <button>Submit</button>
+                            <button class="green">Submit</button>
                             </form>
                 </div>
 
@@ -102,7 +111,6 @@
         <div class="col-md-1 yellowTrans"></div>
     </div>
 
-    </div>
 <div class="row"><br></div>
 
 <div class= 'col-md-12'>
@@ -198,3 +206,4 @@
     </div>
 </div>
 
+</div>
