@@ -8,11 +8,18 @@ h2 {
     font-weight: 500
 }
 
-select, input, textarea {
+select, input {
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     margin: 6px;
+    display: inline;
+}
+
+textarea.style {
+    margin: 6px;
+    width: 366px;
+    height: 206px;
 }
 
 .notification {
@@ -133,7 +140,7 @@ select, input, textarea {
     padding:15px;
     border-radius:3px;
     background: white;
-    text-align: left;
+    text-align: center;
     border-color: #1caff6;
 }
 
@@ -213,7 +220,14 @@ li.active a, li.active a:hover {
 .tabFormLabel {
     color: Black;
     text-align: left;
-    padding: 9px
+}
+
+textarea#styled {
+    width: 80%;
+    height: 120px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    font-family: 'Roboto', sans-serif;
 }
 
 /*----- checkbox styling -----*/
