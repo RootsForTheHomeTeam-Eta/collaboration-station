@@ -8,7 +8,6 @@ var bcrypt = require('bcrypt');
 module.exports = {
   init: function(app) {
     //initialize passport
-    app.use(flash());
     app.use(passport.initialize());
     // Persistent login sessions
     app.use(passport.session());
@@ -60,7 +59,7 @@ module.exports = {
             // hash req.body.password
             bcrypt.hash(password, salt, function(err, hash) {
               // compare hash with hash from db
-              bcrypt.compare(hash, user.password, function(err, done) {
+              bcrypt.compare(hash, user.password, function(err) {
                 // if error in password compare, send flash message
                 if (err) {
                   console.log('bcrypt error');
@@ -68,7 +67,7 @@ module.exports = {
                 }
                 // finish authentication and return user
                 console.log('success!');
-                done(null, user);
+                return done(null, user);
               });
             });
           });
@@ -90,8 +89,7 @@ module.exports = {
         // if existing user, return flash message
         if (user) {
           console.log('user');
-          done(null, user,
-            req.flash('error', 'User Already Exists'));
+          done(null, false, req.flash('error', 'User Already Exists'));
         } else {
           console.log('create user');
           // if no existing user, create new user

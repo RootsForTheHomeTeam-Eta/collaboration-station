@@ -34,9 +34,11 @@ router.post('/login', function(req, res, next) {
 router.post('/register', function(req, res, next) {
     passport.authenticate('local-register',
       { successRedirect: '/profile',
-        failureRedirect: '/profile',
+        failureRedirect: '/login',
         failureFlash: true
       })(req, res, next);
+    console.log(res.locals);
+    console.log("Flash: " + res.locals.message);
 });
 
 
