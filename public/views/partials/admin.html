@@ -56,13 +56,14 @@
             </ul>
                 <div id="tab1" class="tab-content" ng-show="isActive('tab1')" ng-class="{active: isActive('tab1')}" ng-controller="formEventCtrl">
                         <form novalidate ng-submit="submitEventForm()">
-                            <label for="Venue" class="formButton tabFormLabel">Venue:&nbsp;&nbsp;</label>
-                            <select id="Venue" name="Venue" ng-model="venue.name">
+                            <img class="decor-img" src="/assets/img/longbackground.png">
+                            <label for="Venues" class="formButton tabFormLabel">Venue:&nbsp;&nbsp;</label>
+                            <input type="text" list="Venues"/>
+                            <datalist id="Venues" name="Venue" ng-model="venue.name">
                                 <option value="Twins Stadium">Twins Stadium</option>
                                 <option value="US Bank Stadium">US Bank Stadium</option>
                                 <option value="Another Stadium">Another Stadium</option>
-                                <option value="create a new stadium">Create a Stadium</option>
-                            </select><br>
+                            </datalist><br>
                             <label for="eventDate" class="formButton tabFormLabel">Date:</label>
                             <input id="eventDate" type="date" ng-model="venue.eventDate"><br>
                             <label for="startTime" class="formButton tabFormLabel">Start Time:</label>
@@ -78,6 +79,7 @@
 
                     <div id="tab2" class="tab-content" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}" ng-controller="userCtrl">
                             <form novalidate ng-submit="submitUserForm()">
+                                <img class="decor-img" src="/assets/img/longbackground.png">
                                 <label for="firstName" class="formButton tabFormLabel">First Name:</label>
                                 <input id="firstName" type="text" ng-model="user.firstName" placeholder="Contact First Name"><br>
                                 <label for="lastName" class="formButton tabFormLabel">Last Name:</label>
@@ -88,13 +90,13 @@
                                 <input id="userName" type="text" ng-model="user.userName" placeholder="eg: UrbanRoots" ><br>
                                 <label for="password" class="formButton tabFormLabel">Password:</label>
                                 <input id="password" type="password" ng-model="user.password" placeholder="eg: UrbanRoots986"><br>
-                                <p>Create new users to allow for form submission</p>
                                 <button class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/apple.png">Submit</button>
                             </form>
                     </div>
 
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="userCtrl">
                 <form>
+                    <img class="decor-img" src="/assets/img/longbackground.png">
                     <label for="sendToEmail" class="formButton tabFormLabel">Email:</label>
                     <input id="sendToEmail" type="email" ng-model="sendTo.email" placeholder="Send to Email"><br>
                     <label for="sendToName" class="formButton tabFormLabel">Name:</label>
