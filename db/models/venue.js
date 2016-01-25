@@ -20,8 +20,8 @@ var VenueSchema = new Schema({
           orgName: String
         }]
       },
-      arrivalTime: Date,
-      gameTime: Date
+        arrivalTime: Date,
+    gameTime: Date
     }]
 });
 
