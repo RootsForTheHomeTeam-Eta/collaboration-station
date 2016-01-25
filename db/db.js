@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var mongoURI = 'mongodb://localhost:27017';
+var mongoURI = 'mongodb://localhost:27017/roots_app';
 
 var MongoDB = mongoose.connect(mongoURI).connection;
 
