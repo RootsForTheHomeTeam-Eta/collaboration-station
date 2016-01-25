@@ -160,6 +160,7 @@ rootsAppControllers.controller('scheduleController', function ($scope) {
   //will save current schedule with ng-click saveSchedule()
   //will view previous schedule with ng-click viewPreviousSchedule()
   //will show current schedule in modal ng-click generateSchedule()
+
   //will clear schedules with ng-click="clearSchedule()" will ask for
   //confirmation
   $scope.hello = 'hello!';
