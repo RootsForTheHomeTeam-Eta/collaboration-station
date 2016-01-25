@@ -156,11 +156,21 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
   console.log($scope.hello);
 });
 
+
+//does each click need it's own controller?
 rootsAppControllers.controller('scheduleController', function ($scope) {
   //will save current schedule with ng-click saveSchedule()
+  $scope.saveSchedule= function(){
+    alert("I clicked save schedule")
+  };
   //will view previous schedule with ng-click viewPreviousSchedule()
+  $scope.viewPreviousSchedule= function(){
+    alert("I clicked view previous")
+  };
   //will show current schedule in modal ng-click generateSchedule()
-
+ $scope.generateSchedule= function(){
+   alert("I clicked");
+ };
   //will clear schedules with ng-click="clearSchedule()" will ask for
   //confirmation
   $scope.hello = 'hello!';
