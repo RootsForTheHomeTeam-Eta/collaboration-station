@@ -157,6 +157,27 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
 });
 
 
+//does each click need it's own controller?
+rootsAppControllers.controller('scheduleController', function ($scope) {
+  //will save current schedule with ng-click saveSchedule()
+  $scope.saveSchedule= function(){
+    alert("I clicked save schedule")
+  };
+  //will view previous schedule with ng-click viewPreviousSchedule()
+  $scope.viewPreviousSchedule= function(){
+    alert("I clicked view previous")
+  };
+  //will show current schedule in modal ng-click generateSchedule()
+ $scope.generateSchedule= function(){
+   alert("I clicked");
+ };
+  //will clear schedules with ng-click="clearSchedule()" will ask for
+  //confirmation
+  $scope.hello = 'hello!';
+  console.log($scope.hello);
+});
+
+
 //controller that with function to tell you what partial you are on
 app.controller('navControl', ['$scope','$location', function($scope, $location) {
   $scope.isPartial = function (viewLocation) {
@@ -165,3 +186,53 @@ app.controller('navControl', ['$scope','$location', function($scope, $location) 
   };
 
 }]);
+
+
+// get Venue Object
+// Venue Object Populates form
+// User Group goes through and makes a preference per event
+// On submit the controller makes a put request to update the model
+// will method be a put or update or patch?
+// are we getting the venue collection? Is a params needed?
+
+rootsAppControllers.controller('userGroupCtrl', [ '$scope','$http', function ($scope, $http) {
+  $scope.hello = 'hello from the userGroupCtrl!';
+  $http({
+    url:'/user',
+    method:'get'
+  }).then(function(response){
+    $scope.venueEvents = response.data;
+  });
+
+
+  $scope.submit = function () {
+    console.log(venu.pref.one);
+    $http({
+      url: '/user',
+      method: 'post'
+    }).then(function () {
+      console.log(response.status);
+    });
+  };
+}]);
+
+//var VenueSchema = new Schema({
+//  venueName: String,
+//  location: String,
+//  events: [{
+//    event: {
+//      eventDate: Date,
+//      organization: [{
+//        orgName: String,
+//        preferences: [{
+//          first: {type: Boolean, default: false},
+//          second: {type: Boolean, default: false},
+//          cannot: {type: Boolean, default: false}
+//        }]
+//
+//      }]
+//    },
+//    arrivalTime: Date,
+//    gameTime: Date
+//  }]
+//});
