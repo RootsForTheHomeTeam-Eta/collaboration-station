@@ -41,7 +41,7 @@
                     <label for="radio3" class="css-label-radio radGroup1">Second Reminder</label>
                     </div>
                     <br>
-                    <button class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
+                    <button type="submit" class="green slightSqound formButton" ng-click="submitQuickForm()"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
                 </form>
             </div>
         </div>
@@ -55,52 +55,54 @@
                 <li ng-class="{active: isActive('tab3')}"><a ng-click="onTabClick('tab3')"><p class="tabLabel">Send Notices</p></a></li>
             </ul>
                 <div id="tab1" class="tab-content" ng-show="isActive('tab1')" ng-class="{active: isActive('tab1')}" ng-controller="formEventCtrl">
-                        <form novalidate ng-submit="submitEventForm()">
-                            <label for="Venue" class="formButton tabFormLabel">Venue:&nbsp;&nbsp;</label>
-                            <select id="Venue" name="Venue" ng-model="venue.name">
+                        <form novalidate>
+                            <img class="decor-img" src="/assets/img/longbackground.png">
+                            <label for="Venues" class="formButton tabFormLabel">Venue:&nbsp;&nbsp;</label>
+                            <input type="text" list="Venues"/>
+                            <datalist id="Venues" name="Venue" ng-model="venueName">
                                 <option value="Twins Stadium">Twins Stadium</option>
                                 <option value="US Bank Stadium">US Bank Stadium</option>
                                 <option value="Another Stadium">Another Stadium</option>
-                                <option value="create a new stadium">Create a Stadium</option>
-                            </select><br>
+                            </datalist><br>
                             <label for="eventDate" class="formButton tabFormLabel">Date:</label>
-                            <input id="eventDate" type="date" ng-model="venue.eventDate"><br>
-                            <label for="startTime" class="formButton tabFormLabel">Start Time:</label>
-                            <input id="startTime" type="time" ng-model="venue.startTime"><br>
+                            <input id="eventDate" type="date" ng-model="eventDate"><br>
+                            <label for="startTime" class="formButton tabFormLabel">Game Time:</label>
+                            <input id="startTime" type="time" ng-model="gameTime"><br>
                             <label for="arrivalTime" class="formButton tabFormLabel">Arrival Time:</label>
-                            <input id="arrivalTime" type="time" ng-model="venue.arrivalTime"><br>
+                            <input id="arrivalTime" type="time" ng-model="arrivalTime"><br>
                             <label for="submitBy" class="formButton tabFormLabel">Submit By:</label>
-                            <input id="submitBy" type="date" ng-model="venue.submitBy">
-                            <br><br>
-                            <button class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
+                            <input id="submitBy" type="date" ng-model="submitBy">
+                            <br>
+                            <button type="submit" ng-click="submitEventForm()" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
                             </form>
                 </div>
 
                     <div id="tab2" class="tab-content" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}" ng-controller="userCtrl">
-                            <form novalidate ng-submit="submitUserForm()">
+                            <form novalidate>
+                                <img class="decor-img" src="/assets/img/longbackground.png">
+                                <label for="orgName" class="formButton tabFormLabel">User Name:</label>
+                                <input id="orgName" type="text" ng-model="orgName" placeholder="Organization Name"><br>
                                 <label for="firstName" class="formButton tabFormLabel">First Name:</label>
-                                <input id="firstName" type="text" ng-model="user.firstName" placeholder="Contact First Name"><br>
+                                <input id="firstName" type="text" ng-model="firstName" placeholder="Contact First Name"><br>
                                 <label for="lastName" class="formButton tabFormLabel">Last Name:</label>
-                                <input id="lastName" type="text" ng-model="user.lastName" placeholder="Contact Last Name"><br>
+                                <input id="lastName" type="text" ng-model="lastName" placeholder="Contact Last Name"><br>
                                 <label for="userEmail" class="formButton tabFormLabel">User Email:</label>
-                                <input id="userEmail" type="text" ng-model="user.userEmail" placeholder="Contact Email"><br>
-                                <label for="userName" class="formButton tabFormLabel">User Name:</label>
-                                <input id="userName" type="text" ng-model="user.userName" placeholder="eg: UrbanRoots" ><br>
+                                <input id="userEmail" type="text" ng-model="email" placeholder="Contact Email"><br>
                                 <label for="password" class="formButton tabFormLabel">Password:</label>
-                                <input id="password" type="password" ng-model="user.password" placeholder="eg: UrbanRoots986"><br>
-                                <p>Create new users to allow for form submission</p>
-                                <button class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/apple.png">Submit</button>
+                                <input id="password" type="password" ng-model="password" placeholder="eg: UrbanRoots986"><br>
+                                <button type="submit" ng-click="submitUserForm()"class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/apple.png">Submit</button>
                             </form>
                     </div>
 
-            <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="userCtrl">
+            <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="messageCtrl">
                 <form>
+                    <img class="decor-img" src="/assets/img/longbackground.png">
                     <label for="sendToEmail" class="formButton tabFormLabel">Email:</label>
                     <input id="sendToEmail" type="email" ng-model="sendTo.email" placeholder="Send to Email"><br>
                     <label for="sendToName" class="formButton tabFormLabel">Name:</label>
                     <input id="sendToName" type="text" ng-model="sendTo.name" placeholder="Name"><br>
                     <textarea id="styled" name="message" cols="20" rows="10" ng-model="sendTo.message" placeholder="A custom message"></textarea>
-                    <button class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
+                    <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
                 </form>
             </div>
         </div>
