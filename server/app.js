@@ -6,6 +6,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var expressJWT = require('express-jwt');
 var config = require('../config.js');
+var passport = require('passport');
 
 // use morgan to log requires to the console
 var morgan = require('morgan');
@@ -17,6 +18,8 @@ app.set('port', process.env.PORT || 3000);
 // pull in database connection
 require('../db/db');
 
+// intialize passport
+app.use(passport.initialize());
 
 // instantiate expressJWT to check token
 var jwtCheck = expressJWT({
@@ -33,7 +36,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
-var admin = require('./routes/admin');
+var auth = require('./routes/auth');
 
 // ***** ROUTES *****
 
@@ -42,9 +45,9 @@ app.use('/register', register);
 
 // everything under /api/* will verify the jwt
 app.use('/api/*', jwtCheck);
-app.use('/api/admin', admin);
+app.use('/api/auth', auth);
 // catch all route:
-app.use('/*', index);
+app.use('/profile', index);
 
 // ***** ERROR HANDLERS *****
 

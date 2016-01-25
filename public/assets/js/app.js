@@ -1,6 +1,6 @@
-var app = angular.module('rootsApp', ['ngRoute', 'rootsAppControllers', 'rootsAppFactories', 'angular-jwt']);
+var app = angular.module('rootsApp', ['ngRoute', 'rootsAppControllers']);
 
-app.config(['$routeProvider', '$httpProvider', 'jwtInterceptorProvider', function($routeProvider, $httpProvider, jwtInterceptorProvider){
+app.config(['$routeProvider', '$httpProvider', function($routeProvider){
     $routeProvider.when('/admin', {
         templateUrl: 'views/partials/admin.html',
         controller: 'mainCtrl'
@@ -13,11 +13,5 @@ app.config(['$routeProvider', '$httpProvider', 'jwtInterceptorProvider', functio
         redirectTo: 'home'
     });
 
-    jwtInterceptorProvider.tokenGetter = ['myService', function(myService) {
-        myService.doSomething();
-        return localStorage.getItem('id_token');
-    }];
-
-    $httpProvider.interceptors.push('authInterceptor');
 
 }]);
