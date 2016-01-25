@@ -113,6 +113,12 @@ textarea.style {
     outline-color: #55AC3A;
 }
 
+.subtext {
+    font-size: 8px;
+    margin: -16px 0px 10px 0px;
+    text-align: center;
+}
+
 
 /*----- Tab Stuff -----*/
 
@@ -127,6 +133,7 @@ textarea.style {
     padding: 9px;
     color: white;
     border-color: #1caff6;
+    cursor:pointer;
 }
 
 .tab-align-center {
@@ -188,10 +195,12 @@ textarea.style {
     padding: 9px 10px;
     display: inline-block;
     text-decoration: none;
-    border-radius: 3px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
     margin: 9px 0px -5px;
     color: white;
     background-color: #DA7400;
+    cursor:pointer;
 }
 
 .tab-links a:hover {
@@ -234,6 +243,7 @@ textarea#styled {
     border: 3px solid #cccccc;
     padding: 5px;
     font-family: 'Roboto', sans-serif;
+    resize: none
 }
 
 /*----- checkbox styling -----*/
@@ -334,7 +344,7 @@ label.css-label-radio {
 
 .generateStyle {
     height: 31px;
-    width: 181px;
+    width: 118px;
     border-radius: 3px;
     border: none;
     margin: 0px 0px 0px 50px;
@@ -342,10 +352,48 @@ label.css-label-radio {
     color: white;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 12px;
     outline-color: #55AC3A;
 }
 
+.bottom {
+    margin: 10px;
+}
+
+.modalButton {
+    height: 50px;
+    width: 118px;
+    border-radius: 3px;
+    border: none;
+    margin: 0px 0px 0px 50px;
+    float: right;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.modalWidth {
+    width:80%;
+    margin:auto;
+}
+
+.modalHeader {
+    text-align: center;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+}
+
+.modalTitle {
+    text-align: center;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+
+}
 
 
 
