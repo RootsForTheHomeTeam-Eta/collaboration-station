@@ -9,9 +9,15 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider){
         controller: 'loginCtrl'
     }).when('/user', {
         templateUrl: 'views/partials/userView.html'
+    }).when('/modal', {
+        templateUrl: 'views/partials/scheduleModal.html'
     }).otherwise({
         redirectTo: 'home'
     });
 
 
 }]);
+
+
+//modal should be removed from partials if possible
+
