@@ -109,7 +109,8 @@ textarea.style {
     padding:0px 33px;
     text-decoration:none;
     width:100%;
-    margin: 0 0 0 -6px;
+    margin: 4px 0 0 -6px;
+    outline-color: #55AC3A;
 }
 
 
@@ -140,7 +141,7 @@ textarea.style {
     padding:15px;
     border-radius:3px;
     background: white;
-    text-align: center;
+    text-align: left;
     border-color: #1caff6;
 }
 
@@ -158,6 +159,10 @@ textarea.style {
     margin:0;
     padding: 0;
     font-size: 20px
+}
+
+.decor-img {
+    float: right;
 }
 
 /*----- Tab Links -----*/
@@ -210,6 +215,7 @@ li.active a, li.active a:hover {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 18px;
+    outline-color: #55AC3A;
 }
 
 .buttonIcon {
@@ -323,6 +329,7 @@ label.css-label-radio {
     border: none;
     margin: 0px 0px 0px 0px;
     padding: 0;
+    outline-color: #55AC3A;
 }
 
 .generateStyle {
@@ -336,6 +343,7 @@ label.css-label-radio {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 18px;
+    outline-color: #55AC3A;
 }
 
 
