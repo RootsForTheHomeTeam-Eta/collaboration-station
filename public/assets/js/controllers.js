@@ -45,27 +45,117 @@ rootsAppControllers.controller('tabController', function ($scope){
   };
 });
 
-//controller for admin forms
+//controllers for admin forms
 
-rootsAppControllers.controller('formEventCtrl', function ($scope) {
+
+//new event submit controller REALLY Unsure on how this will
+//work with our data model Would LOVE a walk through
+//just wanted to get things started on my end
+rootsAppControllers.controller("formEventCtrl", ['$scope', '$http', function($scope, $http) {
+    $scope.event = {};
+  //form data tied to model where possible
+    $scope.submit = function () {
+      var event = {
+        venueName: $scope.venueName,
+        event: {
+          eventDate: $scope.eventDate
+        },
+        arrivalTime: $scope.arrivalTime,
+        gameTime: $scope.gameTime,
+        submitBy: $scope.submitBy
+      };
+      $http({
+        url: '/event',
+        method: 'post',
+        data: event
+      }).then(function () {
+
+      });
+
+      //this may do nothing
+      $http({
+        url: '/event',
+        //we need a post route for /event
+        method: 'get'
+      }).then(function(res){
+        $scope.event = res.data;
+      });
+    };
+  //this will of course go...
   $scope.hello = 'hello!';
   console.log($scope.hello);
-});
+  //should have a popupS modal confirmation
 
-rootsAppControllers.controller('userCtrl', function ($scope) {
+}]);
+
+
+//new user creation controller REALLY Unsure on how this will
+//work with our data model Would LOVE a walk through
+//just wanted to get things started on my end
+rootsAppControllers.controller("userCtrl", ['$scope', '$http', function($scope, $http) {
+  $scope.user = {};
+  $scope.submit = function () {
+    //form data tied to model where possible
+    var user = {
+      orgName: $scope.orgName,
+      firstName: $scope.firstName,
+      lastName: $scope.lastName,
+      email: $scope.email,
+      password: $scope.password
+    };
+    $http({
+      url: '/user',
+      method: 'post',
+      data: user
+    }).then(function () {
+
+    });
+
+    //this may do nothing
+    $http({
+      url: '/user',
+      //we need a post route for /user
+      method: 'get'
+    }).then(function(res){
+      $scope.user = res.data;
+    });
+  };
+  //this will of course go...
   $scope.hello = 'hello!';
   console.log($scope.hello);
-});
+  //should have a popupS modal confirmation
 
+}]);
+
+
+
+
+//Not sure on these
 rootsAppControllers.controller('noticeAlertCtrl', function ($scope) {
+  //alert should appear when activity is made on
+  //form submission or email
+  //when pressed should expose what type of activity was made
+  //or contents of message in a popupS modal
   $scope.hello = 'hello!';
   console.log($scope.hello);
 });
 
 rootsAppControllers.controller('noticeSendCtrl', function ($scope) {
+  //Send notices with touch of button based on who is selected
+  //and what type of message
+  //should have a popupS modal confirmation
+
   $scope.hello = 'hello!';
   console.log($scope.hello);
 });
+
+rootsAppControllers.controller('messageCtrl', function ($scope) {
+  //Send personal messages from the app
+  //should have a popupS modal confirmation
+  $scope.hello = 'hello!';
+  console.log($scope.hello);
+});
+
 
 //controller that with function to tell you what partial you are on
 app.controller('navControl', ['$scope','$location', function($scope, $location) {
