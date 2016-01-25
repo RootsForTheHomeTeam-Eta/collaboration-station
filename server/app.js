@@ -54,9 +54,9 @@ require('../db/db');
 passport.init(app);
 
 // instantiate expressJWT to check token
-var jwtCheck = expressJWT({
-  secret: config.SECRET
-});
+//var jwtCheck = expressJWT({
+//  secret: config.SECRET
+//});
 // body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
