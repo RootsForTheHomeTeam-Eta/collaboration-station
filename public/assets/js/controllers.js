@@ -175,3 +175,12 @@ app.controller('navControl', ['$scope','$location', function($scope, $location) 
   };
 
 }]);
+
+rootsAppControllers.controller('userGroupCtrl', function ($scope) {
+  // get Venue Object
+  // Venue Object Populates form
+  // User Group goes through and makes a preference per event
+  // On submit the controller makes a put request to update the model
+  $scope.hello = 'hello from the userGroupCtrl!';
+  console.log($scope.hello);
+});
