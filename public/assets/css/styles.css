@@ -127,6 +127,7 @@ textarea.style {
     padding: 9px;
     color: white;
     border-color: #1caff6;
+    cursor:pointer;
 }
 
 .tab-align-center {
@@ -188,10 +189,12 @@ textarea.style {
     padding: 9px 10px;
     display: inline-block;
     text-decoration: none;
-    border-radius: 3px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
     margin: 9px 0px -5px;
     color: white;
     background-color: #DA7400;
+    cursor:pointer;
 }
 
 .tab-links a:hover {
@@ -345,6 +348,10 @@ label.css-label-radio {
     font-weight: 500;
     font-size: 12px;
     outline-color: #55AC3A;
+}
+
+.bottom {
+    margin: 10px;
 }
 
 

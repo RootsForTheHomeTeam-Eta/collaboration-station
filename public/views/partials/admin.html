@@ -205,7 +205,17 @@
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
             </div>
             <div class="venueOptions row container-fluid">
-                <div class = "col-md-12 white"><button type="button" class="generateStyle green">Generate Schedule</button></div>
+                <div ng-controller="scheduleController" class = "col-md-12 white">
+                    <button type="submit" ng-click="saveSchedule()" class="generateStyle green formButton">Save Schedule</button>
+                    <button type="submit" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
+                    <button type="submit" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row container-fluid">
+            <div ng-controller="scheduleController" class = "col-md-12">
+                <button type="submit" ng-click="clearSchedule()" class="generateStyle green formButton bottom">Clear Schedules</button>
             </div>
         </div>
 
