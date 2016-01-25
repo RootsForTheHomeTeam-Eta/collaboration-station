@@ -6,8 +6,6 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var expressJWT = require('express-jwt');
 var config = require('../config.js');
-//require popups
-var popupS = require('popups');
 
 // use morgan to log requires to the console
 var morgan = require('morgan');
