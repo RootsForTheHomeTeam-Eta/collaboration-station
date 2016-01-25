@@ -156,6 +156,14 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
   console.log($scope.hello);
 });
 
+rootsAppControllers.controller('scheduleController', function ($scope) {
+  //will save current schedule with ng-click saveSchedule()
+  //will view previous schedule with ng-click viewPreviousSchedule()
+  //will show current schedule in modal ng-click generateSchedule()
+  $scope.hello = 'hello!';
+  console.log($scope.hello);
+});
+
 
 //controller that with function to tell you what partial you are on
 app.controller('navControl', ['$scope','$location', function($scope, $location) {

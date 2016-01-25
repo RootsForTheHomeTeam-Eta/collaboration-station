@@ -335,7 +335,7 @@ label.css-label-radio {
 
 .generateStyle {
     height: 31px;
-    width: 181px;
+    width: 118px;
     border-radius: 3px;
     border: none;
     margin: 0px 0px 0px 50px;
@@ -343,7 +343,7 @@ label.css-label-radio {
     color: white;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 12px;
     outline-color: #55AC3A;
 }
 
