@@ -360,6 +360,40 @@ label.css-label-radio {
     margin: 10px;
 }
 
+.modalButton {
+    height: 50px;
+    width: 118px;
+    border-radius: 3px;
+    border: none;
+    margin: 0px 0px 0px 50px;
+    float: right;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.modalWidth {
+    width:80%;
+    margin:auto;
+}
+
+.modalHeader {
+    text-align: center;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+}
+
+.modalTitle {
+    text-align: center;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+
+}
 
 
 
