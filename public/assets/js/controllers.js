@@ -21,9 +21,20 @@ rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
 
 
 rootsAppControllers.controller('mainCtrl', function ($scope) {
+  $scope.onIconCLick = function(){
+    popupS.modal({
+      content: "The Alerts tab will show you what group has submitted their schedule form " +
+      "Clear the alert by clicking the alert button. The Quick Send tab allows you to select" +
+      "Garden Groups to send specific quick alerts to. Choose the recipient, the type of alert" +
+      "and submit. Add new events to the schedule by filling in the 'Add Event' form. Create new "+
+      "users who can sign up for scheduled events"
+    });
+
+  };
   $scope.hello = 'hello!';
   console.log($scope.hello);
 });
+
 
 
 //controller for tabs
@@ -166,9 +177,37 @@ rootsAppControllers.controller('scheduleController', ['$scope', '$http', functio
   };
   //will show current schedule in modal ng-click generateSchedule()
  $scope.generateSchedule= function(){
-   $scope.test= "testing";
+   var test= "Twins Stadium";
    popupS.modal({
-     content: '<div> <div  class = "venueContainer"> <div class="modalWidth"> <div class = "modalHeader orange row container-fluid">Twins Stadium</div><div class = "venueHeader yellow row container-fluid"> <div class = "col-md-1 modalTitle">Date:</div> <div class = "col-md-1"></div> <div class = "col-md-2 modalTitle">Arrival Time:</div> <div class = "col-md-2"></div> <div class = "col-md-2 modalTitle">Event Time:</div> <div class = "col-md-1"></div> <div class = "col-md-2 modalTitle">Group</div> </div> <div class = "venueOptions row container-fluid"> <div class = "col-md-1 scheduleLabel">Sat, 03/22</div> <div class = "col-md-1"></div> <div class = "col-md-2 scheduleLabel">10:00 AM</div> <div class = "col-md-2"></div> <div class = "col-md-2 scheduleLabel">1:00 PM</div> <div class = "col-md-1"></div> <div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> <div class = "venueOptions row container-fluid"> <div class = "col-md-1 scheduleLabel">Sun, 03/23</div> <div class = "col-md-1"></div> <div class = "col-md-2 scheduleLabel">12:00 AM</div> <div class = "col-md-2"></div> <div class = "col-md-2 scheduleLabel">3:00 PM</div> <div class = "col-md-1"></div> <div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> </div> </div> </div>'
+     content: '<div> ' +
+     '<div  class = "venueContainer"> ' +
+     '<div class="modalWidth"> ' +
+     '<div class = "modalHeader orange row container-fluid">'+ test +'</div>' +
+     '<div class = "venueHeader yellow row container-fluid"> ' +
+     '<div class = "col-md-1 modalTitle">Date:</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2 modalTitle">Arrival Time:</div> ' +
+     '<div class = "col-md-2"></div> ' +
+     '<div class = "col-md-2 modalTitle">Event Time:</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2 modalTitle">Group</div> ' +
+     '</div> <div class = "venueOptions row container-fluid"> ' +
+     '<div class = "col-md-1 scheduleLabel">Sat, 03/22</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2 scheduleLabel">10:00 AM</div> ' +
+     '<div class = "col-md-2"></div> ' +
+     '<div class = "col-md-2 scheduleLabel">1:00 PM</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> ' +
+     '<div class = "venueOptions row container-fluid"> ' +
+     '<div class = "col-md-1 scheduleLabel">Sun, 03/23</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2 scheduleLabel">12:00 AM</div> ' +
+     '<div class = "col-md-2"></div> ' +
+     '<div class = "col-md-2 scheduleLabel">3:00 PM</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> ' +
+     '</div> </div> </div> </div>'
     });
   };
   //will clear schedules with ng-click="clearSchedule()" will ask for
