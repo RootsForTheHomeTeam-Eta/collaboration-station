@@ -148,11 +148,11 @@ rootsAppControllers.controller('scheduleController', ['$scope', '$http', functio
     url: '/venue'
     //all info from venues is available via this request
   }).then(function (res) {
-    $scope.venueName = res.data.venueName;
-    $scope.eventDate = res.data.events.eventDate;
-    $scope.arrivalTime = res.data.arrivalTime;
-    $scope.eventTime = res.data.gameTime;
-    $scope.test = 'Twins Stadium'
+    //$scope.venueName = res.data.venueName;
+    //$scope.eventDate = res.data.events.eventDate;
+    //$scope.arrivalTime = res.data.arrivalTime;
+    //$scope.eventTime = res.data.gameTime;
+    $scope.test = 'Twins Stadium';
   });
 }]);
 
@@ -199,10 +199,10 @@ rootsAppControllers.controller('modalController', ['$scope', '$http', function($
       url: '/venue'
       //all info from venues is available via this request
     }).then(function(res){
-      $scope.venueName = res.data.venueName;
-      $scope.eventDate = res.data.events.eventDate;
-      $scope.arrivalTime = res.data.arrivalTime;
-      $scope.eventTime= res.data.gameTime;
+      //$scope.venueName = res.data.venueName;
+      //$scope.eventDate = res.data.events.eventDate;
+      //$scope.arrivalTime = res.data.arrivalTime;
+      //$scope.eventTime= res.data.gameTime;
       $scope.test= 'Twins Stadium';
       });
   $scope.generateSchedule= function(){
