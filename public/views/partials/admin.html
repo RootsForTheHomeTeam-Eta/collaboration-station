@@ -35,13 +35,13 @@
                     </div>
                     <h2>What do you want to send?</h2>
                     <div class="center">
-                    <input type="radio" name="sign-up" id="radio1" class="css-checkbox-radio"/>
+                    <input type="radio" name="sign-up" id="radio1" value="signUp" class="css-checkbox-radio"/>
                     <label for="radio1" class="css-label-radio radGroup1">Sign-up Request</label>
                     <br>
-                    <input type="radio" name="sign-up" id="radio2" class="css-checkbox-radio"/>
+                    <input type="radio" name="sign-up" id="radio2" value="firstRemind" class="css-checkbox-radio"/>
                     <label for="radio2" class="css-label-radio radGroup1">Quick Reminder</label>
                     <br>
-                    <input type="radio" name="sign-up" id="radio3" class="css-checkbox-radio"/>
+                    <input type="radio" name="sign-up" id="radio3" value="secondRemind" class="css-checkbox-radio"/>
                     <label for="radio3" class="css-label-radio radGroup1">Second Reminder</label>
                     </div>
                     <br>
@@ -113,12 +113,17 @@
             </div>
         </div>
 
+<div class="row container-fluid">
+    <div class = "col-md-12"><br></div>
+</div>
+
 <div class= 'col-md-12 hidden-xs'>
-    <div  class = "col-md-12 venueContainer">
-        <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display2 = !display2'>
+    <div  class = "col-md-12 venueContainer" ng-controller="scheduleController">
+        <!--this is where our ng-repeat will go repeating for each venue and events in that venue-->
+        <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
             <div class = 'vTop orange col-md-12'><h2 class="tab-header">US Bank Stadium</h2></div>
         </div>
-        <div ng-show = 'display2' >
+        <div ng-show = 'display' >
             <div class = "venueHeader yellow  row container-fluid">
                 <div class = "col-md-1 scheduleTitle">Date:</div>
                 <div class = "col-md-2 scheduleTitle">Arrival Time:</div>
@@ -159,4 +164,5 @@
     </div>
 </div>
 
+</div>
 </div>
