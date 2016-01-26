@@ -91,21 +91,21 @@ rootsAppControllers.controller("formEventCtrl", ['$scope', '$http', function($sc
 //work with our data model
 rootsAppControllers.controller("userCtrl", ['$scope', '$http', function($scope, $http) {
   $scope.user = {};
-  $scope.submit = function () {
+  $scope.submitUserForm = function () {
     //form data tied to model
     var user = {
       orgName: $scope.orgName,
       firstName: $scope.firstName,
       lastName: $scope.lastName,
-      email: $scope.email,
+      username: $scope.username,
       password: $scope.password
     };
     $http({
-      url: '/register',
+      url: '/api/auth/register',
       method: 'post',
       data: user
     }).then(function () {
-
+      alert('User Registered');
     });
 
   };
@@ -207,7 +207,7 @@ rootsAppControllers.controller('modalController', ['$scope', '$http', function($
       });
   $scope.generateSchedule= function(){
     console.log($scope.test);
-    console.log('I clicked')
+    console.log('I clicked');
 
    //pull event data from the database to set variables for schedule creation
    var test= "Twins Stadium";
