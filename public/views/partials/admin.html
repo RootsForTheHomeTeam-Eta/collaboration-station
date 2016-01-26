@@ -211,10 +211,10 @@
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
             </div>
             <div class="venueOptions row container-fluid">
-                <div ng-controller="scheduleController" class = "col-md-12 white">
-                    <button type="submit" ng-click="saveSchedule()" class="generateStyle green formButton">Save Schedule</button>
-                    <button type="submit" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
-                    <button type="submit" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
+                <div class = "col-md-12 white">
+                    <button type="submit" ng-controller="saveController" ng-click="saveSchedule()" class="generateStyle green formButton">Save Schedule</button>
+                    <button type="submit" ng-controller="modalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
+                    <button type="submit" ng-controller="prevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
                 </div>
             </div>
         </div>
