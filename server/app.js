@@ -13,9 +13,13 @@ var cookieParser = require('cookie-parser');
 //
 //app.use(flash());
 
+// pretty json
+app.set('json spaces', 2);
+
 // body parser middleware
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 
 app.use(cookieParser());
 // configure sessions
