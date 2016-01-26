@@ -118,10 +118,10 @@
 
 <div class="row"><br></div>
 
-<div class= 'col-md-12 hidden-xs'>
+<div class= 'col-md-12 hidden-xs' ng-controller="scheduleController" >
     <div  class = "col-md-12 venueContainer">
         <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
-            <div class = ' vTop orange col-md-12'><h2 class="tab-header">TCF Bank Stadium</h2></div>
+            <div class = ' vTop orange col-md-12'><h2 class="tab-header">Twins Stadium</h2></div>
         </div>
         <div ng-show = 'display' >
             <div class = "venueHeader yellow  row container-fluid">
@@ -136,9 +136,9 @@
                 <div class = "col-md-1"><p>Appetite for Change</p></div>
             </div>
             <div class = "venueOptions row container-fluid">
-                <div class = "col-md-1 scheduleLabel">Sat, 03/22</div>
-                <div class = "col-md-2 scheduleLabel">10:00 AM</div>
-                <div class = "col-md-2 scheduleLabel">1:00 PM</div>
+                <div class = "col-md-1 scheduleLabel">Fri, 03/21</div>
+                <div class = "col-md-2 scheduleLabel">11:00 AM</div>
+                <div class = "col-md-2 scheduleLabel">2:00 PM</div>
                 <div class = "col-md-2"></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
@@ -158,10 +158,10 @@
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
             </div>
             <div class="venueOptions row container-fluid">
-                <div ng-controller="scheduleController" class = "col-md-12 white">
-                    <button type="submit" ng-click="saveSchedule()" class="generateStyle green formButton">Save Schedule</button>
-                    <button type="submit" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
-                    <button type="submit" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
+                <div class = "col-md-12 white">
+                    <button type="submit" ng-controller="saveController" ng-click="saveSchedule()" class="generateStyle green formButton">Save Schedule</button>
+                    <button type="submit" ng-controller="modalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
+                    <button type="submit" ng-controller="prevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
                 </div>
             </div>
         </div>
@@ -211,10 +211,10 @@
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
             </div>
             <div class="venueOptions row container-fluid">
-                <div ng-controller="scheduleController" class = "col-md-12 white">
-                    <button type="submit" ng-click="saveSchedule()" class="generateStyle green formButton">Save Schedule</button>
-                    <button type="submit" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
-                    <button type="submit" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
+                <div class = "col-md-12 white">
+                    <button type="submit" ng-controller="saveController" ng-click="saveSchedule()" class="generateStyle green formButton">Save Schedule</button>
+                    <button type="submit" ng-controller="modalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
+                    <button type="submit" ng-controller="prevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
                 </div>
             </div>
         </div>

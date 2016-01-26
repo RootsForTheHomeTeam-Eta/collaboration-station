@@ -14,15 +14,16 @@
     <script src="/assets/vendors/angular.js"></script>
     <script src="/assets/vendors/angular-route.js"></script>
     <script src="/assets/js/app.js"></script>
-    <script src="/assets/js/controllers.js"></script>
     <script src="/assets/vendors/popupS.js"></script>
+    <script src="/assets/js/controllers.js"></script>
+
 
 
 </head>
 <body class="yellowTrans container-fluid">
-    <header ng-controller="navControl" ng-hide="isPartial('/login')" class="green row" >
-            <div class="col-sm-1 col-md-1"><img class="icon" src="/assets/img/watercan.png"></div>
-            <div class="col-sm-4 col-md-2"><h2>Welcome Name</h2></div>
+    <header ng-controller="mainCtrl" ng-hide="isPartial('/login')" class="green row" >
+            <div class="col-sm-1 col-md-1"><img class="icon" ng-click="onIconCLick()" src="/assets/img/watercan.png"></div>
+            <div class="col-sm-4 col-md-2"><h2>Welcome</h2></div>
             <div class="logOut col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-7"><h2>Logout</h2></div>
     </header>
     <main>
