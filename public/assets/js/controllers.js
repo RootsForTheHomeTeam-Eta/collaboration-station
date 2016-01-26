@@ -210,7 +210,7 @@ rootsAppControllers.controller('modalController', ['$scope', '$http', function($
     console.log('I clicked')
 
    //pull event data from the database to set variables for schedule creation
-   var test= "Twins Stadium";
+   var test= $scope.test;
 
    popupS.modal({
      content: '<div> ' +
