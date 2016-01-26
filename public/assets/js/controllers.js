@@ -1,4 +1,4 @@
-var rootsAppControllers = angular.module('rootsAppControllers', [])
+var rootsAppControllers = angular.module('rootsAppControllers', []);
 // login controller
 
 rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
@@ -16,7 +16,7 @@ rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
         // Error message
         $scope.message = 'Error: Invalid username or password';
     });
-  }
+  };
 });
 
 
@@ -63,22 +63,20 @@ rootsAppControllers.controller('tabController', function ($scope){
 rootsAppControllers.controller("formEventCtrl", ['$scope', '$http', function($scope, $http) {
     $scope.event = {};
   //form data tied to model where possible
-    $scope.submit = function () {
+    $scope.submitEventForm = function () {
       var event = {
         venueName: $scope.venueName,
-        event: {
-          eventDate: $scope.eventDate
-        },
+        eventDate: $scope.eventDate,
         arrivalTime: $scope.arrivalTime,
         gameTime: $scope.gameTime,
         submitBy: $scope.submitBy
       };
       $http({
-        url: '/event',
+        url: '/api/event/addEvent',
         method: 'post',
         data: event
       }).then(function () {
-
+        alert('event added');
       });
 
     };
@@ -91,21 +89,21 @@ rootsAppControllers.controller("formEventCtrl", ['$scope', '$http', function($sc
 //work with our data model
 rootsAppControllers.controller("userCtrl", ['$scope', '$http', function($scope, $http) {
   $scope.user = {};
-  $scope.submit = function () {
+  $scope.submitUserForm = function () {
     //form data tied to model
     var user = {
       orgName: $scope.orgName,
       firstName: $scope.firstName,
       lastName: $scope.lastName,
-      email: $scope.email,
+      username: $scope.username,
       password: $scope.password
     };
     $http({
-      url: '/user',
+      url: '/api/auth/register',
       method: 'post',
       data: user
     }).then(function () {
-
+      alert('User Registered');
     });
 
   };
@@ -143,17 +141,17 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
 
 
 rootsAppControllers.controller('scheduleController', ['$scope', '$http', function($scope, $http) {
-  $http({
-    method: 'GET',
-    url: '/venue'
-    //all info from venues is available via this request
-  }).then(function (res) {
-    //$scope.venueName = res.data.venueName;
-    //$scope.eventDate = res.data.events.eventDate;
-    //$scope.arrivalTime = res.data.arrivalTime;
-    //$scope.eventTime = res.data.gameTime;
-    $scope.test = 'Twins Stadium';
-  });
+  //$http({
+  //  //method: 'GET',
+  //  //url: '/venue'
+  //  //all info from venues is available via this request
+  //}).then(function (res) {
+  //  //$scope.venueName = res.data.venueName;
+  //  //$scope.eventDate = res.data.events.eventDate;
+  //  //$scope.arrivalTime = res.data.arrivalTime;
+  //  //$scope.eventTime = res.data.gameTime;
+  //  $scope.test = 'Twins Stadium';
+  //});
 }]);
 
 
@@ -196,7 +194,7 @@ rootsAppControllers.controller('prevController', ['$scope', '$http', function($s
 rootsAppControllers.controller('modalController', ['$scope', '$http', function($scope, $http) {
     $http({
       method: 'GET',
-      url: '/venue'
+      //url: '/venue'
       //all info from venues is available via this request
     }).then(function(res){
       //$scope.venueName = res.data.venueName;
@@ -207,7 +205,7 @@ rootsAppControllers.controller('modalController', ['$scope', '$http', function($
       });
   $scope.generateSchedule= function(){
     console.log($scope.test);
-    console.log('I clicked')
+    console.log('I clicked');
 
    //pull event data from the database to set variables for schedule creation
    var test= $scope.test;
