@@ -185,7 +185,7 @@ rootsAppControllers.controller('scheduleController', function ($scope) {
 
 
 //controller that with function to tell you what partial you are on
-app.controller('navControl', ['$scope','$location', function($scope, $location) {
+rootsAppControllers.controller('navControl', ['$scope','$location', function($scope, $location) {
   $scope.isPartial = function (viewLocation) {
     var active = (viewLocation === $location.path());
     return active;
@@ -203,6 +203,7 @@ app.controller('navControl', ['$scope','$location', function($scope, $location) 
 
 rootsAppControllers.controller('userGroupCtrl', [ '$scope','$http', function ($scope, $http) {
   $scope.hello = 'hello from the userGroupCtrl!';
+  console.log($scope.hello);
   $http({
     url:'/user',
     method:'get'
