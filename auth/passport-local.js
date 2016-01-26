@@ -21,11 +21,14 @@ module.exports = {
 
     // Passport session setup
     passport.serializeUser(function(user, done) {
+      console.log("serialize " + user);
       done(null, user._id);
     });
 
-    passport.deserializeUser(function(user, done) {
+    passport.deserializeUser(function(id, done) {
+      console.log("deserialize " + id);
       User.findById(id, function(err, user) {
+        console.log("findbyId " + user);
         done(err, user);
       });
     });
@@ -67,7 +70,7 @@ module.exports = {
                 }
                 // finish authentication and return user
                 console.log('success!');
-                //return done(null, user);
+                return done(null, user);
               });
             });
           });
@@ -77,8 +80,8 @@ module.exports = {
         console.log('inside db call');
         return done(null, user);
       });
-      //console.log('outside db call');
-      //return done(null, user);
+      console.log('outside db call');
+      return done(null, user);
     }));
 
 // register strategy named local-register
