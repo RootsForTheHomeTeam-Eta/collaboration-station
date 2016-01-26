@@ -74,6 +74,7 @@ var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var auth = require('./routes/auth');
+var event = require('./routes/event');
 
 // ***** ROUTES *****
 
@@ -83,6 +84,8 @@ app.use('/register', register);
 // everything under /api/* will verify the jwt
 //app.use('/api/*', jwtCheck);
 app.use('/api/auth', auth);
+// api event route
+app.use('/api/event', event);
 // catch all route:
 app.use('/profile', index);
 

@@ -62,20 +62,20 @@
                         <form novalidate>
                             <img class="decor-img" src="/assets/img/longbackground.png">
                             <label for="Venues" class="formButton tabFormLabel">Event Venue:</label>
-                            <input type="text" list="Venues"/>
-                            <datalist id="Venues" name="Venue" ng-model="venueName">
+                            <input type="text" name="venueName" ng-model="venueName" list="Venues"/>
+                            <datalist id="Venues">
                                 <option value="Twins Stadium">Twins Stadium</option>
                                 <option value="US Bank Stadium">US Bank Stadium</option>
                                 <option value="Another Stadium">Another Stadium</option>
                             </datalist><br>
                             <label for="eventDate" class="formButton tabFormLabel">Event Date: &nbsp;&nbsp;</label>
-                            <input id="eventDate" type="date" ng-model="eventDate"><br>
+                            <input id="eventDate" type="date" name="eventDate" ng-model="eventDate"><br>
                             <label for="startTime" class="formButton tabFormLabel">Event Time: &nbsp;</label>
-                            <input id="startTime" type="time" ng-model="gameTime"><br>
+                            <input id="startTime" type="time" name="gameTime" ng-model="gameTime"><br>
                             <label for="arrivalTime" class="formButton tabFormLabel">Arrival Time:</label>
-                            <input id="arrivalTime" type="time" ng-model="arrivalTime"><br>
+                            <input id="arrivalTime" type="time" name="arrivalTime" ng-model="arrivalTime"><br>
                             <label for="submitBy" class="formButton tabFormLabel">Submit By: &nbsp;&nbsp;</label>
-                            <input id="submitBy" type="date" ng-model="submitBy">
+                            <input id="submitBy" type="date" name="submitBy" ng-model="submitBy">
                             <br><br>
                             <button type="submit" ng-click="submitEventForm()" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
                             </form>

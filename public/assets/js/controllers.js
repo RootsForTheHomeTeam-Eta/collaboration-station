@@ -63,22 +63,20 @@ rootsAppControllers.controller('tabController', function ($scope){
 rootsAppControllers.controller("formEventCtrl", ['$scope', '$http', function($scope, $http) {
     $scope.event = {};
   //form data tied to model where possible
-    $scope.submit = function () {
+    $scope.submitEventForm = function () {
       var event = {
         venueName: $scope.venueName,
-        event: {
-          eventDate: $scope.eventDate
-        },
+        eventDate: $scope.eventDate,
         arrivalTime: $scope.arrivalTime,
         gameTime: $scope.gameTime,
         submitBy: $scope.submitBy
       };
       $http({
-        url: '/event',
+        url: '/api/event/addEvent',
         method: 'post',
         data: event
       }).then(function () {
-
+        alert('event added');
       });
 
     };
