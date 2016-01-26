@@ -193,11 +193,52 @@ app.controller('navControl', ['$scope','$location', function($scope, $location) 
 
 }]);
 
-rootsAppControllers.controller('userGroupCtrl', function ($scope) {
-  // get Venue Object
-  // Venue Object Populates form
-  // User Group goes through and makes a preference per event
-  // On submit the controller makes a put request to update the model
+
+// get Venue Object
+// Venue Object Populates form
+// User Group goes through and makes a preference per event
+// On submit the controller makes a put request to update the model
+// will method be a put or update or patch?
+// are we getting the venue collection? Is a params needed?
+
+rootsAppControllers.controller('userGroupCtrl', [ '$scope','$http', function ($scope, $http) {
   $scope.hello = 'hello from the userGroupCtrl!';
-  console.log($scope.hello);
-});
+  $http({
+    url:'/user',
+    method:'get'
+  }).then(function(response){
+    $scope.venueEvents = response.data;
+  });
+
+
+  $scope.submit = function () {
+    console.log(venu.pref.one);
+    $http({
+      url: '/user',
+      method: 'post'
+    }).then(function () {
+      console.log(response.status);
+    });
+  };
+}]);
+
+//var VenueSchema = new Schema({
+//  venueName: String,
+//  location: String,
+//  events: [{
+//    event: {
+//      eventDate: Date,
+//      organization: [{
+//        orgName: String,
+//        preferences: [{
+//          first: {type: Boolean, default: false},
+//          second: {type: Boolean, default: false},
+//          cannot: {type: Boolean, default: false}
+//        }]
+//
+//      }]
+//    },
+//    arrivalTime: Date,
+//    gameTime: Date
+//  }]
+//});
