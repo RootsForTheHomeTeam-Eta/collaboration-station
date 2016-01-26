@@ -12,6 +12,11 @@ var cookieParser = require('cookie-parser');
 //var flash = require('connect-flash');
 //
 //app.use(flash());
+
+// body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(cookieParser());
 // configure sessions
 //include express session middleware
@@ -29,10 +34,12 @@ var store = new MongoDBStore(
 app.use(session({
   secret: config.SECRET,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+    secure: false
   },
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: false,
+  store: store
 }));
 // when in production, use secure cookies
 if (app.get('env') === 'production') {
@@ -57,9 +64,7 @@ passport.init(app);
 //var jwtCheck = expressJWT({
 //  secret: config.SECRET
 //});
-// body parser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+
 
 // serve static public files
 app.use(express.static(path.join(__dirname, '../public')));

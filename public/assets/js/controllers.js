@@ -161,11 +161,11 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
 rootsAppControllers.controller('scheduleController', function ($scope) {
   //will save current schedule with ng-click saveSchedule()
   $scope.saveSchedule= function(){
-    alert("I clicked save schedule")
+    alert("I clicked save schedule");
   };
   //will view previous schedule with ng-click viewPreviousSchedule()
   $scope.viewPreviousSchedule= function(){
-    alert("I clicked view previous")
+    alert("I clicked view previous");
   };
   //will show current schedule in modal ng-click generateSchedule()
  $scope.generateSchedule= function(){

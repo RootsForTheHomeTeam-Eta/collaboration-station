@@ -67,12 +67,18 @@ module.exports = {
                 }
                 // finish authentication and return user
                 console.log('success!');
-                return done(null, user);
+                //return done(null, user);
               });
             });
           });
+          console.log(user);
+          return user;
         }
+        console.log('inside db call');
+        return done(null, user);
       });
+      //console.log('outside db call');
+      //return done(null, user);
     }));
 
 // register strategy named local-register
