@@ -34,6 +34,7 @@ router.post('/login', function(req, res, next) {
         failureRedirect: '/login',
         failureFlash: true
       })(req, res, next);
+    res.sendStatus(200);
 });
 
 //router.post('/login', passport.authenticate('local-login',
