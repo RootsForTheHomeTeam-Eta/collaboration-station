@@ -136,20 +136,30 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
 });
 
 
+//We need a service would read the venue data and set the scope then
+//our various controllers can use it via injection of the service
+
+
+
+
 rootsAppControllers.controller('scheduleController', ['$scope', '$http', function($scope, $http) {
   $http({
     method: 'GET',
     url: '/venue'
     //all info from venues is available via this request
-  }).then(function(res){
-    $scope.venueName = res.data.venueName;
-    $scope.eventDate = res.data.events.eventDate;
-    $scope.arrivalTime = res.data.arrivalTime;
-    $scope.eventTime= res.data.gameTime;
+  }).then(function (res) {
+    //$scope.venueName = res.data.venueName;
+    //$scope.eventDate = res.data.events.eventDate;
+    //$scope.arrivalTime = res.data.arrivalTime;
+    //$scope.eventTime = res.data.gameTime;
+    $scope.test = 'Twins Stadium';
   });
+}]);
 
+
+rootsAppControllers.controller('saveController', ['$scope', '$http', function($scope, $http) {
   //will save current schedule with ng-click saveSchedule()
-  $scope.saveSchedule= function() {
+  $scope.saveSchedule = function () {
     var schedule = {
       venue: $scope.venueName,
       events: [{
@@ -169,15 +179,39 @@ rootsAppControllers.controller('scheduleController', ['$scope', '$http', functio
 
     });
   };
+}]);
+
+rootsAppControllers.controller('prevController', ['$scope', '$http', function($scope, $http) {
   //will view previous schedule with ng-click viewPreviousSchedule()
   $scope.viewPreviousSchedule= function(){
     popupS.alert({
       content: 'I clicked'
     });
   };
-  //will show current schedule in modal ng-click generateSchedule()
- $scope.generateSchedule= function(){
+
+  $scope.hello = 'hello!';
+  console.log($scope.hello);
+}]);
+
+rootsAppControllers.controller('modalController', ['$scope', '$http', function($scope, $http) {
+    $http({
+      method: 'GET',
+      url: '/venue'
+      //all info from venues is available via this request
+    }).then(function(res){
+      //$scope.venueName = res.data.venueName;
+      //$scope.eventDate = res.data.events.eventDate;
+      //$scope.arrivalTime = res.data.arrivalTime;
+      //$scope.eventTime= res.data.gameTime;
+      $scope.test= 'Twins Stadium';
+      });
+  $scope.generateSchedule= function(){
+    console.log($scope.test);
+    console.log('I clicked')
+
+   //pull event data from the database to set variables for schedule creation
    var test= "Twins Stadium";
+
    popupS.modal({
      content: '<div> ' +
      '<div  class = "venueContainer"> ' +
@@ -254,24 +288,3 @@ rootsAppControllers.controller('userGroupCtrl', [ '$scope','$http', function ($s
     });
   };
 }]);
-
-//var VenueSchema = new Schema({
-//  venueName: String,
-//  location: String,
-//  events: [{
-//    event: {
-//      eventDate: Date,
-//      organization: [{
-//        orgName: String,
-//        preferences: [{
-//          first: {type: Boolean, default: false},
-//          second: {type: Boolean, default: false},
-//          cannot: {type: Boolean, default: false}
-//        }]
-//
-//      }]
-//    },
-//    arrivalTime: Date,
-//    gameTime: Date
-//  }]
-//});
