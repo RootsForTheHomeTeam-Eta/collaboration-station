@@ -21,9 +21,20 @@ rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
 
 
 rootsAppControllers.controller('mainCtrl', function ($scope) {
+  $scope.onIconCLick = function(){
+    popupS.modal({
+      content: "The Alerts tab will show you what group has submitted their schedule form " +
+      "Clear the alert by clicking the alert button. The Quick Send tab allows you to select" +
+      "Garden Groups to send specific quick alerts to. Choose the recipient, the type of alert" +
+      "and submit. Add new events to the schedule by filling in the 'Add Event' form. Create new "+
+      "users who can sign up for scheduled events"
+    });
+
+  };
   $scope.hello = 'hello!';
   console.log($scope.hello);
 });
+
 
 
 //controller for tabs
@@ -47,10 +58,8 @@ rootsAppControllers.controller('tabController', function ($scope){
 
 //controllers for admin forms
 
-
-//new event submit controller REALLY Unsure on how this will
-//work with our data model Would LOVE a walk through
-//just wanted to get things started on my end
+//new event submit controller will this
+//work with our data model
 rootsAppControllers.controller("formEventCtrl", ['$scope', '$http', function($scope, $http) {
     $scope.event = {};
   //form data tied to model where possible
@@ -72,30 +81,18 @@ rootsAppControllers.controller("formEventCtrl", ['$scope', '$http', function($sc
 
       });
 
-      //this may do nothing
-      $http({
-        url: '/event',
-        //we need a post route for /event
-        method: 'get'
-      }).then(function(res){
-        $scope.event = res.data;
-      });
     };
-  //this will of course go...
-  $scope.hello = 'hello!';
-  console.log($scope.hello);
   //should have a popupS modal confirmation
 
 }]);
 
 
-//new user creation controller REALLY Unsure on how this will
-//work with our data model Would LOVE a walk through
-//just wanted to get things started on my end
+//new user creation controller how will this
+//work with our data model
 rootsAppControllers.controller("userCtrl", ['$scope', '$http', function($scope, $http) {
   $scope.user = {};
   $scope.submit = function () {
-    //form data tied to model where possible
+    //form data tied to model
     var user = {
       orgName: $scope.orgName,
       firstName: $scope.firstName,
@@ -111,40 +108,22 @@ rootsAppControllers.controller("userCtrl", ['$scope', '$http', function($scope, 
 
     });
 
-    //this may do nothing
-    $http({
-      url: '/user',
-      //we need a post route for /user
-      method: 'get'
-    }).then(function(res){
-      $scope.user = res.data;
-    });
   };
-  //this will of course go...
-  $scope.hello = 'hello!';
-  console.log($scope.hello);
   //should have a popupS modal confirmation
 
 }]);
 
 
-
-
-//Not sure on these
 rootsAppControllers.controller('noticeAlertCtrl', function ($scope) {
   //alert should appear when activity is made on
-  //form submission or email
-  //when pressed should expose what type of activity was made
-  //or contents of message in a popupS modal
+  //form submission
   $scope.hello = 'hello!';
   console.log($scope.hello);
 });
 
 rootsAppControllers.controller('noticeSendCtrl', function ($scope) {
-  //Send notices with touch of button based on who is selected
-  //and what type of message
+  //Send notices with button based on who is selected and what type of message
   //should have a popupS modal confirmation
-
   $scope.hello = 'hello!';
   console.log($scope.hello);
 });
@@ -157,11 +136,38 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
 });
 
 
-//does each click need it's own controller?
-rootsAppControllers.controller('scheduleController', function ($scope) {
+rootsAppControllers.controller('scheduleController', ['$scope', '$http', function($scope, $http) {
+  $http({
+    method: 'GET',
+    url: '/venue'
+    //all info from venues is available via this request
+  }).then(function(res){
+    $scope.venueName = res.data.venueName;
+    $scope.eventDate = res.data.events.eventDate;
+    $scope.arrivalTime = res.data.arrivalTime;
+    $scope.eventTime= res.data.gameTime;
+  });
+
   //will save current schedule with ng-click saveSchedule()
-  $scope.saveSchedule= function(){
-    alert("I clicked save schedule")
+  $scope.saveSchedule= function() {
+    var schedule = {
+      venue: $scope.venueName,
+      events: [{
+        event: {
+          eventDate: $scope.eventDate,
+          arrivalTime: $scope.arrivalTime,
+          eventTime: $scope.eventTime,
+          orgName: $scope.orgName
+        }
+      }]
+    };
+    $http({
+      method: 'POST',
+      url: '/schedule',
+      data: schedule
+    }).then(function () {
+
+    });
   };
   //will view previous schedule with ng-click viewPreviousSchedule()
   $scope.viewPreviousSchedule= function(){
@@ -171,17 +177,44 @@ rootsAppControllers.controller('scheduleController', function ($scope) {
   };
   //will show current schedule in modal ng-click generateSchedule()
  $scope.generateSchedule= function(){
-   $scope.test= "testing";
+   var test= "Twins Stadium";
    popupS.modal({
-     content: '<div> <div  class = "venueContainer"> <div class="modalWidth"> <div class = "modalHeader orange row container-fluid">Twins Stadium</div><div class = "venueHeader yellow row container-fluid"> <div class = "col-md-1 modalTitle">Date:</div> <div class = "col-md-1"></div> <div class = "col-md-2 modalTitle">Arrival Time:</div> <div class = "col-md-2"></div> <div class = "col-md-2 modalTitle">Event Time:</div> <div class = "col-md-1"></div> <div class = "col-md-2 modalTitle">Group</div> </div> <div class = "venueOptions row container-fluid"> <div class = "col-md-1 scheduleLabel">Sat, 03/22</div> <div class = "col-md-1"></div> <div class = "col-md-2 scheduleLabel">10:00 AM</div> <div class = "col-md-2"></div> <div class = "col-md-2 scheduleLabel">1:00 PM</div> <div class = "col-md-1"></div> <div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> <div class = "venueOptions row container-fluid"> <div class = "col-md-1 scheduleLabel">Sun, 03/23</div> <div class = "col-md-1"></div> <div class = "col-md-2 scheduleLabel">12:00 AM</div> <div class = "col-md-2"></div> <div class = "col-md-2 scheduleLabel">3:00 PM</div> <div class = "col-md-1"></div> <div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> </div> </div> </div>'
- });
-
- };
+     content: '<div> ' +
+     '<div  class = "venueContainer"> ' +
+     '<div class="modalWidth"> ' +
+     '<div class = "modalHeader orange row container-fluid">'+ test +'</div>' +
+     '<div class = "venueHeader yellow row container-fluid"> ' +
+     '<div class = "col-md-1 modalTitle">Date:</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2 modalTitle">Arrival Time:</div> ' +
+     '<div class = "col-md-2"></div> ' +
+     '<div class = "col-md-2 modalTitle">Event Time:</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2 modalTitle">Group</div> ' +
+     '</div> <div class = "venueOptions row container-fluid"> ' +
+     '<div class = "col-md-1 scheduleLabel">Sat, 03/22</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2 scheduleLabel">10:00 AM</div> ' +
+     '<div class = "col-md-2"></div> ' +
+     '<div class = "col-md-2 scheduleLabel">1:00 PM</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> ' +
+     '<div class = "venueOptions row container-fluid"> ' +
+     '<div class = "col-md-1 scheduleLabel">Sun, 03/23</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2 scheduleLabel">12:00 AM</div> ' +
+     '<div class = "col-md-2"></div> ' +
+     '<div class = "col-md-2 scheduleLabel">3:00 PM</div> ' +
+     '<div class = "col-md-1"></div> ' +
+     '<div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> ' +
+     '</div> </div> </div> </div>'
+    });
+  };
   //will clear schedules with ng-click="clearSchedule()" will ask for
   //confirmation
   $scope.hello = 'hello!';
   console.log($scope.hello);
-});
+}]);
 
 
 //controller that with function to tell you what partial you are on
