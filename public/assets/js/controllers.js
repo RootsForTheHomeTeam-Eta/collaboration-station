@@ -184,9 +184,6 @@ rootsAppControllers.controller('saveController', ['$scope', '$http', function($s
 rootsAppControllers.controller('prevController', ['$scope', '$http', function($scope, $http) {
   //will view previous schedule with ng-click viewPreviousSchedule()
   $scope.viewPreviousSchedule= function(){
-<<<<<<< HEAD
-    alert("I clicked view previous");
-=======
     popupS.alert({
       content: 'I clicked'
     });
@@ -246,7 +243,6 @@ rootsAppControllers.controller('modalController', ['$scope', '$http', function($
      '<div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> ' +
      '</div> </div> </div> </div>'
     });
->>>>>>> clientSide
   };
   //will clear schedules with ng-click="clearSchedule()" will ask for
   //confirmation
