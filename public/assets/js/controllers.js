@@ -125,7 +125,7 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
 });
 
 
-rootsAppControllers.controller('scheduleController', function ($scope) {
+rootsAppControllers.controller('scheduleController', ['$scope', '$http', function($scope, $http) {
   $http({
     method: 'GET',
     url: '/venue'
@@ -138,7 +138,7 @@ rootsAppControllers.controller('scheduleController', function ($scope) {
   });
 
   //will save current schedule with ng-click saveSchedule()
-  $scope.saveSchedule= function(){
+  $scope.saveSchedule= function() {
     var schedule = {
       venue: $scope.venueName,
       events: [{
@@ -169,14 +169,13 @@ rootsAppControllers.controller('scheduleController', function ($scope) {
    $scope.test= "testing";
    popupS.modal({
      content: '<div> <div  class = "venueContainer"> <div class="modalWidth"> <div class = "modalHeader orange row container-fluid">Twins Stadium</div><div class = "venueHeader yellow row container-fluid"> <div class = "col-md-1 modalTitle">Date:</div> <div class = "col-md-1"></div> <div class = "col-md-2 modalTitle">Arrival Time:</div> <div class = "col-md-2"></div> <div class = "col-md-2 modalTitle">Event Time:</div> <div class = "col-md-1"></div> <div class = "col-md-2 modalTitle">Group</div> </div> <div class = "venueOptions row container-fluid"> <div class = "col-md-1 scheduleLabel">Sat, 03/22</div> <div class = "col-md-1"></div> <div class = "col-md-2 scheduleLabel">10:00 AM</div> <div class = "col-md-2"></div> <div class = "col-md-2 scheduleLabel">1:00 PM</div> <div class = "col-md-1"></div> <div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> <div class = "venueOptions row container-fluid"> <div class = "col-md-1 scheduleLabel">Sun, 03/23</div> <div class = "col-md-1"></div> <div class = "col-md-2 scheduleLabel">12:00 AM</div> <div class = "col-md-2"></div> <div class = "col-md-2 scheduleLabel">3:00 PM</div> <div class = "col-md-1"></div> <div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> </div> </div> </div>'
- });
-
- };
+    });
+  };
   //will clear schedules with ng-click="clearSchedule()" will ask for
   //confirmation
   $scope.hello = 'hello!';
   console.log($scope.hello);
-});
+}]);
 
 
 //controller that with function to tell you what partial you are on
