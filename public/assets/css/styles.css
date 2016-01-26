@@ -361,11 +361,11 @@ label.css-label-radio {
 }
 
 .modalButton {
-    height: 50px;
-    width: 118px;
+    height: 43px;
+    width: 90px;
     border-radius: 3px;
     border: none;
-    margin: 0px 0px 0px 50px;
+    margin: 0px -17px 0px 0px;
     float: right;
     color: white;
     font-family: 'Roboto', sans-serif;
@@ -374,7 +374,7 @@ label.css-label-radio {
 }
 
 .modalWidth {
-    width:80%;
+    width:100%;
     margin:auto;
 }
 
@@ -394,6 +394,8 @@ label.css-label-radio {
     font-size: 20px;
 
 }
+
+
 
 
 
