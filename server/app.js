@@ -4,7 +4,6 @@ var app = express();
 //require dependencies
 var path = require('path');
 var bodyParser = require('body-parser');
-var expressJWT = require('express-jwt');
 var config = require('../config.js');
 var passport = require('../auth/passport-local');
 var cookieParser = require('cookie-parser');
@@ -97,6 +96,7 @@ app.use(function(req, res, next) {
 
 // catch all error handler
 app.use(function(err, req, res, next) {
+  console.log(err);
   res.status(err.status || 500);
 
 });
