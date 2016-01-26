@@ -1,6 +1,6 @@
 var app = angular.module('rootsApp', ['ngRoute', 'rootsAppControllers']);
 
-app.config(['$routeProvider', function($routeProvider){
+app.config(['$routeProvider', '$httpProvider', function($routeProvider){
     $routeProvider.when('/admin', {
         templateUrl: 'views/partials/admin.html',
         controller: 'mainCtrl'
@@ -14,6 +14,10 @@ app.config(['$routeProvider', function($routeProvider){
     }).otherwise({
         redirectTo: 'home'
     });
+
+
 }]);
 
+
 //modal should be removed from partials if possible
+

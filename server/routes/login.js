@@ -2,6 +2,12 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var path = require('path');
+
+router.get('/', function(req, res) {
+  var file = req.params[0] || '/views/login.html';
+  res.sendFile(path.join(__dirname, '../../public', file));
+});
 
 // use jwt-login passport strategy to authenticate login
 router.post('/', passport.authenticate('jwt-login',
