@@ -141,17 +141,20 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
 
 
 rootsAppControllers.controller('scheduleController', ['$scope', '$http', function($scope, $http) {
-  $http({
-    method: 'GET',
-    url: '/venue'
-    //all info from venues is available via this request
-  }).then(function (res) {
-    //$scope.venueName = res.data.venueName;
-    //$scope.eventDate = res.data.events.eventDate;
-    //$scope.arrivalTime = res.data.arrivalTime;
-    //$scope.eventTime = res.data.gameTime;
-    $scope.test = 'Twins Stadium';
-  });
+  $scope.getEvents = function () {
+    $http({
+      method: 'GET',
+      url: '/api/event/getEvent'
+      //all info from venues is available via this request
+    }).then(function (res) {
+      //$scope.venueName = res.data.venueName;
+      //$scope.eventDate = res.data.events.eventDate;
+      //$scope.arrivalTime = res.data.arrivalTime;
+      //$scope.eventTime = res.data.gameTime;
+      $scope.test = 'Twins Stadium';
+    });
+  };
+
 }]);
 
 
