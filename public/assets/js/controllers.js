@@ -165,11 +165,17 @@ rootsAppControllers.controller('scheduleController', function ($scope) {
   };
   //will view previous schedule with ng-click viewPreviousSchedule()
   $scope.viewPreviousSchedule= function(){
-    alert("I clicked view previous")
+    popupS.alert({
+      content: 'I clicked'
+    });
   };
   //will show current schedule in modal ng-click generateSchedule()
  $scope.generateSchedule= function(){
-   alert("I clicked");
+   $scope.test= "testing";
+   popupS.modal({
+     content: '<div> <div  class = "venueContainer"> <div class="modalWidth"> <div class = "modalHeader orange row container-fluid">Twins Stadium</div><div class = "venueHeader yellow row container-fluid"> <div class = "col-md-1 modalTitle">Date:</div> <div class = "col-md-1"></div> <div class = "col-md-2 modalTitle">Arrival Time:</div> <div class = "col-md-2"></div> <div class = "col-md-2 modalTitle">Event Time:</div> <div class = "col-md-1"></div> <div class = "col-md-2 modalTitle">Group</div> </div> <div class = "venueOptions row container-fluid"> <div class = "col-md-1 scheduleLabel">Sat, 03/22</div> <div class = "col-md-1"></div> <div class = "col-md-2 scheduleLabel">10:00 AM</div> <div class = "col-md-2"></div> <div class = "col-md-2 scheduleLabel">1:00 PM</div> <div class = "col-md-1"></div> <div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> <div class = "venueOptions row container-fluid"> <div class = "col-md-1 scheduleLabel">Sun, 03/23</div> <div class = "col-md-1"></div> <div class = "col-md-2 scheduleLabel">12:00 AM</div> <div class = "col-md-2"></div> <div class = "col-md-2 scheduleLabel">3:00 PM</div> <div class = "col-md-1"></div> <div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> </div> </div> </div>'
+ });
+
  };
   //will clear schedules with ng-click="clearSchedule()" will ask for
   //confirmation
