@@ -101,7 +101,7 @@ rootsAppControllers.controller("userCtrl", ['$scope', '$http', function($scope, 
       password: $scope.password
     };
     $http({
-      url: '/user',
+      url: '/register',
       method: 'post',
       data: user
     }).then(function () {
