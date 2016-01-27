@@ -70,6 +70,10 @@ textarea.style {
     background-color: white;
 }
 
+.moveLeft{
+    margin-right: 60px ;
+}
+
 .light {
     font-weight: 300;
 }
@@ -85,6 +89,7 @@ textarea.style {
 .icon {
     width: 3.33em;
     padding-top: 10px;
+    margin-left: 40px
 }
 
 .backgroundIcon {
@@ -113,7 +118,7 @@ textarea.style {
     padding:0px 33px;
     text-decoration:none;
     width:100%;
-    margin: 4px 0 0 -6px;
+    margin: 4px 0 0 2px;
     outline-color: #55AC3A;
 }
 
