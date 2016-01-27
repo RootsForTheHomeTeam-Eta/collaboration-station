@@ -6,11 +6,13 @@
 }
 .venueContainer{
     text-align:center;
-
 }
 
 .venueWrapper{
     border-bottom: 3px solid #EDB816;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+
 }
 
 .venueHeader{

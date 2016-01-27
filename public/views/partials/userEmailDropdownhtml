@@ -1,0 +1,74 @@
+
+//html
+<div ng-controller="dropDownController">
+<form>
+        <img class="decor-img" src="/assets/img/longbackground.png">
+
+        <label for="sendToEmail" class="formButton tabFormLabel">Email:&nbsp;</label>
+        <select id="UserSelector" name="sendToEmail">
+          <option ng-repeat="user in users" value="{{user.username}}">{{user.orgName}}</option>
+        </select>
+
+        <label for="sendToName" class="formButton tabFormLabel">Name:</label>
+        <input id="sendToName" name="sendTo.name" type="text" ng-model="sendTo.name" placeholder="Name"><br>
+        <textarea id="styled" name="sendTo.message" cols="20" rows="10" ng-model="sendTo.message" placeholder="A custom message"></textarea>
+        <br><br>
+        <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
+</form>
+</div>
+
+
+//repository service
+
+
+(function(){
+
+    var userRepoService = function($http){
+
+      var contactEmails = function(username){
+            return $http
+            .get('/api/user/getUsers')
+                        .then(function(response){
+                           return response.data;
+                        });
+      };
+
+      return {
+          get: contactEmails
+      };
+
+    };
+
+    var module = angular.module("rootsApp");
+    module.factory("userRepoService", userRepoService);
+
+}());
+
+
+//controller
+
+(function(){
+
+   var app = angular.module("rootsApp",[]);
+
+   var dropDownController = function($scope, userRepoService){
+
+     var onFetchError = function(message){
+       $scope.error = "Error Fetching Users. Message:" +message;
+     };
+
+     var onFetchCompleted = function(data){
+        $scope.users =data;
+     };
+
+     var getUsers = function(){
+       userRepoService.get().then(onFetchCompleted,onFetchError);
+     };
+
+     contactEmails();
+
+   };
+
+   app.controller("dropDownController", dropDownController);
+
+}());

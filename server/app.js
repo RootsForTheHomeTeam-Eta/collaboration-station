@@ -80,6 +80,12 @@ var register = require('./routes/register');
 var auth = require('./routes/auth');
 var event = require('./routes/event');
 
+//nodemailer
+//var nodemailer = require('nodemailer');
+//var sendNotices = require('./routes/sendNotices');
+//
+//app.use('/sendNotices', sendNotices);
+
 // ***** ROUTES *****
 
 app.use('/login', login);
