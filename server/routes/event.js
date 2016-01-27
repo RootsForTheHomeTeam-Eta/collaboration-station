@@ -19,11 +19,20 @@ router.get('/Events', function(req, res, next) {
         next(err);
       }
       console.log('Docs found!');
+      console.log(docs);
+      console.log("venue name: ",docs[0].venueName);
+      //returns an array of documents named docs
       res.json(docs);
-      //return docs;
     });
-  //res.json(docs);
 });
+
+var parseDocs = function (docs) {
+  docs.forEach(function(elem, index, array) {
+    if (elem.venueName == "Twins Stadium") {
+
+    }
+  })
+};
 
 
 // post new event to a venue
