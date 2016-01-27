@@ -69,3 +69,9 @@ div.options{
     color: white;
 }
 
+input[type="radio"]{
+    border-radius: 2px;
+    color: red;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+}
