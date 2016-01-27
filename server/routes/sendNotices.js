@@ -23,11 +23,11 @@ router.post('/', function (req, res) {
     smtpTrans.sendMail(mailOpts, function (error, res) {
         //Email not sent
         if (error) {
-            console.log(error + 'you goofed')
+            console.log(error + 'you goofed');
         }
         //Email sent
         else {
-            console.log('whoosh')
+            console.log('whoosh');
         }
     });
     //not sure what this should be...confirmation alert?
