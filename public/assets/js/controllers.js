@@ -1,7 +1,6 @@
-var rootsAppControllers = angular.module('rootsAppControllers', []);
 // login controller
 
-rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
+rootsApp.controller('LoginController', function ($scope, $http, $window) {
   //$scope.user = {username: req.body.username, password: req.body.password};
   //$scope.message = req.body.message;
   $scope.submit = function() {
@@ -20,7 +19,7 @@ rootsAppControllers.controller('loginCtrl', function ($scope, $http, $window) {
 });
 
 
-rootsAppControllers.controller('mainCtrl', function ($scope) {
+rootsApp.controller('MainController', function ($scope) {
   $scope.onIconCLick = function(){
     popupS.modal({
       content:'<div><h2>' +
@@ -45,7 +44,7 @@ rootsAppControllers.controller('mainCtrl', function ($scope) {
 
 //controller for tabs
 
-rootsAppControllers.controller('tabController', function ($scope){
+rootsApp.controller('TabController', function ($scope){
   $scope.currentTab = null;
   //setting these functions as part of the scope makes the function available
   //to process in-line via ng-click
@@ -66,7 +65,7 @@ rootsAppControllers.controller('tabController', function ($scope){
 
 //new event submit controller will this
 //work with our data model
-rootsAppControllers.controller("formEventCtrl", ['$scope', '$http', function($scope, $http) {
+rootsApp.controller("FormEventController", ['$scope', '$http', function($scope, $http) {
     $scope.event = {};
   //form data tied to model where possible
     $scope.submitEventForm = function () {
@@ -95,7 +94,7 @@ rootsAppControllers.controller("formEventCtrl", ['$scope', '$http', function($sc
 
 //new user creation controller how will this
 //work with our data model
-rootsAppControllers.controller("userCtrl", ['$scope', '$http', function($scope, $http) {
+rootsApp.controller("UserController", ['$scope', '$http', function($scope, $http) {
   $scope.user = {};
   $scope.submitUserForm = function () {
     //form data tied to model
@@ -122,7 +121,7 @@ rootsAppControllers.controller("userCtrl", ['$scope', '$http', function($scope, 
 }]);
 
 
-rootsAppControllers.controller('noticeAlertCtrl', function ($scope) {
+rootsApp.controller('NoticeAlertController', function ($scope) {
   //alert should appear when activity is made on
   //form submission
   $scope.hello = 'hello!';
@@ -130,7 +129,7 @@ rootsAppControllers.controller('noticeAlertCtrl', function ($scope) {
 
 });
 
-rootsAppControllers.controller('noticeSendCtrl', function ($scope) {
+rootsApp.controller('NoticeSendController', function ($scope) {
   //Send notices with button based on who is selected and what type of message
   //should have a popupS modal confirmation
   $scope.hello = 'hello!';
@@ -138,7 +137,7 @@ rootsAppControllers.controller('noticeSendCtrl', function ($scope) {
 
 });
 
-rootsAppControllers.controller('messageCtrl', function ($scope) {
+rootsApp.controller('MessageController', function ($scope) {
   //Send personal messages from the app
   //should have a popupS modal confirmation
   $scope.hello = 'hello!';
@@ -151,7 +150,7 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
 //our various controllers can use it via injection of the service
 
 
-rootsAppControllers.factory('venueEventsFactory', function($http) {
+rootsApp.factory('VenueEventsFactory', function($http) {
   return{
     getVenues : function() {
       return $http({
@@ -162,13 +161,13 @@ rootsAppControllers.factory('venueEventsFactory', function($http) {
   }
 });
 
-rootsAppControllers.controller('scheduleController',['$scope','$http', 'venueEventsFactory', function($scope, $http, venueEventsFactory) {
-  venueEventsFactory.getVenues().success(function(data){
+rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
+  VenueEventsFactory.getVenues().success(function(data){
     $scope.venues=data;
   });
 }]);
 
-//rootsAppControllers.controller('scheduleController', ['$scope', '$http', function($scope, $http) {
+//rootsAppControllers.controller('ScheduleController', ['$scope', '$http', function($scope, $http) {
 //
 //
 //    $http({
@@ -193,7 +192,7 @@ rootsAppControllers.controller('scheduleController',['$scope','$http', 'venueEve
 
 
 
-rootsAppControllers.controller('saveController', ['$scope', '$http', function($scope, $http) {
+rootsApp.controller('SaveController', ['$scope', '$http', function($scope, $http) {
   //will save current schedule with ng-click saveSchedule()
   $scope.saveSchedule = function () {
     var schedule = {
@@ -217,7 +216,7 @@ rootsAppControllers.controller('saveController', ['$scope', '$http', function($s
   };
 }]);
 
-rootsAppControllers.controller('prevController', ['$scope', '$http', function($scope, $http) {
+rootsApp.controller('PrevController', ['$scope', '$http', function($scope, $http) {
   //will view previous schedule with ng-click viewPreviousSchedule()
   $scope.viewPreviousSchedule= function() {
 
@@ -227,7 +226,7 @@ rootsAppControllers.controller('prevController', ['$scope', '$http', function($s
   };
 }]);
 
-rootsAppControllers.controller('modalController', ['$scope', '$http', function($scope, $http) {
+rootsApp.controller('ModalController', ['$scope', '$http', function($scope, $http) {
     $http({
       method: 'GET',
       url: '/event'
@@ -286,7 +285,7 @@ rootsAppControllers.controller('modalController', ['$scope', '$http', function($
 
 
 //controller that with function to tell you what partial you are on
-rootsAppControllers.controller('navControl', ['$scope','$location', function($scope, $location) {
+rootsApp.controller('NavController', ['$scope','$location', function($scope, $location) {
   $scope.isPartial = function (viewLocation) {
     var active = (viewLocation === $location.path());
     return active;
@@ -302,8 +301,8 @@ rootsAppControllers.controller('navControl', ['$scope','$location', function($sc
 // will method be a put or update or patch?
 // are we getting the venue collection? Is a params needed?
 
-rootsAppControllers.controller('userGroupCtrl', [ '$scope','$http', function ($scope, $http) {
-  $scope.hello = 'hello from the userGroupCtrl!';
+rootsApp.controller('UserGroupController', [ '$scope','$http', function ($scope, $http) {
+  $scope.hello = 'hello from the UserGroupController!';
 
 
   console.log($scope.hello);
@@ -316,7 +315,7 @@ rootsAppControllers.controller('userGroupCtrl', [ '$scope','$http', function ($s
 
 
   $scope.submit = function () {
-    var venue = $scope.venue
+    var venue = $scope.venue;
     console.log(venue);
     $http({
       url: '/user',
