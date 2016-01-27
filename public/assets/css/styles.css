@@ -22,6 +22,10 @@ textarea.style {
     height: 206px;
 }
 
+.whiteText{
+    color: white;
+}
+
 .notification {
     padding: 0 0 0 14px;
 }
@@ -66,6 +70,10 @@ textarea.style {
     background-color: white;
 }
 
+.moveLeft{
+    margin-right: 60px ;
+}
+
 .light {
     font-weight: 300;
 }
@@ -81,6 +89,7 @@ textarea.style {
 .icon {
     width: 3.33em;
     padding-top: 10px;
+    margin-left: 40px
 }
 
 .backgroundIcon {
@@ -109,7 +118,7 @@ textarea.style {
     padding:0px 33px;
     text-decoration:none;
     width:100%;
-    margin: 4px 0 0 -6px;
+    margin: 4px 0 0 2px;
     outline-color: #55AC3A;
 }
 
@@ -165,7 +174,7 @@ textarea.style {
     font-weight: 500;
     margin:0;
     padding: 0;
-    font-size: 20px
+    font-size: 20px;
 }
 
 .decor-img {
@@ -235,6 +244,7 @@ li.active a, li.active a:hover {
 .tabFormLabel {
     color: Black;
     text-align: left;
+    margin: 0px 0px 0px 7px;
 }
 
 textarea#styled {

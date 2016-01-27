@@ -81,6 +81,12 @@ var auth = require('./routes/auth');
 var event = require('./routes/event');
 var user = require('./routes/user');
 
+//nodemailer
+//var nodemailer = require('nodemailer');
+//var sendNotices = require('./routes/sendNotices');
+//
+//app.use('/sendNotices', sendNotices);
+
 // ***** ROUTES *****
 
 app.use('/login', login);
