@@ -9,14 +9,10 @@
                 <li ng-class="{active: isActive('tabB')}"><a ng-click="onTabClick('tabB')"><p class="tabLabel">Quick Send</p></a></li>
             </ul>
             <div id="tabA" class="tab-content" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="noticeAlertCtrl">
-                <button class="notifButton"><img class="notifIcon" src="/assets/img/pailorange.png"><h2> {group} has submitted</h2>
-                <p class="subtext">click to remove</p></button>
-                <button class="notifButton"><img class="notifIcon" src="/assets/img/jargreen.png"><h2>{group} has submitted</h2>
-                <p class="subtext">click to remove</p></button>
                 <button class="notifButton"><img class="notifIcon" src="/assets/img/pailorange.png"><h2>{group} has submitted</h2>
-                <p class="subtext">click to remove</p></button></button>
+                <p class="subtext">click to remove</p></button>
                 <button class="notifButton"><img class="notifIcon" src="/assets/img/jargreen.png"><h2>{group} has submitted</h2>
-                <p class="subtext">click to remove</p></button></button>
+                <p class="subtext">click to remove</p></button>
             </div>
             <div id="tabB" class="tab-content align-left" ng-show="isActive('tabB')"  ng-class="{active: isActive('tab2')}" ng-controller="noticeSendCtrl">
                 <form novalidate ng-submit="submitQuickForm()">
@@ -62,12 +58,13 @@
                         <form novalidate>
                             <img class="decor-img" src="/assets/img/longbackground.png">
                             <label for="Venues" class="formButton tabFormLabel">Event Venue:</label>
-                            <input type="text" name="venueName" ng-model="venueName" list="Venues"/>
+                            <input type="text" name="venueName" ng-model="venueName" placeholder="Choose Venue" list="Venues"/>
                             <datalist id="Venues">
-                                <option value="Twins Stadium">Twins Stadium</option>
-                                <option value="US Bank Stadium">US Bank Stadium</option>
-                                <option value="Another Stadium">Another Stadium</option>
+                                <option value="Target Field">Target Field</option>
+                                <option value="TCF Stadium">TCF Stadium</option>
                             </datalist><br>
+                            <label for="addVenue" class="formButton tabFormLabel">Add Venue: &nbsp;&nbsp;</label>
+                            <input id="addVenue" type="text" name="addVenue" ng-model="venueName" placeholder="Add New Venue"><br>
                             <label for="eventDate" class="formButton tabFormLabel">Event Date: &nbsp;&nbsp;</label>
                             <input id="eventDate" name="eventDate" type="date" ng-model="eventDate"><br>
                             <label for="startTime" class="formButton tabFormLabel">Event Time: &nbsp;</label>
@@ -84,15 +81,15 @@
                     <div id="tab2" class="tab-content" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}" ng-controller="userCtrl">
                             <form novalidate>
                                 <img class="decor-img" src="/assets/img/longbackground.png">
-                                <label for="orgName" class="formButton tabFormLabel">User Name:</label>
+                                <label for="orgName" class="formButton tabFormLabel">Group Name:</label>
                                 <input id="orgName" type="text" name="orgName" ng-model="orgName" placeholder="Organization Name"><br>
-                                <label for="firstName" class="formButton tabFormLabel">First Name:</label>
+                                <label for="firstName" class="formButton tabFormLabel">First Name: &nbsp;&nbsp;</label>
                                 <input id="firstName" type="text" name="firstName" ng-model="firstName" placeholder="Contact First Name"><br>
-                                <label for="lastName" class="formButton tabFormLabel">Last Name:</label>
+                                <label for="lastName" class="formButton tabFormLabel">Last Name:  &nbsp;&nbsp;</label>
                                 <input id="lastName" type="text" name="lastName" ng-model="lastName" placeholder="Contact Last Name"><br>
-                                <label for="userEmail" class="formButton tabFormLabel">User Email:</label>
+                                <label for="userEmail" class="formButton tabFormLabel">User Email:  &nbsp;&nbsp;</label>
                                 <input id="userEmail" type="text" name="email" ng-model="email" placeholder="Contact Email"><br>
-                                <label for="password" class="formButton tabFormLabel">Password:&nbsp;</label>
+                                <label for="password" class="formButton tabFormLabel">Password:&nbsp; &nbsp;&nbsp;</label>
                                 <input id="password" type="password" name="password" ng-model="password" placeholder="eg: UrbanRoots986"><br>
                                 <br>
                                 <button type="submit" ng-click="submitUserForm()" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/apple.png">Submit</button>
@@ -121,7 +118,7 @@
 <div class= 'col-md-12 hidden-xs' ng-controller="scheduleController" >
     <div  class = "col-md-12 venueContainer">
         <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
-            <div class = ' vTop orange col-md-12'><h2 class="tab-header">Twins Stadium</h2></div>
+            <div class = ' vTop orange col-md-12'><h2 class="tab-header">Target Field</h2></div>
         </div>
         <div ng-show = 'display' >
             <div class = "venueHeader yellow  row container-fluid">
@@ -140,12 +137,13 @@
                 <div class = "col-md-2 scheduleLabel">11:00 AM</div>
                 <div class = "col-md-2 scheduleLabel">2:00 PM</div>
                 <div class = "col-md-2"></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle green"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle green"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle yellow"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
             </div>
+            <!--commented out-->
             <!--<div class = "venueOptions row container-fluid">-->
                 <!--<div class = "col-md-1 scheduleLabel">Sat, 03/22</div>-->
                 <!--<div class = "col-md-2 scheduleLabel">10:00 AM</div>-->
@@ -157,6 +155,7 @@
                 <!--<div class = "col-md-1"><button  type="button" class="selectorStyle yellow"></button></div>-->
                 <!--<div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>-->
             <!--</div>-->
+            <!--commented out-->
             <div class="venueOptions row container-fluid">
                 <div class = "col-md-12 white">
                     <button type="submit" ng-controller="saveController" ng-click="saveSchedule()" class="generateStyle green formButton">Save Schedule</button>
@@ -168,13 +167,14 @@
 
     </div>
 </div>
+    <!--commented out-->
     <!--<div class="row">-->
         <!--<div class= 'col-md-12'></div>-->
     <!--</div>-->
 <!--<div class= 'col-md-12 hidden-xs'>-->
     <!--<div  class = "col-md-12 venueContainer">-->
         <!--<div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display2 = !display2'>-->
-            <!--<div class = 'vTop orange col-md-12'><h2 class="tab-header">US Bank Stadium</h2></div>-->
+            <!--<div class = 'vTop orange col-md-12'><h2 class="tab-header">TCF Stadium</h2></div>-->
         <!--</div>-->
         <!--<div ng-show = 'display2' >-->
             <!--<div class = "venueHeader yellow  row container-fluid">-->
@@ -204,11 +204,11 @@
                 <!--<div class = "col-md-2 scheduleLabel">10:00 AM</div>-->
                 <!--<div class = "col-md-2 scheduleLabel">1:00 PM</div>-->
                 <!--<div class = "col-md-2"></div>-->
-                <!--<div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>-->
+                <!--<div class = "col-md-1"><button  type="button" class="selectorStyle green"></button></div>-->
                 <!--<div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>-->
                 <!--<div class = "col-md-1"><button  type="button" class="selectorStyle green"></button></div>-->
-                <!--<div class = "col-md-1"><button  type="button" class="selectorStyle yellow"></button></div>-->
                 <!--<div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>-->
+                <!--<div class = "col-md-1"><button  type="button" class="selectorStyle yellow"></button></div>-->
             <!--</div>-->
             <!--<div class="venueOptions row container-fluid">-->
                 <!--<div class = "col-md-12 white">-->
@@ -228,6 +228,7 @@
 
     <!--</div>-->
 <!--</div>-->
+    <!--commented out-->
 
 </div>
 </div>

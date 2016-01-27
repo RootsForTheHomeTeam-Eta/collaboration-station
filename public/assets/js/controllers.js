@@ -82,7 +82,9 @@ rootsAppControllers.controller("formEventCtrl", ['$scope', '$http', function($sc
         method: 'post',
         data: event
       }).then(function () {
-        alert('event added');
+        popupS.alert({
+          content: 'Event Added'
+        });
       });
 
     };
@@ -109,9 +111,11 @@ rootsAppControllers.controller("userCtrl", ['$scope', '$http', function($scope, 
       method: 'post',
       data: user
     }).then(function () {
-      alert('User Registered');
-    });
 
+    });
+    popupS.alert({
+      content: 'User Registered, remember to send their password and that their email is their Username'
+    });
   };
   //should have a popupS modal confirmation
 
@@ -123,6 +127,7 @@ rootsAppControllers.controller('noticeAlertCtrl', function ($scope) {
   //form submission
   $scope.hello = 'hello!';
   console.log($scope.hello);
+
 });
 
 rootsAppControllers.controller('noticeSendCtrl', function ($scope) {
@@ -130,6 +135,7 @@ rootsAppControllers.controller('noticeSendCtrl', function ($scope) {
   //should have a popupS modal confirmation
   $scope.hello = 'hello!';
   console.log($scope.hello);
+
 });
 
 rootsAppControllers.controller('messageCtrl', function ($scope) {
@@ -137,6 +143,7 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
   //should have a popupS modal confirmation
   $scope.hello = 'hello!';
   console.log($scope.hello);
+
 });
 
 
@@ -189,14 +196,12 @@ rootsAppControllers.controller('saveController', ['$scope', '$http', function($s
 
 rootsAppControllers.controller('prevController', ['$scope', '$http', function($scope, $http) {
   //will view previous schedule with ng-click viewPreviousSchedule()
-  $scope.viewPreviousSchedule= function(){
-    popupS.alert({
-      content: 'I clicked'
-    });
-  };
+  $scope.viewPreviousSchedule= function() {
 
-  $scope.hello = 'hello!';
-  console.log($scope.hello);
+
+    $scope.hello = 'hello!';
+    console.log($scope.hello);
+  };
 }]);
 
 rootsAppControllers.controller('modalController', ['$scope', '$http', function($scope, $http) {
@@ -222,7 +227,7 @@ rootsAppControllers.controller('modalController', ['$scope', '$http', function($
      content: '<div> ' +
      '<div  class = "venueContainer"> ' +
      '<div class="modalWidth"> ' +
-     '<div class = "modalHeader orange row container-fluid">'+ test +'</div>' +
+     '<div class = "modalHeader orange row container-fluid">Target Field</div>' +
      '<div class = "venueHeader yellow row container-fluid"> ' +
      '<div class = "col-md-1 modalTitle">Date:</div> ' +
      '<div class = "col-md-1"></div> ' +
@@ -238,7 +243,7 @@ rootsAppControllers.controller('modalController', ['$scope', '$http', function($
      '<div class = "col-md-2"></div> ' +
      '<div class = "col-md-2 scheduleLabel">1:00 PM</div> ' +
      '<div class = "col-md-1"></div> ' +
-     '<div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> </div> ' +
+     '<div class = "col-md-2"><button type="button" class="modalButton green">URG</button></div> </div> ' +
      '<div class = "venueOptions row container-fluid"> ' +
      '<div class = "col-md-1 scheduleLabel">Sun, 03/23</div> ' +
      '<div class = "col-md-1"></div> ' +
@@ -246,7 +251,7 @@ rootsAppControllers.controller('modalController', ['$scope', '$http', function($
      '<div class = "col-md-2"></div> ' +
      '<div class = "col-md-2 scheduleLabel">3:00 PM</div> ' +
      '<div class = "col-md-1"></div> ' +
-     '<div class = "col-md-2"><button type="button" class="modalButton green">{group name}</button></div> ' +
+     '<div class = "col-md-2"><button type="button" class="modalButton green">YFH</button></div> ' +
      '</div> </div> </div> </div>'
     });
   };
