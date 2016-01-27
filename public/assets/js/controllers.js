@@ -144,29 +144,45 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
 //our various controllers can use it via injection of the service
 
 
+rootsAppControllers.factory('venueEventsFactory', function($http) {
+  return{
+    getVenues : function() {
+      return $http({
+        url: '/api/event/getEvents',
+        method: 'GET'
+      })
+    }
+  }
+});
 
-
-rootsAppControllers.controller('scheduleController', ['$scope', '$http', function($scope, $http) {
-
-
-    $http({
-      method: 'GET',
-      url: '/api/event/getEvents'
-      //all info from venues is available via this request
-    }).then(function (res) {
-      console.log(res.data);
-      $scope.venues = res.data;
-      console.log($scope.venues);
-      //$scope.venueName = res.data.venueName;
-      //$scope.eventDate = res.data.events.eventDate;
-      //$scope.arrivalTime = res.data.arrivalTime;
-      //$scope.eventTime = res.data.gameTime;
-      $scope.test = 'Twins Stadium';
-    });
-
-
-
+rootsAppControllers.controller('scheduleController',['$scope','$http', 'venueEventsFactory', function($scope, $http, venueEventsFactory) {
+  venueEventsFactory.getVenues().success(function(data){
+    $scope.venues=data;
+  });
 }]);
+
+//rootsAppControllers.controller('scheduleController', ['$scope', '$http', function($scope, $http) {
+//
+//
+//    $http({
+//      method: 'GET',
+//      url: '/api/event/getEvents'
+//      //all info from venues is available via this request
+//    }).then(function (res) {
+//      console.log(res.data);
+//      $scope.venues = res.data;
+//      console.log($scope.venues);
+//      //$scope.venueName = res.data.venueName;
+//      //$scope.eventDate = res.data.events.eventDate;
+//      //$scope.arrivalTime = res.data.arrivalTime;
+//      //$scope.eventTime = res.data.gameTime;
+//      $scope.test = 'Twins Stadium';
+//    });
+//
+//
+//
+//}]);
+
 
 
 
