@@ -9,6 +9,7 @@ var config = require('../config.js');
 var passport = require('../auth/passport-local');
 var cookieParser = require('cookie-parser');
 
+
 //var flash = require('connect-flash');
 //
 //app.use(flash());

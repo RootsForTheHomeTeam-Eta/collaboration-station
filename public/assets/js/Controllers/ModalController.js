@@ -1,7 +1,7 @@
 rootsApp.controller('ModalController', ['$scope', '$http', function($scope, $http) {
     $http({
         method: 'GET',
-        url: '/event'
+        url: '/api/event/getEvents'
         //all info from venues is available via this request
     }).then(function(res){
         //$scope.venueName = res.data.venueName;

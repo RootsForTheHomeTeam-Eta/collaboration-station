@@ -12,7 +12,7 @@ var firstRemind = "Hello Group - please take a look at our game schedule and sig
     "Thank you.";
 
 var secondRemind = "Hi - Please sign up for your games as soon as possible. We need to confirm " +
-    "dates with everyone in the next couple of days.  Thank you."
+    "dates with everyone in the next couple of days.  Thank you.";
 
 router.post('/', function (req, res) {
     var mailOpts, smtpTrans;
@@ -38,11 +38,11 @@ router.post('/', function (req, res) {
     smtpTrans.sendMail(mailOpts, function (error, res) {
         //Email not sent
         if (error) {
-            console.log(error + 'you goofed')
+            console.log(error + 'you goofed');
         }
         //Email sent
         else {
-            console.log('whoosh')
+            console.log('whoosh');
         }
     });
     //not sure what this should be...confirmation alert?

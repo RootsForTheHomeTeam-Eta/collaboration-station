@@ -4,7 +4,7 @@ rootsApp.factory('VenueEventsFactory', function($http) {
             return $http({
                 url: '/api/event/getEvents',
                 method: 'GET'
-            })
+            });
         }
-    }
+    };
 });
