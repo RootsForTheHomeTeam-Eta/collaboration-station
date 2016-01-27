@@ -79,6 +79,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var auth = require('./routes/auth');
 var event = require('./routes/event');
+var user = require('./routes/user');
 
 // ***** ROUTES *****
 
@@ -90,6 +91,8 @@ app.use('/register', register);
 app.use('/api/auth', auth);
 // api event route
 app.use('/api/event', event);
+// api user route
+app.use('/api/user', user);
 // catch all route:
 app.use('/profile', index);
 

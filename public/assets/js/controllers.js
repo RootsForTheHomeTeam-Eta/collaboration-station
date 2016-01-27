@@ -144,7 +144,7 @@ rootsAppControllers.controller('scheduleController', ['$scope', '$http', functio
   $scope.getEvents = function () {
     $http({
       method: 'GET',
-      url: '/api/event/getEvent'
+      url: '/api/event/getEvents'
       //all info from venues is available via this request
     }).then(function (res) {
       //$scope.venueName = res.data.venueName;

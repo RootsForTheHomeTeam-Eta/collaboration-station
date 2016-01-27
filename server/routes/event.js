@@ -6,7 +6,7 @@ var Venue = require('../../db/models/venue');
 // return an array of json objects,each one representing a venue
 
 // get venue event data
-router.get('/Events', function(req, res, next) {
+router.get('/getEvents', function(req, res, next) {
   console.log('Enter route');
   // return all events
   Venue.find(
@@ -19,20 +19,18 @@ router.get('/Events', function(req, res, next) {
         next(err);
       }
       console.log('Docs found!');
-      console.log(docs);
-      console.log("venue name: ",docs[0].venueName);
       //returns an array of documents named docs
       res.json(docs);
     });
 });
-
-var parseDocs = function (docs) {
-  docs.forEach(function(elem, index, array) {
-    if (elem.venueName == "Twins Stadium") {
-
-    }
-  })
-};
+//TODO: parse docs differently
+//var parseDocs = function (docs) {
+//  docs.forEach(function(elem, index, array) {
+//    if (elem.venueName == "Twins Stadium") {
+//
+//    }
+//  })
+//};
 
 
 // post new event to a venue
