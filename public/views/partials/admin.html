@@ -22,15 +22,15 @@
                 <form novalidate ng-submit="submitQuickForm()">
                     <h2 class="higher">Who do you want to notify?</h2>
                     <div class="center">
-                    <input type="checkbox" name="gardenGroupYFH" id="Youth Farm Hawthorne" value="Youth Farm Hawthorne" class="css-checkbox">
+                    <input type="checkbox" name="gardenGroupYFH" ng-model="gardenGroupYFH" id="Youth Farm Hawthorne" value="Youth Farm Hawthorne" class="css-checkbox">
                     <label for="Youth Farm Hawthorne" class="css-label">Youth Farm Hawthorn</label>
-                    <input type="checkbox" name="gardenGroupURF" id="Urban Roots Farm" value="Urban Roots Farm" class="css-checkbox">
+                    <input type="checkbox" name="gardenGroupURF" ng-model="gardenGroupURF" id="Urban Roots Farm" value="Urban Roots Farm" class="css-checkbox">
                     <label for="Urban Roots Farm" class="css-label">Urban Roots Farm</label>
-                    <input type="checkbox" name="gardenGroupYFW" id= "Youth Farm W. Side" value="Youth Farm W. Side" class="css-checkbox">
+                    <input type="checkbox" name="gardenGroupYFW" ng-model="gardenGroupYFW" id= "Youth Farm W. Side" value="Youth Farm W. Side" class="css-checkbox">
                     <label for="Youth Farm W. Side" class="css-label">Youth Farm W. Side</label>
-                    <input type="checkbox" name="gardenGroupDWH" id= "Dream of Wild Health" value="Dream of Wild Health" class="css-checkbox">
+                    <input type="checkbox" name="gardenGroupDWH" ng-model="gardenGroupDWH" id= "Dream of Wild Health" value="Dream of Wild Health" class="css-checkbox">
                     <label for="Dream of Wild Health" class="css-label">Dream of Wild Health</label>
-                    <input type="checkbox" name="gardenGroupAFC" id= "Appetite for Change" value="Appetite for Change" class="css-checkbox">
+                    <input type="checkbox" name="gardenGroupAFC" ng-model="gardenGroupAFC" id= "Appetite for Change" value="Appetite for Change" class="css-checkbox">
                     <label for="Appetite for Change" class="css-label">Appetite for Change</label>
                     </div>
                     <h2>What do you want to send?</h2>
@@ -103,10 +103,10 @@
                 <form>
                     <img class="decor-img" src="/assets/img/longbackground.png">
                     <label for="sendToEmail" class="formButton tabFormLabel">Email:&nbsp;</label>
-                    <input id="sendToEmail" name="sendTo.email" type="email" ng-model="sendTo.email" placeholder="Send to Email"><br>
+                    <input id="sendToEmail" name="sendToemail" type="email" ng-model="sendToemail" placeholder="Send to Email"><br>
                     <label for="sendToName" class="formButton tabFormLabel">Name:</label>
-                    <input id="sendToName" name="sendTo.name" type="text" ng-model="sendTo.name" placeholder="Name"><br>
-                    <textarea id="styled" name="sendTo.message" cols="20" rows="10" ng-model="sendTo.message" placeholder="A custom message"></textarea>
+                    <input id="sendToName" name="sendToname" type="text" ng-model="sendToname" placeholder="Name"><br>
+                    <textarea id="styled" name="sendTomessage" cols="20" rows="10" ng-model="sendTomessage" placeholder="A custom message"></textarea>
                     <br><br>
                     <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
                 </form>
