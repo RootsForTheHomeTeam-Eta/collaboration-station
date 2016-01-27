@@ -141,20 +141,27 @@ rootsAppControllers.controller('messageCtrl', function ($scope) {
 
 
 rootsAppControllers.controller('scheduleController', ['$scope', '$http', function($scope, $http) {
-  $scope.getEvents = function () {
+
+
     $http({
       method: 'GET',
-      url: '/api/event/getEvent'
+      url: '/api/event/getEvents'
       //all info from venues is available via this request
     }).then(function (res) {
+      console.log(res.data);
+      $scope.venues = res.data;
+      console.log($scope.venues);
       //$scope.venueName = res.data.venueName;
       //$scope.eventDate = res.data.events.eventDate;
       //$scope.arrivalTime = res.data.arrivalTime;
       //$scope.eventTime = res.data.gameTime;
       $scope.test = 'Twins Stadium';
     });
-  };
+
+
+
 }]);
+
 
 
 rootsAppControllers.controller('saveController', ['$scope', '$http', function($scope, $http) {
@@ -270,6 +277,8 @@ rootsAppControllers.controller('navControl', ['$scope','$location', function($sc
 
 rootsAppControllers.controller('userGroupCtrl', [ '$scope','$http', function ($scope, $http) {
   $scope.hello = 'hello from the userGroupCtrl!';
+
+
   console.log($scope.hello);
   $http({
     url:'/user',
@@ -280,7 +289,8 @@ rootsAppControllers.controller('userGroupCtrl', [ '$scope','$http', function ($s
 
 
   $scope.submit = function () {
-    console.log(venu.pref.one);
+    var venue = $scope.venue
+    console.log(venue);
     $http({
       url: '/user',
       method: 'post'

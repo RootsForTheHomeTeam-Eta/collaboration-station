@@ -118,10 +118,11 @@
 
 <div class="row"><br></div>
 
-<div class= 'col-md-12 hidden-xs' ng-controller="scheduleController" >
-    <div  class = "col-md-12 venueContainer">
+<div class= 'col-md-12 hidden-xs' ng-controller="scheduleController">
+    <button ng-click="getEvents()">GET STUFF</button>
+    <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues">
         <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
-            <div class = ' vTop orange col-md-12'><h2 class="tab-header">Twins Stadium</h2></div>
+            <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{venue.venueName}}</h2></div>
         </div>
         <div ng-show = 'display' >
             <div class = "venueHeader yellow  row container-fluid">
@@ -135,10 +136,10 @@
                 <div class = "col-md-1"><p>Dream of Wild Health</p></div>
                 <div class = "col-md-1"><p>Appetite for Change</p></div>
             </div>
-            <div class = "venueOptions row container-fluid">
-                <div class = "col-md-1 scheduleLabel">Fri, 03/21</div>
-                <div class = "col-md-2 scheduleLabel">11:00 AM</div>
-                <div class = "col-md-2 scheduleLabel">2:00 PM</div>
+            <div ng-repeat="event in venue.events" class = "venueOptions row container-fluid">
+                <div class = "col-md-1 scheduleLabel">{{event.event.eventDate | date: 'mediumDate' }}</div>
+                <div class = "col-md-2 scheduleLabel">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
+                <div class = "col-md-2 scheduleLabel">{{event.event.gameTime | date: 'h:mm a'}}</div>
                 <div class = "col-md-2"></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
