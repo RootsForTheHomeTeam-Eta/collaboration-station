@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
-    orgName: {type: String, required: true},
+    orgName: {type: String, required: true, index:{unique:true}},
     firstName: {type:String, required: true},
     lastName: {type: String, required: true},
     username: {type: String, require: true, index: { unique: true}},
