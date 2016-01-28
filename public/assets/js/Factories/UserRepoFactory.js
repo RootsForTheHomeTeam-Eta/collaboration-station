@@ -1,3 +1,4 @@
+//creates a service that shares the user object between controllers
 rootsApp.factory('UserRepoFactory', function($http){
     var contactEmails = function(username){
         return $http

@@ -1,4 +1,4 @@
-// login controller
+// login controller for user and admin sign-in
 
 rootsApp.controller('LoginController', function ($scope, $http, $window) {
   //$scope.user = {username: req.body.username, password: req.body.password};
