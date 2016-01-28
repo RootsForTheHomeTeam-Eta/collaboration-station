@@ -1,3 +1,4 @@
+//controller that populates admin created schedule after groups are chosen for specific time slots
 rootsApp.controller('ModalController', ['$scope', '$http', function($scope, $http) {
     $http({
         method: 'GET',

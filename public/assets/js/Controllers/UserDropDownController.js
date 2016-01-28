@@ -1,3 +1,4 @@
+//controller to auto-populate user emails on send forms
 rootsApp.controller("UserDropController", ['$scope', 'UserRepoFactory', function($scope, UserRepoFactory) {
     var onFetchError = function (message) {
         $scope.error = "Error Fetching Users. Message:" + message;

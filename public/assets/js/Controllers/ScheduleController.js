@@ -1,3 +1,4 @@
+//Controller to populate schedule creation bars on admin page
 rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', '$log', function($scope, $http, VenueEventsFactory, $log) {
     VenueEventsFactory.getVenues()
       .success(function(venues){
