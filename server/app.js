@@ -57,7 +57,7 @@ var morgan = require('morgan');
 app.use(morgan('dev'));
 
 // app settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5000);
 
 // pull in database connection
 require('../db/db');

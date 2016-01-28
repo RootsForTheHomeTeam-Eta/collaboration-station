@@ -1,11 +1,5 @@
-rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', '$log', function($scope, $http, VenueEventsFactory, $log) {
-    VenueEventsFactory.getVenues()
-      .success(function(venues){
-          //$scope.$apply(function() {
-              $scope.venues = venues;
-          //})
-      })
-      .error(function(data, status, headers, config) {
-          $log.warn(data, status, headers(), config);
-      });
+rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', 'SharedVenues', '$log', function($scope, $http, VenueEventsFactory, SharedVenues, $log) {
+    VenueEventsFactory.getVenues();
+    $scope.venues = SharedVenues.getVenues();
+    $log.info($scope.venues);
 }]);
