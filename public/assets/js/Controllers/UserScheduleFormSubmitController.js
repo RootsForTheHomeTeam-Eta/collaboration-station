@@ -1,3 +1,4 @@
+//controller to submit user responses from schedule form
 rootsApp.controller('UserGroupController', [ '$scope','$http', '$log', function ($scope, $http, $log) {
     $scope.hello = 'hello from the UserGroupController!';
 

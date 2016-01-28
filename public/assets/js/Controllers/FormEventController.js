@@ -1,3 +1,4 @@
+//controller that adds events from admin page under add event tab
 rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
     $scope.event = {};
   //form data tied to model where possible
