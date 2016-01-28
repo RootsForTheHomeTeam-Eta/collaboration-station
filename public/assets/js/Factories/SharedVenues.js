@@ -6,8 +6,8 @@ rootsApp.factory('SharedVenues', function() {
     getVenues: function() {
       return venues;
     },
-    setVenues: function() {
-      return venues;
+    setVenues: function(value) {
+      venues = value
     }
   };
 });
