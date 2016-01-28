@@ -1,4 +1,4 @@
-rootsApp.controller("FormEventController", ['$scope', '$http', function($scope, $http) {
+rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
     $scope.event = {};
   //form data tied to model where possible
     $scope.submitEventForm = function () {
@@ -14,10 +14,15 @@ rootsApp.controller("FormEventController", ['$scope', '$http', function($scope, 
         method: 'post',
         data: event
       }).then(function () {
+        VenueEventsFactory.getVenues();
         popupS.alert({
           content: 'Event Added'
         });
       });
+      //$http({
+      //  url: '/api/event/getEvents',
+      //  method: 'get'
+      //});
 
     };
   //should have a popupS modal confirmation
