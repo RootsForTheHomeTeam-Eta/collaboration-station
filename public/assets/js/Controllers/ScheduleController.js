@@ -1,5 +1,14 @@
-rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', 'SharedVenues', '$log', function($scope, $http, VenueEventsFactory, SharedVenues, $log) {
+
+//Controller to populate schedule creation bars on admin page
+rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', '$log', function($scope, $http, VenueEventsFactory, $log) {
+
+
+    $scope.venues = VenueEventsFactory.venues;
+
     VenueEventsFactory.getVenues();
-    $scope.venues = SharedVenues.getVenues();
-    $log.info($scope.venues);
+
+    console.log(VenueEventsFactory.venues);
+
+    console.log($scope.venues);
+
 }]);

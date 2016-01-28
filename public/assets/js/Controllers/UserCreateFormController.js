@@ -1,5 +1,4 @@
-//new user creation controller how will this
-//work with our data model
+//controller for creating new users on the database
 rootsApp.controller("UserController", ['$scope', '$http', function($scope, $http) {
     $scope.user = {};
     $scope.submitUserForm = function () {

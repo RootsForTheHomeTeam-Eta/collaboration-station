@@ -1,3 +1,4 @@
+//controller to send quick messages from admin panel
 rootsApp.controller('NoticeSendController', function ($scope) {
     //Send notices with button based on who is selected and what type of message
     //should have a popupS modal confirmation

@@ -1,3 +1,4 @@
+//controller to save admin created schedule in the database
 rootsApp.controller('SaveController', ['$scope', '$http', function($scope, $http) {
     //will save current schedule with ng-click saveSchedule()
     $scope.saveSchedule = function () {
