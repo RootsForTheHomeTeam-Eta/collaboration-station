@@ -18,9 +18,9 @@ rootsApp.factory('VenueEventsFactory', function($http) {
                 })
                 .error(function(data, status, headers, config) {
                     $log.warn(data, status, headers(), config);
-                });;
+                });
         },
         venues: venues
 
     };
-}]);
+});
