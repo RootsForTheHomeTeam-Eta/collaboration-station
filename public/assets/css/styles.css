@@ -43,7 +43,7 @@ textarea.style {
 
 .higher {
     padding: 4px 0px 0px 4px;
-    margin: 4px 0px 6px 4px;
+    margin: 0px 0px 6px 4px;
 }
 
 .green {
@@ -163,6 +163,7 @@ textarea.style {
 
 .align-left {
     text-align: left;
+    margin: 0px;
 }
 
 .tab.active {
@@ -269,7 +270,7 @@ input[type=checkbox].css-checkbox + label.css-label {
     line-height:20px;
     background-repeat:no-repeat;
     background-position: 0 0;
-    font-size:20px;
+    font-size:17px;
     vertical-align:middle;
     cursor:pointer;
 }
@@ -327,7 +328,7 @@ label.css-label-radio {
     font-weight: 500;
     margin:0;
     text-align: center;
-    padding:20px 0 0 0;
+    padding: 2px 0 0 0;
     font-size: 22px;
     color: white;
 }
@@ -402,9 +403,17 @@ label.css-label-radio {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 20px;
-
 }
 
+/*----- Form Validation Classes -----*/
+
+.css-form input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+}
+
+.css-form input.ng-valid.ng-touched {
+    background-color: #78FA89;
+}
 
 
 
