@@ -127,9 +127,9 @@
 
 <div class="row"><br></div>
 
-<div class= 'col-md-12 hidden-xs' ng-controller="ScheduleController" ng-model="venues">
+<div class= 'col-md-12 hidden-xs' ng-controller="ScheduleController">
     <button ng-click="getEvents()">GET STUFF</button>
-    <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues">
+    <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues.data">
         <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
             <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{venue.venueName}}</h2></div>
 
