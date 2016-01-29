@@ -22,6 +22,10 @@ textarea.style {
     height: 206px;
 }
 
+.whiteText{
+    color: white;
+}
+
 .notification {
     padding: 0 0 0 14px;
 }
@@ -39,7 +43,7 @@ textarea.style {
 
 .higher {
     padding: 4px 0px 0px 4px;
-    margin: 4px 0px 6px 4px;
+    margin: 0px 0px 6px 4px;
 }
 
 .green {
@@ -66,6 +70,10 @@ textarea.style {
     background-color: white;
 }
 
+.moveLeft{
+    margin-right: 60px ;
+}
+
 .light {
     font-weight: 300;
 }
@@ -81,6 +89,7 @@ textarea.style {
 .icon {
     width: 3.33em;
     padding-top: 10px;
+    margin-left: 40px
 }
 
 .backgroundIcon {
@@ -109,7 +118,7 @@ textarea.style {
     padding:0px 33px;
     text-decoration:none;
     width:100%;
-    margin: 4px 0 0 -6px;
+    margin: 4px 0 0 2px;
     outline-color: #55AC3A;
 }
 
@@ -154,6 +163,7 @@ textarea.style {
 
 .align-left {
     text-align: left;
+    margin: 0px;
 }
 
 .tab.active {
@@ -165,7 +175,7 @@ textarea.style {
     font-weight: 500;
     margin:0;
     padding: 0;
-    font-size: 20px
+    font-size: 20px;
 }
 
 .decor-img {
@@ -235,6 +245,7 @@ li.active a, li.active a:hover {
 .tabFormLabel {
     color: Black;
     text-align: left;
+    margin: 0px 0px 0px 7px;
 }
 
 textarea#styled {
@@ -259,7 +270,7 @@ input[type=checkbox].css-checkbox + label.css-label {
     line-height:20px;
     background-repeat:no-repeat;
     background-position: 0 0;
-    font-size:20px;
+    font-size:17px;
     vertical-align:middle;
     cursor:pointer;
 }
@@ -317,7 +328,7 @@ label.css-label-radio {
     font-weight: 500;
     margin:0;
     text-align: center;
-    padding:20px 0 0 0;
+    padding: 2px 0 0 0;
     font-size: 22px;
     color: white;
 }
@@ -361,11 +372,11 @@ label.css-label-radio {
 }
 
 .modalButton {
-    height: 50px;
-    width: 118px;
+    height: 43px;
+    width: 90px;
     border-radius: 3px;
     border: none;
-    margin: 0px 0px 0px 50px;
+    margin: 0px -17px 0px 0px;
     float: right;
     color: white;
     font-family: 'Roboto', sans-serif;
@@ -374,7 +385,7 @@ label.css-label-radio {
 }
 
 .modalWidth {
-    width:80%;
+    width:100%;
     margin:auto;
 }
 
@@ -392,8 +403,18 @@ label.css-label-radio {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 20px;
-
 }
+
+/*----- Form Validation Classes -----*/
+
+.css-form input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+}
+
+.css-form input.ng-valid.ng-touched {
+    background-color: #78FA89;
+}
+
 
 
 

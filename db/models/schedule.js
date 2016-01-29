@@ -4,13 +4,13 @@ var Schema = mongoose.Schema;
 //for schedule print/view/save
 
 var ScheduleSchema = new Schema({
-    venue: String,
+    finalVenue: String,
     events: [{
         event: {
-            eventDate: Date,
-            gameTime: Date,
-            arrivalTime: Date,
-            orgName: String
+            finalEventDate: Date,
+            finalGameTime: Date,
+            finalArrivalTime: Date,
+            finalOrgName: String
         }
     }]
 });

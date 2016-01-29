@@ -7,14 +7,22 @@ var bodyParser = require('body-parser');
 var config = require('../config.js');
 var passport = require('../auth/passport-local');
 var cookieParser = require('cookie-parser');
+//var favicon = require('serve-favicon');
+
 
 //var flash = require('connect-flash');
 //
 //app.use(flash());
 
+// pretty json
+app.set('json spaces', 2);
+
 // body parser middleware
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// favicon
+//app.use(favicon(__dirname + '/public/favicon-1.ico'));
 
 app.use(cookieParser());
 // configure sessions
@@ -73,15 +81,29 @@ var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var auth = require('./routes/auth');
+var event = require('./routes/event');
+var user = require('./routes/user');
+var saveSchedule = require('./routes/saveSchedule')
+
+//nodemailer
+var nodemailer = require('nodemailer');
+var sendNotices = require('./routes/sendNotices');
+
+app.use('/sendNotices', sendNotices);
 
 // ***** ROUTES *****
 
 app.use('/login', login);
 app.use('/register', register);
+app.use('/saveSchedule', saveSchedule);
 
 // everything under /api/* will verify the jwt
 //app.use('/api/*', jwtCheck);
 app.use('/api/auth', auth);
+// api event route
+app.use('/api/event', event);
+// api user route
+app.use('/api/user', user);
 // catch all route:
 app.use('/profile', index);
 

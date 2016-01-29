@@ -15,10 +15,11 @@ var VenueSchema = new Schema({
             cannot: {type: Boolean, default: false}
           }]
 
-        }]
-      },
+        }],
         arrivalTime: Date,
-    gameTime: Date
+        gameTime: Date,
+        submitBy: Date
+      }
     }]
 });
 
