@@ -9,13 +9,13 @@ router.post('/', function (req, res) {
     smtpTrans = nodemailer.createTransport('Gmail', {
         service: 'Gmail',
         auth: {
-            user: process.env.EMAIL_ADDRESS,
-            pass: process.env.EMAIL_PASSWORD
+            user: "", //will be sue in hidden variable
+            pass: ""
         }
     });
     //Mail options
     mailOpts = {
-        from: process.env.EMAIL_ADDRESS,
+        from: "",//will be sue in hidden variable
         to: req.body.sendToemail,
         subject: 'A message from Roots for the Home Team',
         text: req.body.sendTomessage + '\n from ' + "Sue" + '\n at ' + "Roots for the Home Team"

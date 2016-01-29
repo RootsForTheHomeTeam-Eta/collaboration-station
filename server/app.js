@@ -83,10 +83,10 @@ var event = require('./routes/event');
 var user = require('./routes/user');
 
 //nodemailer
-//var nodemailer = require('nodemailer');
-//var sendNotices = require('./routes/sendNotices');
-//
-//app.use('/sendNotices', sendNotices);
+var nodemailer = require('nodemailer');
+var sendNotices = require('./routes/sendNotices');
+
+app.use('/sendNotices', sendNotices);
 
 // ***** ROUTES *****
 
