@@ -14,15 +14,15 @@ rootsApp.controller('ModalController', ['$scope', '$http', function($scope, $htt
     $scope.generateSchedule= function(){
         console.log($scope.test);
         console.log('I clicked');
+        //var test = $scope.test;
 
         //pull event data from the database to set variables for schedule creation
-        var test= $scope.test;
 
         popupS.modal({
-            content: '<div> ' +
+            content: '<div ng-controller="ModalController">' +
             '<div  class = "venueContainer"> ' +
             '<div class="modalWidth"> ' +
-            '<div class = "modalHeader orange row container-fluid">Target Field</div>' +
+            '<div class = "modalHeader orange row container-fluid">'+ $scope.test +'</div>' +
             '<div class = "venueHeader yellow row container-fluid"> ' +
             '<div class = "col-md-1 modalTitle">Date:</div> ' +
             '<div class = "col-md-1"></div> ' +

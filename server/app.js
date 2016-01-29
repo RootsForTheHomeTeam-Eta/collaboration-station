@@ -8,6 +8,7 @@ var expressJWT = require('express-jwt');
 var config = require('../config.js');
 var passport = require('../auth/passport-local');
 var cookieParser = require('cookie-parser');
+//var favicon = require('serve-favicon');
 
 
 //var flash = require('connect-flash');
@@ -21,6 +22,8 @@ app.set('json spaces', 2);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// favicon
+//app.use(favicon(__dirname + '/public/favicon-1.ico'));
 
 app.use(cookieParser());
 // configure sessions
@@ -81,6 +84,7 @@ var register = require('./routes/register');
 var auth = require('./routes/auth');
 var event = require('./routes/event');
 var user = require('./routes/user');
+var saveSchedule = require('./routes/saveSchedule')
 
 //nodemailer
 var nodemailer = require('nodemailer');
@@ -92,6 +96,7 @@ app.use('/sendNotices', sendNotices);
 
 app.use('/login', login);
 app.use('/register', register);
+app.use('/saveSchedule', saveSchedule);
 
 // everything under /api/* will verify the jwt
 //app.use('/api/*', jwtCheck);
