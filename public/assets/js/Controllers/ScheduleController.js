@@ -4,11 +4,6 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
 
     $scope.venues = VenueEventsFactory.venues;
-
     VenueEventsFactory.getVenues();
-
-    console.log(VenueEventsFactory.venues);
-
-    console.log($scope.venues);
 
 }]);
