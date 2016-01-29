@@ -34,6 +34,7 @@ router.post('/login', function(req, res, next) {
         failureRedirect: '/login',
         failureFlash: true
       })(req, res, next);
+    res.sendStatus(200);
 });
 
 //router.post('/login',
@@ -56,9 +57,9 @@ router.post('/login', function(req, res, next) {
 //);
 
 router.post('/register', function(req, res, next) {
+    console.log('register route');
     passport.authenticate('local-register',
-      { successRedirect: '/profile',
-        failureRedirect: '/login',
+      { successFlash: true,
         failureFlash: true
       })(req, res, next);
     console.log(res.locals);

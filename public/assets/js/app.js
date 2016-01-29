@@ -1,21 +1,16 @@
-// login ajax call
+var rootsApp = angular.module('rootsApp', ['ngRoute']);
 
-
-var app = angular.module('rootsApp', ['ngRoute', 'rootsAppControllers']);
-
-app.config(['$routeProvider', function($routeProvider){
+rootsApp.config(['$routeProvider', '$httpProvider', function($routeProvider){
     $routeProvider.when('/admin', {
         templateUrl: 'views/partials/admin.html',
-        controller: 'mainCtrl'
+        controller: 'MainController'
     }).when('/login', {
-        templateUrl: 'views/partials/logIn.html',
-        controller: 'loginCtrl'
+        templateUrl: 'views/partials/login.html',
+        controller: 'LoginController'
     }).when('/user', {
         templateUrl: 'views/partials/userView.html'
-    }).when('/modal', {
-        templateUrl: 'views/partials/scheduleModal.html'
     }).otherwise({
-        redirectTo: '/login'
+        redirectTo: 'home'
     });
 
 

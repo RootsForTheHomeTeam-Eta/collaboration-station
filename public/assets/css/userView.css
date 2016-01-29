@@ -6,11 +6,12 @@
 }
 .venueContainer{
     text-align:center;
-
 }
 
 .venueWrapper{
     border-bottom: 3px solid #EDB816;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
 }
 
 .venueHeader{
@@ -67,3 +68,9 @@ div.options{
     color: white;
 }
 
+input[type="radio"]{
+    border-radius: 2px;
+    color: red;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+}
