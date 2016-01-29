@@ -3,7 +3,6 @@ rootsApp.factory('VenueEventsFactory', function($http) {
 
     var venues = {};
 
-
     return{
         getVenues : function() {
             $http({
