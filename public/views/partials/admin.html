@@ -18,18 +18,32 @@
                 <form novalidate ng-submit="submitQuickForm()">
                     <h2 class="higher">Who do you want to notify?</h2>
                     <div class="center">
-                    <input type="checkbox" name="gardenGroupYFH" ng-model="gardenGroupYFH" id="Youth Farm Hawthorne" value="Youth Farm Hawthorne" class="css-checkbox">
-                    <label for="Youth Farm Hawthorne" class="css-label">Youth Farm Hawthorn</label>
-                    <input type="checkbox" name="gardenGroupURF" ng-model="gardenGroupURF" id="Urban Roots Farm" value="Urban Roots Farm" class="css-checkbox">
-                    <label for="Urban Roots Farm" class="css-label">Urban Roots Farm</label>
-                    <input type="checkbox" name="gardenGroupYFW" ng-model="gardenGroupYFW" id= "Youth Farm W. Side" value="Youth Farm W. Side" class="css-checkbox">
-                    <label for="Youth Farm W. Side" class="css-label">Youth Farm W. Side</label>
-                    <input type="checkbox" name="gardenGroupDWH" ng-model="gardenGroupDWH" id= "Dream of Wild Health" value="Dream of Wild Health" class="css-checkbox">
-                    <label for="Dream of Wild Health" class="css-label">Dream of Wild Health</label>
-                    <input type="checkbox" name="gardenGroupAFC" ng-model="gardenGroupAFC" id= "Appetite for Change" value="Appetite for Change" class="css-checkbox">
-                    <label for="Appetite for Change" class="css-label">Appetite for Change</label>
+                        <input type="checkbox" name="gardenGroupAFC" ng-model="gardenGroupAFC" id= "Appetite for Change" value="Appetite for Change" class="css-checkbox">
+                        <label for="Appetite for Change" class="css-label">Appetite for Change</label>
+
+                        <input type="checkbox" name="gardenGroupDWH" ng-model="gardenGroupDWH" id= "Dream of Wild Health" value="Dream of Wild Health" class="css-checkbox">
+                        <label for="Dream of Wild Health" class="css-label">Dream of Wild Health</label>
+
+                        <input type="checkbox" name="gardenGroupURF" ng-model="gardenGroupURF" id="Urban Roots Farm" value="Urban Roots Farm" class="css-checkbox">
+                        <label for="Urban Roots Farm" class="css-label">Urban Roots Farm</label>
+
+                        <input type="checkbox" name="gardenGroupYFF" ng-model="gardenGroupYFF" id="Youth Farm Frogtown" value="Youth Farm Frogtown" class="css-checkbox">
+                        <label for="Youth Farm Frogtown" class="css-label">Youth Farm Frogtown</label>
+
+                        <input type="checkbox" name="gardenGroupYFH" ng-model="gardenGroupYFH" id="Youth Farm Hawthorne" value="Youth Farm Hawthorne" class="css-checkbox">
+                        <label for="Youth Farm Hawthorne" class="css-label">Youth Farm Hawthorn</label>
+
+                        <input type="checkbox" name="gardenGroupYFL" ng-model="gardenGroupYFL" id= "Youth Farm Lyndale" value="Youth Farm Lyndale" class="css-checkbox">
+                        <label for="Youth Farm Lyndale" class="css-label">Youth Farm Lyndale</label>
+
+                        <input type="checkbox" name="gardenGroupYFP" ng-model="gardenGroupYFP" id= "Youth Farm Powderhorn" value="Youth Farm Powderhorn" class="css-checkbox">
+                        <label for="Youth Farm Powderhorn" class="css-label">Youth Farm Powderhorn</label>
+
+                        <input type="checkbox" name="gardenGroupYFW" ng-model="gardenGroupYFW" id= "Youth Farm W. Side" value="Youth Farm W. Side" class="css-checkbox">
+                        <label for="Youth Farm W. Side" class="css-label">Youth Farm W. Side</label>
                     </div>
-                    <h2>What do you want to send?</h2>
+
+                    <h2 class="higher">What do you want to send?</h2>
                     <div class="center">
                     <input type="radio" name="sign-up" id="radio1" value="signUp" class="css-checkbox-radio"/>
                     <label for="radio1" class="css-label-radio radGroup1">Sign-up Request</label>
@@ -55,38 +69,38 @@
                 <li ng-class="{active: isActive('tab3')}"><a ng-click="onTabClick('tab3')"><p class="tabLabel">Send Notices</p></a></li>
             </ul>
                 <div id="tab1" class="tab-content" ng-show="isActive('tab1')" ng-class="{active: isActive('tab1')}" ng-controller="FormEventController">
-                        <form novalidate>
+                        <form class="css-form" novalidate>
                             <img class="decor-img" src="/assets/img/longbackground.png">
                             <label for="Venues" class="formButton tabFormLabel">Event Venue:</label>
-                            <input type="text" name="venueName" ng-model="venueName" placeholder="Choose Venue" list="Venues"/>
+                            <input type="text" name="venueName" ng-model="venueName" placeholder="Choose Venue" list="Venues" required/>
                             <datalist id="Venues">
                                 <option value="Target Field">Target Field</option>
                                 <option value="TCF Stadium">TCF Stadium</option>
                             </datalist><br>
                             <label for="eventDate" class="formButton tabFormLabel">Event Date: &nbsp;&nbsp;</label>
-                            <input id="eventDate" name="eventDate" type="date" ng-model="eventDate"><br>
+                            <input id="eventDate" name="eventDate" type="date" ng-model="eventDate" required><br>
                             <label for="startTime" class="formButton tabFormLabel">Event Time: &nbsp;</label>
-                            <input id="startTime" name="gameTime" type="time" ng-model="gameTime"><br>
+                            <input id="startTime" name="gameTime" type="time" ng-model="gameTime" required><br>
                             <label for="arrivalTime" class="formButton tabFormLabel">Arrival Time:</label>
-                            <input id="arrivalTime" name="arrivalTime" type="time" ng-model="arrivalTime"><br>
+                            <input id="arrivalTime" name="arrivalTime" type="time" ng-model="arrivalTime" required><br>
                             <label for="submitBy" class="formButton tabFormLabel">Submit By: &nbsp;&nbsp;</label>
-                            <input id="submitBy" name="submitBy" type="date" ng-model="submitBy">
+                            <input id="submitBy" name="submitBy" type="date" ng-model="submitBy" required>
                             <br><br>
                             <button type="submit" ng-click="submitEventForm()" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
                             </form>
                 </div>
 
                     <div id="tab2" class="tab-content" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}" ng-controller="UserController">
-                            <form novalidate>
+                            <form class="css-form" novalidate>
                                 <img class="decor-img" src="/assets/img/longbackground.png">
                                 <label for="orgName" class="formButton tabFormLabel">Group Name:</label>
-                                <input id="orgName" type="text" name="orgName" ng-model="orgName" placeholder="Organization Name"><br>
+                                <input id="orgName" type="text" name="orgName" ng-model="orgName" placeholder="Organization Name" required><br>
                                 <label for="firstName" class="formButton tabFormLabel">First Name: &nbsp;&nbsp;</label>
-                                <input id="firstName" type="text" name="firstName" ng-model="firstName" placeholder="Contact First Name"><br>
+                                <input id="firstName" type="text" name="firstName" ng-model="firstName" placeholder="Contact First Name" required><br>
                                 <label for="lastName" class="formButton tabFormLabel">Last Name:  &nbsp;&nbsp;</label>
-                                <input id="lastName" type="text" name="lastName" ng-model="lastName" placeholder="Contact Last Name"><br>
+                                <input id="lastName" type="text" name="lastName" ng-model="lastName" placeholder="Contact Last Name" required><br>
                                 <label for="userEmail" class="formButton tabFormLabel">User Email:  &nbsp;&nbsp;</label>
-                                <input id="userEmail" type="text" name="email" ng-model="email" placeholder="Contact Email"><br>
+                                <input id="userEmail" type="text" name="email" ng-model="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Contact Email" required><br>
                                 <label for="password" class="formButton tabFormLabel">Password:&nbsp; &nbsp;&nbsp;</label>
                                 <input id="password" type="password" name="password" ng-model="password" placeholder="eg: UrbanRoots986"><br>
                                 <br>
@@ -95,15 +109,15 @@
                     </div>
 
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="MessageController">
-                <form>
+                <form class="css-form">
                     <img class="decor-img" src="/assets/img/longbackground.png">
                     <label for="sendToEmail" class="formButton tabFormLabel">Email:&nbsp;</label>
-                    <input id="sendToEmail" name="sendToemail" type="email" ng-model="sendToemail" placeholder="Send to Email"><br>
+                    <input id="sendToEmail" name="sendToemail" type="email" ng-model="sendToemail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Send to Email" required><br>
                     <label for="sendToName" class="formButton tabFormLabel">Name:</label>
-                    <input id="sendToName" name="sendToname" type="text" ng-model="sendToname" placeholder="Name"><br>
-                    <textarea id="styled" name="sendTomessage" cols="20" rows="10" ng-model="sendTomessage" placeholder="A custom message"></textarea>
+                    <input id="sendToName" name="sendToname" type="text" ng-model="sendToname" placeholder="Name" required><br>
+                    <textarea id="styled" name="sendTomessage" cols="20" rows="10" ng-model="sendTomessage" placeholder="A custom message" required></textarea>
                     <br><br>
-                    <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
+                    <button type="submit" class="green slightSqound formButton" ng-click="sendMail()"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
                 </form>
             </div>
         </div>
@@ -120,26 +134,35 @@
 
         </div>
         <div ng-show = 'display' >
+
             <div class = "venueHeader yellow  row container-fluid">
-                <div class = "col-md-1 scheduleTitle">Date:</div>
-                <div class = "col-md-2 scheduleTitle">Arrival Time:</div>
-                <div class = "col-md-2 scheduleTitle">Event Time:</div>
-                <div class = "col-md-2"></div>
-                <div class = "col-md-1"><p>Youth Farm Hawthorne</p></div>
-                <div class = "col-md-1"><p>Urban Roots Garden</p></div>
-                <div class = "col-md-1"><p>Youth Farm W.Side</p></div>
-                <div class = "col-md-1"><p>Dream of Wild Health</p></div>
+                <div class = "col-md-1 scheduleTitle">Event Date:</div>
+                <div class = "col-md-1 scheduleTitle">Arrival Time:</div>
+                <div class = "col-md-1 scheduleTitle">Event Time:</div>
+                <div class = "col-md-1"></div>
                 <div class = "col-md-1"><p>Appetite for Change</p></div>
+                <div class = "col-md-1"><p>Dream of Wild Health</p></div>
+                <div class = "col-md-1"><p>Urban Roots</p></div>
+                <div class = "col-md-1"><p>Youth Farm Frogtown</p></div>
+                <div class = "col-md-1"><p>Youth Farm Hawthorne</p></div>
+                <div class = "col-md-1"><p>Youth Farm Lyndale</p></div>
+                <div class = "col-md-1"><p>Youth Farm Powderhorn</p></div>
+                <div class = "col-md-1"><p>Youth Farm W.Side</p></div>
+
+
             </div>
             <div ng-repeat="event in venue.events" class = "venueOptions row container-fluid">
                 <div class = "col-md-1 scheduleLabel">{{event.event.eventDate | date: 'mediumDate' }}</div>
-                <div class = "col-md-2 scheduleLabel">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
-                <div class = "col-md-2 scheduleLabel">{{event.event.gameTime | date: 'h:mm a'}}</div>
-                <div class = "col-md-2"></div>
+                <div class = "col-md-1 scheduleLabel">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
+                <div class = "col-md-1 scheduleLabel">{{event.event.gameTime | date: 'h:mm a'}}</div>
+                <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle green"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle green"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle yellow"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
+                <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red"></button></div>
             </div>
 
@@ -155,6 +178,5 @@
     </div>
 </div>
 
-
-</div>
+<div></div>
 </div>
