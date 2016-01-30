@@ -12,14 +12,15 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
     //will save current schedule with ng-click saveSchedule()
     $scope.schedule = {};
 
-    $scope.saveNewSchedule = function () {
+    $scope.saveNewSchedule = function (finalVenueNameValue, finalEventDateValue) {
 
-        console.log($scope.schedule.finalVenue);
+        console.log(finalVenueNameValue);
+        console.log(finalEventDateValue);
         var schedule = {
-            finalVenue: $scope.schedule.finalVenue,
+            finalVenue: finalVenueNameValue,
             events: [{
                 event: {
-                    finalEventDate: $scope.finalEventDate,
+                    finalEventDate: finalEventDateValue,
                     finalArrivalTime: $scope.finalArrivalTime,
                     finalEventTime: $scope.finalEventTime,
                     finalOrgName: $scope.finalOrgName
