@@ -131,8 +131,7 @@
     <form name = "finalScheduleCreator">
     <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues.data">
         <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
-            <div class = ' vTop orange col-md-12' ng-model = "finalVenue" ><h2 class="tab-header">{{venue.venueName}}</h2></div>
-
+            <div class = ' vTop orange col-md-12' ng-model = "finalVenue" ng-value ="venue.venueName" ><h2 class="tab-header">{{venue.venueName}}</h2></div>
         </div>
         <div ng-show = 'display' >
 
@@ -157,7 +156,7 @@
                 <div class = "col-md-1 scheduleLabel" ng-model = "finalArrivalTime">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
                 <div class = "col-md-1 scheduleLabel" ng-model = "finalGameTime">{{event.event.gameTime | date: 'h:mm a'}}</div>
                 <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle green" ng-model = "finalOrgName"></button></div>
+                <div class = "col-md-1"><button  type="checkbox" class="selectorStyle green" ng-model = "finalOrgName" value="green">green</button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle green" ng-model = "finalOrgName"></button></div>
                 <div class = "col-md-1"><button  type="button" class="selectorStyle yellow" ng-model = "finalOrgName"></button></div>
