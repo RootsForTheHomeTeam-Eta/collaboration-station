@@ -6,12 +6,12 @@ rootsApp.factory('VenueEventsFactory', function($http) {
 
     return{
         getVenues : function() {
-            $http({
+            return $http({
                 url: '/api/event/getEvents',
                 method: 'GET'
             }).success(function(result){
-                    venues.data = result;
-                    console.log(venues.data);
+                    venues = result;
+                    console.log(venues);
 
                 })
                 .error(function(data, status, headers, config) {
