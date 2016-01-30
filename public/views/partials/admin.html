@@ -128,13 +128,11 @@
 <div class="row"><br></div>
 
 <div class= 'col-md-12 hidden-xs' ng-controller="ScheduleController">
-    <form>
+
     <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues.data">
+        <form>
         <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
-
             <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{venue.venueName}}</h2></div>
-            <input type="hidden" ng-model="schedule.finalVenue" ng-init="schedule.finalVenue = venue.venueName">
-
         </div>
 
         <div ng-show = 'display' >
@@ -172,15 +170,15 @@
 
             <div class="venueOptions row container-fluid">
                 <div class = "col-md-12 white">
-                    <button type="submit"  ng-click="saveNewSchedule()" class="generateStyle green formButton">Save Schedule</button>
+                    <button type="submit"  ng-click="saveNewSchedule(venue.venueName, venue.events[i].event.eventDate)" class="generateStyle green formButton">Save Schedule</button>
                     <button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
                     <button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
                 </div>
             </div>
         </div>
-
+        </form>
     </div>
-    </form>
+
 </div>
 
 <div></div>
