@@ -6,50 +6,32 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
     VenueEventsFactory.getVenues();
 
-
-
-    //VenueEventsFactory.getVenues().then(function(result) {
-    //    $scope.venues = result;
-    //});
-
     //will save current schedule with ng-click saveSchedule()
-    $scope.schedule = {};
+    $scope.formData = {};
 
-    $scope.submit = function () {
-        console.log($scope.schedule);
-        // $http({
-        //     url: '/api/user/submit',
-        //     method: 'post'
-        // }).then(function (res) {
-        // $log.info(res.status);
-        //});
-    };
+    $scope.submitAndSave = function () {
+        console.log($scope.formData);
 
-    //$scope.saveNewSchedule = function (finalVenueNameValue, finalEventDateValue) {
+    //    var schedule ={
+    //        finalVenue: ,
+    //            events: [{
+    //                event: {
+    //                    finalEventDate: ,
+    //                    finalArrivalTime: $scope.finalArrivalTime,
+    //                    finalEventTime: $scope.finalEventTime,
+    //                    finalOrgName: $scope.finalOrgName
+    //                    }
+    //                }]
     //
-    //    console.log(finalVenueNameValue);
-    //    console.log(finalEventDateValue);
-    //    var schedule = {
-    //        finalVenue: finalVenueNameValue,
-    //        events: [{
-    //            event: {
-    //                finalEventDate: finalEventDateValue,
-    //                finalArrivalTime: $scope.finalArrivalTime,
-    //                finalEventTime: $scope.finalEventTime,
-    //                finalOrgName: $scope.finalOrgName
-    //            }
-    //        }]
     //    };
-    //
-    //    $http({
-    //        method: 'POST',
-    //        url: '/saveSchedule',
-    //        data: schedule
-    //    }).then(function (schedule) {
-    //
+    //     $http({
+    //         url: '/saveSchedule',
+    //         method: 'post'
+    //     }).then(function (res) {
+    //     $log.info(res.status);
     //    });
-    //    //popupS.alert({
-    //    //    content: 'Schedule Saved'
-    //    //});
     //};
+
+
+    };
 }]);
