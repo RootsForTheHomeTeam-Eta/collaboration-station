@@ -6,7 +6,7 @@ rootsApp.controller('SaveController', ['$scope', '$http', function($scope, $http
     $scope.saveSchedule = function () {
 
         var schedule = {
-            finalVenue: $scope.venueName,
+            finalVenue: $scope.finalVenue,
             events: [{
                 event: {
                     finalEventDate: $scope.finalEventDate,
@@ -20,8 +20,9 @@ rootsApp.controller('SaveController', ['$scope', '$http', function($scope, $http
             method: 'POST',
             url: '/saveSchedule',
             data: schedule
-        }).then(function () {
+        }).then(function (schedule) {
             console.log('after post');
+            console.log(schedule);
         });
         //popupS.alert({
         //    content: 'Schedule Saved'

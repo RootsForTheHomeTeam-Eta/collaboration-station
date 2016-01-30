@@ -1,9 +1,10 @@
-// event route
 var express = require('express');
 var router = express.Router();
 var Schedule = require('../../db/models/schedule');
 
 // save chosen schedule to db
+// this is currently overwriting each schedule.
+// we need it to save a new schedule every time
 router.post('/', function(req, res, next) {
     console.log('inside save schedule route');
     console.log("req.body", req.body);
@@ -15,6 +16,8 @@ router.post('/', function(req, res, next) {
         finalOrgName: req.body.finalOrgName
     };
     console.log('hit the post');
+    console.log(schedule.finalOrgName);
+    console.log(schedule.finalVenue);
 
     Schedule.findOneAndUpdate(
         // query
