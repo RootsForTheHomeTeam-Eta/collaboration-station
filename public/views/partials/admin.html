@@ -128,12 +128,12 @@
 <div class="row"><br></div>
 
 <div class= 'col-md-12 hidden-xs' ng-controller="ScheduleController">
-    <form ng-controller="SaveController" name = "finalScheduleCreator">
+    <form>
     <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues.data">
         <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
 
             <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{venue.venueName}}</h2></div>
-            <input type="hidden" ng-value="venue.venueName">
+            <input type="hidden" ng-model="schedule.finalVenue" ng-init="schedule.finalVenue = venue.venueName">
 
         </div>
 
