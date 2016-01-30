@@ -1,26 +1,32 @@
 //controller to submit user responses from schedule form
 rootsApp.controller('UserScheduleFormSubmitController', [ '$scope','$http', 'VenueEventsFactory', '$log', function ($scope, $http, VenueEventsFactory , $log) {
 
-    $scope.hello = 'hello from the UserGroupController!';
-    VenueEventsFactory.getVenues().then(function(result){
-        $scope.venues = result;
+    $scope.venues = VenueEventsFactory.venues;
 
-        var venue = $scope.venues;
-        console.log("$scope.venues: ",$scope.venues);
+    VenueEventsFactory.getVenues();
 
-        $scope.submit = function () {
-            console.log(venue);
-            $http({
-                url: '/api/user/submit',
-                method: 'post'
-            }).then(function (res) {
-                $log.info(res.status);
-            });
-        };
-    });
-    //$scope.venues = VenueEventsFactory.getVenues();
+    console.log($scope.venues);
 
     $log.info($scope.hello);
+
+    //$scope.inputs = venues.data;
+    //console.log($scope.inputs);
+    $scope.formData = {};
+
+
+
+    $scope.submit = function () {
+        console.log($scope.formData);
+       // $http({
+       //     url: '/api/user/submit',
+       //     method: 'post'
+       // }).then(function (res) {
+       // $log.info(res.status);
+       //});
+   };
+
+
+    //$scope.venues = VenueEventsFactory.getVenues();
     //$http({
     //    url:'/user',
     //    method:'get'
