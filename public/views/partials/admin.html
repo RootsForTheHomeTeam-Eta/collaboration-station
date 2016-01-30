@@ -128,11 +128,15 @@
 <div class="row"><br></div>
 
 <div class= 'col-md-12 hidden-xs' ng-controller="ScheduleController">
-    <form name = "finalScheduleCreator">
+    <form>
     <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues.data">
         <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
-            <div class = ' vTop orange col-md-12' ng-model = "finalVenue" ng-value ="venue.venueName" ><h2 class="tab-header">{{venue.venueName}}</h2></div>
+
+            <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{venue.venueName}}</h2></div>
+            <input type="hidden" ng-model="schedule.finalVenue" ng-init="schedule.finalVenue = venue.venueName">
+
         </div>
+
         <div ng-show = 'display' >
 
             <div class = "venueHeader yellow  row container-fluid">
@@ -156,19 +160,19 @@
                 <div class = "col-md-1 scheduleLabel" ng-model = "finalArrivalTime">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
                 <div class = "col-md-1 scheduleLabel" ng-model = "finalGameTime">{{event.event.gameTime | date: 'h:mm a'}}</div>
                 <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
-                <div class = "col-md-1"><button  type="checkbox" class="selectorStyle green" ng-model = "finalOrgName" value="green">green</button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle green" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle yellow" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
+                <div class = "col-md-1"><button  type="radio" class="selectorStyle green" ng-model = "finalOrgName" value="green">green</button></div>
+                <div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
+                <div class = "col-md-1"><button  type="radio" class="selectorStyle green" ng-model = "finalOrgName"></button></div>
+                <div class = "col-md-1"><button  type="radio" class="selectorStyle yellow" ng-model = "finalOrgName"></button></div>
+                <div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
+                <div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
+                <div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
+                <div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
             </div>
 
             <div class="venueOptions row container-fluid">
                 <div class = "col-md-12 white">
-                    <button type="submit" ng-controller="SaveController" ng-click="saveSchedule()" class="generateStyle green formButton">Save Schedule</button>
+                    <button type="submit"  ng-click="saveNewSchedule()" class="generateStyle green formButton">Save Schedule</button>
                     <button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
                     <button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
                 </div>
