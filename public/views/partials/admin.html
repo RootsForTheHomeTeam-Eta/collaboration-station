@@ -130,7 +130,6 @@
 <div class= 'col-md-12 hidden-xs' ng-controller="ScheduleController">
 
     <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues.data">
-        <form>
         <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
             <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{venue.venueName}}</h2></div>
         </div>
@@ -154,29 +153,35 @@
 
             </div>
             <div ng-repeat="event in venue.events" class = "venueOptions row container-fluid">
-                <div class = "col-md-1 scheduleLabel" ng-model = "finalEventDate">{{event.event.eventDate | date: 'mediumDate' }}</div>
-                <div class = "col-md-1 scheduleLabel" ng-model = "finalArrivalTime">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
-                <div class = "col-md-1 scheduleLabel" ng-model = "finalGameTime">{{event.event.gameTime | date: 'h:mm a'}}</div>
+                <div class = "col-md-1 scheduleLabel">{{event.event.eventDate | date: 'mediumDate' }}</div>
+                <div class = "col-md-1 scheduleLabel">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
+                <div class = "col-md-1 scheduleLabel">{{event.event.gameTime | date: 'h:mm a'}}</div>
                 <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
-                <div class = "col-md-1"><button  type="radio" class="selectorStyle green" ng-model = "finalOrgName" value="green">green</button></div>
-                <div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="radio" class="selectorStyle green" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="radio" class="selectorStyle yellow" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
+
+                <div class = "col-md-1">
+                    <button class="selectorStyle green">
+                        <form novalidate>
+                            <div><input ng-model = formData[$parent.venue.venueName]['event'+$index][$parent.venue.events[$index].event.arrivalTime][$parent.venue.events[$index].event.gameTime]['event'+$index][$parent.venue.events[$index].event.eventDate]  type="hidden" name="finalOrgName" value=true class="green"/>{{$index}}</div>
+                        </form>
+                    </button>
+                </div>
+                <!--<div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>-->
+                <!--<div class = "col-md-1"><button  type="radio" class="selectorStyle green" ng-model = "finalOrgName"></button></div>-->
+                <!--<div class = "col-md-1"><button  type="radio" class="selectorStyle yellow" ng-model = "finalOrgName"></button></div>-->
+                <!--<div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>-->
+                <!--<div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>-->
+                <!--<div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>-->
+                <!--<div class = "col-md-1"><button  type="radio" class="selectorStyle red" ng-model = "finalOrgName"></button></div>-->
             </div>
 
             <div class="venueOptions row container-fluid">
                 <div class = "col-md-12 white">
-                    <button type="submit"  ng-click="saveNewSchedule(venue.venueName, venue.events[i].event.eventDate)" class="generateStyle green formButton">Save Schedule</button>
-                    <button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
-                    <button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
+                    <button type="button"  ng-click="submit(schedule)" class="generateStyle green formButton">Save Schedule</button>
+                    <!--<button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>-->
+                    <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
                 </div>
             </div>
         </div>
-        </form>
     </div>
 
 </div>
