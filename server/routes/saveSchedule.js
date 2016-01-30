@@ -16,8 +16,6 @@ router.post('/', function(req, res, next) {
         finalOrgName: req.body.finalOrgName
     };
     console.log('hit the post');
-    //console.log(schedule.finalOrgName);
-    console.log(schedule.finalVenue);
 
     Schedule.findOneAndUpdate(
         // query

@@ -8,4 +8,33 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
         $scope.venues = result;
     });
 
+    //will save current schedule with ng-click saveSchedule()
+    $scope.schedule = {};
+
+    $scope.saveNewSchedule = function () {
+
+        console.log($scope.schedule.finalVenue);
+        var schedule = {
+            finalVenue: $scope.schedule.finalVenue,
+            events: [{
+                event: {
+                    finalEventDate: $scope.finalEventDate,
+                    finalArrivalTime: $scope.finalArrivalTime,
+                    finalEventTime: $scope.finalEventTime,
+                    finalOrgName: $scope.finalOrgName
+                }
+            }]
+        };
+
+        $http({
+            method: 'POST',
+            url: '/saveSchedule',
+            data: schedule
+        }).then(function (schedule) {
+
+        });
+        //popupS.alert({
+        //    content: 'Schedule Saved'
+        //});
+    };
 }]);
