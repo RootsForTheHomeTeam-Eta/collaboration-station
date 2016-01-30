@@ -26,8 +26,13 @@
             </div>
         </div>
     </div>
-
     <div class= 'col-xs-12 col-md-6 col-md-offset-3 userSubmit'>
         <button type="button" class= "green btnUser" ng-click="submit(venue)" >SUBMIT</button>
     </div>
+<div ng-controller="PostCtrl as post">
+    <form ng-submit="post.addMessage(post.newMessage)">
+        <input type="text" ng-model="post.newMessage">
+        <button type="submit">Add Message</button>
+    </form>
+</div>
 </div>
