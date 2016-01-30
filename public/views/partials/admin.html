@@ -8,8 +8,8 @@
                 <li class="tabLabel" ng-class="{active: isActive('tabA')}"><a ng-click="onTabClick('tabA')"><p class="tabLabel">Alerts</p></a></li>
                 <li ng-class="{active: isActive('tabB')}"><a ng-click="onTabClick('tabB')"><p class="tabLabel">Quick Send</p></a></li>
             </ul>
-            <div id="tabA" class="tab-content" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="NoticeAlertController">
-                <button class="notifButton"><img class="notifIcon" src="/assets/img/pailorange.png"><h2>{group} has submitted</h2>
+            <div id="tabA" class="tab-content" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="NoticeAlertController as list">
+                <button ng-repeat="message in list.messages" class="notifButton"><img class="notifIcon" src="/assets/img/pailorange.png"><h2>{{ message.id }}: {{ message.text }} has submitted</h2>
                 <p class="subtext">click to remove</p></button>
                 <button class="notifButton"><img class="notifIcon" src="/assets/img/jargreen.png"><h2>{group} has submitted</h2>
                 <p class="subtext">click to remove</p></button>
