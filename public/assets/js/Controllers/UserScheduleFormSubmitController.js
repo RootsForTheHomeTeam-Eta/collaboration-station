@@ -19,7 +19,6 @@ rootsApp.controller('UserScheduleFormSubmitController', [ '$scope','$http', 'Ven
             var venueEvents =  {
                 venueName[i]: $scope.venues.data[i].venueName
 
-
             };
         };
 
