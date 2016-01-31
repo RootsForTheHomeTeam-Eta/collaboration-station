@@ -17,13 +17,15 @@ rootsApp.controller('UserScheduleFormSubmitController', [ '$scope','$http', 'Ven
         for (var i in $scope.venues.data){
             console.log(i);
             var venueEvents =  {
-                venueName[i]: $scope.venues.data[i].venueName,
+                venueName[i]: $scope.venues.data[i].venueName
+
 
             };
         };
 
-        console.log(venueEvents.venueName)
+        console.log(venueEvents.venueName);
         console.log($scope.venues);
+
 
        // $http({
        //     url: '/api/user/submit',
