@@ -5,25 +5,8 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
     VenueEventsFactory.getVenues();
 
-    //VenueEventsFactory.getVenues().then(function(result) {
-    //    $scope.venues = result;
-    //});
-
     //will save current schedule with ng-click saveSchedule()
     $scope.formData = {};
-
-    //var schedule = {
-    //    finalVenue: $scope.formData[i].venueName,
-    //    events: [{
-    //        event: {
-    //            finalEventDate: $scope.formData[i].events[n].eventDate,
-    //            finalArrivalTime: $scope.formData[i].events[n].arrivalTime,
-    //            finalEventTime: $scope.formData[i].events[n].gameTime,
-    //            finalOrgName: $scope.formData[i].events[n].orgName
-    //        }
-    //    }]
-    //};
-    //console.log(schedule);
 
 
     $scope.submitAndSave = function () {
@@ -37,22 +20,40 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
             var $schedule = {
                 venueName: $scope.formData[i].venueName,
-                events: $scope.formData[i].events,
-                orgName: $scope.formData[i].events.orgName
+                events: $scope.formData[i].events
+
             };
             $schedules.push($schedule);
         }
         console.log($schedules);
         console.log("save button clicked");
 
-    //    $http({
-    //        url: '/api/user/submit',
-    //        method: 'post',
-    //        data: $schedules;
-    //}).then(function (res) {
-    //        $log.info(res.status);
-    //    });
-
     };
 
 }]);
+
+//this isn't working - error i is undefined
+
+//$scope.venues = VenueEventsFactory.venues;
+////will save current schedule with ng-click saveSchedule()
+//
+//$scope.formData = {};
+//
+//$scope.schedule = {};
+//
+//$scope.submitAndSave = function () {
+//    var schedule = {
+//        venueName: $scope.formData[i].venueName,
+//        events: $scope.formData[i].events,
+//        orgName: $scope.formData[i].events.orgName
+//    };
+//    $http({
+//        url:'/saveSchedule',
+//        method:'post',
+//        data: schedule
+//    }).then(function() {
+//        popupS.alert({
+//            content: 'Schedule Saved'
+//        });
+//    })
+//};
