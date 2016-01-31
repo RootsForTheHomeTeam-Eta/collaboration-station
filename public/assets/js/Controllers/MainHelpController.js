@@ -1,5 +1,13 @@
 //controller that functions on all pages for help screen
-rootsApp.controller('MainController', function ($scope) {
+rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$location', 'AuthService', function($rootScope, $scope, $http, $location, AuthService) {
+
+    // verify logged in status
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        if (AuthService.isLoggedIn() === false) {
+            $location.path('/login');
+        }
+    });
+
     $scope.onIconCLick = function(){
         popupS.modal({
             content:'<div><h2>' +
@@ -18,4 +26,19 @@ rootsApp.controller('MainController', function ($scope) {
     };
     $scope.hello = 'hello!';
     console.log($scope.hello);
-});
+
+    $scope.logout = function() {
+        $http
+          .get('/api/auth/logout', $scope.user)
+          .then(function (data, status, headers, config) {
+              console.log('User logged out');
+              //$window.sessionStorage.token = data.token;
+          }, function (data, status, headers, config) {
+              // Erase token if error
+              //delete $window.sessionStorage.token;
+
+              // Error message
+              $scope.message = 'Error: Trouble logging out';
+          });
+    }
+}]);

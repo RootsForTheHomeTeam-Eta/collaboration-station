@@ -1,20 +1,29 @@
 // login controller for user and admin sign-in
 
-rootsApp.controller('LoginController', function ($scope, $http, $window) {
-  //$scope.user = {username: req.body.username, password: req.body.password};
-  //$scope.message = req.body.message;
-  $scope.submit = function() {
-    $http
-      .post('/login', $scope.user)
-      .then(function (data, status, headers, config) {
-        $window.sessionStorage.token = data.token;
-      }, function (data, status, headers, config) {
-        // Erase token if error
-        delete $window.sessionStorage.token;
+rootsApp.controller('LoginController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
+  // log user status
+  console.log(AuthService.getUserStatus());
 
-        // Error message
-        $scope.message = 'Error: Invalid username or password';
-    });
+  $scope.login = function () {
+    // initial values
+    $scope.error = false;
+    $scope.disabled = true;
+
+    // call login from service
+    AuthService.login($scope.loginForm.username, $scope.loginForm.password)
+      // handle success
+      .then(function () {
+        $location.path('/user');
+        $scope.disabled = false;
+        $scope.loginForm = {};
+      })
+      // handle error
+      .catch(function () {
+        $scope.error = true;
+        $scope.errorMessage = "Invalid username and/or password";
+        $scope.disabled = false;
+        $scope.loginForm = {};
+      });
   };
-});
+}]);
 

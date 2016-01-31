@@ -22,19 +22,21 @@ module.exports = {
     // Passport session setup
     passport.serializeUser(function(user, done) {
       console.log("serialize " + user);
-      done(null, user._id);
+      done(null, user.id);
     });
 
     passport.deserializeUser(function(id, done) {
       console.log("deserialize " + id);
       User.findById(id, function(err, user) {
+        if(err) done(err);
         console.log("findbyId " + user);
-        done(err, user);
+        done(null, user);
       });
     });
 
     var options = {
       passReqToCallback: true,
+      usernameField: 'username'
     };
 
     // login strategy named local-login
@@ -74,14 +76,8 @@ module.exports = {
               });
             });
           });
-          console.log(user);
-          return user;
         }
-        console.log('inside db call');
-        return done(null, user);
       });
-      console.log('outside db call');
-      return done(null, user);
     }));
 
 // register strategy named local-register
