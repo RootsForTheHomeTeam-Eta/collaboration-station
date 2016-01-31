@@ -153,8 +153,8 @@
 
             </div>
             <div ng-repeat="event in venue.events" class = "venueOptions row container-fluid">
-                <div class = "col-md-1 scheduleLabel">{{event.event.eventDate | date: 'mediumDate' }}</div>
-                <div class = "col-md-1 scheduleLabel">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
+                <div class = "col-md-1 scheduleLabel">{{event.event.eventDate | date: 'mediumDate'}}</div>
+                <div class = "col-md-1 scheduleLabel">{{event.event.arrivalTime | date: 'h:mm a'}}</div>
                 <div class = "col-md-1 scheduleLabel">{{event.event.gameTime | date: 'h:mm a'}}</div>
                 <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
 
@@ -162,8 +162,14 @@
                     <form novalidate>
                     <button class="selectorStyle green">
 
-                            <div><input ng-model = formData[$parent.venue.venueName]['event'+$index][$parent.venue.events[$index].event.arrivalTime][$parent.venue.events[$index].event.gameTime]['event'+$index][$parent.venue.events[$index].event.eventDate]  type="checkbox" name="finalOrgName" value="Appetite for Change" class="green"/>{{$index}}</div>
-
+                            <div><input ng-model="formData[$index].orgName['field value']" type="checkbox" name="finalOrgName" value="Appetite for Change" class="green"/>{{$index}}</div>
+                            <div class="hidden">
+                                {{formData[$index].venue = $parent.venue.venueName;}}
+                                {{formData[$index].arrivalTime = $parent.venue.events[$index].event.arrivalTime;}}
+                                {{formData[$index].venue = $parent.venue.venueName;}}
+                                {{formData[$index].gameTime = $parent.venue.events[$index].event.gameTime;}}
+                                {{formData[$index].eventDate = $parent.venue.events[$index].event.eventDate;}}
+                            </div>
                     </button>
                     </form>
                 </div>
