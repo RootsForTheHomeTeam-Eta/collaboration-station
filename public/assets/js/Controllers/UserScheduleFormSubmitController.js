@@ -9,14 +9,22 @@ rootsApp.controller('UserScheduleFormSubmitController', [ '$scope','$http', 'Ven
 
     $log.info($scope.hello);
 
-    //$scope.inputs = venues.data;
-    //console.log($scope.inputs);
-    $scope.formData = {};
-
-
-
     $scope.submit = function () {
-        console.log($scope.formData);
+        //for (var i = 0; i < $scope.venues.data.length; i++) {
+        //    console.log(i);
+        //    // more statements
+        //};
+        for (var i in $scope.venues.data){
+            console.log(i);
+            var venueEvents =  {
+                venueName[i]: $scope.venues.data[i].venueName,
+
+            };
+        };
+
+        console.log(venueEvents.venueName)
+        console.log($scope.venues);
+
        // $http({
        //     url: '/api/user/submit',
        //     method: 'post'
