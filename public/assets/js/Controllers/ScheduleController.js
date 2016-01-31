@@ -12,7 +12,6 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
     //will save current schedule with ng-click saveSchedule()
     $scope.formData = {};
 
-
     //var schedule = {
     //    finalVenue: $scope.formData[i].venueName,
     //    events: [{
@@ -24,8 +23,13 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
     //        }
     //    }]
     //};
+    //console.log(schedule);
+
 
     $scope.submitAndSave = function () {
+
+
+        //this was working below
 
         var $schedules = [];
 
@@ -33,7 +37,8 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
             var $schedule = {
                 venueName: $scope.formData[i].venueName,
-                events: $scope.formData[i].events
+                events: $scope.formData[i].events,
+                orgName: $scope.formData[i].events.orgName
             };
             $schedules.push($schedule);
         }
