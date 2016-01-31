@@ -415,6 +415,8 @@ label.css-label-radio {
     background-color: #78FA89;
 }
 
-
+.hidden {
+    display: none;
+}
 
 

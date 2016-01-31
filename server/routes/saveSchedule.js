@@ -8,6 +8,9 @@ var Schedule = require('../../db/models/schedule');
 router.post('/', function(req, res, next) {
     console.log('inside save schedule route');
     console.log("req.body", req.body);
+
+    //I have form data but don't know how to format it
+
     var schedule = {
         finalVenue: req.body.finalVenue,
         finalEventDate: req.body.finalEventDate,
@@ -15,6 +18,7 @@ router.post('/', function(req, res, next) {
         finalGameTime: req.body.finalGameTime,
         finalOrgName: req.body.finalOrgName
     };
+
     console.log('hit the post');
 
     Schedule.findOneAndUpdate(
