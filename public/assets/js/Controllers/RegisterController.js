@@ -1,7 +1,7 @@
 //controller for creating new users on the database
-rootsApp.controller("UserController", ['$scope', '$http', function($scope, $http) {
+rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $http) {
     $scope.user = {};
-    $scope.submitUserForm = function () {
+    $scope.register = function () {
         //form data tied to model
         var user = {
             orgName: $scope.orgName,
@@ -10,6 +10,7 @@ rootsApp.controller("UserController", ['$scope', '$http', function($scope, $http
             username: $scope.username,
             password: $scope.password
         };
+        console.log('user: ',user);
         $http({
             url: '/api/auth/register',
             method: 'post',
