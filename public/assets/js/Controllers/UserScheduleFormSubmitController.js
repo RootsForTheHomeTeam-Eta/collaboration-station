@@ -13,8 +13,6 @@ rootsApp.controller('UserScheduleFormSubmitController', [ '$scope','$http', 'Ven
     //console.log($scope.inputs);
     $scope.formData = {};
 
-
-
     $scope.submit = function () {
         console.log($scope.formData);
        // $http({
