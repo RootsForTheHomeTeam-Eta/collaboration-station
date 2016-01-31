@@ -154,6 +154,8 @@
                 </div>
                 <div ng-repeat="event in venue.events" class = "venueOptions row container-fluid">
                     <div class="hidden">
+                        <!--had to set the index of the array to a unique name to avoid overwriting with each itteration-->
+                        <!--set scope to form data so that data could be read and saved-->
                         {{
                         $venueName = $parent.venue.venueName;
                         $indexName = $venueName.replace(" ","_") + "_" + $index.toString();
@@ -170,11 +172,11 @@
                         formData[$indexName].gameTime = $gameTime;
                         }}
                     </div>
-                    <div class = "col-md-1 scheduleLabel">{{event.event.eventDate | date: 'mediumDate' }}</div>
-                    <div class = "col-md-1 scheduleLabel">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
-                    <div class = "col-md-1 scheduleLabel">{{event.event.gameTime | date: 'h:mm a'}}</div>
+                    <div class = "col-md-1 scheduleLabel">{{$eventDate}}</div>
+                    <div class = "col-md-1 scheduleLabel">{{$arrivalTime}}</div>
+                    <div class = "col-md-1 scheduleLabel">{{$gameTime}}</div>
                     <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
-
+                    <!--form needs individual name each time it repeats-->
                     <form name="form{{$indexName}}" novalidate>
                         <div class = "col-md-1">
                             <div class="selectorStyle green">
