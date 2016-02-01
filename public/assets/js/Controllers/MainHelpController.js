@@ -1,6 +1,10 @@
 //controller that functions on all pages for help screen
 rootsApp.controller('MainController', function ($scope) {
+    //can we put something to generate who is logged in here to display in the header?
+    $scope.loggedIn = " Sue ";
+
     $scope.onIconCLick = function(){
+
         popupS.modal({
             content:'<div class="helpBody">' +
                 '<h2 class="helpHeader">Need a reminder?</h2>'+

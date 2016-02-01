@@ -18,7 +18,7 @@ rootsApp.controller("UserController", ['$scope', '$http', function($scope, $http
 
         });
         popupS.alert({
-            content: 'User Registered, remember to send their password and that their email is their Username'
+            content: 'User Registered.'
         });
     };
     //should have a popupS modal confirmation
