@@ -6,44 +6,26 @@ var Schedule = require('../../db/models/schedule');
 
 router.post('/', function(req, res, next) {
     console.log('inside save schedule route');
-    console.log("req.body", req.body);
 
-    var schedule = {
-        venueName: req.body.venueName,
-        events: req.body.events,
-        orgName: req.body.events.orgName
-    };
+    var $schedules = [];
 
-    console.log('hit the post');
+    //loop through each index of form data and create a schedule object
+    for (i in req.body) {
 
-    Schedule.findOneAndUpdate(
-        // query
-        {venue: schedule.venueName},
-        // doc to update
-        {$push: {
-            events: {
-                event: {
-                    eventDate: schedule.eventDate,
-                    arrivalTime: schedule.arrivalTime,
-                    gameTime: schedule.gameTime,
-                    orgName: schedule.orgName
-                }}
-        }},
-        // options to update with
-        {
-            new: true,
-            upsert: true
-        },
-        // callback
-        function(err, doc) {
-            if (err) {
-                console.log(err);
-                next(err);
-            }
-            console.log(doc);
-            res.json(doc);
-        }
-    );
+        var $schedule = {
+            venueName: req.body[i].venueName,
+            events: req.body[i].events
+        };
+        console.log($schedule);
+
+        $schedules.push($schedule);
+    }
+
+    console.log("save button clicked");
+
+    res.sendStatus(200);
+
 });
 
 module.exports = router;
+
