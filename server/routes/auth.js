@@ -59,7 +59,7 @@ router.post('/login', function(req, res, next) {
                 return res.status(500).json({err: 'Could not log in user'});
                 //console.log('logIn error');
             }
-            res.status(200).json({status: 'Login successful!'});
+            res.status(200).json({isAdmin: user.isAdmin, status: 'Login successful!'});
             //console.log('status: login successful')
         });
     })(req, res, next);

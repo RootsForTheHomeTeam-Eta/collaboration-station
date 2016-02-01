@@ -1,6 +1,8 @@
 // login controller for user and admin sign-in
 
-rootsApp.controller('LoginController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
+rootsApp.controller('LoginController', ['$scope', '$location', 'AuthService', '$log',
+  function ($scope, $location, AuthService, $log) {
+
   // log user status
   console.log(AuthService.getUserStatus());
 
@@ -13,7 +15,11 @@ rootsApp.controller('LoginController', ['$scope', '$location', 'AuthService', fu
     AuthService.login($scope.loginForm.username, $scope.loginForm.password)
       // handle success
       .then(function () {
-        $location.path('/user');
+        if (AuthService.isAdmin()) {
+          $location.path('/admin');
+        } else {
+          $location.path('/user');
+        }
         $scope.disabled = false;
         $scope.loginForm = {};
       })

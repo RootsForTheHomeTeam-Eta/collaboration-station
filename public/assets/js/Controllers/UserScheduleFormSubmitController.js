@@ -1,5 +1,15 @@
 //controller to submit user responses from schedule form
-rootsApp.controller('UserScheduleFormSubmitController', [ '$scope','$http', 'VenueEventsFactory', '$log', function ($scope, $http, VenueEventsFactory , $log) {
+rootsApp.controller('UserScheduleFormSubmitController', [ '$rootScope', '$scope','$http', 'VenueEventsFactory', '$log', 'AuthService', '$location',
+    function ($rootScope, $scope, $http, VenueEventsFactory, $log, AuthService, $location) {
+
+
+    // verify logged in status
+    $scope.$on('$routeChangeSuccess', function (event, next, current) {
+        if (AuthService.isLoggedIn() === false) {
+            $location.path('/login');
+        }
+        $log.info('$routeChangeSuccess - UserScheduleFormSubmitController');
+    });
 
     $scope.hello = 'hello from the UserScheduleFormSubmitController!';
     VenueEventsFactory.getVenues().then(function(result){
