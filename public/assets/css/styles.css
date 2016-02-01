@@ -366,6 +366,17 @@ label.css-label-radio {
     outline-color: #55AC3A;
 }
 
+.firstChoice {
+    background-color: #1cb841;
+
+}
+
+.secondChoice {
+    background-color: #DCA601;
+
+}
+
+
 .generateStyle {
     height: 31px;
     width: 118px;

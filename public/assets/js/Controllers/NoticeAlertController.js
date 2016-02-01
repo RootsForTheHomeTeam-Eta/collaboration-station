@@ -6,4 +6,6 @@ rootsApp.controller('NoticeAlertController',['$scope','messages', function ($sco
 
     self.messages = messages.list;
 
+    //delete notice on click
+
 }]);
