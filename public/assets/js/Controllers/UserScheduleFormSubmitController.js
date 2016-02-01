@@ -5,8 +5,12 @@ rootsApp.controller('UserScheduleFormSubmitController', [ '$rootScope', '$scope'
 
     // verify logged in status
     $scope.$on('$routeChangeSuccess', function (event, next, current) {
-        if (AuthService.isLoggedIn() === false) {
-            $location.path('/login');
+        if (AuthService.isLoggedIn() === false || AuthService.isAdmin() === true) {
+            // call logout from service
+            AuthService.logout()
+              .then(function () {
+                  $location.path('/login');
+              });
         }
         $log.info('$routeChangeSuccess - UserScheduleFormSubmitController');
     });
