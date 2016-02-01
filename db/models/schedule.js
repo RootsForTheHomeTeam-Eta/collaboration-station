@@ -6,12 +6,10 @@ var Schema = mongoose.Schema;
 var ScheduleSchema = new Schema({
     venueName: String,
     events: [{
-        event: {
             eventDate: Date,
             gameTime: Date,
             arrivalTime: Date,
             orgName: String
-        }
     }]
 });
 

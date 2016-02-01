@@ -7,18 +7,32 @@ var Schedule = require('../../db/models/schedule');
 router.post('/', function(req, res, next) {
     console.log('inside save schedule route');
 
-    var $schedules = [];
+    var events = [];
 
     //loop through each index of form data and create a schedule object
     for (i in req.body) {
 
-        var $schedule = {
+        for (n in req.body[i].events) {
+            var event = ({
+                eventDate: req.body[i].events[n].eventName,
+                gameTime: req.body[i].events[n].gameTime,
+                arrivalTime: req.body[i].events[n].arrivalTime,
+                orgName: req.body[i].events[n].orgName
+            });
+            events.push(event);
+        }
+        var schedule = new Schedule ({
             venueName: req.body[i].venueName,
-            events: req.body[i].events
-        };
-        console.log($schedule);
+            events: events
+        });
 
-        $schedules.push($schedule);
+        schedule.save(function (err){
+            if (err) throw err;
+        });
+
+        console.log(Schedule);
+
+        //$schedules.push($schedule);
     }
 
     console.log("save button clicked");
