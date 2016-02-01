@@ -8,11 +8,11 @@
                 <li class="tabLabel" ng-class="{active: isActive('tabA')}"><a ng-click="onTabClick('tabA')"><p class="tabLabel">Alerts</p></a></li>
                 <li ng-class="{active: isActive('tabB')}"><a ng-click="onTabClick('tabB')"><p class="tabLabel">Quick Send</p></a></li>
             </ul>
-            <div id="tabA" class="tab-content" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="NoticeAlertController">
-                <button class="notifButton"><img class="notifIcon" src="/assets/img/pailorange.png"><h2>{group} has submitted</h2>
-                <p class="subtext">click to remove</p></button>
+            <div id="tabA" class="tab-content" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="NoticeAlertController as list">
+                <button ng-repeat="message in list.messages" class="notifButton"><img class="notifIcon" src="/assets/img/pailorange.png"><h2>{{ message.id }}: {{ message.text }} has submitted</h2>
+                    <p class="subtext">click to remove</p></button>
                 <button class="notifButton"><img class="notifIcon" src="/assets/img/jargreen.png"><h2>{group} has submitted</h2>
-                <p class="subtext">click to remove</p></button>
+                    <p class="subtext">click to remove</p></button>
             </div>
             <div id="tabB" class="tab-content align-left" ng-show="isActive('tabB')"  ng-class="{active: isActive('tab2')}" ng-controller="NoticeSendController">
                 <form novalidate ng-submit="submitQuickForm()">
@@ -45,14 +45,14 @@
 
                     <h2 class="higher">What do you want to send?</h2>
                     <div class="center">
-                    <input type="radio" name="sign-up" id="radio1" value="signUp" class="css-checkbox-radio"/>
-                    <label for="radio1" class="css-label-radio radGroup1">Sign-up Request</label>
-                    <br>
-                    <input type="radio" name="sign-up" id="radio2" value="firstRemind" class="css-checkbox-radio"/>
-                    <label for="radio2" class="css-label-radio radGroup1">Quick Reminder</label>
-                    <br>
-                    <input type="radio" name="sign-up" id="radio3" value="secondRemind" class="css-checkbox-radio"/>
-                    <label for="radio3" class="css-label-radio radGroup1">Second Reminder</label>
+                        <input type="radio" name="sign-up" id="radio1" value="signUp" class="css-checkbox-radio"/>
+                        <label for="radio1" class="css-label-radio radGroup1">Sign-up Request</label>
+                        <br>
+                        <input type="radio" name="sign-up" id="radio2" value="firstRemind" class="css-checkbox-radio"/>
+                        <label for="radio2" class="css-label-radio radGroup1">Quick Reminder</label>
+                        <br>
+                        <input type="radio" name="sign-up" id="radio3" value="secondRemind" class="css-checkbox-radio"/>
+                        <label for="radio3" class="css-label-radio radGroup1">Second Reminder</label>
                     </div>
                     <br>
                     <button type="submit" class="green slightSqound formButton" ng-click="submitQuickForm()"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
@@ -68,28 +68,27 @@
                 <li ng-class="{active: isActive('tab2')}"><a ng-click="onTabClick('tab2')"><p class="tabLabel">Add User</p></a></li>
                 <li ng-class="{active: isActive('tab3')}"><a ng-click="onTabClick('tab3')"><p class="tabLabel">Send Notices</p></a></li>
             </ul>
-                <div id="tab1" class="tab-content" ng-show="isActive('tab1')" ng-class="{active: isActive('tab1')}" ng-controller="FormEventController">
-                        <form class="css-form" novalidate>
-                            <img class="decor-img" src="/assets/img/longbackground.png">
-                            <label for="Venues" class="formButton tabFormLabel">Event Venue:</label>
-                            <input type="text" name="venueName" ng-model="venueName" placeholder="Choose Venue" list="Venues" required/>
-                            <datalist id="Venues">
-                                <option value="Target Field">Target Field</option>
-                                <option value="TCF Stadium">TCF Stadium</option>
-                            </datalist><br>
-                            <label for="eventDate" class="formButton tabFormLabel">Event Date: &nbsp;&nbsp;</label>
-                            <input id="eventDate" name="eventDate" type="date" ng-model="eventDate" required><br>
-                            <label for="startTime" class="formButton tabFormLabel">Event Time: &nbsp;</label>
-                            <input id="startTime" name="gameTime" type="time" ng-model="gameTime" required><br>
-                            <label for="arrivalTime" class="formButton tabFormLabel">Arrival Time:</label>
-                            <input id="arrivalTime" name="arrivalTime" type="time" ng-model="arrivalTime" required><br>
-                            <label for="submitBy" class="formButton tabFormLabel">Submit By: &nbsp;&nbsp;</label>
-                            <input id="submitBy" name="submitBy" type="date" ng-model="submitBy" required>
-                            <br><br>
-                            <button type="submit" ng-click="submitEventForm()" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
-                            </form>
-                </div>
-
+            <div id="tab1" class="tab-content" ng-show="isActive('tab1')" ng-class="{active: isActive('tab1')}" ng-controller="FormEventController">
+                <form class="css-form" novalidate>
+                    <img class="decor-img" src="/assets/img/longbackground.png">
+                    <label for="Venues" class="formButton tabFormLabel">Event Venue:</label>
+                    <input type="text" name="venueName" ng-model="venueName" placeholder="Choose Venue" list="Venues" required/>
+                    <datalist id="Venues">
+                        <option value="Target Field">Target Field</option>
+                        <option value="TCF Stadium">TCF Stadium</option>
+                    </datalist><br>
+                    <label for="eventDate" class="formButton tabFormLabel">Event Date: &nbsp;&nbsp;</label>
+                    <input id="eventDate" name="eventDate" type="date" ng-model="eventDate" required><br>
+                    <label for="startTime" class="formButton tabFormLabel">Event Time: &nbsp;</label>
+                    <input id="startTime" name="gameTime" type="time" ng-model="gameTime" required><br>
+                    <label for="arrivalTime" class="formButton tabFormLabel">Arrival Time:</label>
+                    <input id="arrivalTime" name="arrivalTime" type="time" ng-model="arrivalTime" required><br>
+                    <label for="submitBy" class="formButton tabFormLabel">Submit By: &nbsp;&nbsp;</label>
+                    <input id="submitBy" name="submitBy" type="date" ng-model="submitBy" required>
+                    <br><br>
+                    <button type="submit" ng-click="submitEventForm()" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
+                </form>
+            </div>
                     <div id="tab2" class="tab-content" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}" ng-controller="RegisterController">
                             <form class="css-form" novalidate ng-submit="register()">
                                 <img class="decor-img" src="/assets/img/longbackground.png">
@@ -108,6 +107,7 @@
                             </form>
                     </div>
 
+
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="MessageController">
                 <form class="css-form">
                     <img class="decor-img" src="/assets/img/longbackground.png">
@@ -125,60 +125,138 @@
         <div class="col-md-1 yellowTrans"></div>
     </div>
 
-<div class="row"><br></div>
+    <div class="row"><br></div>
 
-<div class= 'col-md-12 hidden-xs' ng-controller="ScheduleController">
-    <form name = "finalScheduleCreator">
-    <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues.data">
-        <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
-            <div class = ' vTop orange col-md-12' ng-model = "finalVenue" ><h2 class="tab-header">{{venue.venueName}}</h2></div>
+    <div class= 'col-md-12 hidden-xs' ng-controller="ScheduleController">
 
-        </div>
-        <div ng-show = 'display' >
+        <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues.data">
+            <div class="hidden">
+                {{
+                $venueIndex = $index;
 
-            <div class = "venueHeader yellow  row container-fluid">
-                <div class = "col-md-1 scheduleTitle">Event Date:</div>
-                <div class = "col-md-1 scheduleTitle">Arrival Time:</div>
-                <div class = "col-md-1 scheduleTitle">Event Time:</div>
-                <div class = "col-md-1"></div>
-                <div class = "col-md-1"><p>Appetite for Change</p></div>
-                <div class = "col-md-1"><p>Dream of Wild Health</p></div>
-                <div class = "col-md-1"><p>Urban Roots</p></div>
-                <div class = "col-md-1"><p>Youth Farm Frogtown</p></div>
-                <div class = "col-md-1"><p>Youth Farm Hawthorne</p></div>
-                <div class = "col-md-1"><p>Youth Farm Lyndale</p></div>
-                <div class = "col-md-1"><p>Youth Farm Powderhorn</p></div>
-                <div class = "col-md-1"><p>Youth Farm W.Side</p></div>
-
-
+                $venueName = venue.venueName;
+                formData[$venueIndex].venueName = $venueName;
+                }}
             </div>
-            <div ng-repeat="event in venue.events" class = "venueOptions row container-fluid">
-                <div class = "col-md-1 scheduleLabel" ng-model = "finalEventDate">{{event.event.eventDate | date: 'mediumDate' }}</div>
-                <div class = "col-md-1 scheduleLabel" ng-model = "finalArrivalTime">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
-                <div class = "col-md-1 scheduleLabel" ng-model = "finalGameTime">{{event.event.gameTime | date: 'h:mm a'}}</div>
-                <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle green" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle green" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle yellow" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
-                <div class = "col-md-1"><button  type="button" class="selectorStyle red" ng-model = "finalOrgName"></button></div>
+            <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
+                <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{$venueName}}</h2></div>
             </div>
 
-            <div class="venueOptions row container-fluid">
-                <div class = "col-md-12 white">
-                    <button type="submit" ng-controller="SaveController" ng-click="saveSchedule()" class="generateStyle green formButton">Save Schedule</button>
-                    <button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
-                    <button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>
+            <div ng-show = 'display' >
+
+                <div class = "venueHeader yellow  row container-fluid">
+                    <div class = "col-md-1 scheduleTitle">Event Date:</div>
+                    <div class = "col-md-1 scheduleTitle">Arrival Time:</div>
+                    <div class = "col-md-1 scheduleTitle">Event Time:</div>
+                    <div class = "col-md-1"></div>
+                    <div class = "col-md-1"><p>Appetite for Change</p></div>
+                    <div class = "col-md-1"><p>Dream of Wild Health</p></div>
+                    <div class = "col-md-1"><p>Urban Roots</p></div>
+                    <div class = "col-md-1"><p>Youth Farm Frogtown</p></div>
+                    <div class = "col-md-1"><p>Youth Farm Hawthorne</p></div>
+                    <div class = "col-md-1"><p>Youth Farm Lyndale</p></div>
+                    <div class = "col-md-1"><p>Youth Farm Powderhorn</p></div>
+                    <div class = "col-md-1"><p>Youth Farm W.Side</p></div>
+
+
+                </div>
+                <div ng-repeat="event in venue.events" class = "venueOptions row container-fluid">
+                    <div class="hidden">
+                        <!--had to set the index of the array to a unique name to avoid overwriting with each itteration-->
+                        <!--set scope to form data so that data could be read and saved-->
+                        {{
+                        $eventIndex = $index;
+
+                        $eventDate = (event.event.eventDate | date: 'mediumDate');
+                        formData[$venueIndex].events[$eventIndex].eventDate = $eventDate;
+
+                        $arrivalTime = (event.event.arrivalTime | date: 'h:mm a');
+                        formData[$venueIndex].events[$eventIndex].arrivalTime = $arrivalTime;
+
+                        $gameTime = (event.event.gameTime | date: 'h:mm a');
+                        formData[$venueIndex].events[$eventIndex].gameTime = $gameTime;
+                        }}
+                    </div>
+                    <div class = "col-md-1 scheduleLabel">{{$eventDate}}</div>
+                    <div class = "col-md-1 scheduleLabel">{{$arrivalTime}}</div>
+                    <div class = "col-md-1 scheduleLabel">{{$gameTime}}</div>
+                    <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
+                    <!--form needs individual name each time it repeats-->
+                    <form name="form_{{$venueIndex}}_{{$eventIndex}}" novalidate>
+                        <!--loop through org and pref...if pref is true show radio input if false don't-->
+                        <div class = "col-md-1">
+                            <!--specific group is found and value is set by user form - color changes based on value with ng-class-->
+                            <div class="selectorStyle grey">
+                                <!--this ng-model will likely have just the org name preference for this game ie yes/no as their name slot is set this is currently set to orgName-->
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Appetite for Change"/>
+                            </div>
+                        </div>
+                        <div class = "col-md-1">
+                            <div class="selectorStyle grey">
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Dream of Wild Health"/>
+                            </div>
+                        </div>
+                        <div class = "col-md-1">
+                            <div class="selectorStyle grey">
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Urban Roots"/>
+                            </div>
+                        </div>
+                        <div class = "col-md-1">
+                            <div class="selectorStyle grey">
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Frogtown"/>
+                            </div>
+                        </div>
+                        <div class = "col-md-1">
+                            <div class="selectorStyle grey">
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Hawthorn"/>
+                            </div>
+                        </div>
+                        <div class = "col-md-1">
+                            <div class="selectorStyle grey">
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Lyndale"/>
+                            </div>
+                        </div>
+                        <div class = "col-md-1">
+                            <div class="selectorStyle grey">
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Powderhorn"/>
+                            </div>
+                        </div>
+                        <div class = "col-md-1">
+                            <div class="selectorStyle grey">
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm W.Side"/>
+                            </div>
+                        </div>
+
+                        <!--preference repeat sample-->
+                        <!--<div ng-repeat="group in venue.groups" class = "venueOptions row container-fluid">-->
+                            <!--<div class="hidden">-->
+                                <!--{{-->
+                                <!--$groupIndex = $index;-->
+                                <!---->
+                                <!--$preference = $group.preference;-->
+                                <!--}}-->
+                                <!--&lt;!&ndash;if this statement is true it will show the radio button - if not it won't meaning only yes will be clickable&ndash;&gt;-->
+                                <!--<div class = "col-md-1">-->
+                                    <!--<div class="selectorStyle grey">-->
+                                        <!--<input ng-if="$preference" type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="{{group[$groupIndex].groupName}}"/>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+
+                        <!--</div>-->
+
+
+                    </form>
                 </div>
             </div>
         </div>
-
+        <div class = "col-md-12">
+            <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
+            <!--<button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>-->
+            <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
+        </div>
     </div>
-    </form>
-</div>
 
-<div></div>
+    <div></div>
 </div>

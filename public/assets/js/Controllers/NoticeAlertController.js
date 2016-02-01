@@ -1,8 +1,9 @@
 //controller to populate alerts based on user form submission
-rootsApp.controller('NoticeAlertController', function ($scope) {
+rootsApp.controller('NoticeAlertController',['$scope','messages', function ($scope, messages) {
     //alert should appear when activity is made on
     //form submission
-    $scope.hello = 'hello!';
-    console.log($scope.hello);
+    var self = this;
 
-});
+    self.messages = messages.list;
+
+}]);

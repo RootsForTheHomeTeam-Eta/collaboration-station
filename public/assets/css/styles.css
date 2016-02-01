@@ -22,6 +22,15 @@ textarea.style {
     height: 206px;
 }
 
+.helpHeader {
+    color: #55AC3A;
+    font-size: 24px;
+}
+
+.helpBody {
+    font-size: 18px;
+}
+
 .whiteText{
     color: white;
 }
@@ -68,6 +77,10 @@ textarea.style {
 
 .white {
     background-color: white;
+}
+
+.grey {
+    background-color: #9B9B9B;
 }
 
 .moveLeft{
@@ -409,12 +422,20 @@ label.css-label-radio {
 
 .css-form input.ng-invalid.ng-touched {
     background-color: #FA787E;
+    color: white;
 }
 
 .css-form input.ng-valid.ng-touched {
-    background-color: #78FA89;
+    background-color: #55AC3A;
+    color: white;
 }
 
+input {
+    text-align: center;
+}
 
+.hidden {
+    display: none;
+}
 
 

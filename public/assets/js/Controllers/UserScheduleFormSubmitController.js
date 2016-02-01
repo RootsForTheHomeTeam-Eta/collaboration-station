@@ -1,45 +1,81 @@
 //controller to submit user responses from schedule form
-rootsApp.controller('UserScheduleFormSubmitController', [ '$rootScope', '$scope','$http', 'VenueEventsFactory', '$log', 'AuthService', '$location',
-    function ($rootScope, $scope, $http, VenueEventsFactory, $log, AuthService, $location) {
+        rootsApp.controller('UserScheduleFormSubmitController', [ '$rootScope', '$scope','$http', 'VenueEventsFactory', '$log', 'AuthService', '$location',
+          function ($rootScope, $scope, $http, VenueEventsFactory, $log, AuthService, $location) {
 
 
-    // verify logged in status
-    $scope.$on('$routeChangeSuccess', function (event, next, current) {
-        if (AuthService.isLoggedIn() === false || AuthService.isAdmin() === true) {
-            // call logout from service
-            AuthService.logout()
-              .then(function () {
-                  $location.path('/login');
-              });
-        }
-        $log.info('$routeChangeSuccess - UserScheduleFormSubmitController');
-    });
-
-    $scope.hello = 'hello from the UserScheduleFormSubmitController!';
-    VenueEventsFactory.getVenues().then(function(result){
-        $scope.venues = result;
-
-        var venue = $scope.venues;
-        console.log("$scope.venues: ",$scope.venues);
-
-        $scope.submit = function () {
-            console.log(venue);
-            $http({
-                url: '/api/user/submit',
-                method: 'post'
-            }).then(function (res) {
-                $log.info(res.status);
+            // verify logged in status
+            $scope.$on('$routeChangeSuccess', function (event, next, current) {
+              if (AuthService.isLoggedIn() === false || AuthService.isAdmin() === true) {
+                // call logout from service
+                AuthService.logout()
+                  .then(function () {
+                    $location.path('/login');
+                  });
+              }
+              $log.info('$routeChangeSuccess - UserScheduleFormSubmitController');
             });
+
+        $scope.venues = VenueEventsFactory.venues;
+        VenueEventsFactory.getVenues();
+        $log.info($scope.hello);
+        //$scope.accounts=[{name:"123"},{name:"124"},{name:"125"}]
+        //
+        //angular.forEach($scope.accounts,function(value,index){
+        //    alert(value.name);
+        //})
+//need to set property values, but I have an array of objects
+//submitting each venue sepearatly would make things simplier
+//    OBJECT Contructor maybe
+//    function person(first, last, age, eye) {
+//        this.firstName = first;
+//        this.lastName = last;
+//        this.age = age;
+//        this.eyeColor = eye;
+//    }
+//    var myFather = new person("John", "Doe", 50, "blue");
+//    var myMother = new person("Sally", "Rally", 48, "green");
+        $scope.event = function(name, date , pref ){
+            this.venueName = name;
+            this.eventDate = date;
+            this.preferences = pref;
         };
-    });
-    //$scope.venues = VenueEventsFactory.getVenues();
+        $scope.testy = new $scope.event("Twins", "07/05/2990", "true");
+        $scope.submit = function () {
+            var UserSchedule = [];
+            var venuesSubmit = $scope.venues.data;
+            angular.forEach(venuesSubmit, function(value){
+                var eventsArray = value.events;
 
-    $log.info($scope.hello);
-    //$http({
-    //    url:'/user',
-    //    method:'get'
-    //}).then(function(res){
-    //    $scope.venueEvents = res.data;
-    //});
+                angular.forEach(eventsArray, function(value) {
+                    //console.log(value._id);
+                    value.event.eventId = value._id;
+                    //UserSchedule.push(value.event.eventId);
+                    UserSchedule.push(value.event);
+                });
 
-}]);
+            });
+
+             $http({
+                 url: '/api/user/submit',
+                 method: 'post',
+                 data: UserSchedule
+             }).then(function (res) {
+             $log.info(res.status);
+
+            });
+
+        };
+
+
+
+
+
+    }]);
+    rootsApp.controller('PostCtrl',[ 'messages', function (messages){
+        var self = this;
+        self.newMessage = 'Hello World!';
+        self.addMessage = function(message){
+            messages.add(message);
+            self.newMessage = '';
+        };
+    }]);
