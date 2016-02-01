@@ -3,17 +3,17 @@
           function ($rootScope, $scope, $http, VenueEventsFactory, $log, AuthService, $location) {
 
 
-            // verify logged in status
-            $scope.$on('$routeChangeSuccess', function (event, next, current) {
-              if (AuthService.isLoggedIn() === false || AuthService.isAdmin() === true) {
-                // call logout from service
-                AuthService.logout()
-                  .then(function () {
-                    $location.path('/login');
-                  });
-              }
-              $log.info('$routeChangeSuccess - UserScheduleFormSubmitController');
-            });
+        // verify logged in status
+        $scope.$on('$routeChangeSuccess', function (event, next, current) {
+          if (AuthService.isLoggedIn() === false || AuthService.isAdmin() === true) {
+            // call logout from service
+            AuthService.logout()
+              .then(function () {
+                $location.path('/login');
+              });
+          }
+          $log.info('$routeChangeSuccess - UserScheduleFormSubmitController');
+        });
 
         $scope.venues = VenueEventsFactory.venues;
         VenueEventsFactory.getVenues();
@@ -39,9 +39,13 @@
             this.eventDate = date;
             this.preferences = pref;
         };
-        $scope.testy = new $scope.event("Twins", "07/05/2990", "true");
+        //$scope.testy = new $scope.event("Twins", "07/05/2990", "true");
         $scope.submit = function () {
+            var prefObj = {};
+            var user = AuthService.user;
+            prefObj.orgName = user.orgName;
             var UserSchedule = [];
+            prefObj.events = UserSchedule;
             var venuesSubmit = $scope.venues.data;
             angular.forEach(venuesSubmit, function(value){
                 var eventsArray = value.events;
@@ -50,25 +54,38 @@
                     //console.log(value._id);
                     value.event.eventId = value._id;
                     //UserSchedule.push(value.event.eventId);
-                    UserSchedule.push(value.event);
+                    UserSchedule.push({"event_id": value._id,
+                                       "preference": value.event.preferences});
                 });
 
             });
+            $log.warn(prefObj);
+
+            //var UserSchedule = [];
+            //var venuesSubmit = $scope.venues.data;
+            //angular.forEach(venuesSubmit, function(value){
+            //    var eventsArray = value.events;
+            //
+            //    angular.forEach(eventsArray, function(value) {
+            //        //console.log(value._id);
+            //        value.event.eventId = value._id;
+            //        //UserSchedule.push(value.event.eventId);
+            //        UserSchedule.push(value.event);
+            //    });
+            //
+            //});
 
              $http({
                  url: '/api/user/submit',
                  method: 'post',
-                 data: UserSchedule
+                 data: prefObj
              }).then(function (res) {
-             $log.info(res.status);
-
+                 //$log.info(res.status);
+                 $log.info(res);
+               //console.log(UserSchedule);
             });
 
         };
-
-
-
-
 
     }]);
     rootsApp.controller('PostCtrl',[ 'messages', function (messages){

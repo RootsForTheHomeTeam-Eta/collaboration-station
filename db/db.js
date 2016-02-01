@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var config = require('../config');
 
+mongoose.set('debug',true);
+
 var mongoURI = config.MONGOURI;
 
 var MongoDB = mongoose.connect(mongoURI).connection;
