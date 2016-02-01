@@ -5,7 +5,11 @@ rootsApp.controller('AdminViewController', ['$rootScope', '$scope', '$http', '$l
   // verify logged in status
   $scope.$on('$routeChangeSuccess', function (event, next, current) {
     if (AuthService.isAdmin() === false) {
-      $location.path('/login');
+      // call logout from service
+      AuthService.logout()
+        .then(function () {
+          $location.path('/login');
+        });
     }
     $log.info('$routeChangeSuccess - AdminViewController');
     console.log('AdminViewController $routeChangeStart', AuthService.isAdmin());
