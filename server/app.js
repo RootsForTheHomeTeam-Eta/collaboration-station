@@ -89,6 +89,7 @@ var saveSchedule = require('./routes/saveSchedule')
 //nodemailer
 var nodemailer = require('nodemailer');
 var sendNotices = require('./routes/sendNotices');
+var sendQuickMail = require('./routes/sendQuickMail')
 
 app.use('/sendNotices', sendNotices);
 

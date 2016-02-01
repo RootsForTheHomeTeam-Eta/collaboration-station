@@ -15,47 +15,54 @@
                     <p class="subtext">click to remove</p></button>
             </div>
             <div id="tabB" class="tab-content align-left" ng-show="isActive('tabB')"  ng-class="{active: isActive('tab2')}" ng-controller="NoticeSendController">
-                <form novalidate ng-submit="submitQuickForm()">
+                <form novalidate>
                     <h2 class="higher">Who do you want to notify?</h2>
                     <div class="center">
-                        <input type="checkbox" name="gardenGroupAFC" ng-model="gardenGroupAFC" id= "Appetite for Change" value="Appetite for Change" class="css-checkbox">
-                        <label for="Appetite for Change" class="css-label">Appetite for Change</label>
+                        <input type="checkbox" name="gardenGroupAFC" ng-model="gardenGroupAFC" id= "gardenGroupAFC" value="userName for Appetite for change" class="css-checkbox">
+                        <label for="gardenGroupAFC" class="css-label">Appetite for Change</label>
 
-                        <input type="checkbox" name="gardenGroupDWH" ng-model="gardenGroupDWH" id= "Dream of Wild Health" value="Dream of Wild Health" class="css-checkbox">
-                        <label for="Dream of Wild Health" class="css-label">Dream of Wild Health</label>
+                        <input type="checkbox" name="gardenGroupDWH" ng-model="gardenGroupDWH" id= "gardenGroupDWH" value="userName for Dream of Wild Health" class="css-checkbox">
+                        <label for="gardenGroupDWH" class="css-label">Dream of Wild Health</label>
 
-                        <input type="checkbox" name="gardenGroupURF" ng-model="gardenGroupURF" id="Urban Roots Farm" value="Urban Roots Farm" class="css-checkbox">
-                        <label for="Urban Roots Farm" class="css-label">Urban Roots Farm</label>
+                        <input type="checkbox" name="gardenGroupURF" ng-model="gardenGroupURF" id="gardenGroupURF" value="userName for Urban Roots Farm" class="css-checkbox">
+                        <label for="gardenGroupURF" class="css-label">Urban Roots Farm</label>
 
-                        <input type="checkbox" name="gardenGroupYFF" ng-model="gardenGroupYFF" id="Youth Farm Frogtown" value="Youth Farm Frogtown" class="css-checkbox">
-                        <label for="Youth Farm Frogtown" class="css-label">Youth Farm Frogtown</label>
+                        <input type="checkbox" name="gardenGroupYFF" ng-model="gardenGroupYFF" id="gardenGroupYFF" value="userName for Youth Farm Frogtown" class="css-checkbox">
+                        <label for="gardenGroupYFF" class="css-label">Youth Farm Frogtown</label>
 
-                        <input type="checkbox" name="gardenGroupYFH" ng-model="gardenGroupYFH" id="Youth Farm Hawthorne" value="Youth Farm Hawthorne" class="css-checkbox">
-                        <label for="Youth Farm Hawthorne" class="css-label">Youth Farm Hawthorn</label>
+                        <input type="checkbox" name="gardenGroupYFH" ng-model="gardenGroupYFH" id="gardenGroupYFH" value="userName for Youth Farm Hawthorne" class="css-checkbox">
+                        <label for="gardenGroupYFH" class="css-label">Youth Farm Hawthorn</label>
 
-                        <input type="checkbox" name="gardenGroupYFL" ng-model="gardenGroupYFL" id= "Youth Farm Lyndale" value="Youth Farm Lyndale" class="css-checkbox">
-                        <label for="Youth Farm Lyndale" class="css-label">Youth Farm Lyndale</label>
+                        <input type="checkbox" name="gardenGroupYFL" ng-model="gardenGroupYFL" id= "gardenGroupYFL" value="userName for Youth Farm Lyndale" class="css-checkbox">
+                        <label for="gardenGroupYFL" class="css-label">Youth Farm Lyndale</label>
 
-                        <input type="checkbox" name="gardenGroupYFP" ng-model="gardenGroupYFP" id= "Youth Farm Powderhorn" value="Youth Farm Powderhorn" class="css-checkbox">
-                        <label for="Youth Farm Powderhorn" class="css-label">Youth Farm Powderhorn</label>
+                        <input type="checkbox" name="gardenGroupYFP" ng-model="gardenGroupYFP" id= "gardenGroupYFP" value="userName for Youth Farm Powderhorn" class="css-checkbox">
+                        <label for="gardenGroupYFP" class="css-label">Youth Farm Powderhorn</label>
 
-                        <input type="checkbox" name="gardenGroupYFW" ng-model="gardenGroupYFW" id= "Youth Farm W. Side" value="Youth Farm W. Side" class="css-checkbox">
-                        <label for="Youth Farm W. Side" class="css-label">Youth Farm W. Side</label>
+                        <input type="checkbox" name="gardenGroupYFW" ng-model="gardenGroupYFW" id= "gardenGroupYFW" value="userName for Youth Farm W. Side" class="css-checkbox">
+                        <label for="gardenGroupYFW" class="css-label">Youth Farm W. Side</label>
                     </div>
 
                     <h2 class="higher">What do you want to send?</h2>
                     <div class="center">
-                        <input type="radio" name="sign-up" id="radio1" value="signUp" class="css-checkbox-radio"/>
-                        <label for="radio1" class="css-label-radio radGroup1">Sign-up Request</label>
+                        <input type="radio" name="signUp" id="signUp" value="Hello everyone - our game schedule for the season is ready for your sign up.  Please pick the
+                        games that can work for you. Note your first and second choices and if there are dates that are not doable. Thank you. We'll confirm your game dates
+                        within the next couple of weeks." class="css-checkbox-radio"/>
+                        <label for="signUp" class="css-label-radio radGroup1">Sign-up Request</label>
                         <br>
-                        <input type="radio" name="sign-up" id="radio2" value="firstRemind" class="css-checkbox-radio"/>
-                        <label for="radio2" class="css-label-radio radGroup1">Quick Reminder</label>
+
+                        <input type="radio" name="signUp" id="firstRemind" value="Hello - please take a look at our game schedule and sign up for
+                        which dates work for your program. We need your picks by the end of the week.  Thank you." class="css-checkbox-radio"/>
+                        <label for="firstRemind" class="css-label-radio radGroup1">Quick Reminder</label>
                         <br>
-                        <input type="radio" name="sign-up" id="radio3" value="secondRemind" class="css-checkbox-radio"/>
-                        <label for="radio3" class="css-label-radio radGroup1">Second Reminder</label>
+
+                        <input type="radio" name="signUp" id="secondRemind" value="Hi - Please sign up for your games as soon as possible. We need to
+                        confirm dates with everyone in the next couple of days.  Thank you." class="css-checkbox-radio"/>
+                        <label for="secondRemind" class="css-label-radio radGroup1">Second Reminder</label>
+
                     </div>
                     <br>
-                    <button type="submit" class="green slightSqound formButton" ng-click="submitQuickForm()"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
+                    <button type="submit" class="green slightSqound formButton" ng-click="sendQuickMail()"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
                 </form>
             </div>
         </div>
