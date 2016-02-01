@@ -5,29 +5,22 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
     VenueEventsFactory.getVenues();
 
-    //will save current schedule with ng-click saveSchedule()
+    //this object is filled by the scope setting we did in the html so that we could deal with the
+    //loops easier
     $scope.formData = {};
 
 
     $scope.submitAndSave = function () {
-
-
-        //this was working below
-
-        var $schedules = [];
-
-        for (i in $scope.formData) {
-
-            var $schedule = {
-                venueName: $scope.formData[i].venueName,
-                events: $scope.formData[i].events
-
-            };
-            $schedules.push($schedule);
-        }
-        console.log($schedules);
-        console.log("save button clicked");
-
+        $http({
+            url: '/saveSchedule',
+            method: 'post',
+            data: $scope.formData
+        }).then(function (res) {
+            popupS.alert({
+                content: 'Schedule Saved'
+            });
+            $log.info(res.status);
+        });
     };
 
 }]);
@@ -56,4 +49,21 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 //            content: 'Schedule Saved'
 //        });
 //    })
+//};
+
+//this was working below
+
+//var $schedules = [];
+//
+//for (i in $scope.formData) {
+//
+//    var $schedule = {
+//        venueName: $scope.formData[i].venueName,
+//        events: $scope.formData[i].events,
+//    };
+//    $schedules.push($schedule);
+//}
+//console.log($schedules);
+//console.log("save button clicked");
+//
 //};

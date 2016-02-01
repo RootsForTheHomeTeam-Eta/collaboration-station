@@ -132,14 +132,14 @@
         <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues.data">
             <div class="hidden">
                 {{
-                $venueName = venue.venueName;
                 $venueIndex = $index;
 
+                $venueName = venue.venueName;
                 formData[$venueIndex].venueName = $venueName;
                 }}
             </div>
             <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
-                <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{venue.venueName}}</h2></div>
+                <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{$venueName}}</h2></div>
             </div>
 
             <div ng-show = 'display' >
@@ -165,17 +165,16 @@
                         <!--had to set the index of the array to a unique name to avoid overwriting with each itteration-->
                         <!--set scope to form data so that data could be read and saved-->
                         {{
+                        $eventIndex = $index;
+
                         $eventDate = (event.event.eventDate | date: 'mediumDate');
-                        formData[$venueIndex].events[$index].eventDate = $eventDate;
+                        formData[$venueIndex].events[$eventIndex].eventDate = $eventDate;
 
                         $arrivalTime = (event.event.arrivalTime | date: 'h:mm a');
-                        formData[$venueIndex].events[$index].arrivalTime = $arrivalTime;
+                        formData[$venueIndex].events[$eventIndex].arrivalTime = $arrivalTime;
 
                         $gameTime = (event.event.gameTime | date: 'h:mm a');
-                        formData[$venueIndex].events[$index].gameTime = $gameTime;
-
-                        $orgName = (event.event.orgName);
-                        formData[$venueIndex].events[$index].orgName = $orgName;
+                        formData[$venueIndex].events[$eventIndex].gameTime = $gameTime;
                         }}
                     </div>
                     <div class = "col-md-1 scheduleLabel">{{$eventDate}}</div>
@@ -183,48 +182,48 @@
                     <div class = "col-md-1 scheduleLabel">{{$gameTime}}</div>
                     <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
                     <!--form needs individual name each time it repeats-->
-                    <form name="form{{$indexName}}" novalidate>
+                    <form name="form_{{$venueIndex}}_{{$eventIndex}}" novalidate>
                         <!--loop through org and pref...if pref is true show radio input if false don't-->
                         <div class = "col-md-1">
                             <!--specific group is found and value is set by user form - color changes based on value with ng-class-->
                             <div class="selectorStyle grey">
                                 <!--this ng-model will likely have just the org name preference for this game ie yes/no as their name slot is set this is currently set to orgName-->
-                                <input type="radio" ng-model="formData[$venueIndexName].events[$index].orgName" name="radio_{{$indexName}}" value="Appetite for Change"/>
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Appetite for Change"/>
                             </div>
                         </div>
                         <div class = "col-md-1">
                             <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndexName].events[$index].orgName" name="radio_{{$indexName}}" value="Dream of Wild Health"/>
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Dream of Wild Health"/>
                             </div>
                         </div>
                         <div class = "col-md-1">
                             <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndexName].events[$index].orgName" name="radio_{{$indexName}}" value="Urban Roots"/>
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Urban Roots"/>
                             </div>
                         </div>
                         <div class = "col-md-1">
                             <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndexName].events[$index].orgName" name="radio_{{$indexName}}" value="Youth Farm Frogtown"/>
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Frogtown"/>
                             </div>
                         </div>
                         <div class = "col-md-1">
                             <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndexName].events[$index].orgName" name="radio_{{$indexName}}" value="Youth Farm Hawthorn"/>
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Hawthorn"/>
                             </div>
                         </div>
                         <div class = "col-md-1">
                             <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndexName].events[$index].orgName" name="radio_{{$indexName}}" value="Youth Farm Lyndale"/>
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Lyndale"/>
                             </div>
                         </div>
                         <div class = "col-md-1">
                             <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndexName].events[$index].orgName" name="radio_{{$indexName}}" value="Youth Farm Powderhorn"/>
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Powderhorn"/>
                             </div>
                         </div>
                         <div class = "col-md-1">
                             <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndexName].events[$index].orgName" name="radio_{{$indexName}}" value="Youth Farm W.Side"/>
+                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm W.Side"/>
                             </div>
                         </div>
                     </form>
