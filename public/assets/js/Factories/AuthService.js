@@ -2,7 +2,7 @@
 rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, $http) {
 
   // create user variable
-  var user = null;
+  var user = {};
 
   // return available functions for use in controllers
   return ({
@@ -10,11 +10,21 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
     getUserStatus: getUserStatus,
     login: login,
     logout: logout,
-    register: register
+    register: register,
+    isAdmin: isAdmin,
+    user: user
   });
 
+  function isAdmin() {
+    if (user.isAdmin) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   function isLoggedIn() {
-    if (user) {
+    if (user.loggedIn) {
       return true;
     } else {
       return false;
@@ -35,7 +45,10 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
       // handle success
       .success(function (data, status) {
         if(status === 200 && data.status) {
-          user = true;
+          console.log('data',data)
+          user.loggedIn = true;
+          user.isAdmin = data.isAdmin;
+          console.log('user in auth service',user);
           deferred.resolve();
         } else {
           user = false;
@@ -44,7 +57,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
       })
       // handle error
       .error(function (data) {
-        user = false;
+        user.loggedIn = false;
         deferred.reject();
       });
 
@@ -61,12 +74,12 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
     $http.get('/api/auth/logout')
       // handle success
       .success(function (data) {
-        user = false;
+        user.loggedIn = false;
         deferred.resolve();
       })
       // handle error
       .error(function (data) {
-        user = false;
+        user.loggedIn = false;
         deferred.reject();
       });
 

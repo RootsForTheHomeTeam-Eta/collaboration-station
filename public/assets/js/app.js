@@ -3,7 +3,7 @@ var rootsApp = angular.module('rootsApp', ['ngRoute']);
 rootsApp.config(['$routeProvider', '$httpProvider', function($routeProvider){
     $routeProvider.when('/admin', {
         templateUrl: 'views/partials/admin.html',
-        controller: 'MainHelpController'
+        controller: 'AdminViewController'
     }).when('/login', {
         templateUrl: 'views/partials/login.html',
         controller: 'LoginController'
