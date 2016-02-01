@@ -48,6 +48,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
           console.log('data',data)
           user.loggedIn = true;
           user.isAdmin = data.isAdmin;
+          user.orgName = data.orgName;
           console.log('user in auth service',user);
           deferred.resolve();
         } else {
