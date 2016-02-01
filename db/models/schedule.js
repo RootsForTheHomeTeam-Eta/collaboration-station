@@ -7,8 +7,8 @@ var ScheduleSchema = new Schema({
     venueName: String,
     events: [{
             eventDate: Date,
-            gameTime: Date,
-            arrivalTime: Date,
+            gameTime: String,
+            arrivalTime: String,
             orgName: String
     }]
 });

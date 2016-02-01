@@ -2,10 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Schedule = require('../../db/models/schedule');
 
-// save chosen schedule to db
-
 router.post('/', function(req, res, next) {
-    console.log('inside save schedule route');
 
     var events = [];
 
@@ -14,7 +11,7 @@ router.post('/', function(req, res, next) {
 
         for (n in req.body[i].events) {
             var event = ({
-                eventDate: req.body[i].events[n].eventName,
+                eventDate: req.body[i].events[n].eventDate,
                 gameTime: req.body[i].events[n].gameTime,
                 arrivalTime: req.body[i].events[n].arrivalTime,
                 orgName: req.body[i].events[n].orgName
@@ -27,15 +24,12 @@ router.post('/', function(req, res, next) {
         });
 
         schedule.save(function (err){
-            if (err) throw err;
+            if (err) {
+                console.log(err);
+            }
         });
 
-        console.log(Schedule);
-
-        //$schedules.push($schedule);
     }
-
-    console.log("save button clicked");
 
     res.sendStatus(200);
 
