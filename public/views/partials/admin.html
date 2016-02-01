@@ -226,6 +226,27 @@
                                 <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm W.Side"/>
                             </div>
                         </div>
+
+                        <!--preference repeat sample-->
+                        <!--<div ng-repeat="group in venue.groups" class = "venueOptions row container-fluid">-->
+                            <!--<div class="hidden">-->
+                                <!--{{-->
+                                <!--$groupIndex = $index;-->
+                                <!---->
+                                <!--$preference = $group.preference;-->
+                                <!--}}-->
+                                <!--&lt;!&ndash;if this statement is true it will show the radio button - if not it won't meaning only yes will be clickable&ndash;&gt;-->
+                                <!--<div class = "col-md-1">-->
+                                    <!--<div class="selectorStyle grey">-->
+                                        <!--<input ng-if="$preference" type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="{{group[$groupIndex].groupName}}"/>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+
+                        <!--</div>-->
+
+
                     </form>
                 </div>
             </div>
