@@ -1,7 +1,15 @@
 //controller that functions on all pages for help screen
-rootsApp.controller('MainController', function ($scope) {
-    //can we put something to generate who is logged in here to display in the header?
+rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$location', 'AuthService', '$log',
+    function($rootScope, $scope, $http, $location, AuthService, $log) {
     $scope.loggedIn = " Sue ";
+
+    // verify logged in status
+    $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
+        if (AuthService.isLoggedIn() === false) {
+            $location.path('/login');
+            $log.info('$routeChangeSuccess - MainHelpController');
+        }
+    });
 
     $scope.onIconCLick = function(){
 
@@ -24,4 +32,19 @@ rootsApp.controller('MainController', function ($scope) {
     };
     $scope.hello = 'hello!';
     console.log($scope.hello);
-});
+
+    $scope.logout = function() {
+        $http
+          .get('/api/auth/logout', $scope.user)
+          .then(function (data, status, headers, config) {
+              console.log('User logged out');
+              //$window.sessionStorage.token = data.token;
+          }, function (data, status, headers, config) {
+              // Erase token if error
+              //delete $window.sessionStorage.token;
+
+              // Error message
+              $scope.message = 'Error: Trouble logging out';
+          });
+    }
+}]);
