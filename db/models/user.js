@@ -10,6 +10,7 @@ var UserSchema = new Schema({
     lastName: {type: String, required: true},
     username: {type: String, require: true, index: { unique: true}},
     password: {type: String, required: true },
+    isAdmin: {type: Boolean, default: false},
     created_at: Date,
     updated_at: Date
 });

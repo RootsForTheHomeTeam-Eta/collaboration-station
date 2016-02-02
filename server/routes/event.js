@@ -7,7 +7,7 @@ var Venue = require('../../db/models/venue');
 
 // get venue event data
 router.get('/getEvents', function(req, res, next) {
-  console.log('Enter route');
+  console.log('Enter events route');
   // return all events
   Venue.find(
     //query
