@@ -29,14 +29,16 @@ router.post('/submit', function(req, res, next) {
             },
             //doc to update
             {
-                "$set": {
 
-                            "events.$.event.organization": [
-                                {
-                            orgName: req.body.orgName,
-                            preference: elem.preference
-                         }]
-                    }
+
+                            $push: {
+                                "events.$.event.organization": [
+                                    {
+                                        orgName: req.body.orgName,
+                                        preference: elem.preference
+                                    }]
+                            }
+
             },
             //{
             //    $push: {
