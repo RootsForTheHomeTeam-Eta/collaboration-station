@@ -17,7 +17,7 @@ rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFacto
       }).then(function () {
         VenueEventsFactory.getVenues();
         popupS.alert({
-          content: 'Event Added'
+          content: 'Your new event has been added!'
         });
       });
       //$http({
