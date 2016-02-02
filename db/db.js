@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
+var config = require('../config');
 
-var mongoURI = 'mongodb://localhost:27017/roots_app';
+mongoose.set('debug',true);
+
+var mongoURI = config.MONGOURI;
 
 var MongoDB = mongoose.connect(mongoURI).connection;
 

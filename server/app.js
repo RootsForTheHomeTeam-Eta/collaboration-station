@@ -4,11 +4,10 @@ var app = express();
 //require dependencies
 var path = require('path');
 var bodyParser = require('body-parser');
-var expressJWT = require('express-jwt');
 var config = require('../config.js');
 var passport = require('../auth/passport-local');
 var cookieParser = require('cookie-parser');
-//var favicon = require('serve-favicon');
+var favicon = require('serve-favicon');
 
 
 //var flash = require('connect-flash');
@@ -23,7 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // favicon
-//app.use(favicon(__dirname + '/public/favicon-1.ico'));
+app.use(favicon(path.join(__dirname, '../public/favicon-1.ico')));
+
 
 app.use(cookieParser());
 // configure sessions
@@ -34,26 +34,27 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 // instantiate session store
 var store = new MongoDBStore(
   {
-    uri: 'mongodb://localhost:27017/roots_app',
+    uri: config.MONGOURI,
     collection: 'rootsSessions'
   }
 );
 // use and configure server sessions
 app.use(session({
   secret: config.SECRET,
+  key: 'user',
+  resave: true,
+  saveUninitialized: false,
+  store: store,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     secure: false
-  },
-  resave: true,
-  saveUninitialized: false,
-  store: store
+  }
 }));
 // when in production, use secure cookies
-if (app.get('env') === 'production') {
-  app.set('trust proxy', 1); // trust first proxy
-  session.cookie.secure = true; // serve secure cookies
-}
+//if (app.get('env') === 'production') {
+//  app.set('trust proxy', 1); // trust first proxy
+//  session.cookie.secure = true; // serve secure cookies
+//}
 
 // use morgan to log requires to the console
 var morgan = require('morgan');
@@ -84,7 +85,7 @@ var register = require('./routes/register');
 var auth = require('./routes/auth');
 var event = require('./routes/event');
 var user = require('./routes/user');
-var saveSchedule = require('./routes/saveSchedule')
+var saveSchedule = require('./routes/saveSchedule');
 
 //nodemailer
 var nodemailer = require('nodemailer');
@@ -107,7 +108,7 @@ app.use('/api/event', event);
 // api user route
 app.use('/api/user', user);
 // catch all route:
-app.use('/profile', index);
+app.use('/', index);
 
 // ***** ERROR HANDLERS *****
 
@@ -120,6 +121,7 @@ app.use(function(req, res, next) {
 
 // catch all error handler
 app.use(function(err, req, res, next) {
+  console.log(err);
   res.status(err.status || 500);
 
 });

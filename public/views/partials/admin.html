@@ -94,24 +94,24 @@
                     <button type="submit" ng-click="submitEventForm()" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
                 </form>
             </div>
+                    <div id="tab2" class="tab-content" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}" ng-controller="RegisterController">
+                            <form class="css-form" novalidate ng-submit="register()">
+                                <img class="decor-img" src="/assets/img/longbackground.png">
+                                <label for="orgName" class="formButton tabFormLabel">Group Name:</label>
+                                <input id="orgName" type="text" name="orgName" ng-model="orgName" placeholder="Organization Name" required><br>
+                                <label for="firstName" class="formButton tabFormLabel">First Name: &nbsp;&nbsp;</label>
+                                <input id="firstName" type="text" name="firstName" ng-model="firstName" placeholder="Contact First Name" required><br>
+                                <label for="lastName" class="formButton tabFormLabel">Last Name:  &nbsp;&nbsp;</label>
+                                <input id="lastName" type="text" name="lastName" ng-model="lastName" placeholder="Contact Last Name" required><br>
+                                <label for="userEmail" class="formButton tabFormLabel">User Email:  &nbsp;&nbsp;</label>
+                                <input id="userEmail" type="text" name="username" ng-model="username" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Contact Email" required><br>
+                                <label for="password" class="formButton tabFormLabel">Password:&nbsp; &nbsp;&nbsp;</label>
+                                <input id="password" type="password" name="password" ng-model="password" placeholder="eg: UrbanRoots986"><br>
+                                <br>
+                                <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/apple.png">Submit</button>
+                            </form>
+                    </div>
 
-            <div id="tab2" class="tab-content" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}" ng-controller="UserController">
-                <form class="css-form" novalidate>
-                    <img class="decor-img" src="/assets/img/longbackground.png">
-                    <label for="orgName" class="formButton tabFormLabel">Group Name:</label>
-                    <input id="orgName" type="text" name="orgName" ng-model="orgName" placeholder="Organization Name" required><br>
-                    <label for="firstName" class="formButton tabFormLabel">First Name: &nbsp;&nbsp;</label>
-                    <input id="firstName" type="text" name="firstName" ng-model="firstName" placeholder="Contact First Name" required><br>
-                    <label for="lastName" class="formButton tabFormLabel">Last Name:  &nbsp;&nbsp;</label>
-                    <input id="lastName" type="text" name="lastName" ng-model="lastName" placeholder="Contact Last Name" required><br>
-                    <label for="userEmail" class="formButton tabFormLabel">User Email:  &nbsp;&nbsp;</label>
-                    <input id="userEmail" type="text" name="email" ng-model="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Contact Email" required><br>
-                    <label for="password" class="formButton tabFormLabel">Password:&nbsp; &nbsp;&nbsp;</label>
-                    <input id="password" type="password" name="password" ng-model="password" placeholder="eg: UrbanRoots986"><br>
-                    <br>
-                    <button type="submit" ng-click="submitUserForm()" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/apple.png">Submit</button>
-                </form>
-            </div>
 
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="MessageController">
                 <form class="css-form">
