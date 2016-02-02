@@ -32,11 +32,11 @@ router.post('/submit', function(req, res, next) {
 
 
                             $push: {
-                                "events.$.event.organization": [
+                                "events.$.event.organization":
                                     {
                                         orgName: req.body.orgName,
                                         preference: elem.preference
-                                    }]
+                                    }
                             }
 
             },
