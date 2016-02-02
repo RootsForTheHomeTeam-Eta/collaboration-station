@@ -4,6 +4,21 @@ var router = express.Router();
 var Venue = require('../../db/models/venue');
 var User = require('../../db/models/user');
 
+router.get('/getUsers', function(req, res, next) {
+    User.find(
+        // empty query to return all users
+        {},
+        // return only orgName and username fields
+        'orgName username',
+        //callback
+        function(err, users) {
+            if (err) {
+                console.log('/getUser Error: ',err);
+            }
+            res.json(users);
+        });
+});
+
 router.post('/submit', function(req, res, next) {
 
     console.log("IN SUB");
