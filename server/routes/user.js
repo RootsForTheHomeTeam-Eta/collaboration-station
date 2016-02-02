@@ -21,21 +21,22 @@ router.post('/submit', function(req, res, next) {
         console.log('inside events foreach');
         console.log('elem:',elem);
         // elem.preference
-        Venue.findByIdAndUpdate(
+        Venue.findOneAndUpdate(
             // query
-            elem.event_id,
+            {
+                "_id": elem.venue_id,
+                "events._id": elem.event_id
+            },
             //doc to update
             {
-                events: {
-                    event: {
-                        $push: {
-                            organization: {
-                                orgName: orgName,
-                                preference: elem.preference
-                            }
-                        }
+                "$set": {
+
+                            "events.$.event.organization": [
+                                {
+                            orgName: req.body.orgName,
+                            preference: elem.preference
+                         }]
                     }
-                }
             },
             //{
             //    $push: {

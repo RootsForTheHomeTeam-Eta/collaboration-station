@@ -49,13 +49,14 @@
             var venuesSubmit = $scope.venues.data;
             angular.forEach(venuesSubmit, function(value){
                 var eventsArray = value.events;
-
+                var venueId = value._id;
                 angular.forEach(eventsArray, function(value) {
                     //console.log(value._id);
                     value.event.eventId = value._id;
                     //UserSchedule.push(value.event.eventId);
-                    UserSchedule.push({"event_id": value._id,
-                                       "preference": value.event.preferences});
+                    UserSchedule.push({ "venue_id": venueId,
+                                        "event_id": value._id,
+                                        "preference": value.event.preferences});
                 });
 
             });
