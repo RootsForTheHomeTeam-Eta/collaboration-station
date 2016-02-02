@@ -4,6 +4,10 @@ var router = express.Router();
 var Venue = require('../../db/models/venue');
 var User = require('../../db/models/user');
 
+router.get('/getUser', function(req, res, next) {
+
+})
+
 router.post('/submit', function(req, res, next) {
 
     console.log("IN SUB");
