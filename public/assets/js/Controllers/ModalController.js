@@ -1,9 +1,10 @@
 //controller that populates admin created schedule after groups are chosen for specific time slots
 rootsApp.controller('ModalController', ['$scope', '$http', function($scope, $http) {
     $scope.generateSchedule= function(){
+        console.log('I clicked');
         $http({
             method: 'GET',
-            url: '/api/event/getEvents'
+            url: '/getSchedule'
             //all info from venues is available via this request
         }).then(function(res){
             //$scope.venueName = res.data.venueName;
@@ -56,6 +57,6 @@ rootsApp.controller('ModalController', ['$scope', '$http', function($scope, $htt
     };
     //will clear schedules with ng-click="clearSchedule()" will ask for
     //confirmation
-    $scope.hello = 'hello!';
+    $scope.hello = 'hello from Modal controller!';
     console.log($scope.hello);
 }]);
