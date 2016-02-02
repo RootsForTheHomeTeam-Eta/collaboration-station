@@ -196,60 +196,69 @@
                                 <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Appetite for Change"/>
                             </div>
                         </div>
-                        <div class = "col-md-1">
-                            <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Dream of Wild Health"/>
-                            </div>
-                        </div>
-                        <div class = "col-md-1">
-                            <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Urban Roots"/>
-                            </div>
-                        </div>
-                        <div class = "col-md-1">
-                            <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Frogtown"/>
-                            </div>
-                        </div>
-                        <div class = "col-md-1">
-                            <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Hawthorn"/>
-                            </div>
-                        </div>
-                        <div class = "col-md-1">
-                            <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Lyndale"/>
-                            </div>
-                        </div>
-                        <div class = "col-md-1">
-                            <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Powderhorn"/>
-                            </div>
-                        </div>
-                        <div class = "col-md-1">
-                            <div class="selectorStyle grey">
-                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm W.Side"/>
-                            </div>
-                        </div>
+
+
+
+
+                        <!--<div class = "col-md-1">-->
+                            <!--<div class="selectorStyle grey">-->
+                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Dream of Wild Health"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class = "col-md-1">-->
+                            <!--<div class="selectorStyle grey">-->
+                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Urban Roots"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class = "col-md-1">-->
+                            <!--<div class="selectorStyle grey">-->
+                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Frogtown"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class = "col-md-1">-->
+                            <!--<div class="selectorStyle grey">-->
+                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Hawthorn"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class = "col-md-1">-->
+                            <!--<div class="selectorStyle grey">-->
+                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Lyndale"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class = "col-md-1">-->
+                            <!--<div class="selectorStyle grey">-->
+                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Powderhorn"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class = "col-md-1">-->
+                            <!--<div class="selectorStyle grey">-->
+                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm W.Side"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
 
                         <!--preference repeat sample-->
-                        <!--<div ng-repeat="group in venue.groups" class = "venueOptions row container-fluid">-->
-                            <!--<div class="hidden">-->
-                                <!--{{-->
-                                <!--$groupIndex = $index;-->
-                                <!---->
-                                <!--$preference = $group.preference;-->
-                                <!--}}-->
-                                <!--&lt;!&ndash;if this statement is true it will show the radio button - if not it won't meaning only yes will be clickable&ndash;&gt;-->
-                                <!--<div class = "col-md-1">-->
-                                    <!--<div class="selectorStyle grey">-->
-                                        <!--<input ng-if="$preference" type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="{{group[$groupIndex].groupName}}"/>-->
-                                    <!--</div>-->
-                                <!--</div>-->
+                        <div ng-repeat="orgName in venue.event.organization" class = "venueOptions row container-fluid">
+                            <div class="hidden">
+                                {{
+                                $orgIndex = $index;
 
-                            <!--</div>-->
+                                $preference = event.event.organization[$orgIndex].preference;
+                                formData[$venueIndex].events[$eventIndex].organization[$orgIndex].preference = $preference;
+                                }}
+                                <!--if this statement is true it will show the radio button - if not it won't meaning only yes will be clickable-->
+                                <div class = "col-md-1">
+                                    <div class="selectorStyle grey">
+                                        <p>{{orgName.orgName}}</p>
+                                        <p>{{$preference}}</p>
+                                        <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="{{$preference}}"/>-->
+                                    </div>
+                                </div>
 
-                        <!--</div>-->
+                            </div>
+
+                        </div>
 
 
                     </form>
