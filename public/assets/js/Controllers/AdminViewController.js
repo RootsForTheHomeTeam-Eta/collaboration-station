@@ -3,16 +3,16 @@ rootsApp.controller('AdminViewController', ['$rootScope', '$scope', '$http', '$l
   function($rootScope, $scope, $http, $location, AuthService, $log) {
   //$route.reload();
   // verify logged in status
-  $scope.$on('$routeChangeSuccess', function (event, next, current) {
-    if (AuthService.isAdmin() === false) {
-      // call logout from service
-      AuthService.logout()
-        .then(function () {
-          $location.path('/login');
-        });
-    }
-    $log.info('$routeChangeSuccess - AdminViewController');
-    console.log('AdminViewController $routeChangeStart', AuthService.isAdmin());
-  });
+  //$scope.$on('$routeChangeSuccess', function (event, next, current) {
+  //  if (AuthService.isAdmin() === false) {
+  //    // call logout from service
+  //    AuthService.logout()
+  //      .then(function () {
+  //        $location.path('/login');
+  //      });
+  //  }
+  //  $log.info('$routeChangeSuccess - AdminViewController');
+  //  console.log('AdminViewController $routeChangeStart', AuthService.isAdmin());
+  //});
 
 }]);
