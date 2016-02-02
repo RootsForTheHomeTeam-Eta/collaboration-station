@@ -11,7 +11,7 @@ rootsApp.factory('VenueEventsFactory', function($http) {
                 method: 'GET'
             }).success(function(result){
                     venues.data = result;
-                    console.log(venues.data);
+                    console.log('venues.data',venues.data);
 
                 })
                 .error(function(data, status, headers, config) {
