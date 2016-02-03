@@ -11,23 +11,31 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
     var arrayOrgs = ["Appetite for Change","Dream of Wild Health","Urban Roots","Youth Farm Frogtown","Youth Farm Hawthorn","Youth Farm Lyndale","Youth Farm Powderhorn","Youth Farm W.Side"];
     $scope.$arrayOrgs = arrayOrgs;
 
-    //we need an array to repeat on to create the empty divs for our view structure
 
-    //this won't work because we have a set amount of organizations and they won't populate in
-    //a guranteed order.
-    // var orgNameUnit;
-    //var organizationsArray = [];
-    //
-    //
-    //for (var i = 0; i < venues.events.event.organization.length ; i++) {
-    //    orgNameUnit = venues.events.event.organization.orgName;
-    //    organizationsArray.push(orgNameUnit);
-    //    }
-    //
-    //$scope.organizationsArray = organizationsArray;
+    $scope.getOrgPreference = function($orgName, $currEventOrgArray) {
+
+         //loop through each organization that has replied to the event so far.
+        for (var i = 0; i <= $currEventOrgArray.length -1; i++ ) {
+
+            // get the orgName from the event.
+            var testOrgName = $currEventOrgArray[i].orgName;
+
+            // compare this to the orgName for the column
+            if (testOrgName == $orgName) {
+
+                // return a preference if there is one
+                return $currEventOrgArray[i].preference;
+            }
+        }
+        // return "cannot" if there isn't a preference.
+        return "cannot";
+    };
+
+
 
 
     $scope.submitAndSave = function () {
+        console.log('clicked');
         $http({
             url: '/saveSchedule',
             method: 'post',

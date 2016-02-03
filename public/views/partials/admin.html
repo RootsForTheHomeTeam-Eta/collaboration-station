@@ -192,20 +192,12 @@
                     <div class = "col-md-1 scheduleLabel">{{$gameTime}}</div>
                     <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
                     <!--form needs individual name each time it repeats-->
-                    <!--<div ng-repeat="orgName in venue.event.organization" class = "venueOptions row container-fluid">-->
-                        <!--<p>{{$preference}}</p>-->
                     <form name="form_{{$venueIndex}}_{{$eventIndex}}" novalidate>
                             <!--loop through org and pref...if pref is true show radio input if false don't-->
                         <div ng-repeat="organizationName in $arrayOrgs">
                             <div class="hidden">
                                 {{
-                                $orgIndex = $index;
-
-                                $orgName = event.event.organization[$orgIndex].orgName;
-                                formData[$venueIndex].events[$eventIndex].organization[$orgIndex].orgName = $orgName;
-
-                                $preference = event.event.organization[$orgIndex].preference;
-                                formData[$venueIndex].events[$eventIndex].organization[$orgIndex].preference = $preference;
+                                $preference = getOrgPreference(organizationName, event.event.organization);
                                 }}
                             </div>
                             <div class = "col-md-1">
@@ -213,7 +205,7 @@
                                 <div class="selectorStyle grey">
                                     <!--if selection is yes and org is app for change then show this input-->
                                     <!--this ng-model will likely have just the org name preference for this game ie yes/no as their name slot is set this is currently set to orgName-->
-                                    <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>
+                                    <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>{{$preference}}
                                 </div>
                             </div>
                         </div>
