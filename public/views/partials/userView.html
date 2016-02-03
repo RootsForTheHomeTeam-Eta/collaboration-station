@@ -26,12 +26,9 @@
             </div>
         </div>
     </div>
-    <p> venuename: {{venues.data[1].venueName}}</p>
-    <!--<p> events: {{venues.data[1].events}}</p>-->
-    <p> event 1: {{venues.data[1].events[0]}}</p>
-    <p> event 2: {{venues.data[1].events[1]}}<p>
-    <p> date: {{venues.data[1].events[0].event.eventDate}}</p>
     <div class= 'col-xs-12 col-md-6 col-md-offset-3'>
+        <button type="button" class= "green btnUser" ng-click="notificationSubmit()" >Alert Test</button>
+
         <button type="button" class= "green btnUser" ng-click="submit(venues)" >SUBMIT</button>
     </div>
 
@@ -39,9 +36,3 @@
 
 
 
-<!--<div ng-controller="PostCtrl as post">-->
-    <!--<form ng-submit="post.addMessage(post.newMessage)">-->
-        <!--<input type="text" ng-model="post.newMessage">-->
-        <!--<button type="submit">Add Message</button>-->
-    <!--</form>-->
-<!--</div>-->

@@ -17,28 +17,23 @@
 
         $scope.venues = VenueEventsFactory.venues;
         VenueEventsFactory.getVenues();
-        $log.info($scope.hello);
-        //$scope.accounts=[{name:"123"},{name:"124"},{name:"125"}]
-        //
-        //angular.forEach($scope.accounts,function(value,index){
-        //    alert(value.name);
-        //})
-//need to set property values, but I have an array of objects
-//submitting each venue sepearatly would make things simplier
-//    OBJECT Contructor maybe
-//    function person(first, last, age, eye) {
-//        this.firstName = first;
-//        this.lastName = last;
-//        this.age = age;
-//        this.eyeColor = eye;
-//    }
-//    var myFather = new person("John", "Doe", 50, "blue");
-//    var myMother = new person("Sally", "Rally", 48, "green");
-        $scope.event = function(name, date , pref ){
-            this.venueName = name;
-            this.eventDate = date;
-            this.preferences = pref;
+
+        $scope.notification = {};
+        $scope.notification.orgName = AuthService.user.orgName;
+        $log.info($scope.notification);
+
+        $scope.notificationSubmit = function() {
+            $http({
+                url: '/notification/submitNotification',
+                method: 'post',
+                data: $scope.notification
+            }).then(function (res) {
+                //$log.info(res.status);
+                $log.info(res);
+                //console.log(UserSchedule);
+            });
         };
+
         //$scope.testy = new $scope.event("Twins", "07/05/2990", "true");
         $scope.submit = function () {
             var prefObj = {};
@@ -62,38 +57,27 @@
             });
             $log.warn(prefObj);
 
-            //var UserSchedule = [];
-            //var venuesSubmit = $scope.venues.data;
-            //angular.forEach(venuesSubmit, function(value){
-            //    var eventsArray = value.events;
-            //
-            //    angular.forEach(eventsArray, function(value) {
-            //        //console.log(value._id);
-            //        value.event.eventId = value._id;
-            //        //UserSchedule.push(value.event.eventId);
-            //        UserSchedule.push(value.event);
-            //    });
-            //
-            //});
-
-             $http({
+            $http({
                  url: '/api/user/submit',
                  method: 'post',
                  data: prefObj
              }).then(function (res) {
                  //$log.info(res.status);
                  $log.info(res);
+                $scope.notificationSubmit();
                //console.log(UserSchedule);
             });
 
         };
 
     }]);
-    rootsApp.controller('PostCtrl',[ 'messages', function (messages){
-        var self = this;
-        self.newMessage = 'Hello World!';
-        self.addMessage = function(message){
-            messages.add(message);
-            self.newMessage = '';
-        };
-    }]);
+
+
+    //rootsApp.controller('PostCtrl',[ 'messages', function (messages){
+    //    var self = this;
+    //    self.newMessage = 'Hello World!';
+    //    self.addMessage = function(message){
+    //        messages.add(message);
+    //        self.newMessage = '';
+    //    };
+    //}]);
