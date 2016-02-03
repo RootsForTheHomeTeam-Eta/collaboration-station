@@ -1,6 +1,6 @@
 // $window is an Angular service and needs to be put in the angular config
 
-rootsApp.controller('PrintScheduleController', ['$scope', function($scope){
+rootsApp.controller('PrintScheduleController', ['$scope', '$window', function($scope, $window){
     console.log('Printing from PrintScheduleController.js');
     $scope.printSchedule = function(){
 
