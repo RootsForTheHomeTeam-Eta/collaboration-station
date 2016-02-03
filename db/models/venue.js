@@ -9,7 +9,7 @@ var VenueSchema = new Schema({
         eventDate: Date,
         organization: [{
           orgName: String,
-          preference: {type: String, default: 'cannot'}
+          preference: {type: String, default: 'nores'}
         }],
         arrivalTime: Date,
         gameTime: Date,
