@@ -117,6 +117,7 @@
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="MessageController">
                 <form class="css-form">
                     <img class="decor-img" src="/assets/img/longbackground.png">
+
                     <label for="sendToemail" class="formButton tabFormLabel">Email:&nbsp;</label>
                     <div ng-controller="UserDropDownController">
                         <input id="sendToemail" type="text" name="sendToemail" ng-model="sendToemail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Send to Email" list="Emails" required/>
@@ -124,7 +125,7 @@
                             <option  ng-repeat="user in users" value="{{user.username}}">{{user.orgName}}</option>
                         </datalist><br>
                     </div>
-                    <!--<input id="sendToEmail" name="sendToemail" type="email" ng-model="sendToemail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Send to Email" required><br>-->
+
                     <label for="sendToName" class="formButton tabFormLabel">Name:</label>
                     <input id="sendToName" name="sendToname" type="text" ng-model="sendToname" placeholder="Name" required><br>
                     <textarea id="styled" name="sendTomessage" cols="20" rows="10" ng-model="sendTomessage" placeholder="A custom message" required></textarea>
@@ -161,16 +162,7 @@
                     <div class = "col-md-1 scheduleTitle">Arrival Time:</div>
                     <div class = "col-md-1 scheduleTitle">Event Time:</div>
                     <div class = "col-md-1"></div>
-                    <div class = "col-md-1"><p>Appetite for Change</p></div>
-                    <div class = "col-md-1"><p>Dream of Wild Health</p></div>
-                    <div class = "col-md-1"><p>Urban Roots</p></div>
-                    <div class = "col-md-1"><p>Youth Farm Frogtown</p></div>
-                    <div class = "col-md-1"><p>Youth Farm Hawthorne</p></div>
-                    <div class = "col-md-1"><p>Youth Farm Lyndale</p></div>
-                    <div class = "col-md-1"><p>Youth Farm Powderhorn</p></div>
-                    <div class = "col-md-1"><p>Youth Farm W.Side</p></div>
-
-
+                    <div class = "col-md-1" ng-repeat="orgName in $arrayOrgs"><p>{{orgName}}</p></div>
                 </div>
                 <div ng-repeat="event in venue.events" class = "venueOptions row container-fluid">
                     <div class="hidden">
@@ -195,89 +187,34 @@
                     <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
                     <!--form needs individual name each time it repeats-->
                     <form name="form_{{$venueIndex}}_{{$eventIndex}}" novalidate>
-                        <!--loop through org and pref...if pref is true show radio input if false don't-->
-                        <div class = "col-md-1">
-                            <!--specific group is found and value is set by user form - color changes based on value with ng-class-->
-                            <div class="selectorStyle grey">
-                                <!--this ng-model will likely have just the org name preference for this game ie yes/no as their name slot is set this is currently set to orgName-->
-                                <input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Appetite for Change"/>
+
+                            <!--loop through org and pref...if pref is true show radio input if false don't-->
+                        <div ng-repeat="organizationName in $arrayOrgs">
+                            <div class="hidden">
+                                {{
+                                $preference = getOrgPreference(organizationName, event.event.organization);
+                                }}
+                            </div>
+                            <div class = "col-md-1">
+                                <!--specific group is found and value is set by user form - color changes based on value with ng-class-->
+                                <div class="selectorStyle" ng-class="{grey: ($preference == 'cannot'), yellow: ($preference == 'second'), green: ($preference == 'first')}">
+                                    <!--if selection is yes and org is app for change then show this input-->
+                                    <!--this ng-model will likely have just the org name preference for this game ie yes/no as their name slot is set this is currently set to orgName-->
+                                    <input type="radio" ng-if="$preference !== 'cannot'"  ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>
+                                </div>
                             </div>
                         </div>
 
-
-
-
-                        <!--<div class = "col-md-1">-->
-                            <!--<div class="selectorStyle grey">-->
-                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Dream of Wild Health"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class = "col-md-1">-->
-                            <!--<div class="selectorStyle grey">-->
-                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Urban Roots"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class = "col-md-1">-->
-                            <!--<div class="selectorStyle grey">-->
-                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Frogtown"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class = "col-md-1">-->
-                            <!--<div class="selectorStyle grey">-->
-                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Hawthorn"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class = "col-md-1">-->
-                            <!--<div class="selectorStyle grey">-->
-                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Lyndale"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class = "col-md-1">-->
-                            <!--<div class="selectorStyle grey">-->
-                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm Powderhorn"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class = "col-md-1">-->
-                            <!--<div class="selectorStyle grey">-->
-                                <!--<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="Youth Farm W.Side"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-
-
-
-                        <!--preference repeat sample-->
-                        <!--<div ng-repeat="orgName in venue.event.organization" class = "venueOptions row container-fluid">-->
-                            <!--<div class="hidden">-->
-                                <!--{{-->
-                                <!--$orgIndex = $index;-->
-
-                                <!--$preference = event.event.organization[$orgIndex].preference;-->
-                                <!--formData[$venueIndex].events[$eventIndex].organization[$orgIndex].preference = $preference;-->
-                                <!--}}-->
-                                <!--&lt;!&ndash;if this statement is true it will show the radio button - if not it won't meaning only yes will be clickable&ndash;&gt;-->
-                                <!--<div class = "col-md-1">-->
-                                    <!--<div class="selectorStyle grey">-->
-                                        <!--<p>{{orgName.orgName}}</p>-->
-                                        <!--<p>{{$preference}}</p>-->
-                                        <!--&lt;!&ndash;<input type="radio" ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" value="{{$preference}}"/>&ndash;&gt;-->
-                                    <!--</div>-->
-                                <!--</div>-->
-
-                            <!--</div>-->
-
-                        <!--</div>-->
-
-
                     </form>
                 </div>
+                </div>
+            </div>
+            <div class = "col-md-12">
+                <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
+                <button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
+                <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
             </div>
         </div>
-        <div class = "col-md-12">
-            <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
-            <button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
-            <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
-        </div>
-    </div>
 
-    <div></div>
+    </div>
 </div>
