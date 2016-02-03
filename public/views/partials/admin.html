@@ -15,30 +15,33 @@
             <div id="tabB" class="tab-content align-left" ng-show="isActive('tabB')"  ng-class="{active: isActive('tab2')}" ng-controller="NoticeSendController">
                 <form novalidate>
                     <h2 class="higher">Who do you want to notify?</h2>
-                    <div class="center">
-                        <input type="checkbox" name="gardenGroupAFC" ng-model="gardenGroupAFC" id= "gardenGroupAFC" value="userName for Appetite for change" class="css-checkbox">
-                        <label for="gardenGroupAFC" class="css-label">Appetite for Change</label>
+                    <div class="center" ng-repeat="gardenUser in users.data">
+                        <input type="checkbox" name="{{gardenUser.orgName}}" ng-model="{{gardenUser.orgName}}" id="{{gardenUser.orgName}}" value="{{gardenUser.gardenUsername}}" class="css-checkbox">
+                        <label for="{{gardenUser.orgName}}" class="css-label">{{gardenUser.orgName}}</label>
+                        <!---->
+                        <!--<input type="checkbox" name="gardenGroupAFC" ng-model="gardenGroupAFC" id= "gardenGroupAFC" value="userName for Appetite for change" class="css-checkbox">-->
+                        <!--<label for="gardenGroupAFC" class="css-label">Appetite for Change</label>-->
 
-                        <input type="checkbox" name="gardenGroupDWH" ng-model="gardenGroupDWH" id= "gardenGroupDWH" value="userName for Dream of Wild Health" class="css-checkbox">
-                        <label for="gardenGroupDWH" class="css-label">Dream of Wild Health</label>
+                        <!--<input type="checkbox" name="gardenGroupDWH" ng-model="gardenGroupDWH" id= "gardenGroupDWH" value="userName for Dream of Wild Health" class="css-checkbox">-->
+                        <!--<label for="gardenGroupDWH" class="css-label">Dream of Wild Health</label>-->
 
-                        <input type="checkbox" name="gardenGroupURF" ng-model="gardenGroupURF" id="gardenGroupURF" value="userName for Urban Roots Farm" class="css-checkbox">
-                        <label for="gardenGroupURF" class="css-label">Urban Roots Farm</label>
+                        <!--<input type="checkbox" name="gardenGroupURF" ng-model="gardenGroupURF" id="gardenGroupURF" value="userName for Urban Roots Farm" class="css-checkbox">-->
+                        <!--<label for="gardenGroupURF" class="css-label">Urban Roots Farm</label>-->
 
-                        <input type="checkbox" name="gardenGroupYFF" ng-model="gardenGroupYFF" id="gardenGroupYFF" value="userName for Youth Farm Frogtown" class="css-checkbox">
-                        <label for="gardenGroupYFF" class="css-label">Youth Farm Frogtown</label>
+                        <!--<input type="checkbox" name="gardenGroupYFF" ng-model="gardenGroupYFF" id="gardenGroupYFF" value="userName for Youth Farm Frogtown" class="css-checkbox">-->
+                        <!--<label for="gardenGroupYFF" class="css-label">Youth Farm Frogtown</label>-->
 
-                        <input type="checkbox" name="gardenGroupYFH" ng-model="gardenGroupYFH" id="gardenGroupYFH" value="userName for Youth Farm Hawthorne" class="css-checkbox">
-                        <label for="gardenGroupYFH" class="css-label">Youth Farm Hawthorn</label>
+                        <!--<input type="checkbox" name="gardenGroupYFH" ng-model="gardenGroupYFH" id="gardenGroupYFH" value="userName for Youth Farm Hawthorne" class="css-checkbox">-->
+                        <!--<label for="gardenGroupYFH" class="css-label">Youth Farm Hawthorn</label>-->
 
-                        <input type="checkbox" name="gardenGroupYFL" ng-model="gardenGroupYFL" id= "gardenGroupYFL" value="userName for Youth Farm Lyndale" class="css-checkbox">
-                        <label for="gardenGroupYFL" class="css-label">Youth Farm Lyndale</label>
+                        <!--<input type="checkbox" name="gardenGroupYFL" ng-model="gardenGroupYFL" id= "gardenGroupYFL" value="userName for Youth Farm Lyndale" class="css-checkbox">-->
+                        <!--<label for="gardenGroupYFL" class="css-label">Youth Farm Lyndale</label>-->
 
-                        <input type="checkbox" name="gardenGroupYFP" ng-model="gardenGroupYFP" id= "gardenGroupYFP" value="userName for Youth Farm Powderhorn" class="css-checkbox">
-                        <label for="gardenGroupYFP" class="css-label">Youth Farm Powderhorn</label>
+                        <!--<input type="checkbox" name="gardenGroupYFP" ng-model="gardenGroupYFP" id= "gardenGroupYFP" value="userName for Youth Farm Powderhorn" class="css-checkbox">-->
+                        <!--<label for="gardenGroupYFP" class="css-label">Youth Farm Powderhorn</label>-->
 
-                        <input type="checkbox" name="gardenGroupYFW" ng-model="gardenGroupYFW" id= "gardenGroupYFW" value="userName for Youth Farm W. Side" class="css-checkbox">
-                        <label for="gardenGroupYFW" class="css-label">Youth Farm W. Side</label>
+                        <!--<input type="checkbox" name="gardenGroupYFW" ng-model="gardenGroupYFW" id= "gardenGroupYFW" value="userName for Youth Farm W. Side" class="css-checkbox">-->
+                        <!--<label for="gardenGroupYFW" class="css-label">Youth Farm W. Side</label>-->
                     </div>
 
                     <h2 class="higher">What do you want to send?</h2>
@@ -121,7 +124,7 @@
                     <div ng-controller="UserDropDownController">
                         <input id="sendToemail" type="text" name="sendToemail" ng-model="sendToemail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Send to Email" list="Emails" required/>
                         <datalist id="Emails">
-                            <option  ng-repeat="user in users" value="{{user.username}}">{{user.orgName}}</option>
+                            <option  ng-repeat="user in users.data" value="{{user.username}}">{{user.orgName}}</option>
                         </datalist><br>
                     </div>
 
@@ -195,7 +198,7 @@
                             </div>
                             <div class = "col-md-1">
                                 <!--specific group is found and value is set by user form - color changes based on value with ng-class-->
-                                <div class="selectorStyle" ng-class="{grey: ($preference == 'cannot'), yellow: ($preference == 'second'), green: ($preference == 'first')}">
+                                <div class="selectorStyle" ng-class="{red: ($preference == 'cannot'), grey: ($preference == 'nores'), yellow: ($preference == 'second'), green: ($preference == 'first')}">
                                     <!--if selection is yes and org is app for change then show this input-->
                                     <!--this ng-model will likely have just the org name preference for this game ie yes/no as their name slot is set this is currently set to orgName-->
                                     <input type="radio" ng-if="$preference !== 'cannot'"  ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>

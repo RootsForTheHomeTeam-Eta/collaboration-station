@@ -102,6 +102,7 @@ app.use('/saveSchedule', saveSchedule);
 
 // everything under /api/* will verify the jwt
 //app.use('/api/*', jwtCheck);
+app.use('/api/sendQuickMail', sendQuickMail);
 app.use('/api/auth', auth);
 // api event route
 app.use('/api/event', event);
