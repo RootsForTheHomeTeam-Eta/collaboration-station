@@ -5,8 +5,24 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
     VenueEventsFactory.getVenues();
 
+    $scope.formData= {};
+
     //this object is filled by the scope setting we did in the html so that we could deal with the
     //loops easier
+
+    $scope.submitAndSave = function () {
+        console.log('clicked');
+        $http({
+            url: '/saveSchedule',
+            method: 'post',
+            data: $scope.formData
+        }).then(function (res) {
+            popupS.alert({
+                content: 'Schedule Saved'
+            });
+            $log.info(res.status);
+        });
+    };
 
     var arrayOrgs = ["Appetite for Change","Dream of Wild Health","Urban Roots","Youth Farm Frogtown","Youth Farm Hawthorn","Youth Farm Lyndale","Youth Farm Powderhorn","Youth Farm W.Side"];
     $scope.$arrayOrgs = arrayOrgs;
@@ -31,22 +47,6 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
         return "cannot";
     };
 
-
-
-
-    $scope.submitAndSave = function () {
-        console.log('clicked');
-        $http({
-            url: '/saveSchedule',
-            method: 'post',
-            data: $scope.formData
-        }).then(function (res) {
-            popupS.alert({
-                content: 'Schedule Saved'
-            });
-            $log.info(res.status);
-        });
-    };
 
 }]);
 

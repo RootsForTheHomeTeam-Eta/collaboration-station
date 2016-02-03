@@ -162,13 +162,6 @@
                     <div class = "col-md-1 scheduleTitle">Event Time:</div>
                     <div class = "col-md-1"></div>
                     <div class = "col-md-1" ng-repeat="orgName in $arrayOrgs"><p>{{orgName}}</p></div>
-                    <!--<div class = "col-md-1"><p>Dream of Wild Health</p></div>-->
-                    <!--<div class = "col-md-1"><p>Urban Roots</p></div>-->
-                    <!--<div class = "col-md-1"><p>Youth Farm Frogtown</p></div>-->
-                    <!--<div class = "col-md-1"><p>Youth Farm Hawthorne</p></div>-->
-                    <!--<div class = "col-md-1"><p>Youth Farm Lyndale</p></div>-->
-                    <!--<div class = "col-md-1"><p>Youth Farm Powderhorn</p></div>-->
-                    <!--<div class = "col-md-1"><p>Youth Farm W.Side</p></div>-->
                 </div>
                 <div ng-repeat="event in venue.events" class = "venueOptions row container-fluid">
                     <div class="hidden">
@@ -210,16 +203,16 @@
                             </div>
                         </div>
                     </form>
-                       </div>
-                    </div>
+                </div>
                 </div>
             </div>
+            <div class = "col-md-12">
+                <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
+                <button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
+                <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
+            </div>
         </div>
-        <div class = "col-md-12">
-            <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
-            <button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
-            <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
-        </div>
+
     </div>
 
     <div></div>
