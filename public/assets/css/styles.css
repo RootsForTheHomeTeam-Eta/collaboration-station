@@ -71,6 +71,10 @@ textarea.style {
     background-color: #EDB816;
 }
 
+.red {
+    background-color: darkred;
+}
+
 .yellowTrans {
     background-color: #FAEEC7;
 }
