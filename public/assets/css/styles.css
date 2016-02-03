@@ -71,9 +71,6 @@ textarea.style {
     background-color: #EDB816;
 }
 
-.red {
-    background-color: darkred;
-}
 
 .yellowTrans {
     background-color: #FAEEC7;
@@ -420,6 +417,14 @@ label.css-label-radio {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 20px;
+}
+
+.modalText {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 /*----- Form Validation Classes -----*/
