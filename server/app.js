@@ -86,6 +86,7 @@ var auth = require('./routes/auth');
 var event = require('./routes/event');
 var user = require('./routes/user');
 var saveSchedule = require('./routes/saveSchedule');
+var notification = require('./routes/notification');
 
 //nodemailer
 var nodemailer = require('nodemailer');
@@ -99,6 +100,7 @@ app.use('/sendNotices', sendNotices);
 app.use('/login', login);
 app.use('/register', register);
 app.use('/saveSchedule', saveSchedule);
+app.use('/notification', notification);
 
 // everything under /api/* will verify the jwt
 //app.use('/api/*', jwtCheck);
