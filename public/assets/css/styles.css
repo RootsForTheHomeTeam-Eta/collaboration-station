@@ -71,6 +71,11 @@ textarea.style {
     background-color: #EDB816;
 }
 
+.red {
+    background-color: #E05648;
+}
+
+
 .yellowTrans {
     background-color: #FAEEC7;
 }
@@ -102,7 +107,8 @@ textarea.style {
 .icon {
     width: 3.33em;
     padding-top: 10px;
-    margin-left: 40px
+    margin-left: 40px;
+    cursor: help;
 }
 
 .backgroundIcon {
@@ -172,6 +178,11 @@ textarea.style {
     background: white;
     text-align: left;
     border-color: #1caff6;
+}
+
+.tab-content-left {
+    height: 434px;
+    overflow: auto;
 }
 
 .align-left {
@@ -384,38 +395,8 @@ label.css-label-radio {
     margin: 10px;
 }
 
-.modalButton {
-    height: 43px;
-    width: 90px;
-    border-radius: 3px;
-    border: none;
-    margin: 0px -17px 0px 0px;
-    float: right;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-}
-
-.modalWidth {
-    width:100%;
-    margin:auto;
-}
-
-.modalHeader {
-    text-align: center;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 28px;
-}
-
-.modalTitle {
-    text-align: center;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
+.overflow {
+    overflow: auto;
 }
 
 /*----- Form Validation Classes -----*/
