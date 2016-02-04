@@ -115,7 +115,6 @@
                                 <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/apple.png">Submit</button>
                             </form>
                     </div>
-``
 
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="MessageController">
                 <form class="css-form">
@@ -214,7 +213,7 @@
             </div>
             <div class = "col-md-12">
                 <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
-                <button type="submit" ng-controller="ModalController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
+                <button type="submit" ng-controller="FinalScheduleViewController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
                 <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
             </div>
         </div>

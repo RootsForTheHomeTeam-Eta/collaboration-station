@@ -19,5 +19,5 @@ rootsApp.config(['$routeProvider', '$httpProvider', function($routeProvider){
 
 }]);
 
-//modal should be removed from partials if possible
+
 
