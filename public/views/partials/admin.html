@@ -9,9 +9,10 @@
                 <li ng-class="{active: isActive('tabB')}"><a ng-click="onTabClick('tabB')"><p class="tabLabel">Quick Send</p></a></li>
             </ul>
             <div id="tabA" class="tab-content" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="NoticeAlertController">
-                <button ng-repeat="notification in notifications.data" class="notifButton"><img class="notifIcon" src="/assets/img/pailorange.png">
+                <button ng-repeat="notification in notifications.data" class="notifButton" ng-click= "deleteNotifications(notification._id)" ><img class="notifIcon" src="/assets/img/pailorange.png">
                     <h2>{{ notification.orgName}}: submitted</h2>
-                    <p class="subtext">click to remove</p></button>
+                    <p class="subtext">click to remove</p>
+                </button>
             </div>
             <div id="tabB" class="tab-content align-left" ng-show="isActive('tabB')"  ng-class="{active: isActive('tab2')}" ng-controller="NoticeSendController">
                 <form novalidate>
