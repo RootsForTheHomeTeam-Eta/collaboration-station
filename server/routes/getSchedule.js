@@ -8,10 +8,10 @@ var Venue = require('../../db/models/schedule');
 router.get('/', function(req, res, next) {
     console.log('getting schedules');
     // return all events
-    Venue.findOne(
-        //query
-        {venueName: {$exists: true}},
-        // callback
+    Venue.find(
+        ////query
+        //{venueName: {$exists: true}},
+        //// callback
         function (err, docs){
             if (err) {
                 console.log('Error: ',err);
@@ -20,5 +20,8 @@ router.get('/', function(req, res, next) {
             console.log('Docs found!');
             //returns an array of documents named docs
             res.json(docs);
+            console.log(docs);
         });
 });
+
+module.exports = router;
