@@ -12,7 +12,7 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
     //
     //getContactEmails();
 
-    $scope.users = UserRepoFactory.users;
-    UserRepoFactory.getUsers();
+    //UserRepoFactory.getUsers();
+    //$scope.users = UserRepoFactory.users;
 
 }]);

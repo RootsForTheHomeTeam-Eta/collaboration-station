@@ -91,14 +91,15 @@
 
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="MessageController">
                 <form class="css-form">
-                    <img class="decor-img" src="/assets/img/longbackground.png">
+                    <img class="decor-img" src="/assets/img/longbackground.png" />
 
                     <label for="sendToemail" class="formButton tabFormLabel">Email:&nbsp;</label>
-                    <div ng-controller="UserDropDownController">
+                    <div >
                         <input id="sendToemail" type="text" name="sendToemail" ng-model="sendToemail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Send to Email" list="Emails" required/>
                         <datalist id="Emails">
-                            <option  ng-repeat="user in users.data" value="{{user.username}}">{{user.orgName}}</option>
-                        </datalist><br>
+                                <option ng-repeat="user in users.data" value="{{user.username}}">{{user.orgName}}</option>
+                        </datalist>
+                    <br>
                     </div>
 
                     <label for="sendToName" class="formButton tabFormLabel">Name:</label>
