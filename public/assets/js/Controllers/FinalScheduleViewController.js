@@ -6,9 +6,9 @@ rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function(
         method: 'GET',
         url: '/getSchedule'
     }).then(function(docs) {
+        //$scope.schedule = {};
         $scope.schedule = docs;
+        console.log($scope.schedule);
 
     });
-    console.log($scope.schedule);
-
 }]);
