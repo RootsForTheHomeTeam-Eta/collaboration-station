@@ -15,11 +15,11 @@
                 </button>
             </div>
             <div id="tabB" class="tab-content align-left tab-content-left" ng-show="isActive('tabB')"  ng-class="{active: isActive('tab2')}" ng-controller="NoticeSendController">
-                <form novalidate ng-submit="sendQuickMail(users.data, message)">
+                <form novalidate ng-submit="sendQuickMail(noticeUsers.data, message)">
                     <h2 class="higher">Who do you want to notify?</h2>
                     <div class="center overflow">
-                        <input ng-repeat-start="user in users.data" type="checkbox" ng-model="user.checked" name="{{user.orgName}}" id="{{user.orgName}}" value="{{user.username}}" class="css-checkbox">
-                        <label ng-repeat-end for="{{user.orgName}}" class="css-label">{{user.orgName}}</label>
+                        <input ng-repeat-start="noticeUser in noticeUsers.data" type="checkbox" ng-model="noticeUser.checked" name="{{noticeUser.orgName}}" id="{{noticeUser.orgName}}" value="{{noticeUser.username}}" class="css-checkbox">
+                        <label ng-repeat-end for="{{noticeUser.orgName}}" class="css-label">{{noticeUser.orgName}}</label>
                     </div>
 
                     <h2 class="higher">What do you want to send?</h2>
@@ -94,10 +94,10 @@
                     <img class="decor-img" src="/assets/img/longbackground.png" />
 
                     <label for="sendToemail" class="formButton tabFormLabel">Email:&nbsp;</label>
-                    <div >
+                    <div ng-controller="UserDropDownController">
                         <input id="sendToemail" type="text" name="sendToemail" ng-model="sendToemail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Send to Email" list="Emails" required/>
                         <datalist id="Emails">
-                                <option ng-repeat="user in users.data" value="{{user.username}}">{{user.orgName}}</option>
+                                <option ng-repeat="dropUser in dropUsers.data" value="{{dropUser.username}}">{{dropUser.orgName}}</option>
                         </datalist>
                     <br>
                     </div>
