@@ -62,7 +62,7 @@ gulp.task('buildDeps', ['ctrl-build','fact-build']);
 gulp.task('nodemon', function() {
   nodemon({ script: './server/app.js',
             ext: 'html js',
-            tasks: ['jshint'],
+            tasks: [''],
             ignore: ['public/assets/js/controllers.js',
                      'public/assets/js/factories.js']})
     .on('restart', function () {
