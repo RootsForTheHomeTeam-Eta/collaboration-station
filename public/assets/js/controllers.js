@@ -17,6 +17,28 @@ rootsApp.controller('AdminViewController', ['$rootScope', '$scope', '$http', '$l
 
 }]);
 
+rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function($scope, $http) {
+    $scope.hello = 'hello from Final Schedule View controller!';
+    console.log($scope.hello);
+
+    var schedules = [];
+
+    $http({
+        method: 'GET',
+        url: '/getSchedule'
+    }).then(function(response) {
+        schedules.data = response.data;
+
+        //$scope.venueName = response.data.venueName;
+        //$scope.eventDate = response.data[i].events[i].eventDate;
+        //$scope.gameTime = response.data[i].events[i].gameTime;
+        //$scope.arrivalTime = response.data[i].events[i].arrivalTime;
+        //$scope.orgName = response.data[i].events[i].orgName;
+
+    });
+
+}]);
+
 //controller that adds events from admin page under add event tab
 rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
     $scope.event = {};
@@ -191,76 +213,6 @@ rootsApp.controller('MessageController', ['$scope', '$http', function ($scope, $
     console.log($scope.hello);
 }]);
 
-//controller that populates admin created schedule after groups are chosen for specific time slots
-rootsApp.controller('ModalController', ['$scope', '$http', function($scope, $http) {
-    $scope.hello = 'hello from Modal controller!';
-    console.log($scope.hello);
-
-    $scope.generateSchedule= function() {
-        console.log('I clicked');
-        //$http({
-        //    method: 'GET',
-        //    url: '/getSchedule'
-            //all info from venues is available via this request
-        //}.then(function(res){
-            var venueName = 'Target Field';
-            var eventDate = 'Sun, 10/20';
-            var arrivalTime = '11:00 AM';
-            var eventTime= '1:00 PM';
-            //workgroup= res.data.orgName
-
-            //****************\\
-            console.log($scope.test);
-            console.log('I clicked');
-            //var test = $scope.test;
-
-            //pull event data from the database to set variables for schedule creation
-
-            popupS.modal({
-                content: '<div ng-controller="ModalController">' +
-                '<div  class = "venueContainer"> ' +
-                '<div class="modalWidth"> ' +
-                '<div class = "modalHeader orange row container-fluid">'+ venueName +'</div>' +
-                '<div class = "venueHeader yellow row container-fluid"> ' +
-                '<div class = "col-md-2 modalTitle">Date:</div> ' +
-                '<div class = "col-md-1"></div> ' +
-                '<div class = "col-md-2 modalTitle">Arrival Time:</div> ' +
-                '<div class = "col-md-2"></div> ' +
-                '<div class = "col-md-2 modalTitle">Event Time:</div> ' +
-                '<div class = "col-md-1"></div> ' +
-                '<div class = "col-md-2 modalTitle">Group</div> ' +
-                '</div> ' +
-                '<div class = "venueOptions row container-fluid"> ' +
-                '<div class = "col-md-2 modalText">' + eventDate + '</div> ' +
-                '<div class = "col-md-1"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2 modalText">' + arrivalTime + '</div> ' +
-                '<div class = "col-md-2"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2 modalText">' + eventTime + '</div> ' +
-                '<div class = "col-md-1"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2"><button type="button" class="modalButton green modalText">URG</button></div> ' +
-                '</div> ' +
-                '<div class = "venueOptions row container-fluid"> ' +
-                '<div class = "col-md-2 modalText">Sun, 03/23</div> ' +
-                '<div class = "col-md-1"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2 modalText">12:00 AM</div> ' +
-                '<div class = "col-md-2"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2 modalText">3:00 PM</div> ' +
-                '<div class = "col-md-1"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2"><button type="button" class="modalButton green modalText">YFH</button></div> ' +
-                '</div>' +
-                ' </div>' +
-                ' </div> ' +
-                '</div>'
-
-            });
-
-        };
-
-    //will clear schedules with ng-click="clearSchedule()" will ask for
-    //confirmation
-
-}]);
-
 //controller that with function to tell you what partial you are on
 //currently unsed
 rootsApp.controller('NavController', ['$scope','$location', function($scope, $location) {
@@ -348,15 +300,16 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         success(function (data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
-            popupS.alert({
-                content: 'Quick Notice Sent'
-            });
+
             console.log('whoosh');
         }).
         error(function (data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
             $log.error(data, status, headers, config);
+        });
+        popupS.alert({
+            content: 'Quick Notice Sent'
         });
         $scope.hello = 'hello from Notice send controller!';
         console.log($scope.hello);
