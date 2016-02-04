@@ -179,6 +179,11 @@ textarea.style {
     border-color: #1caff6;
 }
 
+.tab-content-left {
+    height: 434px;
+    overflow: auto;
+}
+
 .align-left {
     text-align: left;
     margin: 0px;
@@ -389,46 +394,8 @@ label.css-label-radio {
     margin: 10px;
 }
 
-.modalButton {
-    height: 43px;
-    width: 90px;
-    border-radius: 3px;
-    border: none;
-    margin: 0px -17px 0px 0px;
-    float: right;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-}
-
-.modalWidth {
-    width:100%;
-    margin:auto;
-}
-
-.modalHeader {
-    text-align: center;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 28px;
-}
-
-.modalTitle {
-    text-align: center;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-}
-
-.modalText {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
+.overflow {
+    overflow: auto;
 }
 
 /*----- Form Validation Classes -----*/
