@@ -1,7 +1,7 @@
 <!--this won't really be a partial I don't think it will be in a modal that shows on button click
 or it could be a new view depending on if the modal can use the scope...-->
 
-<div class= 'col-md-12 hidden-xs overflow'>
+<div class= 'col-md-12'>
 
     <div  class = "col-md-12 venueContainer" ng-repeat="schedule in schedule.data">
         <div class="hidden">
@@ -12,37 +12,25 @@ or it could be a new view depending on if the modal can use the scope...-->
         </div>
 
             <div class = "venueHeader yellow  row container-fluid">
-                <div class = "col-md-1 scheduleTitle">Event Date:</div>
-                <div class = "col-md-1 scheduleTitle">Arrival Time:</div>
-                <div class = "col-md-1 scheduleTitle">Event Time:</div>
-                <div class = "col-md-1"></div>
-                <div class = "col-md-1" ng-repeat="event in schedule.events"><p>{{event.orgName}}</p></div>
+                <div class = "col-md-2 scheduleTitle">Event Date:</div>
+                <div class = "col-md-2 scheduleTitle">Arrival Time:</div>
+                <div class = "col-md-2 scheduleTitle">Event Time:</div>
+                <div class = "col-md-6"></div>
             </div>
+                <div class = "venueHeader yellow  row container-fluid">
             <div ng-repeat="event in schedule.events" class = "venueOptions row container-fluid">
-                <div class="hidden">
+                <div class = "col-md-2 scheduleLabel">{{event.eventDate | date: 'mediumDate'}}</div>
+                <div class = "col-md-2 scheduleLabel">{{event.arrivalTime | date: 'h:mm a'}}</div>
+                <div class = "col-md-2 scheduleLabel">{{event.gameTime | date: 'h:mm a'}}</div>
 
-                </div>
-                <div class = "col-md-1 scheduleLabel">{{event.eventDate }}</div>
-                <div class = "col-md-1 scheduleLabel">{{event.arrivalTime}}</div>
-                <div class = "col-md-1 scheduleLabel">{{event.gameTime}}</div>
-                <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
-
-                    <div ng-repeat="event in schedule.events">
-                        <div class="hidden">
-
-                        <div class = "col-md-1">
-                            <!--specific group is found and value is set by user form - color changes based on value with ng-class-->
-                            <div class="selectorStyle">
-                                <p>{{event.orgName}}</p>
-
-                            </div>
-                        </div>
+                <div class = "row container-fluid">
+                <div class = "col-md-6">
+                    <div>
+                        {{event.orgName}}
                     </div>
+                </div>
+                </div>
             </div>
         </div>
+        </div>
     </div>
-
-</div>
-
-
-
