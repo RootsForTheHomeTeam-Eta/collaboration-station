@@ -272,48 +272,91 @@ rootsApp.controller('NavController', ['$scope','$location', function($scope, $lo
 }]);
 
 //controller to populate alerts based on user form submission
-rootsApp.controller('NoticeAlertController',['$scope','messages', function ($scope, messages) {
+rootsApp.controller('NoticeAlertController',['$scope','User2AdminFactory', function ($scope, User2AdminFactory) {
     //alert should appear when activity is made on
     //form submission
-    var self = this;
 
-    self.messages = messages.list;
+    $scope.notifications = User2AdminFactory.notifications;
+    User2AdminFactory.getNotifications();
+    console.log($scope.notifications);
+
 
 }]);
 
 //controller to send quick messages from admin panel
-rootsApp.controller('NoticeSendController', ['$scope', '$http', function ($scope, $http) {
+rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory', '$log',
+    function ($scope, $http, UserRepoFactory, $log) {
     //Send notices with button based on who is selected and what type of message
     //should have a popupS modal confirmation
 
-    $scope.sendQuickMail = function () {
+    // Pull in
+    //    var onFetchError = function (message) {
+    //        $scope.error = "Error Fetching Users. Message:" + message;
+    //    };
+    //    var onFetchCompleted = function (data) {
+    //        $scope.users = data;
+    //    };
+    //    var getUsers = function () {
+    //        //UserRepoFactory.get().then(onFetchCompleted, onFetchError);
+    //        return UserRepoFactory.get;
+    //    };
+        $scope.users = UserRepoFactory.users;
+        UserRepoFactory.getUsers();
+
+        $scope.quickSendForm = {};
+
+    $log.warn($scope.users);
+    $scope.sendQuickMail = function (users, message) {
         console.log('I clicked');
-
-        var data = ({
-            gardenGroupAFC: this.gardenGroupAFC, //This will become auto-populated
-            gardenGroupDWH: this.gardenGroupDWH, //This will become auto-populated
-            gardenGroupURF: this.gardenGroupURF,
-            gardenGroupYFF: this.gardenGroupYFF,
-            gardenGroupYFH: this.gardenGroupYFH,
-            gardenGroupYFL: this.gardenGroupYFL,
-            gardenGroupYFP: this.gardenGroupYFP,
-            gardenGroupYFW: this.gardenGroupYFW,
-            signUp: this.signUp
-
+        $log.warn('NoticeSendController users',users);
+        // array of recipient emails to send to
+        var recipients = [];
+        // check if user was checked
+        users.forEach(function(elem) {
+            if (elem.checked === true) {
+                recipients.push(elem.username);
+            }
         });
+        // data object to pass to email route
+        var emailData = {
+            recipients: recipients,
+            message: message
+        }
+        $log.warn('emailData: ',emailData);
+        $log.warn('recipients: ', recipients);
+        $log.warn('$scope.quickSendForm: ',$scope.quickSendForm);
+        //var data = ({
+        //    gardenGroupAFC: this.gardenGroupAFC, //This will become auto-populated
+        //    gardenGroupDWH: this.gardenGroupDWH, //This will become auto-populated
+        //    gardenGroupURF: this.gardenGroupURF,
+        //    gardenGroupYFF: this.gardenGroupYFF,
+        //    gardenGroupYFH: this.gardenGroupYFH,
+        //    gardenGroupYFL: this.gardenGroupYFL,
+        //    gardenGroupYFP: this.gardenGroupYFP,
+        //    gardenGroupYFW: this.gardenGroupYFW,
+        //    signUp: this.signUp
+        //
+        //});
 
         // Simple POST request example (passing data) :
-        $http.post('/sendQuickMail', data).
+        $http({
+            url: '/api/sendQuickMail',
+            method: 'post',
+            data: emailData
+        }).
+        //$http.post('/api/sendQuickMail').
         success(function (data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
+            popupS.alert({
+                content: 'Quick Notice Sent'
+            });
+            console.log('whoosh');
         }).
         error(function (data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-        });
-        popupS.alert({
-            content: 'Quick Notice Sent'
+            $log.error(data, status, headers, config);
         });
         $scope.hello = 'hello from Notice send controller!';
         console.log($scope.hello);
@@ -433,17 +476,20 @@ rootsApp.controller('TabController', function ($scope){
 
 //controller to auto-populate user emails on send forms
 rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', function($scope, UserRepoFactory) {
-    var onFetchError = function (message) {
-        $scope.error = "Error Fetching Users. Message:" + message;
-    };
-    var onFetchCompleted = function (data) {
-        $scope.users = data;
-    };
-    var getContactEmails = function () {
-        UserRepoFactory.get().then(onFetchCompleted, onFetchError);
-    };
+    //var onFetchError = function (message) {
+    //    $scope.error = "Error Fetching Users. Message:" + message;
+    //};
+    //var onFetchCompleted = function (data) {
+    //    $scope.users = data;
+    //};
+    //var getContactEmails = function () {
+    //    UserRepoFactory.get().then(onFetchCompleted, onFetchError);
+    //};
+    //
+    //getContactEmails();
 
-    getContactEmails();
+    $scope.users = UserRepoFactory.users;
+    UserRepoFactory.getUsers();
 
 }]);
 
@@ -466,28 +512,23 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
 
         $scope.venues = VenueEventsFactory.venues;
         VenueEventsFactory.getVenues();
-        $log.info($scope.hello);
-        //$scope.accounts=[{name:"123"},{name:"124"},{name:"125"}]
-        //
-        //angular.forEach($scope.accounts,function(value,index){
-        //    alert(value.name);
-        //})
-//need to set property values, but I have an array of objects
-//submitting each venue sepearatly would make things simplier
-//    OBJECT Contructor maybe
-//    function person(first, last, age, eye) {
-//        this.firstName = first;
-//        this.lastName = last;
-//        this.age = age;
-//        this.eyeColor = eye;
-//    }
-//    var myFather = new person("John", "Doe", 50, "blue");
-//    var myMother = new person("Sally", "Rally", 48, "green");
-        $scope.event = function(name, date , pref ){
-            this.venueName = name;
-            this.eventDate = date;
-            this.preferences = pref;
+
+        $scope.notification = {};
+        $scope.notification.orgName = AuthService.user.orgName;
+        $log.info($scope.notification);
+
+        $scope.notificationSubmit = function() {
+            $http({
+                url: '/notification/submitNotification',
+                method: 'post',
+                data: $scope.notification
+            }).then(function (res) {
+                //$log.info(res.status);
+                $log.info(res);
+                //console.log(UserSchedule);
+            });
         };
+
         //$scope.testy = new $scope.event("Twins", "07/05/2990", "true");
         $scope.submit = function () {
             var prefObj = {};
@@ -511,38 +552,27 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
             });
             $log.warn(prefObj);
 
-            //var UserSchedule = [];
-            //var venuesSubmit = $scope.venues.data;
-            //angular.forEach(venuesSubmit, function(value){
-            //    var eventsArray = value.events;
-            //
-            //    angular.forEach(eventsArray, function(value) {
-            //        //console.log(value._id);
-            //        value.event.eventId = value._id;
-            //        //UserSchedule.push(value.event.eventId);
-            //        UserSchedule.push(value.event);
-            //    });
-            //
-            //});
-
-             $http({
+            $http({
                  url: '/api/user/submit',
                  method: 'post',
                  data: prefObj
              }).then(function (res) {
                  //$log.info(res.status);
                  $log.info(res);
+                $scope.notificationSubmit();
                //console.log(UserSchedule);
             });
 
         };
 
     }]);
-    rootsApp.controller('PostCtrl',[ 'messages', function (messages){
-        var self = this;
-        self.newMessage = 'Hello World!';
-        self.addMessage = function(message){
-            messages.add(message);
-            self.newMessage = '';
-        };
-    }]);
+
+
+    //rootsApp.controller('PostCtrl',[ 'messages', function (messages){
+    //    var self = this;
+    //    self.newMessage = 'Hello World!';
+    //    self.addMessage = function(message){
+    //        messages.add(message);
+    //        self.newMessage = '';
+    //    };
+    //}]);
