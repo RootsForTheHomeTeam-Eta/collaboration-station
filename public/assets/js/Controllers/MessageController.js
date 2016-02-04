@@ -3,6 +3,7 @@
 rootsApp.controller('MessageController', ['$scope', '$http', function ($scope, $http) {
 
 
+
     $scope.sendMail = function () {
         console.log('I clicked');
 
