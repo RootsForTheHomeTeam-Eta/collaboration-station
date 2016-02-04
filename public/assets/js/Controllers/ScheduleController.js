@@ -5,12 +5,13 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
     VenueEventsFactory.getVenues();
 
+    $scope.formData= {};
+
     //this object is filled by the scope setting we did in the html so that we could deal with the
     //loops easier
-    $scope.formData = {};
-
 
     $scope.submitAndSave = function () {
+        console.log('clicked');
         $http({
             url: '/saveSchedule',
             method: 'post',
@@ -22,6 +23,30 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
             $log.info(res.status);
         });
     };
+
+    var arrayOrgs = ["Appetite for Change","Dream of Wild Health","Urban Roots","Youth Farm Frogtown","Youth Farm Hawthorn","Youth Farm Lyndale","Youth Farm Powderhorn","Youth Farm W.Side"];
+    $scope.$arrayOrgs = arrayOrgs;
+
+
+    $scope.getOrgPreference = function($orgName, $currEventOrgArray) {
+
+         //loop through each organization that has replied to the event so far.
+        for (var i = 0; i <= $currEventOrgArray.length -1; i++ ) {
+
+            // get the orgName from the event.
+            var testOrgName = $currEventOrgArray[i].orgName;
+
+            // compare this to the orgName for the column
+            if (testOrgName == $orgName) {
+
+                // return a preference if there is one
+                return $currEventOrgArray[i].preference;
+            }
+        }
+        // return "cannot" if there isn't a preference.
+        return "cannot";
+    };
+
 
 }]);
 
