@@ -5,9 +5,30 @@ var express = require('express');
 var router = express.Router();
 var notification = require('../../db/models/notification');
 
-// get venue event data
+// delete notification from collection
+router.delete('/deleteNotification/:id', function(req, res, next) {
+    console.log('Enter delete notification route', req.params.id);
+    // return all events
+    notification.remove(
+        //query
+        {_id: req.params.id},
+        // callback
+        function (err, docs){
+            if (err) {
+                console.log('Error: ',err);
+                next(err);
+            }
+            console.log('Notifications found!');
+            console.log(docs);
+            //returns an array of documents named docs
+            res.sendStatus(200);
+        });
+});
+
+
+// get array of notifcation objects data
 router.get('/getNotification', function(req, res, next) {
-    console.log('Enter events route');
+    console.log('Enter new notifcation route');
     // return all events
     notification.find(
         //query
