@@ -12,6 +12,9 @@ rootsApp.config(['$routeProvider', '$httpProvider', function($routeProvider){
     }).when('/user', {
         templateUrl: 'views/partials/userView.html',
         controller: 'UserScheduleFormSubmitController'
+    }).when('/scheduleView', {
+        templateUrl: 'views/partials/scheduleView.html',
+        controller: 'FinalScheduleViewController'
     }).otherwise({
         redirectTo: 'home'
     });
