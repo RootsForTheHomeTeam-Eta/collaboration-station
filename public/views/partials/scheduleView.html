@@ -3,12 +3,12 @@ or it could be a new view depending on if the modal can use the scope...-->
 
 <div class= 'col-md-12 hidden-xs overflow'>
 
-    <div  class = "col-md-12 venueContainer" ng-repeat="venueName in schedule">
+    <div  class = "col-md-12 venueContainer" ng-repeat="schedule in schedule.data">
         <div class="hidden">
 
         </div>
         <div class = 'orange  row container-fluid venueWrapper slightSqound'>
-            <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{venueName}}</h2></div>
+            <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{schedule.venueName}}</h2></div>
         </div>
 
             <div class = "venueHeader yellow  row container-fluid">
@@ -22,7 +22,7 @@ or it could be a new view depending on if the modal can use the scope...-->
                 <div class="hidden">
 
                 </div>
-                <div class = "col-md-1 scheduleLabel">{{event.eventDate}}</div>
+                <div class = "col-md-1 scheduleLabel">{{event.eventDate }}</div>
                 <div class = "col-md-1 scheduleLabel">{{event.arrivalTime}}</div>
                 <div class = "col-md-1 scheduleLabel">{{event.gameTime}}</div>
                 <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
