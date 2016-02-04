@@ -18,10 +18,28 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         $scope.users = UserRepoFactory.users;
         UserRepoFactory.getUsers();
 
-    $log.warn($scope.users);
-    $scope.sendQuickMail = function () {
-        console.log('I clicked');
+        $scope.quickSendForm = {};
 
+    $log.warn($scope.users);
+    $scope.sendQuickMail = function (users, message) {
+        console.log('I clicked');
+        $log.warn('NoticeSendController users',users);
+        // array of recipient emails to send to
+        var recipients = [];
+        // check if user was checked
+        users.forEach(function(elem) {
+            if (elem.checked === true) {
+                recipients.push(elem.username);
+            }
+        });
+        // data object to pass to email route
+        var emailData = {
+            recipients: recipients,
+            message: message
+        }
+        $log.warn('emailData: ',emailData);
+        $log.warn('recipients: ', recipients);
+        $log.warn('$scope.quickSendForm: ',$scope.quickSendForm);
         //var data = ({
         //    gardenGroupAFC: this.gardenGroupAFC, //This will become auto-populated
         //    gardenGroupDWH: this.gardenGroupDWH, //This will become auto-populated
@@ -36,18 +54,24 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         //});
 
         // Simple POST request example (passing data) :
-        $http.post('/api/sendQuickMail').
+        $http({
+            url: '/api/sendQuickMail',
+            method: 'post',
+            data: emailData
+        }).
+        //$http.post('/api/sendQuickMail').
         success(function (data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
+            popupS.alert({
+                content: 'Quick Notice Sent'
+            });
             console.log('whoosh');
         }).
         error(function (data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-        });
-        popupS.alert({
-            content: 'Quick Notice Sent'
+            $log.error(data, status, headers, config);
         });
         $scope.hello = 'hello from Notice send controller!';
         console.log($scope.hello);

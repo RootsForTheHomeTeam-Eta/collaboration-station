@@ -14,11 +14,12 @@
                     <p class="subtext">click to remove</p></button>
             </div>
             <div id="tabB" class="tab-content align-left" ng-show="isActive('tabB')"  ng-class="{active: isActive('tab2')}" ng-controller="NoticeSendController">
-                <form novalidate>
+                <form novalidate ng-submit="sendQuickMail(users.data, message)">
                     <h2 class="higher">Who do you want to notify?</h2>
-                    <div class="center" ng-repeat="gardenUser in users.data">
-                        <input type="checkbox" name="{{gardenUser.orgName}}" ng-model="{{gardenUser.orgName}}" id="{{gardenUser.orgName}}" value="{{gardenUser.gardenUsername}}" class="css-checkbox">
-                        <label for="{{gardenUser.orgName}}" class="css-label">{{gardenUser.orgName}}</label>
+                    <div class="center">
+                        <input ng-repeat-start="user in users.data" type="checkbox" ng-model="user.checked" name="{{user.orgName}}" id="{{user.orgName}}" value="{{user.username}}" class="css-checkbox">
+                        <label ng-repeat-end for="{{user.orgName}}" class="css-label">{{user.orgName}}</label>
+                    </div>
                         <!---->
                         <!--<input type="checkbox" name="gardenGroupAFC" ng-model="gardenGroupAFC" id= "gardenGroupAFC" value="userName for Appetite for change" class="css-checkbox">-->
                         <!--<label for="gardenGroupAFC" class="css-label">Appetite for Change</label>-->
@@ -43,28 +44,24 @@
 
                         <!--<input type="checkbox" name="gardenGroupYFW" ng-model="gardenGroupYFW" id= "gardenGroupYFW" value="userName for Youth Farm W. Side" class="css-checkbox">-->
                         <!--<label for="gardenGroupYFW" class="css-label">Youth Farm W. Side</label>-->
-                    </div>
+
 
                     <h2 class="higher">What do you want to send?</h2>
                     <div class="center">
-                        <input type="radio" name="signUp" id="signUp" value="Hello everyone - our game schedule for the season is ready for your sign up.  Please pick the
-                        games that can work for you. Note your first and second choices and if there are dates that are not doable. Thank you. We'll confirm your game dates
-                        within the next couple of weeks." class="css-checkbox-radio"/>
+                        <input type="radio" ng-model="message" name="message" id="signUp" value="Hello everyone - our game schedule for the season is ready for your sign up.  Please pick the games that can work for you. Note your first and second choices and if there are dates that are not doable. Thank you. We'll confirm your game dates within the next couple of weeks." class="css-checkbox-radio"/>
                         <label for="signUp" class="css-label-radio radGroup1">Sign-up Request</label>
                         <br>
 
-                        <input type="radio" name="signUp" id="firstRemind" value="Hello - please take a look at our game schedule and sign up for
-                        which dates work for your program. We need your picks by the end of the week.  Thank you." class="css-checkbox-radio"/>
+                        <input type="radio" ng-model="message" name="message" id="firstRemind" value="Hello - please take a look at our game schedule and sign up for which dates work for your program. We need your picks by the end of the week.  Thank you." class="css-checkbox-radio"/>
                         <label for="firstRemind" class="css-label-radio radGroup1">Quick Reminder</label>
                         <br>
 
-                        <input type="radio" name="signUp" id="secondRemind" value="Hi - Please sign up for your games as soon as possible. We need to
-                        confirm dates with everyone in the next couple of days.  Thank you." class="css-checkbox-radio"/>
+                        <input type="radio" ng-model="message" name="message" id="secondRemind" value="Hi - Please sign up for your games as soon as possible. We need to confirm dates with everyone in the next couple of days.  Thank you." class="css-checkbox-radio"/>
                         <label for="secondRemind" class="css-label-radio radGroup1">Second Reminder</label>
 
                     </div>
                     <br>
-                    <button type="submit" class="green slightSqound formButton" ng-click="sendQuickMail()"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
+                    <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
                 </form>
             </div>
         </div>
