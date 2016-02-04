@@ -15,7 +15,7 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
     //        //UserRepoFactory.get().then(onFetchCompleted, onFetchError);
     //        return UserRepoFactory.get;
     //    };
-        $scope.users = UserRepoFactory.users;
+        $scope.noticeUsers = UserRepoFactory.users;
         UserRepoFactory.getUsers();
 
         $scope.quickSendForm = {};

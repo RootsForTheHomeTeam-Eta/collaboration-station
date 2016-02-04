@@ -276,7 +276,7 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
     //        //UserRepoFactory.get().then(onFetchCompleted, onFetchError);
     //        return UserRepoFactory.get;
     //    };
-        $scope.users = UserRepoFactory.users;
+        $scope.noticeUsers = UserRepoFactory.users;
         UserRepoFactory.getUsers();
 
         $scope.quickSendForm = {};
@@ -464,10 +464,13 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
     //};
     //
     //getContactEmails();
-
-    //UserRepoFactory.getUsers();
-    //$scope.users = UserRepoFactory.users;
-
+    //$scope.dropUsers = {};
+    UserRepoFactory.getUsers().then(function() {
+        $scope.dropUsers = UserRepoFactory.users;
+        console.log('dropUsers inside',$scope.dropUsers);
+    });
+    //$scope.dropUsers = UserRepoFactory.users;
+    console.log('dropUsers outside',$scope.dropUsers);
 }]);
 
 //controller to submit user responses from schedule form
