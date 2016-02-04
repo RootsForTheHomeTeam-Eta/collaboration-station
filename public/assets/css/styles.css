@@ -107,7 +107,8 @@ textarea.style {
 .icon {
     width: 3.33em;
     padding-top: 10px;
-    margin-left: 40px
+    margin-left: 40px;
+    cursor: help;
 }
 
 .backgroundIcon {
