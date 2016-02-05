@@ -90,14 +90,14 @@
                     </div>
 
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="MessageController">
-                <form class="css-form">
+                <form class="css-form" ng-submit="sendMail()">
                     <img class="decor-img" src="/assets/img/longbackground.png" />
 
                     <label for="sendToemail" class="formButton tabFormLabel">Email:&nbsp;</label>
-                    <div ng-controller="UserDropDownController">
+                    <div>
                         <input id="sendToemail" type="text" name="sendToemail" ng-model="sendToemail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Send to Email" list="Emails" required/>
                         <datalist id="Emails">
-                                <option ng-repeat="dropUser in dropUsers.data" value="{{dropUser.username}}">{{dropUser.orgName}}</option>
+                                <option ng-repeat="dropUser in dropUsers.data" value="{{dropUser.username}}" ng-model="sendToEmail">{{dropUser.orgName}}</option>
                         </datalist>
                     <br>
                     </div>
@@ -106,7 +106,7 @@
                     <input id="sendToName" name="sendToname" type="text" ng-model="sendToname" placeholder="Name" required><br>
                     <textarea id="styled" name="sendTomessage" cols="20" rows="10" ng-model="sendTomessage" placeholder="A custom message" required></textarea>
                     <br><br>
-                    <button type="submit" class="green slightSqound formButton" ng-click="sendMail()"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
+                    <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
                 </form>
             </div>
         </div>
