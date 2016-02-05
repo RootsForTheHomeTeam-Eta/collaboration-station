@@ -62,10 +62,12 @@
                  method: 'post',
                  data: prefObj
              }).then(function (res) {
-                 //$log.info(res.status);
-                 $log.info(res);
+                $log.info(res);
                 $scope.notificationSubmit();
-               //console.log(UserSchedule);
+                popupS.alert({
+                    content: 'Preferences saved'
+                });
+
             });
 
         };
@@ -73,11 +75,3 @@
     }]);
 
 
-    //rootsApp.controller('PostCtrl',[ 'messages', function (messages){
-    //    var self = this;
-    //    self.newMessage = 'Hello World!';
-    //    self.addMessage = function(message){
-    //        messages.add(message);
-    //        self.newMessage = '';
-    //    };
-    //}]);

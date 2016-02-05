@@ -71,8 +71,9 @@ div.options{
 }
 
 .btnUser {
+    margin-top: 2em;
     border-radius: 2px;
-    padding: .5em;
+    padding: 1em;
     border: none;
     color: white;
 }
