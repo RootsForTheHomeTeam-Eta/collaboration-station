@@ -11,6 +11,6 @@ rootsApp.controller('PrintScheduleController', ['$scope', '$window', function($s
         var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
         scheduleWindow.document.write(schedule);
         scheduleWindow.print();
-    }
+    };
 
 }]);

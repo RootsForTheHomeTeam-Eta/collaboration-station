@@ -3,7 +3,7 @@ or it could be a new view depending on if the modal can use the scope...-->
 
 <div class= 'col-md-12'>
 
-    <div  class = "col-md-12 venueContainer" ng-repeat="schedule in schedule.data">
+    <div  class = "col-md-12 venueContainer" id="printArea" ng-repeat="schedule in schedule.data">
         <div class="hidden">
 
         </div>
@@ -39,7 +39,7 @@ or it could be a new view depending on if the modal can use the scope...-->
         <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
         <button type="submit" ng-controller="FinalScheduleViewController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
         <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
-        <button type="button" ng-controller="PrintScheduleController" ng-click="printSchedule()" class="generateStyle green formButton">Print Schedule</button>
+        <button type="button"  ng-click="printSchedule()" class="generateStyle green formButton">Print Schedule</button>
 
     </div>
     <div class = "col-md-12"><br></div>
