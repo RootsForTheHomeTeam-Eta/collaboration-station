@@ -176,10 +176,10 @@
                             </div>
                             <div class = "col-md-1">
                                 <!--specific group is found and value is set by user form - color changes based on value with ng-class-->
-                                <div class="selectorStyle" ng-class="{grey: ($preference == 'undefined'), red: ($preference == 'cannot'), yellow: ($preference == 'second'), green: ($preference == 'first')}">
+                                <div class="selectorStyle" ng-class="{grey: ($preference == 'nores'), red: ($preference == 'cannot'), yellow: ($preference == 'second'), green: ($preference == 'first')}">
                                     <!--if selection is yes and org is app for change then show this input-->
                                     <!--this ng-model will likely have just the org name preference for this game ie yes/no as their name slot is set this is currently set to orgName-->
-                                    <input type="radio" ng-if="$preference !== 'cannot'"  ng-model="formData[$venueIndex].events[$eventIndex].orgName" id="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>
+                                    <input type="radio" ng-if="$preference == 'first' || $preference == 'second'"  ng-model="formData[$venueIndex].events[$eventIndex].orgName" id="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>
 
                                 </div>
                             </div>
