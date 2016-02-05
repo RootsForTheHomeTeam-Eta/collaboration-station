@@ -75,6 +75,10 @@ or it could be a new view depending on if the modal can use the scope...-->
         <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
         <button type="submit" ng-controller="FinalScheduleViewController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
         <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
+        <!--
+        I've added the code below to add a print schedule button since an element can't have multiple controllers
+        button type="button" ng-controller="PrintScheduleController" ng-click="printSchedule()"
+        -->
     </div>
     <div class = "col-md-12"><br></div>
     <div class = "col-md-12"><br></div>
