@@ -65,9 +65,8 @@
                 $log.info(res);
                 $scope.notificationSubmit();
                 popupS.alert({
-                    content: 'Preferences saved'
+                    content: 'Your preferences have been submitted'
                 });
-
             });
 
         };

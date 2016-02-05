@@ -181,8 +181,13 @@ textarea.style {
 }
 
 .tab-content-left {
-    height: 434px;
+    height:175px;
+    /*height: 434px;*/
     overflow: auto;
+}
+
+.alertMin {
+    min-height: 175px;
 }
 
 .align-left {
@@ -418,5 +423,8 @@ input {
 .hidden {
     display: none;
 }
+
+
+
 
 
