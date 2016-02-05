@@ -7,6 +7,22 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
     $scope.formData= {};
 
+    // retrieve user orgNames
+        var arrayOrgs = [];
+    $scope.scheduleUsers = UserRepoFactory.users;
+    UserRepoFactory.getUsers().then(function() {
+
+
+        $scope.scheduleUsers.data.forEach(function(elem) {
+            arrayOrgs.push(elem.orgName);
+        });
+    });
+
+
+
+    $scope.$arrayOrgs = arrayOrgs;
+    console.log('array orgs:',arrayOrgs);
+
     //this object is filled by the scope setting we did in the html so that we could deal with the
     //loops easier
 
@@ -24,8 +40,7 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
         });
     };
 
-    var arrayOrgs = ["Appetite for Change","Dream of Wild Health","Urban Roots","Youth Farm Frogtown","Youth Farm Hawthorn","Youth Farm Lyndale","Youth Farm Powderhorn","Youth Farm W.Side"];
-    $scope.$arrayOrgs = arrayOrgs;
+
 
 
     $scope.getOrgPreference = function($orgName, $currEventOrgArray) {
@@ -44,7 +59,7 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
             }
         }
         // return "cannot" if there isn't a preference.
-        return "cannot";
+        return "nores";
     };
 
     $scope.printSchedule = function(){

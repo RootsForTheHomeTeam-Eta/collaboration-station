@@ -28,13 +28,15 @@ router.post('/', function (req, res) {
         subject: 'A message from Roots for the Home Team',
         text: message + '\n from ' + "Sue" + '\n at ' + "Roots for the Home Team"
     };
-    smtpTrans.sendMail(mailOpts, function (error, res) {
+    smtpTrans.sendMail(mailOpts, function (error, response) {
         //Email not sent
         if (error) {
+            res.sendStatus(400);
             console.log(error + 'you goofed');
         }
         //Email sent
         else {
+            res.sendStatus(200);
             console.log('whoosh');
         }
     });

@@ -1,74 +1,38 @@
 <!--this won't really be a partial I don't think it will be in a modal that shows on button click
 or it could be a new view depending on if the modal can use the scope...-->
 
-<div class= 'col-md-12 hidden-xs overflow' ng-controller="ScheduleController">
+<div class= 'col-md-12'>
 
-    <div  class = "col-md-12 venueContainer" ng-repeat=" venue in venues.data">
+    <div  class = "col-md-12 venueContainer" ng-repeat="schedule in schedule.data">
         <div class="hidden">
-            {{
-            $venueIndex = $index;
 
-            $venueName = venue.venueName;
-            formData[$venueIndex].venueName = $venueName;
-            }}
         </div>
-        <div class = 'orange  row container-fluid venueWrapper slightSqound' ng-click = 'display = !display'>
-            <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{$venueName}}</h2></div>
+        <div class = 'orange  row container-fluid venueWrapper slightSqound'>
+            <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{schedule.venueName}}</h2></div>
         </div>
-
-        <div ng-show = 'display' >
 
             <div class = "venueHeader yellow  row container-fluid">
-                <div class = "col-md-1 scheduleTitle">Event Date:</div>
-                <div class = "col-md-1 scheduleTitle">Arrival Time:</div>
-                <div class = "col-md-1 scheduleTitle">Event Time:</div>
-                <div class = "col-md-1"></div>
-                <div class = "col-md-1" ng-repeat="orgName in $arrayOrgs"><p>{{orgName}}</p></div>
+                <div class = "col-md-2 scheduleTitle">Event Date:</div>
+                <div class = "col-md-2 scheduleTitle">Arrival Time:</div>
+                <div class = "col-md-2 scheduleTitle">Event Time:</div>
+                <div class = "col-md-6"></div>
             </div>
-            <div ng-repeat="event in venue.events" class = "venueOptions row container-fluid">
-                <div class="hidden">
-                    <!--had to set the index of the array to a unique name to avoid overwriting with each itteration-->
-                    <!--set scope to form data so that data could be read and saved-->
-                    {{
-                    $eventIndex = $index;
+                <div class = "venueHeader yellow  row container-fluid">
+            <div ng-repeat="event in schedule.events" class = "venueOptions row container-fluid">
+                <div class = "col-md-2 scheduleLabel">{{event.eventDate | date: 'mediumDate'}}</div>
+                <div class = "col-md-2 scheduleLabel">{{event.arrivalTime | date: 'h:mm a'}}</div>
+                <div class = "col-md-2 scheduleLabel">{{event.gameTime | date: 'h:mm a'}}</div>
 
-                    $eventDate = (event.event.eventDate | date: 'mediumDate');
-                    formData[$venueIndex].events[$eventIndex].eventDate = $eventDate;
-
-                    $arrivalTime = (event.event.arrivalTime | date: 'h:mm a');
-                    formData[$venueIndex].events[$eventIndex].arrivalTime = $arrivalTime;
-
-                    $gameTime = (event.event.gameTime | date: 'h:mm a');
-                    formData[$venueIndex].events[$eventIndex].gameTime = $gameTime;
-                    }}
-                </div>
-                <div class = "col-md-1 scheduleLabel">{{$eventDate}}</div>
-                <div class = "col-md-1 scheduleLabel">{{$arrivalTime}}</div>
-                <div class = "col-md-1 scheduleLabel">{{$gameTime}}</div>
-                <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
-                <!--form needs individual name each time it repeats-->
-                <form name="form_{{$venueIndex}}_{{$eventIndex}}" novalidate>
-
-                    <!--loop through org and pref...if pref is true show radio input if false don't-->
-                    <div ng-repeat="organizationName in $arrayOrgs">
-                        <div class="hidden">
-                            {{
-                            $preference = getOrgPreference(organizationName, event.event.organization);
-                            }}
-                        </div>
-                        <div class = "col-md-1">
-                            <!--specific group is found and value is set by user form - color changes based on value with ng-class-->
-                            <div class="selectorStyle" ng-class="{red: ($preference == 'cannot'), grey: ($preference == 'nores'), yellow: ($preference == 'second'), green: ($preference == 'first')}">
-                                <!--if selection is yes and org is app for change then show this input-->
-                                <!--this ng-model will likely have just the org name preference for this game ie yes/no as their name slot is set this is currently set to orgName-->
-                                <input type="radio" ng-if="$preference !== 'cannot'"  ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>
-                            </div>
-                        </div>
+                <div class = "row container-fluid">
+                <div class = "col-md-6">
+                    <div>
+                        {{event.orgName}}
                     </div>
-
-                </form>
+                </div>
+                </div>
             </div>
         </div>
+
     </div>
     <div class = "col-md-12"><br></div>
     <div class = "col-md-12">
@@ -84,5 +48,6 @@ or it could be a new view depending on if the modal can use the scope...-->
     <div class = "col-md-12"><br></div>
 </div>
 
-</div>
+
+
 

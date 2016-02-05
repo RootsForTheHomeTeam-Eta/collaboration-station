@@ -15,7 +15,7 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
     //        //UserRepoFactory.get().then(onFetchCompleted, onFetchError);
     //        return UserRepoFactory.get;
     //    };
-        $scope.users = UserRepoFactory.users;
+        $scope.noticeUsers = UserRepoFactory.users;
         UserRepoFactory.getUsers();
 
         $scope.quickSendForm = {};
@@ -63,9 +63,6 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         success(function (data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
-            popupS.alert({
-                content: 'Quick Notice Sent'
-            });
             console.log('whoosh');
         }).
         error(function (data, status, headers, config) {
@@ -73,8 +70,14 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
             // or server returns response with an error status.
             $log.error(data, status, headers, config);
         });
+        popupS.alert({
+            content: 'Quick Notice Sent'
+        });
         $scope.hello = 'hello from Notice send controller!';
         console.log($scope.hello);
+        popupS.alert({
+            content: 'Message Sent!'
+        });
     }
 
     }]);

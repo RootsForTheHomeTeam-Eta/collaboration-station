@@ -17,6 +17,21 @@ rootsApp.controller('AdminViewController', ['$rootScope', '$scope', '$http', '$l
 
 }]);
 
+rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function($scope, $http) {
+    $scope.hello = 'hello from Final Schedule View controller!';
+    console.log($scope.hello);
+
+    $http({
+        method: 'GET',
+        url: '/getSchedule'
+    }).then(function(docs) {
+        //$scope.schedule = {};
+        $scope.schedule = docs;
+        console.log($scope.schedule);
+
+    });
+}]);
+
 //controller that adds events from admin page under add event tab
 rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
     $scope.event = {};
@@ -103,8 +118,6 @@ rootsApp.controller('LogoutController', ['$scope', '$location', 'AuthService', f
 //controller that functions on all pages for help screen
 rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$location', 'AuthService', '$log',
     function($rootScope, $scope, $http, $location, AuthService, $log) {
-    $scope.loggedIn = " Sue ";
-
     //// verify logged in status
     //$rootScope.$on('$routeChangeSuccess', function (event, next, current) {
     //    if (AuthService.isLoggedIn() === false) {
@@ -113,7 +126,7 @@ rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$lo
     //    }
     //});
 
-        $scope.loggedIn = " Sue ";
+        $scope.loggedIn = " ";
 
         $scope.onIconCLick = function(){
 
@@ -158,27 +171,31 @@ rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$lo
 
 //controller that sends individual messages from admin view - the email addresses used here should be
 //populated by the userDropdownController/UserRepo Factory
-rootsApp.controller('MessageController', ['$scope', '$http', function ($scope, $http) {
+rootsApp.controller('MessageController', ['$scope', '$http', 'UserRepoFactory',
+    function ($scope, $http, UserRepoFactory) {
+
 
 
     $scope.sendMail = function () {
         console.log('I clicked');
 
-        var data = ({
-            sendToemail : this.sendToemail, //This will become auto-populated
-            sendToname : this.sendToname, //This will become auto-populated
-            sendTomessage : this.sendTomessage
-        });
-
+        var data = {
+            sendToemail : $scope.sendToemail, //This will become auto-populated
+            sendToname : $scope.sendToname, //This will become auto-populated
+            sendTomessage : $scope.sendTomessage
+        };
+        console.log('data for email message:',data);
         // Simple POST request example (passing data) :
         $http.post('/sendNotices', data).
         success(function(data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
+            console.log('email sent!');
         }).
         error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
+            console.log('email not sent!');
         });
         popupS.alert({
             content: 'Message sent'
@@ -189,76 +206,14 @@ rootsApp.controller('MessageController', ['$scope', '$http', function ($scope, $
     //should have a popupS modal confirmation
     $scope.hello = 'hello from messagesendcontroller!';
     console.log($scope.hello);
-}]);
 
-//controller that populates admin created schedule after groups are chosen for specific time slots
-rootsApp.controller('ModalController', ['$scope', '$http', function($scope, $http) {
-    $scope.hello = 'hello from Modal controller!';
-    console.log($scope.hello);
-
-    $scope.generateSchedule= function() {
-        console.log('I clicked');
-        //$http({
-        //    method: 'GET',
-        //    url: '/getSchedule'
-            //all info from venues is available via this request
-        //}.then(function(res){
-            var venueName = 'Target Field';
-            var eventDate = 'Sun, 10/20';
-            var arrivalTime = '11:00 AM';
-            var eventTime= '1:00 PM';
-            //workgroup= res.data.orgName
-
-            //****************\\
-            console.log($scope.test);
-            console.log('I clicked');
-            //var test = $scope.test;
-
-            //pull event data from the database to set variables for schedule creation
-
-            popupS.modal({
-                content: '<div ng-controller="ModalController">' +
-                '<div  class = "venueContainer"> ' +
-                '<div class="modalWidth"> ' +
-                '<div class = "modalHeader orange row container-fluid">'+ venueName +'</div>' +
-                '<div class = "venueHeader yellow row container-fluid"> ' +
-                '<div class = "col-md-2 modalTitle">Date:</div> ' +
-                '<div class = "col-md-1"></div> ' +
-                '<div class = "col-md-2 modalTitle">Arrival Time:</div> ' +
-                '<div class = "col-md-2"></div> ' +
-                '<div class = "col-md-2 modalTitle">Event Time:</div> ' +
-                '<div class = "col-md-1"></div> ' +
-                '<div class = "col-md-2 modalTitle">Group</div> ' +
-                '</div> ' +
-                '<div class = "venueOptions row container-fluid"> ' +
-                '<div class = "col-md-2 modalText">' + eventDate + '</div> ' +
-                '<div class = "col-md-1"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2 modalText">' + arrivalTime + '</div> ' +
-                '<div class = "col-md-2"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2 modalText">' + eventTime + '</div> ' +
-                '<div class = "col-md-1"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2"><button type="button" class="modalButton green modalText">URG</button></div> ' +
-                '</div> ' +
-                '<div class = "venueOptions row container-fluid"> ' +
-                '<div class = "col-md-2 modalText">Sun, 03/23</div> ' +
-                '<div class = "col-md-1"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2 modalText">12:00 AM</div> ' +
-                '<div class = "col-md-2"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2 modalText">3:00 PM</div> ' +
-                '<div class = "col-md-1"><p>&nbsp;</p></div> ' +
-                '<div class = "col-md-2"><button type="button" class="modalButton green modalText">YFH</button></div> ' +
-                '</div>' +
-                ' </div>' +
-                ' </div> ' +
-                '</div>'
-
-            });
-
-        };
-
-    //will clear schedules with ng-click="clearSchedule()" will ask for
-    //confirmation
-
+    // For Dropdown:
+    UserRepoFactory.getUsers().then(function() {
+        $scope.dropUsers = UserRepoFactory.users;
+        console.log('dropUsers inside',$scope.dropUsers);
+    });
+    //$scope.dropUsers = UserRepoFactory.users;
+    console.log('dropUsers outside',$scope.dropUsers);
 }]);
 
 //controller that with function to tell you what partial you are on
@@ -276,12 +231,35 @@ rootsApp.controller('NoticeAlertController',['$scope','User2AdminFactory', funct
     //alert should appear when activity is made on
     //form submission
 
+    $scope.deleteNotifications = function(param){
+        User2AdminFactory.deleteNotifications(param);
+        User2AdminFactory.getNotifications();
+    };
+
+
     $scope.notifications = User2AdminFactory.notifications;
     User2AdminFactory.getNotifications();
     console.log($scope.notifications);
 
 
+
+
 }]);
+
+//
+//$scope.deleteNotifications = function(noti){
+//    console.log(noti);
+//    $http({
+//        url: '/notification/deleteNotification',
+//        method: 'delete',
+//        data: noti
+//    }).then(function (res) {
+//        //$log.info(res.status);
+//        //$log.info(res);
+//
+//    });
+//
+//};
 
 //controller to send quick messages from admin panel
 rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory', '$log',
@@ -300,7 +278,7 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
     //        //UserRepoFactory.get().then(onFetchCompleted, onFetchError);
     //        return UserRepoFactory.get;
     //    };
-        $scope.users = UserRepoFactory.users;
+        $scope.noticeUsers = UserRepoFactory.users;
         UserRepoFactory.getUsers();
 
         $scope.quickSendForm = {};
@@ -348,9 +326,6 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         success(function (data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
-            popupS.alert({
-                content: 'Quick Notice Sent'
-            });
             console.log('whoosh');
         }).
         error(function (data, status, headers, config) {
@@ -358,8 +333,14 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
             // or server returns response with an error status.
             $log.error(data, status, headers, config);
         });
+        popupS.alert({
+            content: 'Quick Notice Sent'
+        });
         $scope.hello = 'hello from Notice send controller!';
         console.log($scope.hello);
+        popupS.alert({
+            content: 'Message Sent!'
+        });
     }
 
     }]);
@@ -403,13 +384,30 @@ rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $
 
 }]);
 //Controller to populate schedule creation bars on admin page
-rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', '$log', function($scope, $http, VenueEventsFactory, $log) {
+rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', 'UserRepoFactory', '$log',
+    function($scope, $http, VenueEventsFactory, UserRepoFactory, $log) {
 
     $scope.venues = VenueEventsFactory.venues;
 
     VenueEventsFactory.getVenues();
 
     $scope.formData= {};
+
+    // retrieve user orgNames
+        var arrayOrgs = [];
+    $scope.scheduleUsers = UserRepoFactory.users;
+    UserRepoFactory.getUsers().then(function() {
+
+
+        $scope.scheduleUsers.data.forEach(function(elem) {
+            arrayOrgs.push(elem.orgName);
+        });
+    });
+
+
+
+    $scope.$arrayOrgs = arrayOrgs;
+    console.log('array orgs:',arrayOrgs);
 
     //this object is filled by the scope setting we did in the html so that we could deal with the
     //loops easier
@@ -428,8 +426,7 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
         });
     };
 
-    var arrayOrgs = ["Appetite for Change","Dream of Wild Health","Urban Roots","Youth Farm Frogtown","Youth Farm Hawthorn","Youth Farm Lyndale","Youth Farm Powderhorn","Youth Farm W.Side"];
-    $scope.$arrayOrgs = arrayOrgs;
+
 
 
     $scope.getOrgPreference = function($orgName, $currEventOrgArray) {
@@ -448,7 +445,7 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
             }
         }
         // return "cannot" if there isn't a preference.
-        return "cannot";
+        return "nores";
     };
 
 
@@ -487,10 +484,13 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
     //};
     //
     //getContactEmails();
-
-    $scope.users = UserRepoFactory.users;
-    UserRepoFactory.getUsers();
-
+    //$scope.dropUsers = {};
+    UserRepoFactory.getUsers().then(function() {
+        $scope.dropUsers = UserRepoFactory.users;
+        console.log('dropUsers inside',$scope.dropUsers);
+    });
+    //$scope.dropUsers = UserRepoFactory.users;
+    console.log('dropUsers outside',$scope.dropUsers);
 }]);
 
 //controller to submit user responses from schedule form
@@ -557,10 +557,11 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
                  method: 'post',
                  data: prefObj
              }).then(function (res) {
-                 //$log.info(res.status);
-                 $log.info(res);
+                $log.info(res);
                 $scope.notificationSubmit();
-               //console.log(UserSchedule);
+                popupS.alert({
+                    content: 'Your preferences have been submitted'
+                });
             });
 
         };
@@ -568,11 +569,3 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
     }]);
 
 
-    //rootsApp.controller('PostCtrl',[ 'messages', function (messages){
-    //    var self = this;
-    //    self.newMessage = 'Hello World!';
-    //    self.addMessage = function(message){
-    //        messages.add(message);
-    //        self.newMessage = '';
-    //    };
-    //}]);

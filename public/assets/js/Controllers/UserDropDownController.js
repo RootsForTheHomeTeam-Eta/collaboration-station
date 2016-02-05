@@ -11,8 +11,11 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
     //};
     //
     //getContactEmails();
-
-    $scope.users = UserRepoFactory.users;
-    UserRepoFactory.getUsers();
-
+    //$scope.dropUsers = {};
+    UserRepoFactory.getUsers().then(function() {
+        $scope.dropUsers = UserRepoFactory.users;
+        console.log('dropUsers inside',$scope.dropUsers);
+    });
+    //$scope.dropUsers = UserRepoFactory.users;
+    console.log('dropUsers outside',$scope.dropUsers);
 }]);

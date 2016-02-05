@@ -8,18 +8,22 @@
                 <li class="tabLabel" ng-class="{active: isActive('tabA')}"><a ng-click="onTabClick('tabA')"><p class="tabLabel">Alerts</p></a></li>
                 <li ng-class="{active: isActive('tabB')}"><a ng-click="onTabClick('tabB')"><p class="tabLabel">Quick Send</p></a></li>
             </ul>
-            <div id="tabA" class="tab-content" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="NoticeAlertController">
+            <div id="tabA" class="tab-content alertMin" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="NoticeAlertController">
+                <!--<button  class="notifButton" ng-click= "deleteNotifications(notification._id)" ><img class="notifIcon" src="/assets/img/pailorange.png">-->
+                    <!--<h2>No Submissions Yet</h2>-->
+                    <!--<p class="subtext">click to remove</p>-->
+                <!--</button>-->
                 <button ng-repeat="notification in notifications.data" class="notifButton" ng-click= "deleteNotifications(notification._id)" ><img class="notifIcon" src="/assets/img/pailorange.png">
                     <h2>{{ notification.orgName}}: submitted</h2>
                     <p class="subtext">click to remove</p>
                 </button>
             </div>
             <div id="tabB" class="tab-content align-left tab-content-left" ng-show="isActive('tabB')"  ng-class="{active: isActive('tab2')}" ng-controller="NoticeSendController">
-                <form novalidate ng-submit="sendQuickMail(users.data, message)">
+                <form novalidate ng-submit="sendQuickMail(noticeUsers.data, message)">
                     <h2 class="higher">Who do you want to notify?</h2>
-                    <div class="center">
-                        <input ng-repeat-start="user in users.data" type="checkbox" ng-model="user.checked" name="{{user.orgName}}" id="{{user.orgName}}" value="{{user.username}}" class="css-checkbox">
-                        <label ng-repeat-end for="{{user.orgName}}" class="css-label">{{user.orgName}}</label>
+                    <div class="center overflow">
+                        <input ng-repeat-start="noticeUser in noticeUsers.data" type="checkbox" ng-model="noticeUser.checked" name="{{noticeUser.orgName}}" id="{{noticeUser.orgName}}" value="{{noticeUser.username}}" class="css-checkbox">
+                        <label ng-repeat-end for="{{noticeUser.orgName}}" class="css-label">{{noticeUser.orgName}}</label>
                     </div>
 
                     <h2 class="higher">What do you want to send?</h2>
@@ -42,7 +46,7 @@
             </div>
         </div>
 
-        <div class="col-md-2 yellowTrans"><img class="backgroundIcon" src="/assets/img/RootsLogoTrans.png"></div>
+        <div class="col-md-2 hidden-xs yellowTrans"><img class="backgroundIcon" src="/assets/img/RootsLogoTrans.png"></div>
 
         <div class="col-md-4 yellowTrans slightSqound" ng-controller="TabController">
             <ul class="tab-links tabs" ng-init="currentTab='tab1'">
@@ -90,22 +94,23 @@
                     </div>
 
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="MessageController">
-                <form class="css-form">
-                    <img class="decor-img" src="/assets/img/longbackground.png">
+                <form class="css-form" ng-submit="sendMail()">
+                    <img class="decor-img" src="/assets/img/longbackground.png" />
 
                     <label for="sendToemail" class="formButton tabFormLabel">Email:&nbsp;</label>
-                    <div ng-controller="UserDropDownController">
+                    <div>
                         <input id="sendToemail" type="text" name="sendToemail" ng-model="sendToemail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="Send to Email" list="Emails" required/>
                         <datalist id="Emails">
-                            <option  ng-repeat="user in users.data" value="{{user.username}}">{{user.orgName}}</option>
-                        </datalist><br>
+                                <option ng-repeat="dropUser in dropUsers.data" value="{{dropUser.username}}" ng-model="sendToEmail">{{dropUser.orgName}}</option>
+                        </datalist>
+                    <br>
                     </div>
 
                     <label for="sendToName" class="formButton tabFormLabel">Name:</label>
                     <input id="sendToName" name="sendToname" type="text" ng-model="sendToname" placeholder="Name" required><br>
                     <textarea id="styled" name="sendTomessage" cols="20" rows="10" ng-model="sendTomessage" placeholder="A custom message" required></textarea>
                     <br><br>
-                    <button type="submit" class="green slightSqound formButton" ng-click="sendMail()"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
+                    <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Submit</button>
                 </form>
             </div>
         </div>
@@ -172,10 +177,11 @@
                             </div>
                             <div class = "col-md-1">
                                 <!--specific group is found and value is set by user form - color changes based on value with ng-class-->
-                                <div class="selectorStyle" ng-class="{red: ($preference == 'cannot'), grey: ($preference == 'nores'), yellow: ($preference == 'second'), green: ($preference == 'first')}">
+                                <div class="selectorStyle" ng-class="{grey: ($preference == 'nores'), red: ($preference == 'cannot'), yellow: ($preference == 'second'), green: ($preference == 'first')}">
                                     <!--if selection is yes and org is app for change then show this input-->
                                     <!--this ng-model will likely have just the org name preference for this game ie yes/no as their name slot is set this is currently set to orgName-->
-                                    <input type="radio" ng-if="$preference !== 'cannot'"  ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>
+                                    <input type="radio" ng-if="$preference == 'first' || $preference == 'second'"  ng-model="formData[$venueIndex].events[$eventIndex].orgName" id="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>
+
                                 </div>
                             </div>
                         </div>
@@ -187,7 +193,8 @@
             <div class = "col-md-12"><br></div>
             <div class = "col-md-12">
                 <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
-                <button type="submit" ng-controller="FinalScheduleViewController" ng-click="generateSchedule()" class="generateStyle green formButton">Generate Schedule</button>
+                <a href="http://localhost:3000/#/scheduleView"><button type="button" ng-click="submitAndSave()" class="generateStyle green formButton">Generate Schedule</button></a>
+                <a href="http://localhost:3000/#/scheduleView"><button class="generateStyle green formButton">View Last Schedule</button></a>
                 <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
             </div>
         <div class = "col-md-12"><br></div>
