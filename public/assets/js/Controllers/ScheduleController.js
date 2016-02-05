@@ -44,7 +44,7 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
             }
         }
         // return "cannot" if there isn't a preference.
-        return "cannot";
+        return "nores";
     };
 
 

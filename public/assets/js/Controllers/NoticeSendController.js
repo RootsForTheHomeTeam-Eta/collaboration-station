@@ -63,7 +63,6 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         success(function (data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
-
             console.log('whoosh');
         }).
         error(function (data, status, headers, config) {
@@ -76,6 +75,9 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         });
         $scope.hello = 'hello from Notice send controller!';
         console.log($scope.hello);
+        popupS.alert({
+            content: 'Message Sent!'
+        });
     }
 
     }]);

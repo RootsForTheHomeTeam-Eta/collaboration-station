@@ -118,8 +118,6 @@ rootsApp.controller('LogoutController', ['$scope', '$location', 'AuthService', f
 //controller that functions on all pages for help screen
 rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$location', 'AuthService', '$log',
     function($rootScope, $scope, $http, $location, AuthService, $log) {
-    $scope.loggedIn = " Sue ";
-
     //// verify logged in status
     //$rootScope.$on('$routeChangeSuccess', function (event, next, current) {
     //    if (AuthService.isLoggedIn() === false) {
@@ -128,7 +126,7 @@ rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$lo
     //    }
     //});
 
-        $scope.loggedIn = " Sue ";
+        $scope.loggedIn = " ";
 
         $scope.onIconCLick = function(){
 
@@ -328,7 +326,6 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         success(function (data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
-
             console.log('whoosh');
         }).
         error(function (data, status, headers, config) {
@@ -341,6 +338,9 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         });
         $scope.hello = 'hello from Notice send controller!';
         console.log($scope.hello);
+        popupS.alert({
+            content: 'Message Sent!'
+        });
     }
 
     }]);
@@ -429,7 +429,7 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
             }
         }
         // return "cannot" if there isn't a preference.
-        return "cannot";
+        return "nores";
     };
 
 
@@ -541,10 +541,11 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
                  method: 'post',
                  data: prefObj
              }).then(function (res) {
-                 //$log.info(res.status);
-                 $log.info(res);
+                $log.info(res);
                 $scope.notificationSubmit();
-               //console.log(UserSchedule);
+                popupS.alert({
+                    content: 'Your preferences have been submitted'
+                });
             });
 
         };
@@ -552,11 +553,3 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
     }]);
 
 
-    //rootsApp.controller('PostCtrl',[ 'messages', function (messages){
-    //    var self = this;
-    //    self.newMessage = 'Hello World!';
-    //    self.addMessage = function(message){
-    //        messages.add(message);
-    //        self.newMessage = '';
-    //    };
-    //}]);
