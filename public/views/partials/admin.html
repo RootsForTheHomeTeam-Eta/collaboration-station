@@ -9,10 +9,10 @@
                 <li ng-class="{active: isActive('tabB')}"><a ng-click="onTabClick('tabB')"><p class="tabLabel">Quick Send</p></a></li>
             </ul>
             <div id="tabA" class="tab-content alertMin" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="NoticeAlertController">
-                <button  class="notifButton" ng-click= "deleteNotifications(notification._id)" ><img class="notifIcon" src="/assets/img/pailorange.png">
-                    <h2>No Submissions Yet</h2>
-                    <p class="subtext">click to remove</p>
-                </button>
+                <!--<button  class="notifButton" ng-click= "deleteNotifications(notification._id)" ><img class="notifIcon" src="/assets/img/pailorange.png">-->
+                    <!--<h2>No Submissions Yet</h2>-->
+                    <!--<p class="subtext">click to remove</p>-->
+                <!--</button>-->
                 <button ng-repeat="notification in notifications.data" class="notifButton" ng-click= "deleteNotifications(notification._id)" ><img class="notifIcon" src="/assets/img/pailorange.png">
                     <h2>{{ notification.orgName}}: submitted</h2>
                     <p class="subtext">click to remove</p>
@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class="col-md-2 yellowTrans"><img class="backgroundIcon" src="/assets/img/RootsLogoTrans.png"></div>
+        <div class="col-md-2 hidden-xs yellowTrans"><img class="backgroundIcon" src="/assets/img/RootsLogoTrans.png"></div>
 
         <div class="col-md-4 yellowTrans slightSqound" ng-controller="TabController">
             <ul class="tab-links tabs" ng-init="currentTab='tab1'">
@@ -193,6 +193,7 @@
             <div class = "col-md-12">
                 <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
                 <a href="http://localhost:3000/#/scheduleView"><button type="button" ng-click="submitAndSave()" class="generateStyle green formButton">Generate Schedule</button></a>
+                <a href="http://localhost:3000/#/scheduleView"><button class="generateStyle green formButton">View Last Schedule</button></a>
                 <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
             </div>
         <div class = "col-md-12"><br></div>
