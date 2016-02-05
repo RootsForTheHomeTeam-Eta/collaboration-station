@@ -9,6 +9,10 @@
                 <li ng-class="{active: isActive('tabB')}"><a ng-click="onTabClick('tabB')"><p class="tabLabel">Quick Send</p></a></li>
             </ul>
             <div id="tabA" class="tab-content alertMin" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="NoticeAlertController">
+                <button  class="notifButton" ng-click= "deleteNotifications(notification._id)" ><img class="notifIcon" src="/assets/img/pailorange.png">
+                    <h2>No Submissions Yet</h2>
+                    <p class="subtext">click to remove</p>
+                </button>
                 <button ng-repeat="notification in notifications.data" class="notifButton" ng-click= "deleteNotifications(notification._id)" ><img class="notifIcon" src="/assets/img/pailorange.png">
                     <h2>{{ notification.orgName}}: submitted</h2>
                     <p class="subtext">click to remove</p>
@@ -172,10 +176,11 @@
                             </div>
                             <div class = "col-md-1">
                                 <!--specific group is found and value is set by user form - color changes based on value with ng-class-->
-                                <div class="selectorStyle" ng-class="{red: ($preference == 'cannot'), grey: ($preference == 'nores'), yellow: ($preference == 'second'), green: ($preference == 'first')}">
+                                <div class="selectorStyle" ng-class="{grey: ($preference == 'undefined'), red: ($preference == 'cannot'), yellow: ($preference == 'second'), green: ($preference == 'first')}">
                                     <!--if selection is yes and org is app for change then show this input-->
                                     <!--this ng-model will likely have just the org name preference for this game ie yes/no as their name slot is set this is currently set to orgName-->
-                                    <input type="radio" ng-if="$preference !== 'cannot'"  ng-model="formData[$venueIndex].events[$eventIndex].orgName" name="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>
+                                    <input type="radio" ng-if="$preference !== 'cannot'"  ng-model="formData[$venueIndex].events[$eventIndex].orgName" id="radio_{{$venueIndex}}_{{$eventIndex}}" ng-value= organizationName>
+
                                 </div>
                             </div>
                         </div>
