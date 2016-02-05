@@ -1,6 +1,7 @@
 p {
     font-family: 'Roboto', sans-serif;
-    font-weight: 400
+    font-weight: 400;
+    font-size: 14px;
 }
 
 h2 {
@@ -182,12 +183,15 @@ textarea.style {
 
 .tab-content-left {
     height:175px;
-    /*height: 434px;*/
-    overflow: auto;
 }
 
 .alertMin {
     min-height: 175px;
+    max-height: 434px;
+}
+
+.overflow {
+    overflow: auto;
 }
 
 .align-left {
@@ -203,7 +207,7 @@ textarea.style {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     margin:0;
-    padding: 0;
+    padding: 0 3px 0 0;
     font-size: 20px;
 }
 
@@ -236,7 +240,7 @@ textarea.style {
     text-decoration: none;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
-    margin: 9px 0px -5px;
+    margin: 9px -3px -4px -3px;
     color: white;
     background-color: #DA7400;
     cursor:pointer;
@@ -357,7 +361,7 @@ label.css-label-radio {
     font-weight: 500;
     margin:0;
     text-align: center;
-    padding: 2px 0 0 0;
+    padding: 11px 0 0 0;
     font-size: 22px;
     color: white;
 }
@@ -400,8 +404,9 @@ label.css-label-radio {
     margin: 10px;
 }
 
-.overflow {
-    overflow: auto;
+.orgHeader {
+    min-width: 1420px;
+    max-width: 1420px
 }
 
 /*----- Form Validation Classes -----*/
