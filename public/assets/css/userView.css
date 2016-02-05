@@ -71,10 +71,17 @@ div.options{
 }
 
 .btnUser {
+    margin-top: 2em;
     border-radius: 2px;
-    padding: .5em;
+    padding: 1em;
     border: none;
     color: white;
+}
+
+.submitBy {
+    text-align: left;
+    border: 2px solid #55AC3A;
+
 }
 
 /*input[type="radio"]{*/
