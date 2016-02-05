@@ -66,6 +66,9 @@
                  $log.info(res);
                 $scope.notificationSubmit();
                //console.log(UserSchedule);
+                popupS.alert({
+                    content: 'Your preferences have been submitted'
+                });
             });
 
         };
