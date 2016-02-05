@@ -17,7 +17,7 @@ rootsApp.controller('AdminViewController', ['$rootScope', '$scope', '$http', '$l
 
 }]);
 
-rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function($scope, $http) {
+rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', '$window', function($scope, $http, $window) {
     $scope.hello = 'hello from Final Schedule View controller!';
     console.log($scope.hello);
 
@@ -30,6 +30,17 @@ rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function(
         console.log($scope.schedule);
 
     });
+
+    $scope.printSchedule = function(){
+
+        // need an id on the schedule html, 'printArea' was used on Stack Overflow
+        var schedule = document.getElementById('printArea').innerHTML;
+        // the first two arguments to $window.open are a URL and a name.
+        //these were left blank but I imagine we could put it in later
+        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        scheduleWindow.document.write(schedule);
+        scheduleWindow.print();
+    };
 }]);
 
 //controller that adds events from admin page under add event tab
@@ -356,6 +367,22 @@ rootsApp.controller('PrevController', ['$scope', '$http', function($scope, $http
     };
 }]);
 
+// $window is an Angular service and needs to be put in the angular config
+
+rootsApp.controller('PrintScheduleController', ['$scope', '$window', function($scope, $window){
+    console.log('Printing from PrintScheduleController.js');
+    $scope.printSchedule = function(){
+
+        // need an id on the schedule html, 'printArea' was used on Stack Overflow
+        var schedule = document.getElementById('printArea').innerHTML;
+        // the first two arguments to $window.open are a URL and a name.
+        //these were left blank but I imagine we could put it in later
+        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        scheduleWindow.document.write(schedule);
+        scheduleWindow.print();
+    };
+
+}]);
 //controller for creating new users on the database
 rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $http) {
     $scope.user = {};
@@ -384,8 +411,7 @@ rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $
 
 }]);
 //Controller to populate schedule creation bars on admin page
-rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', 'UserRepoFactory', '$log',
-    function($scope, $http, VenueEventsFactory, UserRepoFactory, $log) {
+rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', '$log', '$window', function($scope, $http, VenueEventsFactory, $log, $window) {
 
     $scope.venues = VenueEventsFactory.venues;
 
@@ -447,6 +473,18 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
         // return "cannot" if there isn't a preference.
         return "nores";
     };
+
+    $scope.printSchedule = function(){
+
+        // need an id on the schedule html, 'printArea' was used on Stack Overflow
+        var schedule = document.getElementById('printArea').innerHTML;
+        // the first two arguments to $window.open are a URL and a name.
+        //these were left blank but I imagine we could put it in later
+        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        scheduleWindow.document.write(schedule);
+        scheduleWindow.print();
+    };
+
 
 
 }]);
