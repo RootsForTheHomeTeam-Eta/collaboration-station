@@ -2,6 +2,7 @@
 rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
     $scope.event = {};
   //form data tied to model where possible
+
     $scope.submitEventForm = function () {
       var event = {
         venueName: $scope.venueName,
@@ -26,6 +27,7 @@ rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFacto
       //});
 
     };
+
   //should have a popupS modal confirmation
 
 }]);
