@@ -397,7 +397,7 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
     //loops easier
 
     $scope.submitAndSave = function () {
-        console.log('clicked');
+
         $http({
             url: '/saveSchedule',
             method: 'post',
@@ -407,11 +407,13 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
                 content: 'Schedule Saved'
             });
             $log.info(res.status);
+            console.log('clicked');
+            console.log($scope.formData);
         });
     };
 
 
-    var arrayOrgs = ["Appetite for Change", "Dream of Wild Health", "Youth Farm Frogtown","Urban Roots", "Youth Farm Hawthorn", "Youth Farm Lyndale", "Youth Farm Powderhorn", "Youth Farm W.Side"];
+    var arrayOrgs = ["Appetite for Change", "Dream of Wild Health", "Youth Farm Frogtown", "Urban Roots", "Youth Farm Hawthorn", "Youth Farm Lyndale", "Youth Farm Powderhorn", "Youth Farm W.Side"];
     $scope.$arrayOrgs = arrayOrgs;
 
 
@@ -555,3 +557,21 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
     }]);
 
 
+
+/**
+ * Created by manadab on 2/5/16.
+ */
+rootsApp.controller('PrintScheduleController', ['$scope', '$window', function($scope, $window){
+    console.log('Printing from PrintScheduleController.js');
+    $scope.printSchedule = function(){
+        console.log('print clicked');
+        // need an id on the schedule html, 'printArea' was used on Stack Overflow
+        var schedule = document.getElementById('printArea').innerHTML;
+        // the first two arguments to $window.open are a URL and a name.
+        //these were left blank but I imagine we could put it in later
+        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        scheduleWindow.document.write(schedule);
+        scheduleWindow.print();
+    };
+
+}]);
