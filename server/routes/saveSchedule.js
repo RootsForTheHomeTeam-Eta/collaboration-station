@@ -13,10 +13,10 @@ router.post('/', function(req, res, next) {
 
         for (n in req.body[i].events) {
             var event = ({
-                eventDate: req.body[n].events[i].eventDate,
-                gameTime: req.body[n].events[i].gameTime,
-                arrivalTime: req.body[n].events[i].arrivalTime,
-                orgName: req.body[n].events[i].orgName
+                eventDate: req.body[i].events[n].eventDate,
+                gameTime: req.body[i].events[n].gameTime,
+                arrivalTime: req.body[i].events[n].arrivalTime,
+                orgName: req.body[i].events[n].orgName
             });
             events.push(event);
 
