@@ -6,6 +6,13 @@ var Schedule = require('../../db/models/schedule');
 
 router.post('/', function(req, res, next) {
 
+    //empties schedule data completely and will save new schedule, only one set of schedules will exist at once
+    //so that when a schedule is saved it doesn't have duplicates
+
+    //Schedule.remove(function(err,removed) {});
+
+
+
     //loop through each index of form data and create a schedule object
     for (i in req.body) {
         console.log(req.body);
