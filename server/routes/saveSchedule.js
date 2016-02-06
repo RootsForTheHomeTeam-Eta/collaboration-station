@@ -2,10 +2,13 @@ var express = require('express');
 var router = express.Router();
 var Schedule = require('../../db/models/schedule');
 
+
+
 router.post('/', function(req, res, next) {
 
     //loop through each index of form data and create a schedule object
     for (i in req.body) {
+        console.log(req.body);
         var events = [];
 
         for (n in req.body[i].events) {
