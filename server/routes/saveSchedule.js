@@ -4,19 +4,19 @@ var Schedule = require('../../db/models/schedule');
 
 router.post('/', function(req, res, next) {
 
-    var events = [];
-
     //loop through each index of form data and create a schedule object
     for (i in req.body) {
+        var events = [];
 
         for (n in req.body[i].events) {
             var event = ({
-                eventDate: req.body[i].events[n].eventDate,
-                gameTime: req.body[i].events[n].gameTime,
-                arrivalTime: req.body[i].events[n].arrivalTime,
-                orgName: req.body[i].events[n].orgName
+                eventDate: req.body[n].events[i].eventDate,
+                gameTime: req.body[n].events[i].gameTime,
+                arrivalTime: req.body[n].events[i].arrivalTime,
+                orgName: req.body[n].events[i].orgName
             });
             events.push(event);
+
         }
         var schedule = new Schedule ({
             venueName: req.body[i].venueName,

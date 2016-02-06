@@ -12,7 +12,7 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
     //loops easier
 
     $scope.submitAndSave = function () {
-        console.log('clicked');
+
         $http({
             url: '/saveSchedule',
             method: 'post',
@@ -22,11 +22,13 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
                 content: 'Schedule Saved'
             });
             $log.info(res.status);
+            console.log('clicked');
+            console.log($scope.formData);
         });
     };
 
 
-    var arrayOrgs = ["Appetite for Change", "Dream of Wild Health", "Youth Farm Frogtown","Urban Roots", "Youth Farm Hawthorn", "Youth Farm Lyndale", "Youth Farm Powderhorn", "Youth Farm W.Side"];
+    var arrayOrgs = ["Appetite for Change", "Dream of Wild Health", "Youth Farm Frogtown", "Urban Roots", "Youth Farm Hawthorn", "Youth Farm Lyndale", "Youth Farm Powderhorn", "Youth Farm W.Side"];
     $scope.$arrayOrgs = arrayOrgs;
 
 
