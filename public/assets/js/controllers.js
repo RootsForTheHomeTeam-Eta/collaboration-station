@@ -53,6 +53,11 @@ rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFacto
         popupS.alert({
           content: 'Your new event has been added!'
         });
+        $scope.venueName = '';
+        $scope.eventDate = '';
+        $scope.arrivalTime = '';
+        $scope.gameTime = '';
+        $scope.submitBy = '';
       });
       //$http({
       //  url: '/api/event/getEvents',
