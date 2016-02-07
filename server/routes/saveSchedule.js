@@ -9,7 +9,7 @@ router.post('/', function(req, res, next) {
     //empties schedule data completely and will save new schedule, only one set of schedules will exist at once
     //so that when a schedule is saved it doesn't have duplicates
 
-    //Schedule.remove(function(err,removed) {});
+    Schedule.remove(function(err,removed) {});
 
 
 
