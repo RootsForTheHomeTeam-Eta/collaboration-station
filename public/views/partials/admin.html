@@ -56,7 +56,7 @@
             </ul>
             <div id="tab1" class="tab-content" ng-show="isActive('tab1')" ng-class="{active: isActive('tab1')}" ng-controller="FormEventController">
                 <!--reset not working at all in the model-->
-                <ng-form  name= "addEvent" class="css-form" novalidate>
+                <form  name= "addEvent" class="css-form" ng-submit="submitEventForm()" novalidate>
                     <img class="decor-img" src="/assets/img/longbackground.png">
                     <label for="Venues" class="formButton tabFormLabel">Event Venue:</label>
                     <input type="text" name="venueName" ng-model="venueName" placeholder="Choose Venue" list="Venues" required/>
@@ -73,13 +73,13 @@
                     <label for="submitBy" class="formButton tabFormLabel">Submit By: &nbsp;&nbsp;</label>
                     <input id="submitBy" name="submitBy" type="date" ng-model="submitBy" required>
                     <br><br>
-                    <button type="submit" ng-disabled="addEvent.$invalid" ng-click="submitEventForm()" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
-                    <button type ="button" ng-click="reset()" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Reset</button>
-                </ng-form>
+                    <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
+                    <button type="reset" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Reset</button>
+                </form>
                 <!--if just form reset type can be reset and it works but form is able to be submit without being filled out-->
             </div>
                     <div id="tab2" class="tab-content" ng-show="isActive('tab2')"  ng-class="{active: isActive('tab2')}" ng-controller="RegisterController">
-                            <form class="css-form" novalidate ng-submit="register()">
+                            <form class="css-form" ng-submit="registerUser()" novalidate>
                                 <img class="decor-img" src="/assets/img/longbackground.png">
                                 <label for="orgName" class="formButton tabFormLabel">Group Name:</label>
                                 <input id="orgName" type="text" name="orgName" ng-model="orgName" placeholder="Organization Name" required><br>
@@ -92,10 +92,12 @@
                                 <label for="password" class="formButton tabFormLabel">Password:&nbsp; &nbsp;&nbsp;</label>
                                 <input id="password" type="password" name="password" ng-model="password" placeholder="eg: UrbanRoots986"><br>
                                 <br>
-                                <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/apple.png">Submit</button>
+                                <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
                                 <button type="reset" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Reset</button>
                             </form>
                     </div>
+
+            <!--this form works perfectly-->
 
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="MessageController">
                 <form class="css-form" ng-submit="sendMail()">

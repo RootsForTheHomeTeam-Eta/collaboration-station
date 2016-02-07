@@ -36,7 +36,13 @@ rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function(
 rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
     $scope.event = {};
   //form data tied to model where possible
-
+    $scope.eventReset = function() {
+    $scope.venueName = '';
+    $scope.eventDate = '';
+    $scope.arrivalTime = '';
+    $scope.gameTime = '';
+    $scope.submitBy = '';
+  };
     $scope.submitEventForm = function () {
       var event = {
         venueName: $scope.venueName,
@@ -361,16 +367,8 @@ rootsApp.controller('PrevController', ['$scope', '$http', function($scope, $http
 //controller for creating new users on the database
 rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $http) {
     $scope.user = {};
-    $scope.reset = function() {
-        $scope.orgName = '';
-        $scope.firstName = '';
-        $scope.lastName = '';
-        $scope.userName = '';
-        $scope.password = '';
-    };
-    //reset not working in this model
-    //reset can wokr but them require doesn't
-    $scope.register = function () {
+
+    $scope.registerUser = function () {
         //form data tied to model
         var user = {
             orgName: $scope.orgName,
@@ -391,7 +389,7 @@ rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $
             content: 'User Registered.'
         });
     };
-    //should have a popupS modal confirmation
+    //alert popping even if form not submitted
 
 
 
