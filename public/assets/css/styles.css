@@ -429,7 +429,28 @@ input {
     display: none;
 }
 
+/*print schedule styles*/
 
 
+td {
+    border: solid #EDB816 3px;
+    width: 20%;
+    border-radius: 5px;
+}
+
+.printTable {
+    text-align: left;
+    padding: 7px;
+}
+
+#printArea {
+    width: 90%;
+    margin: 0px 45px 0px 45px;
+    padding: 10px 6px 0px 6px;
+}
+
+.borderOrange {
+    border-bottom-color: #DA7400;
+}
 
 
