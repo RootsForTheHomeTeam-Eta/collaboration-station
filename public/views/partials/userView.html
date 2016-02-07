@@ -1,10 +1,10 @@
 <div>
     <div class= 'col-xs-12 col-md-6 col-md-offset-3 venueBox'>
         <div  class = "col-xs-12 venueContainer" ng-repeat=" venue in venues.data" >
-            <div class = 'orange  row container-fluid venueWrapper' ng-click = 'display = !display'>
+            <div class = 'orange  row container-fluid venueWrapper'>
                 <div class = 'vTop orange col-xs-12 slightSqound'><p class="venueLabel whiteText">{{venue.venueName}}</p></div>
             </div>
-            <div ng-show = 'display'>
+            <div>
                 <div class = "venueHeader yellow  row container-fluid">
                     <div class = "col-xs-2">Date:</div>
                     <div class = "col-xs-2">Arrival:</div>
@@ -17,21 +17,23 @@
                     <div class = "col-xs-2">{{event.event.eventDate | date: 'mediumDate' }}</div>
                     <div class = "col-xs-2">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
                     <div class = "col-xs-2">{{event.event.gameTime | date: 'h:mm a'}}</div>
-                    <form novalidate>
-                        <div class = "col-xs-2"><input ng-model = event.event.preferences  type="radio" name="preference" value="first" class="green" required=true /></div>
-                        <div class = "col-xs-2"><input ng-model = event.event.preferences  type="radio" name="preference" value="second" class="yellow" required=true /></div>
-                        <div class = "col-xs-2"><input ng-model = event.event.preferences  type="radio" name="preference" value="cannot" class="stop" required=true /></div>
-
+                    <form name = 'prefForm'>
+                        <div class = "col-xs-2" ng-if = "verify(event.event.organization)"><input required ng-model = prefForm.preferences  type="radio" name="preference" value="first" class="green" /></div>
+                        <div class = "col-xs-2" ng-if = "verify(event.event.organization)"><input required ng-model = prefForm.preferences  type="radio" name="preference" value="second" class="yellow" /></div>
+                        <div class = "col-xs-2" ng-if = "verify(event.event.organization)"><input required ng-model = prefForm.preferences  type="radio" name="preference" value="cannot" class="stop" /></div>
+                        <div class = "col-xs-12 submitBy">Please Submit Preference by: {{event.event.submitBy | date: 'mediumDate' }}</div>
+                        <div class="col-xs-12">
+                        <button ng-if = "verify(event.event.organization)" ng-disabled = "prefForm.$invalid" ng-click="submit( $parent.venue._id, event._id, prefForm.preferences )"  type="submit" class= "green btnUser" >SUBMIT</button>
+                        <button ng-if = "!verify(event.event.organization)" type="button" class= "green btnUser" ng-click="reset( $parent.venue._id, event._id, event.event.organization )" >RESET</button>
+                        <p>{{event.event.oranization}}</p>
+                        </div>
                     </form>
-                    <div class = "col-xs-12 submitBy">Please Submit Preference by: {{event.event.submitBy | date: 'mediumDate' }}</div>
-
                 </div>
-
             </div>
         </div>
     </div>
         <div class= 'col-xs-12'>
-            <button ng-disabled = "prefForm.$invalid"   type="submit" class= "green btnUser center-block" >SUBMIT</button>
+
         </div>
 
 </div>
