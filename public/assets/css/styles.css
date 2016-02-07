@@ -432,15 +432,11 @@ input {
 /*print schedule styles*/
 
 
-td {
-    border: solid #EDB816 3px;
-    width: 20%;
-    border-radius: 5px;
-}
 
 .printTable {
     text-align: left;
     padding: 7px;
+    width: 20%;
 }
 
 #printArea {
@@ -451,6 +447,12 @@ td {
 
 .borderOrange {
     border-bottom-color: #DA7400;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.border {
+    border: solid #EDB816 1px;
 }
 
 
