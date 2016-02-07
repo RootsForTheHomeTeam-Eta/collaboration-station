@@ -1,6 +1,6 @@
 //Controller to populate schedule creation bars on admin page
-rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', 'UserRepoFactory', '$log',
-    function($scope, $http, VenueEventsFactory, UserRepoFactory, $log) {
+rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', '$log',
+    function($scope, $http, VenueEventsFactory, $log) {
 
     $scope.venues = VenueEventsFactory.venues;
 
@@ -8,27 +8,11 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
     $scope.formData= {};
 
-    // retrieve user orgNames
-        var arrayOrgs = [];
-    $scope.scheduleUsers = UserRepoFactory.users;
-    UserRepoFactory.getUsers().then(function() {
-
-
-        $scope.scheduleUsers.data.forEach(function(elem) {
-            arrayOrgs.push(elem.orgName);
-        });
-    });
-
-
-
-    $scope.$arrayOrgs = arrayOrgs;
-    console.log('array orgs:',arrayOrgs);
-
     //this object is filled by the scope setting we did in the html so that we could deal with the
     //loops easier
 
     $scope.submitAndSave = function () {
-        console.log('clicked');
+
         $http({
             url: '/saveSchedule',
             method: 'post',
@@ -38,15 +22,19 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
                 content: 'Schedule Saved'
             });
             $log.info(res.status);
+            console.log('clicked');
+            console.log($scope.formData);
         });
     };
 
 
+    var arrayOrgs = ["Appetite for Change", "Dream of Wild Health", "Youth Farm Frogtown", "Urban Roots", "Youth Farm Hawthorn", "Youth Farm Lyndale", "Youth Farm Powderhorn", "Youth Farm W.Side"];
+    $scope.$arrayOrgs = arrayOrgs;
 
 
     $scope.getOrgPreference = function($orgName, $currEventOrgArray) {
 
-         //loop through each organization that has replied to the event so far.
+         ///loop through each organization that has replied to the event so far.
         for (var i = 0; i <= $currEventOrgArray.length -1; i++ ) {
 
             // get the orgName from the event.
