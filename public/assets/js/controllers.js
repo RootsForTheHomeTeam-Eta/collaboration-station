@@ -36,6 +36,7 @@ rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function(
 rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
     $scope.event = {};
   //form data tied to model where possible
+
     $scope.submitEventForm = function () {
       var event = {
         venueName: $scope.venueName,
@@ -65,6 +66,7 @@ rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFacto
       //});
 
     };
+
   //should have a popupS modal confirmation
 
 }]);
@@ -389,8 +391,8 @@ rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $
 
 }]);
 //Controller to populate schedule creation bars on admin page
-rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', 'UserRepoFactory', '$log',
-    function($scope, $http, VenueEventsFactory, UserRepoFactory, $log) {
+rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', '$log',
+    function($scope, $http, VenueEventsFactory, $log) {
 
     $scope.venues = VenueEventsFactory.venues;
 
@@ -398,27 +400,11 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
     $scope.formData= {};
 
-    // retrieve user orgNames
-        var arrayOrgs = [];
-    $scope.scheduleUsers = UserRepoFactory.users;
-    UserRepoFactory.getUsers().then(function() {
-
-
-        $scope.scheduleUsers.data.forEach(function(elem) {
-            arrayOrgs.push(elem.orgName);
-        });
-    });
-
-
-
-    $scope.$arrayOrgs = arrayOrgs;
-    console.log('array orgs:',arrayOrgs);
-
     //this object is filled by the scope setting we did in the html so that we could deal with the
     //loops easier
 
     $scope.submitAndSave = function () {
-        console.log('clicked');
+
         $http({
             url: '/saveSchedule',
             method: 'post',
@@ -428,15 +414,19 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
                 content: 'Schedule Saved'
             });
             $log.info(res.status);
+            console.log('clicked');
+            console.log($scope.formData);
         });
     };
 
 
+    var arrayOrgs = ["Appetite for Change", "Dream of Wild Health", "Youth Farm Frogtown", "Urban Roots", "Youth Farm Hawthorn", "Youth Farm Lyndale", "Youth Farm Powderhorn", "Youth Farm W.Side"];
+    $scope.$arrayOrgs = arrayOrgs;
 
 
     $scope.getOrgPreference = function($orgName, $currEventOrgArray) {
 
-         //loop through each organization that has replied to the event so far.
+         ///loop through each organization that has replied to the event so far.
         for (var i = 0; i <= $currEventOrgArray.length -1; i++ ) {
 
             // get the orgName from the event.
@@ -574,3 +564,21 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
     }]);
 
 
+
+/**
+ * Created by manadab on 2/5/16.
+ */
+rootsApp.controller('PrintScheduleController', ['$scope', '$window', function($scope, $window){
+    console.log('Printing from PrintScheduleController.js');
+    $scope.printSchedule = function(){
+        console.log('print clicked');
+        // need an id on the schedule html, 'printArea' was used on Stack Overflow
+        var schedule = document.getElementById('printArea').innerHTML;
+        // the first two arguments to $window.open are a URL and a name.
+        //these were left blank but I imagine we could put it in later
+        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        scheduleWindow.document.write(schedule);
+        scheduleWindow.print();
+    };
+
+}]);

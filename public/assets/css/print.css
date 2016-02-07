@@ -1,0 +1,19 @@
+body {
+    font-family: Georgia, serif;
+    background: green;
+    color: black;
+}
+
+header {
+    display: none
+}
+
+td {
+    border: solid 1px;
+    width: 20%;
+}
+
+button {
+    display: none;
+}
+
