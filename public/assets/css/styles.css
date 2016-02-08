@@ -142,6 +142,11 @@ textarea.style {
     outline-color: #55AC3A;
 }
 
+.fillButton {
+    outline-color: white;
+    cursor: default;
+}
+
 .subtext {
     font-size: 8px;
     margin: -16px 0px 10px 0px;
