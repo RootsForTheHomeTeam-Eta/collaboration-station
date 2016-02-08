@@ -9,9 +9,8 @@
                 <li ng-class="{active: isActive('tabB')}"><a ng-click="onTabClick('tabB')"><p class="tabLabel">Quick Send</p></a></li>
             </ul>
             <div id="tabA" class="tab-content alertMin overflow" ng-show="isActive('tabA')" ng-class="{active: isActive('tab1')}" ng-controller="NoticeAlertController">
-                <button  class="notifButton" ng-click= "deleteNotifications(notification._id)" ><img class="notifIcon" src="/assets/img/pailorange.png">
-                    <h2>No Submissions Yet</h2>
-                    <p class="subtext">click to remove</p>
+                <button class="notifButton fillButton"><img class="notifIcon" src="/assets/img/pailorange.png">
+                    <h2>Submissions Below</h2>
                 </button>
                 <button ng-repeat="notification in notifications.data" class="notifButton" ng-click= "deleteNotifications(notification._id)" ><img class="notifIcon" src="/assets/img/pailorange.png">
                     <h2>{{ notification.orgName}}: submitted</h2>
@@ -101,7 +100,7 @@
             <!--this form works perfectly-->
 
             <div id="tab3" class="tab-content" ng-show="isActive('tab3')"  ng-class="{active: isActive('tab3')}" ng-controller="MessageController">
-                <form class="css-form" ng-submit="sendMail()">
+                <form name="sendMessage" class="css-form" ng-submit="sendMail()">
                     <img class="decor-img" src="/assets/img/longbackground.png" />
 
                     <label for="sendToemail" class="formButton tabFormLabel">Email:&nbsp;</label>
@@ -115,7 +114,7 @@
                     <input id="sendToName" name="sendToname" type="text" ng-model="sendToname" placeholder="Name" required><br>
                     <textarea id="styled" name="sendTomessage" cols="20" rows="10" ng-model="sendTomessage" placeholder="A custom message" required></textarea>
                     <br><br>
-                    <button type="submit" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
+                    <button type="submit" ng-disabled="sendMessage.$invalid" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/jar.png">Submit</button>
                     <button type="reset" class="green slightSqound formButton"><img class="buttonIcon" src="/assets/img/pail.png">Reset</button>
                 </form>
             </div>
