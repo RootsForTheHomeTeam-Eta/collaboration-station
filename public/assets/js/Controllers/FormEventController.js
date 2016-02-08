@@ -2,7 +2,13 @@
 rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
     $scope.event = {};
   //form data tied to model where possible
-
+    $scope.eventReset = function() {
+    $scope.venueName = '';
+    $scope.eventDate = '';
+    $scope.arrivalTime = '';
+    $scope.gameTime = '';
+    $scope.submitBy = '';
+  };
     $scope.submitEventForm = function () {
       var event = {
         venueName: $scope.venueName,

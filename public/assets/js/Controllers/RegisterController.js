@@ -1,7 +1,8 @@
 //controller for creating new users on the database
 rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $http) {
     $scope.user = {};
-    $scope.register = function () {
+
+    $scope.registerUser = function () {
         //form data tied to model
         var user = {
             orgName: $scope.orgName,
@@ -22,6 +23,8 @@ rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $
             content: 'User Registered.'
         });
     };
-    //should have a popupS modal confirmation
+    //alert popping even if form not submitted
+
+
 
 }]);
