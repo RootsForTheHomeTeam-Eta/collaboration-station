@@ -41,6 +41,7 @@
     "express": "^4.13.3",
     "express-jwt": "^3.3.0",
     "express-session": "^1.13.0",
+    "gulp-concat": "^2.6.0",
     "jsonwebtoken": "^5.5.4",
     "kerberos": "0.0.17",
     "mongoose": "^4.3.6",

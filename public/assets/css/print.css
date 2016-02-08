@@ -1,0 +1,16 @@
+body {
+    font-family: Ariel, serif;
+    color: black;
+}
+
+header {
+    display: none
+}
+
+button {
+    display: none;
+}
+
+.printView {
+    color: black;
+}
