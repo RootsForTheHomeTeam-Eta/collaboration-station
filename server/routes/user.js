@@ -13,7 +13,7 @@ router.get('/getUsers', function(req, res, next) {
         //callback
         function(err, users) {
             if (err) {
-                console.log('/getUser Error: ',err);
+                next(err);
             }
             res.json(users);
         });
@@ -64,12 +64,6 @@ router.post('/submit', function(req, res, next) {
     res.sendStatus(200);
 
 });
-//db.mycollection.update(
-//    {'_id': ObjectId("5150a1199fac0e6910000002")},
-//    { $pull: { "items" : { id: 23 } } },
-//    false,
-//    true
-//);
 
 router.put('/reset', function(req, res, next) {
     var venue_id = req.body.venue_id;
@@ -100,7 +94,7 @@ router.put('/reset', function(req, res, next) {
             new: true
         }, function(err, model) {
             if (err) {
-                console.log(err);
+                next(err);
             } else {
                 return model;
             }

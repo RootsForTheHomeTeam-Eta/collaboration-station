@@ -1,5 +1,6 @@
 var rootsApp = angular.module('rootsApp', ['ngRoute']);
 
+// app router
 rootsApp.config(['$routeProvider', '$httpProvider', function($routeProvider){
     $routeProvider.when('/admin', {
         templateUrl: 'views/partials/admin.html',
@@ -16,10 +17,8 @@ rootsApp.config(['$routeProvider', '$httpProvider', function($routeProvider){
         templateUrl: 'views/partials/tableview.html',
         controller: 'FinalScheduleViewController'
     }).otherwise({
-        redirectTo: 'home'
+        redirectTo: 'login'
     });
-
-
 }]);
 
 

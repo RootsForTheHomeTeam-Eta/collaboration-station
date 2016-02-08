@@ -7,7 +7,6 @@ var notification = require('../../db/models/notification');
 
 // delete notification from collection
 router.delete('/deleteNotification/:id', function(req, res, next) {
-    console.log('Enter delete notification route', req.params.id);
     // return all events
     notification.remove(
         //query
@@ -15,11 +14,8 @@ router.delete('/deleteNotification/:id', function(req, res, next) {
         // callback
         function (err, docs){
             if (err) {
-                console.log('Error: ',err);
                 next(err);
             }
-            console.log('Notifications found!');
-            console.log(docs);
             //returns an array of documents named docs
             res.sendStatus(200);
         });
@@ -28,7 +24,6 @@ router.delete('/deleteNotification/:id', function(req, res, next) {
 
 // get array of notifcation objects data
 router.get('/getNotification', function(req, res, next) {
-    console.log('Enter new notifcation route');
     // return all events
     notification.find(
         //query
@@ -36,31 +31,24 @@ router.get('/getNotification', function(req, res, next) {
         // callback
         function (err, docs){
             if (err) {
-                console.log('Error: ',err);
                 next(err);
             }
-            console.log('Notifications found!');
             //returns an array of documents named docs
             res.json(docs);
         });
 });
 
 router.post('/submitNotification', function(req, res, next) {
-    console.log("in the noti route:", req.body);
-
+    // initialize the alert
     var alert = new notification ({
         orgName: req.body.orgName
     });
-
+        // save the alert
         alert.save(function (err){
             if (err) {
-                console.log('hitting save:', err);
-
+                next(err);
             }
         });
-
-
-
     res.sendStatus(200);
 
 });
