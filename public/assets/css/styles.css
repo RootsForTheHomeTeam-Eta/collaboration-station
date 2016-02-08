@@ -142,6 +142,11 @@ textarea.style {
     outline-color: #55AC3A;
 }
 
+.fillButton {
+    outline-color: white;
+    cursor: default;
+}
+
 .subtext {
     font-size: 8px;
     margin: -16px 0px 10px 0px;
@@ -268,6 +273,10 @@ li.active a, li.active a:hover {
     font-weight: 500;
     font-size: 18px;
     outline-color: #55AC3A;
+}
+
+.formButton[disabled] {
+    background-color: #9B9B9B;
 }
 
 .buttonIcon {
@@ -411,15 +420,15 @@ label.css-label-radio {
 
 /*----- Form Validation Classes -----*/
 
-/*.css-form input.ng-invalid.ng-touched {*/
-    /*background-color: #FA787E;*/
-    /*color: white;*/
-/*}*/
+.css-form input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+    color: white;
+}
 
-/*.css-form input.ng-valid.ng-touched {*/
-    /*background-color: #55AC3A;*/
-    /*color: white;*/
-/*}*/
+.css-form input.ng-valid.ng-touched {
+    background-color: #C0D9B1;
+    color: white;
+}
 
 input {
     text-align: center;
