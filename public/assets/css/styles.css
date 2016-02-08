@@ -270,6 +270,10 @@ li.active a, li.active a:hover {
     outline-color: #55AC3A;
 }
 
+.formButton[disabled] {
+    background-color: #9B9B9B;
+}
+
 .buttonIcon {
     width: 1.2em;
     margin: 0px 25px 0px 0px;
