@@ -411,15 +411,15 @@ label.css-label-radio {
 
 /*----- Form Validation Classes -----*/
 
-/*.css-form input.ng-invalid.ng-touched {*/
-    /*background-color: #FA787E;*/
-    /*color: white;*/
-/*}*/
+.css-form input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+    color: white;
+}
 
-/*.css-form input.ng-valid.ng-touched {*/
-    /*background-color: #55AC3A;*/
-    /*color: white;*/
-/*}*/
+.css-form input.ng-valid.ng-touched {
+    background-color: #C0D9B1;
+    color: white;
+}
 
 input {
     text-align: center;
