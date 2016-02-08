@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
     // return all events
     Venue.find(
         ////query
-        //{venueName: {$exists: true}},
+        {venueName: {$exists: true}},
         //// callback
         function (err, docs){
             if (err) {
