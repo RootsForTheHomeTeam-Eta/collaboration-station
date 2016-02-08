@@ -48,6 +48,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
           console.log('data',data)
           user.loggedIn = true;
           user.isAdmin = data.isAdmin;
+          user.orgName = data.orgName;
           console.log('user in auth service',user);
           deferred.resolve();
         } else {
@@ -132,18 +133,85 @@ rootsApp.factory('SharedVenues', function() {
   };
 });
 
-//creates a service that shares the user object between controllers
-rootsApp.factory('UserRepoFactory', function($http){
-    var contactEmails = function(username){
-        return $http
-            .get('/api/user/getUsers')
-            .then(function(response){
-                return response.data;
-            });
+/**
+ * Created by Manu on 1/29/16.
+ * A factory to get the user submit notifications
+ */
+rootsApp.factory('User2AdminFactory', function($http) {
+    var notifications = {};
+    return{
+        getNotifications : function() {
+            return  $http({
+                url: '/notification/getNotification',
+                method: 'GET'
+            }).success(function(result){
+                    notifications.data = result;
+                    console.log('User2AdminFactory', notifications.data);
+                })
+                .error(function(data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
+        },
+        notifications: notifications,
+
+        deleteNotifications : function(param) {
+            return  $http({
+                url: '/notification/deleteNotification/' + param,
+                method: 'delete',
+                data: param
+            }).success(function(data, status, headers){
+                    console.log('delete info', status);
+                })
+                .error(function(data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
+        }
     };
 
+    //return{
+    //    deleteNotifications : function(param) {
+    //        return  $http({
+    //            url: '/notification/deleteNotification',
+    //            method: 'delete',
+    //            data: param
+    //        }).success(function(data, status, headers){
+    //                console.log('delete info', result.delAlert);
+    //            })
+    //            .error(function(data, status, headers, config) {
+    //                $log.warn(data, status, headers(), config);
+    //            });
+    //    },
+    //};
+
+});
+
+//angular.module("contacts.factory", []).
+//factory('contactFactory', function($http){
+//    return {
+//        //code removed
+//        deleteContact: function(id) {
+//            return $http.delete('/api/contact/' + id);
+//        }
+//    }
+//})
+//creates a service that shares the user object between controllers
+rootsApp.factory('UserRepoFactory', function($http){
+    var users = {};
     return {
-        get: contactEmails
+    getUsers : function(){
+        return $http
+            // /api/user/getUsers to return orgNames and emails
+            .get('/api/user/getUsers')
+            .then(function(response){
+                users.data = response.data;
+                console.log("UserRepoFactory users.data",users.data);
+                console.log("UserRepoFactory response.data:",response.data)
+            }, function(err) {
+                //return err;
+            });
+    },
+
+        users: users
     };
 });
 
@@ -151,16 +219,16 @@ rootsApp.factory('UserRepoFactory', function($http){
 // creates a service that shares the venue object between controllers
 rootsApp.factory('VenueEventsFactory', function($http) {
 
-    var venues = [];
+    var venues = {};
 
     return{
         getVenues : function() {
-            return $http({
+            return  $http({
                 url: '/api/event/getEvents',
                 method: 'GET'
             }).success(function(result){
-                    venues = result;
-                    console.log(venues);
+                    venues.data = result;
+                    console.log('venues.data',venues.data);
 
                 })
                 .error(function(data, status, headers, config) {
@@ -168,6 +236,5 @@ rootsApp.factory('VenueEventsFactory', function($http) {
                 });
         },
         venues: venues
-
     };
 });

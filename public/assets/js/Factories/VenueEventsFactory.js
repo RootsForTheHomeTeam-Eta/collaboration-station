@@ -2,16 +2,16 @@
 // creates a service that shares the venue object between controllers
 rootsApp.factory('VenueEventsFactory', function($http) {
 
-    var venues = [];
+    var venues = {};
 
     return{
         getVenues : function() {
-            return $http({
+            return  $http({
                 url: '/api/event/getEvents',
                 method: 'GET'
             }).success(function(result){
-                    venues = result;
-                    console.log(venues);
+                    venues.data = result;
+                    console.log('venues.data',venues.data);
 
                 })
                 .error(function(data, status, headers, config) {
@@ -19,6 +19,5 @@ rootsApp.factory('VenueEventsFactory', function($http) {
                 });
         },
         venues: venues
-
     };
 });

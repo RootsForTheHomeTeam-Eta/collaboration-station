@@ -1,0 +1,22 @@
+<div id='printArea' class= 'col-md-12' ng-controller="PrintScheduleController" class="center">
+    <table style="width:100%">
+    <tr class="scheduleTitle orange">
+        <td class="printTable borderOrange printView">Venue:</td>
+        <td class="printTable borderOrange printView">Event Date:</td>
+        <td class="printTable borderOrange printView">Arrival Time:</td>
+        <td class="printTable borderOrange printView">Event Time:</td>
+        <td class="printTable borderOrange printView">Garden Group:</td>
+    </tr>
+    </table>
+    <table style="width:100%" ng-repeat="schedule in schedule.data">
+        <tr ng-repeat="event in schedule.events" class="white scheduleLabel">
+            <td class="printTable border">{{schedule.venueName}}</td>
+            <td class="printTable border">{{event.eventDate | date: 'mediumDate'}}</td>
+            <td class="printTable border">{{event.arrivalTime | date: 'h:mm a'}}</td>
+            <td class="printTable border">{{event.gameTime | date: 'h:mm a'}}</td>
+            <td class="printTable border">{{event.orgName}}</td>
+        </tr>
+    </table>
+    <br>
+    <button type="button" ng-click="printSchedule()" class="generateStyle green formButton">Print Schedule</button>
+</div>

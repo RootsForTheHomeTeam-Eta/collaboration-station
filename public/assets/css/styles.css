@@ -1,6 +1,7 @@
 p {
     font-family: 'Roboto', sans-serif;
-    font-weight: 400
+    font-weight: 400;
+    font-size: 14px;
 }
 
 h2 {
@@ -20,6 +21,15 @@ textarea.style {
     margin: 6px;
     width: 366px;
     height: 206px;
+}
+
+.helpHeader {
+    color: #55AC3A;
+    font-size: 24px;
+}
+
+.helpBody {
+    font-size: 18px;
 }
 
 .whiteText{
@@ -62,12 +72,21 @@ textarea.style {
     background-color: #EDB816;
 }
 
+.red {
+    background-color: #E05648;
+}
+
+
 .yellowTrans {
     background-color: #FAEEC7;
 }
 
 .white {
     background-color: white;
+}
+
+.grey {
+    background-color: #9B9B9B;
 }
 
 .moveLeft{
@@ -89,7 +108,8 @@ textarea.style {
 .icon {
     width: 3.33em;
     padding-top: 10px;
-    margin-left: 40px
+    margin-left: 40px;
+    cursor: help;
 }
 
 .backgroundIcon {
@@ -161,6 +181,19 @@ textarea.style {
     border-color: #1caff6;
 }
 
+.tab-content-left {
+    height:175px;
+}
+
+.alertMin {
+    min-height: 175px;
+    max-height: 434px;
+}
+
+.overflow {
+    overflow: auto;
+}
+
 .align-left {
     text-align: left;
     margin: 0px;
@@ -174,7 +207,7 @@ textarea.style {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     margin:0;
-    padding: 0;
+    padding: 0 3px 0 0;
     font-size: 20px;
 }
 
@@ -207,7 +240,7 @@ textarea.style {
     text-decoration: none;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
-    margin: 9px 0px -5px;
+    margin: 9px -3px -4px -3px;
     color: white;
     background-color: #DA7400;
     cursor:pointer;
@@ -328,7 +361,7 @@ label.css-label-radio {
     font-weight: 500;
     margin:0;
     text-align: center;
-    padding: 2px 0 0 0;
+    padding: 11px 0 0 0;
     font-size: 22px;
     color: white;
 }
@@ -371,50 +404,55 @@ label.css-label-radio {
     margin: 10px;
 }
 
-.modalButton {
-    height: 43px;
-    width: 90px;
-    border-radius: 3px;
-    border: none;
-    margin: 0px -17px 0px 0px;
-    float: right;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-}
-
-.modalWidth {
-    width:100%;
-    margin:auto;
-}
-
-.modalHeader {
-    text-align: center;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 28px;
-}
-
-.modalTitle {
-    text-align: center;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
+.orgHeader {
+    min-width: 1420px;
+    max-width: 1420px
 }
 
 /*----- Form Validation Classes -----*/
 
-.css-form input.ng-invalid.ng-touched {
-    background-color: #FA787E;
+/*.css-form input.ng-invalid.ng-touched {*/
+    /*background-color: #FA787E;*/
+    /*color: white;*/
+/*}*/
+
+/*.css-form input.ng-valid.ng-touched {*/
+    /*background-color: #55AC3A;*/
+    /*color: white;*/
+/*}*/
+
+input {
+    text-align: center;
 }
 
-.css-form input.ng-valid.ng-touched {
-    background-color: #78FA89;
+.hidden {
+    display: none;
 }
 
+/*print schedule styles*/
 
+
+
+.printTable {
+    text-align: left;
+    padding: 7px;
+    width: 20%;
+}
+
+#printArea {
+    width: 90%;
+    margin: 0px 45px 0px 45px;
+    padding: 10px 6px 0px 6px;
+}
+
+.borderOrange {
+    border-bottom-color: #DA7400;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.border {
+    border: solid #EDB816 1px;
+}
 
 

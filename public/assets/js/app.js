@@ -12,6 +12,9 @@ rootsApp.config(['$routeProvider', '$httpProvider', function($routeProvider){
     }).when('/user', {
         templateUrl: 'views/partials/userView.html',
         controller: 'UserScheduleFormSubmitController'
+    }).when('/tableview', {
+        templateUrl: 'views/partials/tableview.html',
+        controller: 'FinalScheduleViewController'
     }).otherwise({
         redirectTo: 'home'
     });
@@ -19,5 +22,5 @@ rootsApp.config(['$routeProvider', '$httpProvider', function($routeProvider){
 
 }]);
 
-//modal should be removed from partials if possible
+
 

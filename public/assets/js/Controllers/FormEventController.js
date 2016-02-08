@@ -2,6 +2,13 @@
 rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
     $scope.event = {};
   //form data tied to model where possible
+    $scope.eventReset = function() {
+    $scope.venueName = '';
+    $scope.eventDate = '';
+    $scope.arrivalTime = '';
+    $scope.gameTime = '';
+    $scope.submitBy = '';
+  };
     $scope.submitEventForm = function () {
       var event = {
         venueName: $scope.venueName,
@@ -17,8 +24,13 @@ rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFacto
       }).then(function () {
         VenueEventsFactory.getVenues();
         popupS.alert({
-          content: 'Event Added'
+          content: 'Your new event has been added!'
         });
+        $scope.venueName = '';
+        $scope.eventDate = '';
+        $scope.arrivalTime = '';
+        $scope.gameTime = '';
+        $scope.submitBy = '';
       });
       //$http({
       //  url: '/api/event/getEvents',
@@ -26,6 +38,7 @@ rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFacto
       //});
 
     };
+
   //should have a popupS modal confirmation
 
 }]);
