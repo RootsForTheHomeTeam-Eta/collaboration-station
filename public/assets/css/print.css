@@ -1,6 +1,5 @@
 body {
-    font-family: Georgia, serif;
-    background: green;
+    font-family: Ariel, serif;
     color: black;
 }
 
@@ -8,12 +7,10 @@ header {
     display: none
 }
 
-td {
-    border: solid 1px;
-    width: 20%;
-}
-
 button {
     display: none;
 }
 
+.printView {
+    color: black;
+}
