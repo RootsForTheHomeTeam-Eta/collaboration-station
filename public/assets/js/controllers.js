@@ -510,8 +510,65 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
 
         $scope.notification = {};
         $scope.notification.orgName = AuthService.user.orgName;
-        $log.info($scope.notification);
 
+        $scope.orgName = AuthService.user.orgName;
+
+        console.log($scope.orgName);
+
+        //this function loops through the org array and checks to see if any of the objects have a matching orgName
+        $scope.verify = function(orgArray){
+            var verifyOrg = [];
+              angular.forEach(orgArray, function(value){
+                  if ( $scope.orgName == value.orgName){
+                        verifyOrg.push(value.orgName)
+                  }
+              });
+            if (verifyOrg.length == 0){
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+              //true == 0
+              //false = anything in the array
+
+
+        $scope.reset = function(venueId, eventId, orgArray){
+            var venueId = venueId;
+            var eventId = eventId;
+            var orgArray = orgArray;
+            var resetObj = {};
+
+            resetObj.venue_id = venueId;
+            resetObj.event_id = eventId;
+
+            if(orgArray.length === 0){
+              console.log('nothing in org array');
+            }else if(orgArray.length > 0){
+              angular.forEach(orgArray, function(value){
+                  if ( $scope.orgName == value.orgName){
+                      resetObj.pref_id = value._id;
+                      console.log(resetObj);
+                  }
+              });
+            }
+            console.log(resetObj);
+            $http({
+                url: '/api/user/reset' ,
+                method: 'put',
+                data: resetObj
+            }).then(function (res, status) {
+                $log.info(res.status);
+                VenueEventsFactory.getVenues();
+
+            });
+        };
+
+
+
+
+//this function add a notification to the notifications collection on pref submit
         $scope.notificationSubmit = function() {
             $http({
                 url: '/notification/submitNotification',
@@ -525,26 +582,23 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
         };
 
         //$scope.testy = new $scope.event("Twins", "07/05/2990", "true");
-        $scope.submit = function () {
+        $scope.submit = function (venueId, eventId,pref) {
+
+            var venueId = venueId;
+            var eventId = eventId;
+            var pref = pref;
+            console.log(venueId);
+            console.log(eventId);
+            console.log(pref);
+
             var prefObj = {};
             var user = AuthService.user;
-            prefObj.orgName = user.orgName;
-            var UserSchedule = [];
-            prefObj.events = UserSchedule;
-            var venuesSubmit = $scope.venues.data;
-            angular.forEach(venuesSubmit, function(value){
-                var eventsArray = value.events;
-                var venueId = value._id;
-                angular.forEach(eventsArray, function(value) {
-                    //console.log(value._id);
-                    value.event.eventId = value._id;
-                    //UserSchedule.push(value.event.eventId);
-                    UserSchedule.push({ "venue_id": venueId,
-                                        "event_id": value._id,
-                                        "preference": value.event.preferences});
-                });
 
-            });
+            prefObj.orgName = user.orgName;
+            prefObj.venue_id = venueId;
+            prefObj.event_id = eventId;
+            prefObj.preference = pref;
+
             $log.warn(prefObj);
 
             $http({
@@ -553,6 +607,7 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
                  data: prefObj
              }).then(function (res) {
                 $log.info(res);
+                VenueEventsFactory.getVenues();
                 $scope.notificationSubmit();
                 popupS.alert({
                     content: 'Your preferences have been submitted'
