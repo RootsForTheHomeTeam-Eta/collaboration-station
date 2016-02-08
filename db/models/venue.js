@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// schema for the venue and events
 var VenueSchema = new Schema({
     venueName: String,
     location: String,

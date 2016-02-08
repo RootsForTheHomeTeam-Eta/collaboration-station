@@ -1,5 +1,6 @@
 // creates a service that shares the venue object between controllers
 rootsApp.factory('SharedVenues', function() {
+  // initialize venues array
   var venues = [];
 
   return {

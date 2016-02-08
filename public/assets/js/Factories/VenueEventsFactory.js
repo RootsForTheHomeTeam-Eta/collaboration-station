@@ -1,7 +1,7 @@
 
 // creates a service that shares the venue object between controllers
 rootsApp.factory('VenueEventsFactory', function($http) {
-
+    // initialize venues object
     var venues = {};
 
     return{
@@ -11,8 +11,6 @@ rootsApp.factory('VenueEventsFactory', function($http) {
                 method: 'GET'
             }).success(function(result){
                     venues.data = result;
-                    console.log('venues.data',venues.data);
-
                 })
                 .error(function(data, status, headers, config) {
                     $log.warn(data, status, headers(), config);

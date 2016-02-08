@@ -8,27 +8,7 @@ rootsApp.controller('NoticeAlertController',['$scope','User2AdminFactory', funct
         User2AdminFactory.getNotifications();
     };
 
-
+    // gets notifications from factory
     $scope.notifications = User2AdminFactory.notifications;
     User2AdminFactory.getNotifications();
-    console.log($scope.notifications);
-
-
-
-
 }]);
-
-//
-//$scope.deleteNotifications = function(noti){
-//    console.log(noti);
-//    $http({
-//        url: '/notification/deleteNotification',
-//        method: 'delete',
-//        data: noti
-//    }).then(function (res) {
-//        //$log.info(res.status);
-//        //$log.info(res);
-//
-//    });
-//
-//};

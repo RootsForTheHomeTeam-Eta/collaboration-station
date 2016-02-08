@@ -20,11 +20,12 @@ module.exports = {
     });
 
     // Passport session setup
+    // serialize the user
     passport.serializeUser(function(user, done) {
       console.log("serialize " + user);
       done(null, user.id);
     });
-
+    // deserialize the user
     passport.deserializeUser(function(id, done) {
       console.log("deserialize " + id);
       User.findById(id, function(err, user) {
@@ -33,7 +34,7 @@ module.exports = {
         done(null, user);
       });
     });
-
+    // passport strategy options
     var options = {
       passReqToCallback: true,
       usernameField: 'username'

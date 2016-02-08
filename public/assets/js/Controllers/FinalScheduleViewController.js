@@ -1,7 +1,6 @@
+// Controller for final schedule view
 rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function($scope, $http) {
-    $scope.hello = 'hello from Final Schedule View controller!';
-    console.log($scope.hello);
-
+    // returns schedule document from db
     $http({
         method: 'GET',
         url: '/getSchedule'
