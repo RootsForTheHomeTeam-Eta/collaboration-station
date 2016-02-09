@@ -13,8 +13,8 @@ router.post('/', function (req, res) {
     smtpTrans = nodemailer.createTransport('Gmail', {
         service: 'Gmail',
         auth: {
-            user: config.GMAIL.USER,
-            pass: config.GMAIL.PASS
+            user: config.GMAIL.USER || process.env.USER,
+            pass: config.GMAIL.PASS || process.env.PASS
         }
     });
     //Mail options

@@ -29,13 +29,13 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 // instantiate session store
 var store = new MongoDBStore(
   {
-    uri: config.MONGOURI,
+    uri: config.MONGOURI || process.env.MONGOURI,
     collection: 'rootsSessions'
   }
 );
 // use and configure server sessions
 app.use(session({
-  secret: config.SECRET,
+  secret: config.SECRET || process.env.SECRET,
   key: 'user',
   resave: true,
   saveUninitialized: false,
