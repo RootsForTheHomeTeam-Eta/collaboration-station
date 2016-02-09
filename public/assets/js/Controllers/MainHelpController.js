@@ -5,7 +5,6 @@ rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$lo
     $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
         if (AuthService.isLoggedIn() === false) {
             $location.path('/login');
-            $log.info('$routeChangeSuccess - MainHelpController');
         }
     });
 
