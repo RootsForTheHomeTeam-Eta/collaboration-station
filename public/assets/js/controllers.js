@@ -11,8 +11,6 @@ rootsApp.controller('AdminViewController', ['$scope', '$http', '$location', 'Aut
           $location.path('/login');
         });
     }
-    $log.info('$routeChangeSuccess - AdminViewController');
-    console.log('AdminViewController $routeChangeStart', AuthService.isAdmin());
   });
 
 }]);
@@ -130,7 +128,6 @@ rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$lo
     $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
         if (AuthService.isLoggedIn() === false) {
             $location.path('/login');
-            $log.info('$routeChangeSuccess - MainHelpController');
         }
     });
 
