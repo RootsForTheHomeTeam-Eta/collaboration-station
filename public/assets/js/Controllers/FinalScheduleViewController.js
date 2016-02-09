@@ -7,7 +7,5 @@ rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function(
     }).then(function(docs) {
         //$scope.schedule = {};
         $scope.schedule = docs;
-        console.log($scope.schedule);
-
     });
 }]);
