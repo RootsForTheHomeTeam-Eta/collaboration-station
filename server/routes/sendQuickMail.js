@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
-var config = require('../../config.js');
+//var config = require('../../config.js');
 
 router.post('/', function (req, res) {
     var mailOpts, smtpTrans;
