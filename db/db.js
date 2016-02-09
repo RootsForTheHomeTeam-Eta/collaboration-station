@@ -5,7 +5,7 @@ var config = require('../config');
 mongoose.set('debug',true);
 
 // retrieves mongo server location from config file
-var mongoURI = config.MONGOURI;
+var mongoURI = config.MONGOURI || process.env.MONGOURI;
 
 // connects to mongo
 var MongoDB = mongoose.connect(mongoURI).connection;
