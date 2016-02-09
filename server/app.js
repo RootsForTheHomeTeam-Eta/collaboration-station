@@ -4,7 +4,7 @@ var app = express();
 //require dependencies
 var path = require('path');
 var bodyParser = require('body-parser');
-var config = require('../config.js');
+//var config = require('../config.js');
 var passport = require('../auth/passport-local');
 var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');

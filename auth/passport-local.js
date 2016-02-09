@@ -1,7 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
-var config = require('../config.js');
+//var config = require('../config.js');
 var User = require('../db/models/user');
 var bcrypt = require('bcrypt');
 
