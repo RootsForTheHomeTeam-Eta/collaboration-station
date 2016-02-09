@@ -4,7 +4,7 @@ rootsApp.controller('PrevController', ['$scope', '$http', function($scope, $http
     $scope.viewPreviousSchedule= function() {
 
 
-        $scope.hello = 'hello!';
-        console.log($scope.hello);
+        //$scope.hello = 'hello! from prev controller';
+        //console.log($scope.hello);
     };
 }]);

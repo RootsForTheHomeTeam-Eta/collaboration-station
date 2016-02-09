@@ -15,28 +15,15 @@ router.get('/getEvents', function(req, res, next) {
     // callback
     function (err, docs){
       if (err) {
-        console.log('Error: ',err);
         next(err);
       }
-      console.log('Docs found!');
       //returns an array of documents named docs
       res.json(docs);
     });
 });
-//TODO: parse docs differently
-//var parseDocs = function (docs) {
-//  docs.forEach(function(elem, index, array) {
-//    if (elem.venueName == "Twins Stadium") {
-//
-//    }
-//  })
-//};
-
 
 // post new event to a venue
 router.post('/addEvent', function(req, res, next) {
-  console.log('inside add event route');
-  console.log("req.body " , req.body);
   var event = {
     venueName: req.body.venueName,
     eventDate: req.body.eventDate,
@@ -66,14 +53,11 @@ router.post('/addEvent', function(req, res, next) {
     // callback
     function(err, doc) {
       if (err) {
-        console.log(err);
         next(err);
       }
-      console.log(doc);
       res.json(doc);
     }
   );
-  //res.json('Event added successfully');
 });
 
 module.exports = router;

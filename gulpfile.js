@@ -1,8 +1,5 @@
-/* File: gulpfile.js */
-
 // grab gulp packages
 var gulp = require('gulp');
-var gutil = require('gulp-util');
 var jshint = require('gulp-jshint');
 var nodemon = require('gulp-nodemon');
 var concat = require('gulp-concat');

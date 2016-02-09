@@ -2,14 +2,11 @@
 rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$location', 'AuthService', '$log',
     function($rootScope, $scope, $http, $location, AuthService, $log) {
     //// verify logged in status
-    //$rootScope.$on('$routeChangeSuccess', function (event, next, current) {
-    //    if (AuthService.isLoggedIn() === false) {
-    //        $location.path('/login');
-    //        $log.info('$routeChangeSuccess - MainHelpController');
-    //    }
-    //});
-
-        $scope.loggedIn = " ";
+    $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
+        if (AuthService.isLoggedIn() === false) {
+            $location.path('/login');
+        }
+    });
 
         $scope.onIconCLick = function(){
 
@@ -31,23 +28,6 @@ rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$lo
             });
 
         };
-        $scope.hello = 'hello!';
-        console.log($scope.hello);
-
-        $scope.logout = function() {
-            $http
-                .get('/api/auth/logout', $scope.user)
-                .then(function (data, status, headers, config) {
-                    console.log('User logged out');
-                    //$window.sessionStorage.token = data.token;
-                }, function (data, status, headers, config) {
-                    // Erase token if error
-                    //delete $window.sessionStorage.token;
-
-                    // Error message
-                    $scope.message = 'Error: Trouble logging out';
-                });
-        }
 }]);
 
 

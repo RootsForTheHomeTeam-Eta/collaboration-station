@@ -14,7 +14,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
     isAdmin: isAdmin,
     user: user
   });
-
+  // check if user is admin
   function isAdmin() {
     if (user.isAdmin) {
       return true;
@@ -22,7 +22,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
       return false;
     }
   }
-
+  // check if user is logged in
   function isLoggedIn() {
     if (user.loggedIn) {
       return true;
@@ -30,11 +30,11 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
       return false;
     }
   }
-
+  // return user's status
   function getUserStatus() {
     return user;
   }
-
+  // login the user
   function login(username, password) {
 
     // create a new instance of deferred
@@ -45,11 +45,9 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
       // handle success
       .success(function (data, status) {
         if(status === 200 && data.status) {
-          console.log('data',data)
           user.loggedIn = true;
           user.isAdmin = data.isAdmin;
           user.orgName = data.orgName;
-          console.log('user in auth service',user);
           deferred.resolve();
         } else {
           user = false;
@@ -65,7 +63,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
     // return promise object
     return deferred.promise;
   }
-
+  // log out the user
   function logout() {
 
     // create a new instance of deferred
@@ -74,7 +72,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
     // send a get request to the server
     $http.get('/api/auth/logout')
       // handle success
-      .success(function (data) {
+      .success(function () {
         user.loggedIn = false;
         deferred.resolve();
       })
@@ -87,7 +85,8 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
     // return promise object
     return deferred.promise;
   }
-
+  // register the user
+  // currently unused
   function register(username, password) {
 
     // create a new instance of deferred
