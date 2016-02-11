@@ -25,6 +25,17 @@ rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function(
         //$scope.schedule = {};
         $scope.schedule = docs;
     });
+
+    $scope.printSchedule = function(){
+
+        // need an id on the schedule html, 'printArea' was used on Stack Overflow
+        var schedule = document.getElementById('printArea').innerHTML;
+        // the first two arguments to $window.open are a URL and a name.
+        //these were left blank but I imagine we could put it in later
+        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        scheduleWindow.document.write(schedule);
+        scheduleWindow.print();
+    };
 }]);
 
 //controller that adds events from admin page under add event tab
@@ -280,6 +291,22 @@ rootsApp.controller('PrevController', ['$scope', '$http', function($scope, $http
     };
 }]);
 
+// $window is an Angular service and needs to be put in the angular config
+
+rootsApp.controller('PrintScheduleController', ['$scope', '$window', function($scope, $window){
+    console.log('Printing from PrintScheduleController.js');
+    $scope.printSchedule = function(){
+
+        // need an id on the schedule html, 'printArea' was used on Stack Overflow
+        var schedule = document.getElementById('printArea').innerHTML;
+        // the first two arguments to $window.open are a URL and a name.
+        //these were left blank but I imagine we could put it in later
+        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        scheduleWindow.document.write(schedule);
+        scheduleWindow.print();
+    };
+
+}]);
 //controller for creating new users on the database
 rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $http) {
     // initialize user variable
@@ -360,6 +387,18 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
         // return "cannot" if there isn't a preference.
         return "nores";
     };
+
+    $scope.printSchedule = function(){
+
+        // need an id on the schedule html, 'printArea' was used on Stack Overflow
+        var schedule = document.getElementById('printArea').innerHTML;
+        // the first two arguments to $window.open are a URL and a name.
+        //these were left blank but I imagine we could put it in later
+        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        scheduleWindow.document.write(schedule);
+        scheduleWindow.print();
+    };
+
 
 
 }]);
