@@ -4,7 +4,7 @@ var app = express();
 //require dependencies
 var path = require('path');
 var bodyParser = require('body-parser');
-var config = require('../config.js');
+//var config = require('../config.js');
 var passport = require('../auth/passport-local');
 var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
@@ -29,13 +29,13 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 // instantiate session store
 var store = new MongoDBStore(
   {
-    uri: config.MONGOURI || process.env.MONGOURI,
+    uri: process.env.MONGOURI,
     collection: 'rootsSessions'
   }
 );
 // use and configure server sessions
 app.use(session({
-  secret: config.SECRET || process.env.SECRET,
+  secret: process.env.SECRET,
   key: 'user',
   resave: true,
   saveUninitialized: false,

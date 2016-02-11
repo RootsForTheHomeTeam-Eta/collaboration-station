@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
-var config = require('../config');
+//var config = require('../config');
 
 // uncomment for mongoose debugging
 mongoose.set('debug',true);
 
 // retrieves mongo server location from config file
-var mongoURI = config.MONGOURI || process.env.MONGOURI;
+var mongoURI = process.env.MONGOURI;
 
 // connects to mongo
 var MongoDB = mongoose.connect(mongoURI).connection;

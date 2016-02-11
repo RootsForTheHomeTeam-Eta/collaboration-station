@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
-var config = require('../../config.js');
+//var config = require('../../config.js');
 
 router.post('/', function (req, res) {
     var mailOpts, smtpTrans;
@@ -13,8 +13,8 @@ router.post('/', function (req, res) {
     smtpTrans = nodemailer.createTransport('Gmail', {
         service: 'Gmail',
         auth: {
-            user: config.GMAIL.USER || process.env.USER,
-            pass: config.GMAIL.PASS || process.env.PASS
+            user: process.env.USER,
+            pass: process.env.PASS
         }
     });
     //Mail options
