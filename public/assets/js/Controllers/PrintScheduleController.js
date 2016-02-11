@@ -1,14 +1,7 @@
-// Controller for final schedule view
-rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function($scope, $http) {
-    // returns schedule document from db
-    $http({
-        method: 'GET',
-        url: '/getSchedule'
-    }).then(function(docs) {
-        //$scope.schedule = {};
-        $scope.schedule = docs;
-    });
+// $window is an Angular service and needs to be put in the angular config
 
+rootsApp.controller('PrintScheduleController', ['$scope', '$window', function($scope, $window){
+    console.log('Printing from PrintScheduleController.js');
     $scope.printSchedule = function(){
 
         // need an id on the schedule html, 'printArea' was used on Stack Overflow
@@ -19,4 +12,5 @@ rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function(
         scheduleWindow.document.write(schedule);
         scheduleWindow.print();
     };
+
 }]);
