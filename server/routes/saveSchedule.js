@@ -25,7 +25,8 @@ router.post('/', function(req, res, next) {
                 arrivalTime: req.body[i].events[n].arrivalTime,
                 orgName: req.body[i].events[n].orgName
             });
-            events.push(event);
+
+             events.push(event);
 
         }
         var schedule = new Schedule ({

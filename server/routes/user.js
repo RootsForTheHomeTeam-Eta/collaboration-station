@@ -23,24 +23,18 @@ router.post('/submit', function(req, res, next) {
 
     console.log("IN SUB");
     console.log("req.body show :", req.body);
-    // user org name
+
     var orgName = req.body.orgName;
-    //console.log('orgName',orgName);
-    // response event array
-    var events = req.body.events;
-    //console.log('events',events);
-
+    var venue_id = req.body.venue_id;
+    var event_id = req.body.event_id;
+    var preference = req.body.preference;
     // Upload to database
-    events.forEach(function(elem) {
-
-        console.log('inside events foreach');
-        console.log('elem:',elem);
-        // elem.preference
+    // elem.preference
         Venue.findOneAndUpdate(
             // query
             {
-                "_id": elem.venue_id,
-                "events._id": elem.event_id
+                "_id": venue_id,
+                "events._id": event_id
             },
             //doc to update
             {
@@ -49,21 +43,12 @@ router.post('/submit', function(req, res, next) {
                             $push: {
                                 "events.$.event.organization":
                                     {
-                                        orgName: req.body.orgName,
-                                        preference: elem.preference
+                                        orgName: orgName,
+                                        preference: preference
                                     }
                             }
 
-            },
-            //{
-            //    $push: {
-            //        "organization": {
-            //            orgName: orgName,
-            //            preference: elem.preference
-            //        }
-            //    }
-            //},
-            {
+            },{
                 upsert: true,
                 multi: false,
                 new: true
@@ -75,44 +60,53 @@ router.post('/submit', function(req, res, next) {
                 }
             }
         );
-    });
 
-    //for (i in req.body) {
-    //    _id : req.body[i].eventId
-    //    preferences.first :req.body[i].preferences.first
-    //
-    //}
+    res.sendStatus(200);
 
-    //var _id = req.body.0,
-   //preferences: req.body.1.preferences.first
+});
+//db.mycollection.update(
+//    {'_id': ObjectId("5150a1199fac0e6910000002")},
+//    { $pull: { "items" : { id: 23 } } },
+//    false,
+//    true
+//);
 
-  //Venue.findOneAndUpdate(
-  //    // query
-  //    {_id: userSubmit._id},
-  //    // doc to update
-  //    {$push: {
-  //      events: {
-  //        event: {
-  //            preferences: {
-  //                first: event.preferences
-  //            }
-  //        }}
-  //    }},
-  //    // options to update with
-  //    {
-  //      new: true,
-  //      upsert: true
-  //    },
-  //    // callback
-  //    function(err, doc) {
-  //      if (err) {
-  //        console.log(err);
-  //        next(err);
-  //      }
-  //      console.log(doc);
-  //      res.json(doc);
-  //    }
-  //);
+router.put('/reset', function(req, res, next) {
+    var venue_id = req.body.venue_id;
+    var event_id = req.body.event_id;
+    var pref_id = req.body.pref_id;
+    console.log("reset :", req.body);
+    // Upload to database
+    // elem.preference
+    Venue.findOneAndUpdate(
+        // query
+        {
+            "_id": venue_id,
+            "events._id": event_id
+        },
+        //doc to update
+        {
+
+            $pull: {
+                "events.$.event.organization":
+                {
+                    _id: pref_id
+                }
+            }
+
+        },{
+            upsert: true,
+            multi: false,
+            new: true
+        }, function(err, model) {
+            if (err) {
+                console.log(err);
+            } else {
+                return model;
+            }
+        }
+    );
+
     res.sendStatus(200);
 
 });
