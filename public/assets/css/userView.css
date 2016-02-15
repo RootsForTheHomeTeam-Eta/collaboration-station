@@ -71,16 +71,20 @@ div.options{
 }
 
 .btnUser {
-    margin-top: .22em;
     border-radius: 2px;
     border: none;
     color: white;
+    margin:10px 0px 0px 0px
 }
 
 .submitBy {
-    text-align: left;
-    border: 2px solid #55AC3A;
+    text-align: right;
+    /*border: 2px solid #55AC3A;*/
+    margin: 13px 0px 0px 0px;
+}
 
+.pos2{
+    margin: 0px 0px 0px 0px;
 }
 
 /*input[type="radio"]{*/
