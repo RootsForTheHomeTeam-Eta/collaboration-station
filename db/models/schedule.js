@@ -1,17 +1,15 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-//for schedule print/view/save
-
+// for schedule print/view/save
+// this model represents the saved schedule
 var ScheduleSchema = new Schema({
-    venue: String,
+    venueName: String,
     events: [{
-        event: {
             eventDate: Date,
-            gameTime: Date,
-            arrivalTime: Date,
+            gameTime: String,
+            arrivalTime: String,
             orgName: String
-        }
     }]
 });
 

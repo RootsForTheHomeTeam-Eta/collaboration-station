@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// schema for the venue and events
 var VenueSchema = new Schema({
     venueName: String,
     location: String,
@@ -9,16 +10,12 @@ var VenueSchema = new Schema({
         eventDate: Date,
         organization: [{
           orgName: String,
-          preferences: [{
-            first: {type: Boolean, default: false},
-            second: {type: Boolean, default: false},
-            cannot: {type: Boolean, default: false}
-          }]
-
-        }]
-      },
+          preference: {type: String, default: 'nores'}
+        }],
         arrivalTime: Date,
-    gameTime: Date
+        gameTime: Date,
+        submitBy: Date
+      }
     }]
 });
 

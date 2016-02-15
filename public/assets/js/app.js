@@ -1,23 +1,25 @@
-var app = angular.module('rootsApp', ['ngRoute', 'rootsAppControllers']);
+var rootsApp = angular.module('rootsApp', ['ngRoute']);
 
-app.config(['$routeProvider', '$httpProvider', function($routeProvider){
+// app router
+rootsApp.config(['$routeProvider', '$httpProvider', function($routeProvider){
     $routeProvider.when('/admin', {
         templateUrl: 'views/partials/admin.html',
-        controller: 'mainCtrl'
+        controller: 'AdminViewController'
     }).when('/login', {
         templateUrl: 'views/partials/login.html',
-        controller: 'loginCtrl'
+        controller: 'LoginController'
+    }).when('/logout', {
+        controller: 'LogoutController'
     }).when('/user', {
-        templateUrl: 'views/partials/userView.html'
-    }).when('/modal', {
-        templateUrl: 'views/partials/scheduleModal.html'
+        templateUrl: 'views/partials/userView.html',
+        controller: 'UserScheduleFormSubmitController'
+    }).when('/tableview', {
+        templateUrl: 'views/partials/tableview.html',
+        controller: 'FinalScheduleViewController'
     }).otherwise({
-        redirectTo: 'home'
+        redirectTo: 'login'
     });
-
-
 }]);
 
 
-//modal should be removed from partials if possible
 

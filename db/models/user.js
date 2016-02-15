@@ -2,18 +2,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
+// salt factor for password encryption
 var SALT_WORK_FACTOR = 10;
-
+// user schema
 var UserSchema = new Schema({
     orgName: {type: String, required: true},
     firstName: {type:String, required: true},
     lastName: {type: String, required: true},
     username: {type: String, require: true, index: { unique: true}},
     password: {type: String, required: true },
+    isAdmin: {type: Boolean, default: false},
     created_at: Date,
     updated_at: Date
 });
-
+// presave hook that salts and hashes password
 UserSchema.pre('save', function(next) {
   var user = this;
   console.log('saving user!');
