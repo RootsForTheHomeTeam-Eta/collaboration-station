@@ -18,6 +18,32 @@ rootsApp.factory('VenueEventsFactory', function($http) {
                     $log.warn(data, status, headers(), config);
                 });
         },
-        venues: venues
+        venues: venues,
+
+        deleteVenue : function(param) {
+            return  $http({
+                url: 'api/event/deleteVenue/' + param,
+                method: 'delete',
+                data: param
+            }).success(function(data, status, headers){
+                    console.log('delete info', status);
+                })
+                .error(function(data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
+        },
+        deleteEvent : function(param) {
+            return  $http({
+                url: 'api/event/deleteEvent',
+                method: 'put',
+                data: param
+            }).success(function(data, status, headers){
+                    console.log('delete event', status);
+                })
+                .error(function(data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
+        }
+
     };
 });

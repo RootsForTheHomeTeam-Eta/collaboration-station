@@ -167,33 +167,9 @@ rootsApp.factory('User2AdminFactory', function($http) {
                 });
         }
     };
-
-    //return{
-    //    deleteNotifications : function(param) {
-    //        return  $http({
-    //            url: '/notification/deleteNotification',
-    //            method: 'delete',
-    //            data: param
-    //        }).success(function(data, status, headers){
-    //                console.log('delete info', result.delAlert);
-    //            })
-    //            .error(function(data, status, headers, config) {
-    //                $log.warn(data, status, headers(), config);
-    //            });
-    //    },
-    //};
-
 });
 
-//angular.module("contacts.factory", []).
-//factory('contactFactory', function($http){
-//    return {
-//        //code removed
-//        deleteContact: function(id) {
-//            return $http.delete('/api/contact/' + id);
-//        }
-//    }
-//})
+
 //creates a service that shares the user object between controllers
 rootsApp.factory('UserRepoFactory', function($http){
     var users = {};
@@ -235,6 +211,32 @@ rootsApp.factory('VenueEventsFactory', function($http) {
                     $log.warn(data, status, headers(), config);
                 });
         },
-        venues: venues
+        venues: venues,
+
+        deleteVenue : function(param) {
+            return  $http({
+                url: 'api/event/deleteVenue/' + param,
+                method: 'delete',
+                data: param
+            }).success(function(data, status, headers){
+                    console.log('delete info', status);
+                })
+                .error(function(data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
+        },
+        deleteEvent : function(param) {
+            return  $http({
+                url: 'api/event/deleteEvent',
+                method: 'put',
+                data: param
+            }).success(function(data, status, headers){
+                    console.log('delete event', status);
+                })
+                .error(function(data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
+        }
+
     };
 });

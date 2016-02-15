@@ -26,9 +26,35 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
             console.log($scope.formData);
         });
     };
+//this deletes a venue document from th DB collection
+        $scope.deleteVenue = function(param){
+            if (confirm("Are you sure you want to Delete this Venue?") == true) {
+                VenueEventsFactory.deleteVenue(param);
+                VenueEventsFactory.getVenues();
+
+            }
 
 
-    var arrayOrgs = ["Appetite for Change", "Dream of Wild Health", "Youth Farm Frogtown", "Urban Roots", "Youth Farm Hawthorn", "Youth Farm Lyndale", "Youth Farm Powderhorn", "Youth Farm W.Side"];
+        };
+//this deletes a event from the DB
+        $scope.deleteEvent = function(param1,param2){
+            param = {};
+            param.venue = param1;
+            param.event = param2;
+            console.log(param);
+
+            if (confirm("Are you sure you want to Delete this Event?") == true) {
+                VenueEventsFactory.deleteEvent(param);
+                VenueEventsFactory.getVenues();
+
+            }
+
+
+        };
+
+
+
+        var arrayOrgs = ["Appetite for Change", "Dream of Wild Health", "Youth Farm Frogtown", "Urban Roots", "Youth Farm Hawthorn", "Youth Farm Lyndale", "Youth Farm Powderhorn", "Youth Farm W.Side"];
     $scope.$arrayOrgs = arrayOrgs;
 
 

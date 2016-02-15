@@ -136,11 +136,17 @@
                 formData[$venueIndex].venueName = $venueName;
                 }}
             </div>
-            <div class = 'orange  row container-fluid venueWrapper slightSqound overflow' ng-click = 'display = !display'>
-                <div class = ' vTop orange col-md-12'><h2 class="tab-header">{{$venueName}}</h2></div>
+            <div class = 'orange  row container-fluid venueWrapper slightSqound overflow' >
+
+                <div class = ' vTop orange col-md-12'>
+                    <h2 class="tab-header">{{$venueName}}</h2>
+                    <button class="delButton" ng-click= "deleteVenue(venue._id)" >
+                        DELETE
+                    </button>
+                </div>
             </div>
 
-            <div ng-show = 'display' >
+            <div >
 
                 <div class = "venueHeader yellow  row container-fluid ">
                     <div class = "col-md-1 scheduleTitle">Event Date:</div>
@@ -166,7 +172,7 @@
                         formData[$venueIndex].events[$eventIndex].gameTime = $gameTime;
                         }}
                     </div>
-                    <div class = "col-md-1 scheduleLabel">{{$eventDate}}</div>
+                    <div class = "col-md-1 scheduleLabel"><a id="eventDelete" ng-click = "deleteEvent($parent.venue._id, event._id)"  class="eventDelete">X</a>{{$eventDate}}</div>
                     <div class = "col-md-1 scheduleLabel">{{$arrivalTime}}</div>
                     <div class = "col-md-1 scheduleLabel">{{$gameTime}}</div>
                     <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
@@ -199,7 +205,6 @@
             <div class = "col-md-12">
                 <button type="button"  ng-click="submitAndSave()" class="generateStyle green formButton">Save Schedule</button>
                 <a href="http://localhost:3000/#/tableview"><button class="generateStyle green formButton">View Schedule</button></a>
-                <!--<button type="submit" ng-controller="PrevController" ng-click="viewPreviousSchedule()" class="generateStyle green formButton">View Previous</button>-->
             </div>
         <div class = "col-md-12"><br></div>
         <div class = "col-md-12"><br></div>
