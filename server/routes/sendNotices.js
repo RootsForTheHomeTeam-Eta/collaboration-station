@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
-var config = require('../../config');
+//var config = require('../../config');
 
 
 router.post('/', function (req, res) {
@@ -9,12 +9,12 @@ router.post('/', function (req, res) {
     var recipient = req.body.sendToemail;
     var message = req.body.sendTomessage;
     console.log(req.body);
-
+    // create transport object for nodemailer
     smtpTrans = nodemailer.createTransport('Gmail', {
         service: 'Gmail',
         auth: {
-            user: config.GMAIL.USER, //will be sue in hidden variable
-            pass: config.GMAIL.PASS
+            user: process.env.USER,
+            pass: process.env.PASS
         }
     });
     //Mail options
@@ -24,16 +24,16 @@ router.post('/', function (req, res) {
         subject: 'A message from Roots for the Home Team',
         text: message + '\n from ' + "Sue" + '\n at ' + "Roots for the Home Team"
     };
-    smtpTrans.sendMail(mailOpts, function (error, response) {
+    // send mail
+    smtpTrans.sendMail(mailOpts, function (error) {
         //Email not sent
         if (error) {
             res.sendStatus(400);
-            console.log(error + ' you goofed');
+            next(error);
         }
         //Email sent
         else {
             res.sendStatus(200);
-            console.log('whoosh!');
         }
     });
     //not sure what this should be...confirmation alert?

@@ -1,6 +1,7 @@
 //controller for tabs
 
 rootsApp.controller('TabController', function ($scope){
+    // initialize currentTab
     $scope.currentTab = null;
     //setting these functions as part of the scope makes the function available
     //to process in-line via ng-click

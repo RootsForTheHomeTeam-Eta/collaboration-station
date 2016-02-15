@@ -12,21 +12,19 @@
                 $location.path('/login');
               });
           }
-          $log.info('$routeChangeSuccess - UserScheduleFormSubmitController');
         });
-
+        // initialize venues variable
         $scope.venues = VenueEventsFactory.venues;
         VenueEventsFactory.getVenues();
-
+        // initialize notification variable
         $scope.notification = {};
         $scope.notification.orgName = AuthService.user.orgName;
-
+        // initialize orgName variable
         $scope.orgName = AuthService.user.orgName;
-
-        console.log($scope.orgName);
 
         //this function loops through the org array and checks to see if any of the objects have a matching orgName
         $scope.verify = function(orgArray){
+            //initialize verifyOrg variable
             var verifyOrg = [];
               angular.forEach(orgArray, function(value){
                   if ( $scope.orgName == value.orgName){
@@ -39,11 +37,7 @@
                 return false;
             }
         };
-
-              //true == 0
-              //false = anything in the array
-
-
+        // function to reset scope variables
         $scope.reset = function(venueId, eventId, orgArray){
             var venueId = venueId;
             var eventId = eventId;
@@ -63,43 +57,34 @@
                   }
               });
             }
-            console.log(resetObj);
+            // resets info on db
             $http({
                 url: '/api/user/reset' ,
                 method: 'put',
                 data: resetObj
-            }).then(function (res, status) {
-                $log.info(res.status);
+            }).then(function () {
+                // upon successful call to db, repopulate venue object
                 VenueEventsFactory.getVenues();
-
             });
         };
 
-
-
-
-//this function add a notification to the notifications collection on pref submit
+        //this function add a notification to the notifications collection on pref submit
         $scope.notificationSubmit = function() {
             $http({
                 url: '/notification/submitNotification',
                 method: 'post',
                 data: $scope.notification
             }).then(function (res) {
-                //$log.info(res.status);
-                $log.info(res);
-                //console.log(UserSchedule);
+                // uncomment for debugging
+                //$log.info(res);
             });
         };
-
-        //$scope.testy = new $scope.event("Twins", "07/05/2990", "true");
+        // this function submits preferences for the user
         $scope.submit = function (venueId, eventId,pref) {
 
             var venueId = venueId;
             var eventId = eventId;
             var pref = pref;
-            console.log(venueId);
-            console.log(eventId);
-            console.log(pref);
 
             var prefObj = {};
             var user = AuthService.user;
@@ -109,14 +94,11 @@
             prefObj.event_id = eventId;
             prefObj.preference = pref;
 
-            $log.warn(prefObj);
-
             $http({
                  url: '/api/user/submit',
                  method: 'post',
                  data: prefObj
-             }).then(function (res) {
-                $log.info(res);
+             }).then(function () {
                 VenueEventsFactory.getVenues();
                 $scope.notificationSubmit();
                 popupS.alert({

@@ -4,15 +4,10 @@ var app = express();
 //require dependencies
 var path = require('path');
 var bodyParser = require('body-parser');
-var config = require('../config.js');
+//var config = require('../config.js');
 var passport = require('../auth/passport-local');
 var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
-
-
-//var flash = require('connect-flash');
-//
-//app.use(flash());
 
 // pretty json
 app.set('json spaces', 2);
@@ -34,13 +29,13 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 // instantiate session store
 var store = new MongoDBStore(
   {
-    uri: config.MONGOURI,
+    uri: process.env.MONGOURI,
     collection: 'rootsSessions'
   }
 );
 // use and configure server sessions
 app.use(session({
-  secret: config.SECRET,
+  secret: process.env.SECRET,
   key: 'user',
   resave: true,
   saveUninitialized: false,
@@ -50,6 +45,7 @@ app.use(session({
     secure: false
   }
 }));
+
 // when in production, use secure cookies
 //if (app.get('env') === 'production') {
 //  app.set('trust proxy', 1); // trust first proxy
@@ -66,22 +62,14 @@ app.set('port', process.env.PORT || 3000);
 // pull in database connection
 require('../db/db');
 
-// intialize passport
+// initialize passport
 passport.init(app);
-
-// instantiate expressJWT to check token
-//var jwtCheck = expressJWT({
-//  secret: config.SECRET
-//});
-
 
 // serve static public files
 app.use(express.static(path.join(__dirname, '../public')));
 
 // include route files
 var index = require('./routes/index');
-var login = require('./routes/login');
-var register = require('./routes/register');
 var auth = require('./routes/auth');
 var event = require('./routes/event');
 var user = require('./routes/user');
@@ -89,7 +77,7 @@ var saveSchedule = require('./routes/saveSchedule');
 var notification = require('./routes/notification');
 var schedule = require('./routes/getSchedule');
 
-//nodemailer
+// nodemailer
 var nodemailer = require('nodemailer');
 var sendNotices = require('./routes/sendNotices');
 var sendQuickMail = require('./routes/sendQuickMail');
@@ -98,8 +86,6 @@ app.use('/sendNotices', sendNotices);
 
 // ***** ROUTES *****
 
-app.use('/login', login);
-app.use('/register', register);
 app.use('/saveSchedule', saveSchedule);
 app.use('/notification', notification);
 app.use('/getSchedule', schedule);

@@ -2,7 +2,7 @@
   "name": "roots-app",
   "version": "0.0.0",
   "description": "An application for Roots for the Home Team to better schedule and communicate with garden program directors.",
-  "main": "app.js",
+  "main": "server/app.js",
   "scripts": {
     "start": "node server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"

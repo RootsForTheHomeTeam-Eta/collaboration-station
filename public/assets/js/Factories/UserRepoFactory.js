@@ -1,5 +1,6 @@
 //creates a service that shares the user object between controllers
 rootsApp.factory('UserRepoFactory', function($http){
+    //initialize users object
     var users = {};
     return {
     getUsers : function(){
@@ -8,10 +9,8 @@ rootsApp.factory('UserRepoFactory', function($http){
             .get('/api/user/getUsers')
             .then(function(response){
                 users.data = response.data;
-                console.log("UserRepoFactory users.data",users.data);
-                console.log("UserRepoFactory response.data:",response.data)
             }, function(err) {
-                //return err;
+                return err;
             });
     },
 

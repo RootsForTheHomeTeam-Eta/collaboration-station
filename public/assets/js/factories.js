@@ -14,7 +14,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
     isAdmin: isAdmin,
     user: user
   });
-
+  // check if user is admin
   function isAdmin() {
     if (user.isAdmin) {
       return true;
@@ -22,7 +22,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
       return false;
     }
   }
-
+  // check if user is logged in
   function isLoggedIn() {
     if (user.loggedIn) {
       return true;
@@ -30,11 +30,11 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
       return false;
     }
   }
-
+  // return user's status
   function getUserStatus() {
     return user;
   }
-
+  // login the user
   function login(username, password) {
 
     // create a new instance of deferred
@@ -45,11 +45,9 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
       // handle success
       .success(function (data, status) {
         if(status === 200 && data.status) {
-          console.log('data',data)
           user.loggedIn = true;
           user.isAdmin = data.isAdmin;
           user.orgName = data.orgName;
-          console.log('user in auth service',user);
           deferred.resolve();
         } else {
           user = false;
@@ -65,7 +63,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
     // return promise object
     return deferred.promise;
   }
-
+  // log out the user
   function logout() {
 
     // create a new instance of deferred
@@ -74,7 +72,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
     // send a get request to the server
     $http.get('/api/auth/logout')
       // handle success
-      .success(function (data) {
+      .success(function () {
         user.loggedIn = false;
         deferred.resolve();
       })
@@ -87,7 +85,8 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
     // return promise object
     return deferred.promise;
   }
-
+  // register the user
+  // currently unused
   function register(username, password) {
 
     // create a new instance of deferred
@@ -115,6 +114,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
 }]);
 // creates a service that shares the venue object between controllers
 rootsApp.factory('SharedVenues', function() {
+  // initialize venues array
   var venues = [];
 
   return {
@@ -172,6 +172,7 @@ rootsApp.factory('User2AdminFactory', function($http) {
 
 //creates a service that shares the user object between controllers
 rootsApp.factory('UserRepoFactory', function($http){
+    //initialize users object
     var users = {};
     return {
     getUsers : function(){
@@ -180,10 +181,8 @@ rootsApp.factory('UserRepoFactory', function($http){
             .get('/api/user/getUsers')
             .then(function(response){
                 users.data = response.data;
-                console.log("UserRepoFactory users.data",users.data);
-                console.log("UserRepoFactory response.data:",response.data)
             }, function(err) {
-                //return err;
+                return err;
             });
     },
 
@@ -194,7 +193,7 @@ rootsApp.factory('UserRepoFactory', function($http){
 
 // creates a service that shares the venue object between controllers
 rootsApp.factory('VenueEventsFactory', function($http) {
-
+    // initialize venues object
     var venues = {};
 
     return{
@@ -204,8 +203,6 @@ rootsApp.factory('VenueEventsFactory', function($http) {
                 method: 'GET'
             }).success(function(result){
                     venues.data = result;
-                    console.log('venues.data',venues.data);
-
                 })
                 .error(function(data, status, headers, config) {
                     $log.warn(data, status, headers(), config);

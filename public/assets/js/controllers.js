@@ -1,49 +1,58 @@
-//controller that functions on all pages for help screen
-rootsApp.controller('AdminViewController', ['$rootScope', '$scope', '$http', '$location', 'AuthService', '$log',
-  function($rootScope, $scope, $http, $location, AuthService, $log) {
-  //$route.reload();
+//controller for whole admin view
+rootsApp.controller('AdminViewController', ['$scope', '$http', '$location', 'AuthService', '$log',
+  function($scope, $http, $location, AuthService, $log) {
+
   // verify logged in status
-  //$scope.$on('$routeChangeSuccess', function (event, next, current) {
-  //  if (AuthService.isAdmin() === false) {
-  //    // call logout from service
-  //    AuthService.logout()
-  //      .then(function () {
-  //        $location.path('/login');
-  //      });
-  //  }
-  //  $log.info('$routeChangeSuccess - AdminViewController');
-  //  console.log('AdminViewController $routeChangeStart', AuthService.isAdmin());
-  //});
+  $scope.$on('$routeChangeSuccess', function (event, next, current) {
+    if (AuthService.isAdmin() === false) {
+      // call logout from service
+      AuthService.logout()
+        .then(function () {
+          $location.path('/login');
+        });
+    }
+  });
 
 }]);
 
+// Controller for final schedule view
 rootsApp.controller('FinalScheduleViewController', ['$scope', '$http', function($scope, $http) {
-    $scope.hello = 'hello from Final Schedule View controller!';
-    console.log($scope.hello);
-
+    // returns schedule document from db
     $http({
         method: 'GET',
         url: '/getSchedule'
     }).then(function(docs) {
         //$scope.schedule = {};
         $scope.schedule = docs;
-        console.log($scope.schedule);
-
     });
+
+    $scope.printSchedule = function(){
+
+        // need an id on the schedule html, 'printArea' was used on Stack Overflow
+        var schedule = document.getElementById('printArea').innerHTML;
+        // the first two arguments to $window.open are a URL and a name.
+        //these were left blank but I imagine we could put it in later
+        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        scheduleWindow.document.write(schedule);
+        scheduleWindow.print();
+    };
 }]);
 
 //controller that adds events from admin page under add event tab
 rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFactory', function($scope, $http, VenueEventsFactory) {
+    // instantiates event variable
     $scope.event = {};
-  //form data tied to model where possible
+    //function to reset form fields
     $scope.eventReset = function() {
-    $scope.venueName = '';
-    $scope.eventDate = '';
-    $scope.arrivalTime = '';
-    $scope.gameTime = '';
-    $scope.submitBy = '';
-  };
+        $scope.venueName = '';
+        $scope.eventDate = '';
+        $scope.arrivalTime = '';
+        $scope.gameTime = '';
+        $scope.submitBy = '';
+      };
+    // submits form data to db
     $scope.submitEventForm = function () {
+        // variable of form entries
       var event = {
         venueName: $scope.venueName,
         eventDate: $scope.eventDate,
@@ -51,34 +60,31 @@ rootsApp.controller("FormEventController", ['$scope', '$http', 'VenueEventsFacto
         gameTime: $scope.gameTime,
         submitBy: $scope.submitBy
       };
+        // call to populate db with data
       $http({
         url: '/api/event/addEvent',
         method: 'post',
         data: event
       }).then(function () {
+          // show new data on page
         VenueEventsFactory.getVenues();
+          // popup for success
         popupS.alert({
           content: 'Your new event has been added!'
         });
+        $scope.venueName = '';
+        $scope.eventDate = '';
+        $scope.arrivalTime = '';
+        $scope.gameTime = '';
+        $scope.submitBy = '';
       });
-      //$http({
-      //  url: '/api/event/getEvents',
-      //  method: 'get'
-      //});
-
     };
-
-  //should have a popupS modal confirmation
-
 }]);
 // login controller for user and admin sign-in
 
 rootsApp.controller('LoginController', ['$scope', '$location', 'AuthService', '$log',
   function ($scope, $location, AuthService, $log) {
-
-  // log user status
-  console.log(AuthService.getUserStatus());
-
+  // login function
   $scope.login = function () {
     // initial values
     $scope.error = false;
@@ -89,19 +95,22 @@ rootsApp.controller('LoginController', ['$scope', '$location', 'AuthService', '$
       // handle success
       .then(function () {
         if (AuthService.isAdmin()) {
+            // if admin, send to admin page
           $location.path('/admin');
         } else {
+            // if user, send to user page
           $location.path('/user');
         }
+          // reset validation
         $scope.disabled = false;
+          // empty form
         $scope.loginForm = {};
-      })
-      // handle error
-      .catch(function () {
-        $scope.error = true;
-        $scope.errorMessage = "Invalid username and/or password";
-        $scope.disabled = false;
-        $scope.loginForm = {};
+      }, function () {
+          // handle error
+          $scope.error = true;
+          $scope.errorMessage = "Invalid username and/or password";
+          $scope.disabled = false;
+          $scope.loginForm = {};
       });
   };
 }]);
@@ -110,14 +119,12 @@ rootsApp.controller('LoginController', ['$scope', '$location', 'AuthService', '$
 // logout controller for user and admin logout
 
 rootsApp.controller('LogoutController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
-
+  // logout function
   $scope.logout = function () {
-
-    console.log(AuthService.getUserStatus());
-
     // call logout from service
     AuthService.logout()
       .then(function () {
+        //redirect to login page
         $location.path('/login');
       });
   };
@@ -127,14 +134,11 @@ rootsApp.controller('LogoutController', ['$scope', '$location', 'AuthService', f
 rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$location', 'AuthService', '$log',
     function($rootScope, $scope, $http, $location, AuthService, $log) {
     //// verify logged in status
-    //$rootScope.$on('$routeChangeSuccess', function (event, next, current) {
-    //    if (AuthService.isLoggedIn() === false) {
-    //        $location.path('/login');
-    //        $log.info('$routeChangeSuccess - MainHelpController');
-    //    }
-    //});
-
-        $scope.loggedIn = " ";
+    $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
+        if (AuthService.isLoggedIn() === false) {
+            $location.path('/login');
+        }
+    });
 
         $scope.onIconCLick = function(){
 
@@ -156,78 +160,52 @@ rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$lo
             });
 
         };
-        $scope.hello = 'hello!';
-        console.log($scope.hello);
-
-        $scope.logout = function() {
-            $http
-                .get('/api/auth/logout', $scope.user)
-                .then(function (data, status, headers, config) {
-                    console.log('User logged out');
-                    //$window.sessionStorage.token = data.token;
-                }, function (data, status, headers, config) {
-                    // Erase token if error
-                    //delete $window.sessionStorage.token;
-
-                    // Error message
-                    $scope.message = 'Error: Trouble logging out';
-                });
-        }
 }]);
 
 
 
 
-//controller that sends individual messages from admin view - the email addresses used here should be
-//populated by the userDropdownController/UserRepo Factory
+// message controller
 rootsApp.controller('MessageController', ['$scope', '$http', 'UserRepoFactory',
     function ($scope, $http, UserRepoFactory) {
-
-
-
+    // function to send mail
     $scope.sendMail = function () {
-        console.log('I clicked');
-
+        // set up data variable from form data
         var data = {
-            sendToemail : $scope.sendToemail, //This will become auto-populated
-            sendToname : $scope.sendToname, //This will become auto-populated
+            sendToemail : $scope.sendToemail,
+            sendToname : $scope.sendToname,
             sendTomessage : $scope.sendTomessage
         };
-        console.log('data for email message:',data);
         // Simple POST request example (passing data) :
         $http.post('/sendNotices', data).
         success(function(data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
-            console.log('email sent!');
         }).
         error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
-            console.log('email not sent!');
         });
         popupS.alert({
             content: 'Message sent'
         });
         //need to clear form on submit
+        $scope.sendToemail = '';
+        $scope.sendToname = '';
+        $scope.sendTomessage = '';
     };
     //Send personal messages from the app
     //should have a popupS modal confirmation
-    $scope.hello = 'hello from messagesendcontroller!';
-    console.log($scope.hello);
 
     // For Dropdown:
     UserRepoFactory.getUsers().then(function() {
         $scope.dropUsers = UserRepoFactory.users;
-        console.log('dropUsers inside',$scope.dropUsers);
     });
-    //$scope.dropUsers = UserRepoFactory.users;
-    console.log('dropUsers outside',$scope.dropUsers);
 }]);
 
-//controller that with function to tell you what partial you are on
-//currently unsed
+// navigation controller
 rootsApp.controller('NavController', ['$scope','$location', function($scope, $location) {
+    // checks for partial
     $scope.isPartial = function (viewLocation) {
         var active = (viewLocation === $location.path());
         return active;
@@ -245,57 +223,22 @@ rootsApp.controller('NoticeAlertController',['$scope','User2AdminFactory', funct
         User2AdminFactory.getNotifications();
     };
 
-
+    // gets notifications from factory
     $scope.notifications = User2AdminFactory.notifications;
     User2AdminFactory.getNotifications();
-    console.log($scope.notifications);
-
-
-
-
 }]);
-
-//
-//$scope.deleteNotifications = function(noti){
-//    console.log(noti);
-//    $http({
-//        url: '/notification/deleteNotification',
-//        method: 'delete',
-//        data: noti
-//    }).then(function (res) {
-//        //$log.info(res.status);
-//        //$log.info(res);
-//
-//    });
-//
-//};
 
 //controller to send quick messages from admin panel
 rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory', '$log',
     function ($scope, $http, UserRepoFactory, $log) {
     //Send notices with button based on who is selected and what type of message
     //should have a popupS modal confirmation
-
-    // Pull in
-    //    var onFetchError = function (message) {
-    //        $scope.error = "Error Fetching Users. Message:" + message;
-    //    };
-    //    var onFetchCompleted = function (data) {
-    //        $scope.users = data;
-    //    };
-    //    var getUsers = function () {
-    //        //UserRepoFactory.get().then(onFetchCompleted, onFetchError);
-    //        return UserRepoFactory.get;
-    //    };
+        // get users from factory
         $scope.noticeUsers = UserRepoFactory.users;
         UserRepoFactory.getUsers();
 
-        $scope.quickSendForm = {};
-
     $log.warn($scope.users);
     $scope.sendQuickMail = function (users, message) {
-        console.log('I clicked');
-        $log.warn('NoticeSendController users',users);
         // array of recipient emails to send to
         var recipients = [];
         // check if user was checked
@@ -308,22 +251,7 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         var emailData = {
             recipients: recipients,
             message: message
-        }
-        $log.warn('emailData: ',emailData);
-        $log.warn('recipients: ', recipients);
-        $log.warn('$scope.quickSendForm: ',$scope.quickSendForm);
-        //var data = ({
-        //    gardenGroupAFC: this.gardenGroupAFC, //This will become auto-populated
-        //    gardenGroupDWH: this.gardenGroupDWH, //This will become auto-populated
-        //    gardenGroupURF: this.gardenGroupURF,
-        //    gardenGroupYFF: this.gardenGroupYFF,
-        //    gardenGroupYFH: this.gardenGroupYFH,
-        //    gardenGroupYFL: this.gardenGroupYFL,
-        //    gardenGroupYFP: this.gardenGroupYFP,
-        //    gardenGroupYFW: this.gardenGroupYFW,
-        //    signUp: this.signUp
-        //
-        //});
+        };
 
         // Simple POST request example (passing data) :
         $http({
@@ -335,18 +263,16 @@ rootsApp.controller('NoticeSendController', ['$scope', '$http', 'UserRepoFactory
         success(function (data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
-            console.log('whoosh');
         }).
         error(function (data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
+            // log data on error
             $log.error(data, status, headers, config);
         });
         popupS.alert({
             content: 'Quick Notice Sent'
         });
-        $scope.hello = 'hello from Notice send controller!';
-        console.log($scope.hello);
         popupS.alert({
             content: 'Message Sent!'
         });
@@ -360,15 +286,32 @@ rootsApp.controller('PrevController', ['$scope', '$http', function($scope, $http
     $scope.viewPreviousSchedule= function() {
 
 
-        $scope.hello = 'hello!';
-        console.log($scope.hello);
+        //$scope.hello = 'hello! from prev controller';
+        //console.log($scope.hello);
     };
 }]);
 
+// $window is an Angular service and needs to be put in the angular config
+
+rootsApp.controller('PrintScheduleController', ['$scope', '$window', function($scope, $window){
+    console.log('Printing from PrintScheduleController.js');
+    $scope.printSchedule = function(){
+
+        // need an id on the schedule html, 'printArea' was used on Stack Overflow
+        var schedule = document.getElementById('printArea').innerHTML;
+        // the first two arguments to $window.open are a URL and a name.
+        //these were left blank but I imagine we could put it in later
+        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        scheduleWindow.document.write(schedule);
+        scheduleWindow.print();
+    };
+
+}]);
 //controller for creating new users on the database
 rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $http) {
+    // initialize user variable
     $scope.user = {};
-
+    // function to register
     $scope.registerUser = function () {
         //form data tied to model
         var user = {
@@ -379,18 +322,18 @@ rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $
             password: $scope.password
         };
         console.log('user: ',user);
+        // send user to db
         $http({
             url: '/api/auth/register',
             method: 'post',
             data: user
         }).then(function () {
+            popupS.alert({
+                content: 'User Registered.'
+            });
+        });
 
-        });
-        popupS.alert({
-            content: 'User Registered.'
-        });
     };
-    //alert popping even if form not submitted
 
 
 
@@ -481,6 +424,7 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 //controller for tabs
 
 rootsApp.controller('TabController', function ($scope){
+    // initialize currentTab
     $scope.currentTab = null;
     //setting these functions as part of the scope makes the function available
     //to process in-line via ng-click
@@ -497,28 +441,6 @@ rootsApp.controller('TabController', function ($scope){
     };
 });
 
-//controller to auto-populate user emails on send forms
-rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', function($scope, UserRepoFactory) {
-    //var onFetchError = function (message) {
-    //    $scope.error = "Error Fetching Users. Message:" + message;
-    //};
-    //var onFetchCompleted = function (data) {
-    //    $scope.users = data;
-    //};
-    //var getContactEmails = function () {
-    //    UserRepoFactory.get().then(onFetchCompleted, onFetchError);
-    //};
-    //
-    //getContactEmails();
-    //$scope.dropUsers = {};
-    UserRepoFactory.getUsers().then(function() {
-        $scope.dropUsers = UserRepoFactory.users;
-        console.log('dropUsers inside',$scope.dropUsers);
-    });
-    //$scope.dropUsers = UserRepoFactory.users;
-    console.log('dropUsers outside',$scope.dropUsers);
-}]);
-
 //controller to submit user responses from schedule form
         rootsApp.controller('UserScheduleFormSubmitController', [ '$rootScope', '$scope','$http', 'VenueEventsFactory', '$log', 'AuthService', '$location',
           function ($rootScope, $scope, $http, VenueEventsFactory, $log, AuthService, $location) {
@@ -533,21 +455,19 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
                 $location.path('/login');
               });
           }
-          $log.info('$routeChangeSuccess - UserScheduleFormSubmitController');
         });
-
+        // initialize venues variable
         $scope.venues = VenueEventsFactory.venues;
         VenueEventsFactory.getVenues();
-
+        // initialize notification variable
         $scope.notification = {};
         $scope.notification.orgName = AuthService.user.orgName;
-
+        // initialize orgName variable
         $scope.orgName = AuthService.user.orgName;
-
-        console.log($scope.orgName);
 
         //this function loops through the org array and checks to see if any of the objects have a matching orgName
         $scope.verify = function(orgArray){
+            //initialize verifyOrg variable
             var verifyOrg = [];
               angular.forEach(orgArray, function(value){
                   if ( $scope.orgName == value.orgName){
@@ -560,11 +480,7 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
                 return false;
             }
         };
-
-              //true == 0
-              //false = anything in the array
-
-
+        // function to reset scope variables
         $scope.reset = function(venueId, eventId, orgArray){
             var venueId = venueId;
             var eventId = eventId;
@@ -584,43 +500,34 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
                   }
               });
             }
-            console.log(resetObj);
+            // resets info on db
             $http({
                 url: '/api/user/reset' ,
                 method: 'put',
                 data: resetObj
-            }).then(function (res, status) {
-                $log.info(res.status);
+            }).then(function () {
+                // upon successful call to db, repopulate venue object
                 VenueEventsFactory.getVenues();
-
             });
         };
 
-
-
-
-//this function add a notification to the notifications collection on pref submit
+        //this function add a notification to the notifications collection on pref submit
         $scope.notificationSubmit = function() {
             $http({
                 url: '/notification/submitNotification',
                 method: 'post',
                 data: $scope.notification
             }).then(function (res) {
-                //$log.info(res.status);
-                $log.info(res);
-                //console.log(UserSchedule);
+                // uncomment for debugging
+                //$log.info(res);
             });
         };
-
-        //$scope.testy = new $scope.event("Twins", "07/05/2990", "true");
+        // this function submits preferences for the user
         $scope.submit = function (venueId, eventId,pref) {
 
             var venueId = venueId;
             var eventId = eventId;
             var pref = pref;
-            console.log(venueId);
-            console.log(eventId);
-            console.log(pref);
 
             var prefObj = {};
             var user = AuthService.user;
@@ -630,14 +537,11 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
             prefObj.event_id = eventId;
             prefObj.preference = pref;
 
-            $log.warn(prefObj);
-
             $http({
                  url: '/api/user/submit',
                  method: 'post',
                  data: prefObj
-             }).then(function (res) {
-                $log.info(res);
+             }).then(function () {
                 VenueEventsFactory.getVenues();
                 $scope.notificationSubmit();
                 popupS.alert({
@@ -655,15 +559,16 @@ rootsApp.controller("UserDropDownController", ['$scope', 'UserRepoFactory', func
  * Created by manadab on 2/5/16.
  */
 rootsApp.controller('PrintScheduleController', ['$scope', '$window', function($scope, $window){
-    console.log('Printing from PrintScheduleController.js');
+    // prints schedule
     $scope.printSchedule = function(){
-        console.log('print clicked');
         // need an id on the schedule html, 'printArea' was used on Stack Overflow
         var schedule = document.getElementById('printArea').innerHTML;
         // the first two arguments to $window.open are a URL and a name.
         //these were left blank but I imagine we could put it in later
         var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
+        // writes document to be printed
         scheduleWindow.document.write(schedule);
+        // brings up print console
         scheduleWindow.print();
     };
 

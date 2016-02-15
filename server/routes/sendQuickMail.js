@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
-var config = require('../../config.js');
+//var config = require('../../config.js');
 
 router.post('/', function (req, res) {
     var mailOpts, smtpTrans;
@@ -9,35 +9,31 @@ router.post('/', function (req, res) {
     var recipients = req.body.recipients.join();
     console.log('recipients: ',recipients)
     var message = req.body.message;
-
+    // create transport object for nodemailer
     smtpTrans = nodemailer.createTransport('Gmail', {
         service: 'Gmail',
         auth: {
-            user: config.GMAIL.USER, //will be sue in hidden variable
-            pass: config.GMAIL.PASS
+            user: process.env.USER,
+            pass: process.env.PASS
         }
     });
     //Mail options
     mailOpts = {
         from: " ",//will be sue in hidden variable
         to: recipients,
-        //to: req.body.gardenGroupAFC +","+ req.body.gardenGroupDWH +","+
-        //    req.body.gardenGroupURF +","+ req.body.gardenGroupYFF +","+
-        //    req.body.gardenGroupYFH +","+ req.body.gardenGroupYFL +","+
-        //    req.body.gardenGroupYFP +","+ req.body.gardenGroupYFW,
         subject: 'A message from Roots for the Home Team',
         text: message + '\n from ' + "Sue" + '\n at ' + "Roots for the Home Team"
     };
+    // send mail
     smtpTrans.sendMail(mailOpts, function (error, response) {
         //Email not sent
         if (error) {
             res.sendStatus(400);
-            console.log(error + 'you goofed');
+            next(error)
         }
         //Email sent
         else {
             res.sendStatus(200);
-            console.log('whoosh');
         }
     });
     //not sure what this should be...confirmation alert?
