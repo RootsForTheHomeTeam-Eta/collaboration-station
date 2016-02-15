@@ -6,15 +6,17 @@
             </div>
             <div>
                 <div class = "venueHeader yellow  row container-fluid">
-                    <div class = "col-xs-2">Date:</div>
+                    <div class = "col-xs-3">Date:</div>
                     <div class = "col-xs-2">Arrival:</div>
                     <div class = "col-xs-2">Event:</div>
                     <div class = "col-xs-2">1st</div>
-                    <div class = "col-xs-2">2nd</div>
+                    <div class = "col-xs-1">2nd</div>
                     <div class = "col-xs-2">Unable</div>
                 </div>
                 <div  class = "venueOptions row container-fluid" ng-repeat="event in venue.events">
+
                     <div class = "col-xs-2">{{event.event.eventDate | date: 'shortDate' }}</div>
+
                     <div class = "col-xs-2">{{event.event.arrivalTime | date: 'h:mm a' }}</div>
                     <div class = "col-xs-2">{{event.event.gameTime | date: 'h:mm a'}}</div>
                     <form name = 'prefForm'>
@@ -28,17 +30,19 @@
                         <div class="col-xs-4 submitButton">
                         <button ng-if = "verify(event.event.organization)" ng-disabled = "prefForm.$invalid" ng-click="submit( $parent.venue._id, event._id, prefForm.preferences )"  type="submit" class= "green btnUser" >SUBMIT</button>
                         <button ng-if = "!verify(event.event.organization)" type="button" class= "green btnUser" ng-click="reset( $parent.venue._id, event._id, event.event.organization )" >RESET</button>
-                        <!--<p>{{event.event.organization}}</p>-->
+
                         </div>
+
                         </div>
+
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
         <div class= 'col-xs-12'>
         </div>
-
 </div>
 
 

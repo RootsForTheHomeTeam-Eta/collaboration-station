@@ -11,8 +11,6 @@ rootsApp.controller('AdminViewController', ['$scope', '$http', '$location', 'Aut
           $location.path('/login');
         });
     }
-    $log.info('$routeChangeSuccess - AdminViewController');
-    console.log('AdminViewController $routeChangeStart', AuthService.isAdmin());
   });
 
 }]);

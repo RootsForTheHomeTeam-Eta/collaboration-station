@@ -464,4 +464,16 @@ input {
     border: solid #EDB816 1px;
 }
 
+#eventDelete{
+    position: absolute;
+    left: 0;
+    color: blue;
+    text-decoration: none;
 
+}
+
+#eventDelete:hover{
+    color: red;
+    cursor: pointer;
+
+}

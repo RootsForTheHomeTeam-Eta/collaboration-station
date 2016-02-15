@@ -1,7 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
-var config = require('../config.js');
+//var config = require('../config.js');
 var User = require('../db/models/user');
 var bcrypt = require('bcrypt');
 
@@ -22,15 +22,12 @@ module.exports = {
     // Passport session setup
     // serialize the user
     passport.serializeUser(function(user, done) {
-      console.log("serialize " + user);
       done(null, user.id);
     });
     // deserialize the user
     passport.deserializeUser(function(id, done) {
-      console.log("deserialize " + id);
       User.findById(id, function(err, user) {
         if(err) done(err);
-        console.log("findbyId " + user);
         done(null, user);
       });
     });
