@@ -1,3 +1,4 @@
+process.env.PWD = process.cwd()
 // instantiate express
 var express = require('express');
 var app = express();
