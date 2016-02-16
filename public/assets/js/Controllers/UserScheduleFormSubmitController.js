@@ -1,6 +1,6 @@
 //controller to submit user responses from schedule form
-        rootsApp.controller('UserScheduleFormSubmitController', [ '$rootScope', '$scope','$http', 'VenueEventsFactory', '$log', 'AuthService', '$location',
-          function ($rootScope, $scope, $http, VenueEventsFactory, $log, AuthService, $location) {
+        rootsApp.controller('UserScheduleFormSubmitController', [ '$window','$rootScope', '$scope','$http', 'VenueEventsFactory', '$log', 'AuthService', '$location',
+          function ($window, $rootScope, $scope, $http, VenueEventsFactory, $log, AuthService, $location) {
 
 
         // verify logged in status
@@ -9,7 +9,8 @@
             // call logout from service
             AuthService.logout()
               .then(function () {
-                $location.path('/login');
+                //$location.path('/login');
+                  $window.location = '/#/login';
               });
           }
         });

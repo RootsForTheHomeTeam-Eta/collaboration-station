@@ -1,6 +1,6 @@
 //controller for whole admin view
-rootsApp.controller('AdminViewController', ['$scope', '$http', '$location', 'AuthService', '$log',
-  function($scope, $http, $location, AuthService, $log) {
+rootsApp.controller('AdminViewController', ['$window','$scope', '$http', '$location', 'AuthService', '$log',
+  function($window,$scope, $http, $location, AuthService, $log) {
 
   // verify logged in status
   $scope.$on('$routeChangeSuccess', function (event, next, current) {
@@ -8,7 +8,8 @@ rootsApp.controller('AdminViewController', ['$scope', '$http', '$location', 'Aut
       // call logout from service
       AuthService.logout()
         .then(function () {
-          $location.path('/login');
+          //$location.path('/login');
+          $window.location = '/#/login';
         });
     }
   });
@@ -118,25 +119,28 @@ rootsApp.controller('LoginController', ['$scope', '$location', 'AuthService', '$
 
 // logout controller for user and admin logout
 
-rootsApp.controller('LogoutController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
+rootsApp.controller('LogoutController', ['$window', '$scope', '$location', 'AuthService',
+    function ($window, $scope, $location, AuthService) {
   // logout function
   $scope.logout = function () {
     // call logout from service
     AuthService.logout()
       .then(function () {
         //redirect to login page
-        $location.path('/login');
+        //$location.path('/login');
+          $window.location = '/#/login';
       });
   };
 }]);
 
 //controller that functions on all pages for help screen
-rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$location', 'AuthService', '$log',
-    function($rootScope, $scope, $http, $location, AuthService, $log) {
+rootsApp.controller('MainHelpController', ['$window','$rootScope', '$scope', '$http', '$location', 'AuthService', '$log',
+    function($window,$rootScope, $scope, $http, $location, AuthService, $log) {
     //// verify logged in status
     $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
         if (AuthService.isLoggedIn() === false) {
-            $location.path('/login');
+            //$location.path('/login');
+            $window.location = '/#/login';
         }
     });
 
@@ -425,8 +429,8 @@ rootsApp.controller('TabController', function ($scope){
 });
 
 //controller to submit user responses from schedule form
-        rootsApp.controller('UserScheduleFormSubmitController', [ '$rootScope', '$scope','$http', 'VenueEventsFactory', '$log', 'AuthService', '$location',
-          function ($rootScope, $scope, $http, VenueEventsFactory, $log, AuthService, $location) {
+        rootsApp.controller('UserScheduleFormSubmitController', [ '$window','$rootScope', '$scope','$http', 'VenueEventsFactory', '$log', 'AuthService', '$location',
+          function ($window, $rootScope, $scope, $http, VenueEventsFactory, $log, AuthService, $location) {
 
 
         // verify logged in status
@@ -435,7 +439,8 @@ rootsApp.controller('TabController', function ($scope){
             // call logout from service
             AuthService.logout()
               .then(function () {
-                $location.path('/login');
+                //$location.path('/login');
+                  $window.location = '/#/login';
               });
           }
         });

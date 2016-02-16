@@ -1,10 +1,11 @@
 //controller that functions on all pages for help screen
-rootsApp.controller('MainHelpController', ['$rootScope', '$scope', '$http', '$location', 'AuthService', '$log',
-    function($rootScope, $scope, $http, $location, AuthService, $log) {
+rootsApp.controller('MainHelpController', ['$window','$rootScope', '$scope', '$http', '$location', 'AuthService', '$log',
+    function($window,$rootScope, $scope, $http, $location, AuthService, $log) {
     //// verify logged in status
     $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
         if (AuthService.isLoggedIn() === false) {
-            $location.path('/login');
+            //$location.path('/login');
+            $window.location = '/#/login';
         }
     });
 
