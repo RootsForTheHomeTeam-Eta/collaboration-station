@@ -4,8 +4,8 @@ rootsApp.controller('MainHelpController', ['$window','$rootScope', '$scope', '$h
     //// verify logged in status
     $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
         if (AuthService.isLoggedIn() === false) {
-            //$location.path('/login');
-            $window.location = '/#/login';
+            $location.path('/login');
+            //$window.location = '/#/login';
         }
     });
         $scope.user = AuthService.getUserStatus();
