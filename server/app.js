@@ -69,7 +69,7 @@ passport.init(app);
 
 // for Heroku
 process.env.PWD = process.cwd()
-app.use(express.static(process.env.PWD + '../public'));
+app.use(express.static(process.env.PWD + '/public'));
 
 // serve static public files
 //app.use(express.static(path.join(__dirname, '../public')));
