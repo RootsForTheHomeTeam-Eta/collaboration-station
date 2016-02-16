@@ -1,4 +1,4 @@
-process.env.PWD = process.cwd()
+process.env.PWD = process.cwd();
 // instantiate express
 var express = require('express');
 var app = express();
@@ -69,10 +69,10 @@ require('../db/db');
 passport.init(app);
 
 // for Heroku
-app.use('/public',express.static(path.join(process.env.PWD, 'public')));
+//app.use('/public',express.static(path.join(process.env.PWD, 'public')));
 
 // serve static public files
-//app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // include route files
 var index = require('./routes/index');

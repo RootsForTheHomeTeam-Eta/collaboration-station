@@ -1,4 +1,3 @@
-process.env.PWD = process.cwd();
 // index route
 var express = require('express');
 var router = express.Router();
@@ -8,7 +7,7 @@ var path = require('path');
 // i.e. css files
 router.get('/*', function(req, res) {
   var file = req.params[0] || '/views/index.html';
-  res.sendFile(path.join(process.env.PWD, '../../public', file));
+  res.sendFile(path.join(__dirname, '../../public', file));
 });
 
 
