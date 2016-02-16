@@ -1,3 +1,4 @@
+process.env.PWD = process.cwd();
 // index route
 var express = require('express');
 var router = express.Router();
