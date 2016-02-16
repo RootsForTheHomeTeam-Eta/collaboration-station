@@ -41,6 +41,7 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
 
             };
 
+
 //this deletes a event from the DB
         $scope.deleteEvent = function(param1,param2){
             param = {};
@@ -48,13 +49,21 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
             param.event = param2;
             console.log(param);
 
-            if(popupS.confirm({
-                    content: 'Are you sure you want to delete this event?',
-                    onSubmit: function() {
-                        VenueEventsFactory.deleteVenue(param);
-                        VenueEventsFactory.getVenues();
-                    }
-                }));
+        //    if (popupS.confirm({
+        //            content: 'Are you sure you want to delete this venue?',
+        //            onSubmit: function() {
+        //                VenueEventsFactory.deleteVenue(param);
+        //                VenueEventsFactory.getVenues();
+        //            }
+        //        }));
+        //
+        //};
+
+            if (confirm("Are you sure you want to Delete this Event?") == true) {
+                VenueEventsFactory.deleteEvent(param);
+                VenueEventsFactory.getVenues();
+            }
+
 
         };
 
