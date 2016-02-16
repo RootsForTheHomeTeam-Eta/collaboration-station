@@ -23,7 +23,7 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     margin:0;
-    padding: 0;
+    padding: 0px 0px 6px 0px;
     font-size: 24px;
 }
 
@@ -78,13 +78,9 @@ div.options{
 }
 
 .submitBy {
-
-    margin: 8px 6px 6px -50px;
-    padding: 0px 38px 0px 0px;
-
-    text-align: right;
-    /*border: 2px solid #55AC3A;*/
-    margin: 13px 0px 0px 0px;
+    margin: 8px 0px 6px 0px;
+    padding: 0px 0px 0px 37px;
+    text-align: left;
 }
 
 .pos2{
@@ -94,8 +90,8 @@ div.options{
 
 .submitButton {
     margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
     font-size: 14px;
+    padding: 0px 0px 0px 75px;
 }
 /*input[type="radio"]{*/
     /*border-radius: 2px;*/

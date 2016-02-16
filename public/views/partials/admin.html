@@ -136,19 +136,20 @@
                 formData[$venueIndex].venueName = $venueName;
                 }}
             </div>
-            <div class = 'orange  row container-fluid venueWrapper slightSqound overflow' >
-
-                <div class = ' vTop orange col-md-12'>
+            <div class = 'orange  row container-fluid venueWrapper slightSqound overflow' ng-model="collapsed" ng-click="collapsed=!collapsed">
+                <div class = "vTop orange col-md-4"></div>
+                <div class = "vTop orange col-md-4">
                     <h2 class="tab-header">{{$venueName}}</h2>
-                    <button class="delButton" ng-click= "deleteVenue(venue._id)" >
-                        DELETE
-                    </button>
+                </div>
+                <div class = "vTop orange col-md-3"></div>
+                <div class = "vTop orange col-md-1">
+                    <button class="delButtonVen" ng-click= "deleteVenue(venue._id)">Delete Venue</button>
                 </div>
             </div>
 
-            <div >
+            <div ng-show="collapsed">
 
-                <div class = "venueHeader yellow  row container-fluid ">
+                <div class = "venueHeader yellow  row container-fluid">
                     <div class = "col-md-1 scheduleTitle">Event Date:</div>
                     <div class = "col-md-1 scheduleTitle">Arrival Time:</div>
                     <div class = "col-md-1 scheduleTitle">Event Time:</div>
@@ -172,10 +173,10 @@
                         formData[$venueIndex].events[$eventIndex].gameTime = $gameTime;
                         }}
                     </div>
-                    <div class = "col-md-1 scheduleLabel"><a id="eventDelete" ng-click = "deleteEvent($parent.venue._id, event._id)"  class="eventDelete">X</a>{{$eventDate}}</div>
+                    <div class = "col-md-1 scheduleLabel">{{$eventDate}}</div>
                     <div class = "col-md-1 scheduleLabel">{{$arrivalTime}}</div>
                     <div class = "col-md-1 scheduleLabel">{{$gameTime}}</div>
-                    <div class = "col-md-1"><div>&nbsp;&nbsp;</div></div>
+                    <div class = "col-md-1"><div><button id="eventDelete" ng-click = "deleteEvent($parent.venue._id, event._id)"  class="delButtonEven">Delete Event</button></div></div>
                     <!--form needs individual name each time it repeats-->
                     <form name="form_{{$venueIndex}}_{{$eventIndex}}" novalidate>
 
