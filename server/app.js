@@ -69,7 +69,7 @@ require('../db/db');
 passport.init(app);
 
 // for Heroku
-app.use(express.static(process.env.PWD + '/public'));
+app.use('/public',express.static(process.env.PWD + '/public'));
 
 // serve static public files
 //app.use(express.static(path.join(__dirname, '../public')));
