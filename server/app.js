@@ -9,6 +9,8 @@ var passport = require('../auth/passport-local');
 var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 
+
+
 // pretty json
 app.set('json spaces', 2);
 
@@ -65,8 +67,12 @@ require('../db/db');
 // initialize passport
 passport.init(app);
 
+// for Heroku
+process.env.PWD = process.cwd()
+app.use(express.static(process.env.PWD + '../public'));
+
 // serve static public files
-app.use(express.static(path.join(__dirname, '../public')));
+//app.use(express.static(path.join(__dirname, '../public')));
 
 // include route files
 var index = require('./routes/index');
