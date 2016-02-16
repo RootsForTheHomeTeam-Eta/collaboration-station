@@ -35,6 +35,7 @@ router.put('/deleteEvent', function(req, res, next) {
         }
       }
   );
+
 });
 
 
