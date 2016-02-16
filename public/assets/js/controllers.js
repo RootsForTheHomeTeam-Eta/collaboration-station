@@ -123,12 +123,15 @@ rootsApp.controller('LogoutController', ['$window', '$scope', '$location', 'Auth
     function ($window, $scope, $location, AuthService) {
   // logout function
   $scope.logout = function () {
+      // remove user name from header
+      $scope.$parent.user = '';
     // call logout from service
     AuthService.logout()
       .then(function () {
         //redirect to login page
         //$location.path('/login');
           $window.location = '/#/login';
+
       });
   };
 }]);
@@ -143,7 +146,7 @@ rootsApp.controller('MainHelpController', ['$window','$rootScope', '$scope', '$h
             $window.location = '/#/login';
         }
     });
-
+        $scope.user = AuthService.getUserStatus();
         $scope.onIconCLick = function(){
 
             popupS.modal({

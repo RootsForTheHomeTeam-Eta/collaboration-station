@@ -48,6 +48,7 @@ rootsApp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeou
           user.loggedIn = true;
           user.isAdmin = data.isAdmin;
           user.orgName = data.orgName;
+          user.firstName = data.firstName;
           deferred.resolve();
         } else {
           user = false;

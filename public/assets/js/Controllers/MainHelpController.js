@@ -8,7 +8,7 @@ rootsApp.controller('MainHelpController', ['$window','$rootScope', '$scope', '$h
             $window.location = '/#/login';
         }
     });
-
+        $scope.user = AuthService.getUserStatus();
         $scope.onIconCLick = function(){
 
             popupS.modal({
