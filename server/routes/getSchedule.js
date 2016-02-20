@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Venue = require('../../db/models/schedule');
+var Venue = require('../db/models/schedule');
 
 // return an array of json objects,each one representing a venue
 

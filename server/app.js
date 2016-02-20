@@ -5,7 +5,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 //var config = require('../config.js');
-var passport = require('../auth/passport-local');
+var passport = require('./auth/passport-local');
 var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // favicon
-app.use(favicon(path.join(__dirname, '../public/favicon-1.ico')));
+app.use(favicon(path.join(__dirname, '/public/favicon-1.ico')));
 
 
 app.use(cookieParser());
@@ -60,13 +60,13 @@ app.use(morgan('dev'));
 app.set('port', process.env.PORT || 3000);
 
 // pull in database connection
-require('../db/db');
+require('./db/db');
 
 // initialize passport
 passport.init(app);
 
 // serve static public files
-app.use(express.static(path.join(process.env.PWD, '../public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // include route files
 var index = require('./routes/index');

@@ -1,8 +1,8 @@
 // user route
 var express = require('express');
 var router = express.Router();
-var Venue = require('../../db/models/venue');
-var User = require('../../db/models/user');
+var Venue = require('../db/models/venue');
+var User = require('../db/models/user');
 
 router.get('/getUsers', function(req, res, next) {
     User.find(

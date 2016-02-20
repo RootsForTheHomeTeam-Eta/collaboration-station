@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Schedule = require('../../db/models/schedule');
+var Schedule = require('../db/models/schedule');
 
 router.post('/', function(req, res, next) {
 

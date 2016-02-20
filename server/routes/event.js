@@ -1,7 +1,7 @@
 // event route
 var express = require('express');
 var router = express.Router();
-var Venue = require('../../db/models/venue');
+var Venue = require('../db/models/venue');
 
 // return an array of json objects,each one representing a venue
 

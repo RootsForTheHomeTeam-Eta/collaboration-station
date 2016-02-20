@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
-var notification = require('../../db/models/notification');
+var notification = require('../db/models/notification');
 
 // delete notification from collection
 router.delete('/deleteNotification/:id', function(req, res, next) {
