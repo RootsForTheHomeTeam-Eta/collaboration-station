@@ -1,4 +1,3 @@
-process.env.PWD = process.cwd();
 // instantiate express
 var express = require('express');
 var app = express();
@@ -10,8 +9,6 @@ var passport = require('../auth/passport-local');
 var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 
-
-
 // pretty json
 app.set('json spaces', 2);
 
@@ -20,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // favicon
-app.use(favicon(path.join(__dirname, '../public/favicon-1.ico')));
+app.use(favicon(path.join(__dirname, '/public/favicon-1.ico')));
 
 
 app.use(cookieParser());
@@ -31,29 +28,29 @@ var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 // instantiate session store
 var store = new MongoDBStore(
-  {
-    uri: process.env.MONGOURI,
-    collection: 'rootsSessions'
-  }
+    {
+        uri: process.env.MONGOURI,
+        collection: 'rootsSessions'
+    }
 );
 // use and configure server sessions
 app.use(session({
-  secret: process.env.SECRET,
-  key: 'user',
-  resave: true,
-  saveUninitialized: false,
-  store: store,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-    secure: false
-  }
+    secret: process.env.SECRET,
+    key: 'user',
+    resave: true,
+    saveUninitialized: false,
+    store: store,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        secure: false
+    }
 }));
 
-// when in production, use secure cookies
-//if (app.get('env') === 'production') {
-//  app.set('trust proxy', 1); // trust first proxy
-//  session.cookie.secure = true; // serve secure cookies
-//}
+when in production, use secure cookies
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1); // trust first proxy
+    session.cookie.secure = true; // serve secure cookies
+}
 
 // use morgan to log requires to the console
 var morgan = require('morgan');
@@ -68,11 +65,8 @@ require('../db/db');
 // initialize passport
 passport.init(app);
 
-// for Heroku
-//app.use('/public',express.static(path.join(process.env.PWD, 'public')));
-
 // serve static public files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // include route files
 var index = require('./routes/index');
@@ -111,22 +105,22 @@ app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // catch all error handler
 app.use(function(err, req, res, next) {
-  console.log(err);
-  res.status(err.status || 500);
+    console.log(err);
+    res.status(err.status || 500);
 
 });
 
 // ***** LISTEN *****
 
 app.listen(app.get('port'), function() {
-  console.log('Listening on port: ', app.get('port'));
+    console.log('Listening on port: ', app.get('port'));
 });
 
 
