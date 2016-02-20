@@ -42,14 +42,14 @@ gulp.task('jshint-auth', function() {
 gulp.task('ctrl-build', function() {
     return gulp.src('server/public/assets/js/Controllers/*.js')
         .pipe(concat('controllers.js'))
-        .pipe(gulp.dest('public/assets/js'));
+        .pipe(gulp.dest('server/public/assets/js'));
 });
 
 // concat all factories into one factory file
 gulp.task('fact-build', function() {
     return gulp.src('server/public/assets/js/Factories/*.js')
         .pipe(concat('factories.js'))
-        .pipe(gulp.dest('public/assets/js'));
+        .pipe(gulp.dest('server/public/assets/js'));
 });
 
 // call fact-build and ctrl-build tasks
