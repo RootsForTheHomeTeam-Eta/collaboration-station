@@ -139,7 +139,6 @@ rootsApp.factory('SharedVenues', function() {
  * A factory to get the user submit notifications
  */
 rootsApp.factory('User2AdminFactory', function($http) {
-    // initialize notifications object
     var notifications = {};
     return{
         getNotifications : function() {
@@ -148,6 +147,7 @@ rootsApp.factory('User2AdminFactory', function($http) {
                 method: 'GET'
             }).success(function(result){
                     notifications.data = result;
+                    console.log('User2AdminFactory', notifications.data);
                 })
                 .error(function(data, status, headers, config) {
                     $log.warn(data, status, headers(), config);
@@ -161,14 +161,16 @@ rootsApp.factory('User2AdminFactory', function($http) {
                 method: 'delete',
                 data: param
             }).success(function(data, status, headers){
+                    console.log('delete info', status);
                 })
                 .error(function(data, status, headers, config) {
                     $log.warn(data, status, headers(), config);
                 });
         }
     };
-
 });
+
+
 //creates a service that shares the user object between controllers
 rootsApp.factory('UserRepoFactory', function($http){
     //initialize users object
@@ -207,6 +209,32 @@ rootsApp.factory('VenueEventsFactory', function($http) {
                     $log.warn(data, status, headers(), config);
                 });
         },
-        venues: venues
+        venues: venues,
+
+        deleteVenue : function(param) {
+            return  $http({
+                url: 'api/event/deleteVenue/' + param,
+                method: 'delete',
+                data: param
+            }).success(function(data, status, headers){
+                    console.log('delete info', status);
+                })
+                .error(function(data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
+        },
+        deleteEvent : function(param) {
+            return  $http({
+                url: 'api/event/deleteEvent',
+                method: 'put',
+                data: param
+            }).success(function(data, status, headers){
+                    console.log('delete event', status);
+                })
+                .error(function(data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
+        }
+
     };
 });

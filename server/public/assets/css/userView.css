@@ -23,7 +23,7 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     margin:0;
-    padding: 0;
+    padding: 0px 0px 6px 0px;
     font-size: 24px;
 }
 
@@ -71,18 +71,28 @@ div.options{
 }
 
 .btnUser {
-    margin-top: .22em;
     border-radius: 2px;
     border: none;
     color: white;
+    margin:10px 0px 0px 0px
 }
 
 .submitBy {
+    margin: 8px 0px 6px 0px;
+    padding: 0px 0px 0px 37px;
     text-align: left;
-    border: 2px solid #55AC3A;
+}
+
+.pos2{
+    margin: 0px 0px 0px 0px;
 
 }
 
+.submitButton {
+    margin: 0px 0px 0px 0px;
+    font-size: 14px;
+    padding: 0px 0px 0px 75px;
+}
 /*input[type="radio"]{*/
     /*border-radius: 2px;*/
     /*color: red;*/

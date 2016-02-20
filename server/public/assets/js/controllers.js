@@ -348,16 +348,16 @@ rootsApp.controller("RegisterController", ['$scope', '$http', function($scope, $
 //Controller to populate schedule creation bars on admin page
 rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory', '$log',
     function($scope, $http, VenueEventsFactory, $log) {
-    // initializes venues variable
+
     $scope.venues = VenueEventsFactory.venues;
 
     VenueEventsFactory.getVenues();
-    // initializes formData, which is set by expressions in view
-    //this object is filled by the scope setting we did in the html so that we could deal with the
-    //loops easier
+
     $scope.formData= {};
 
-    // function to submit and save the schedule
+    //this object is filled by the scope setting we did in the html so that we could deal with the
+    //loops easier
+
     $scope.submitAndSave = function () {
 
         $http({
@@ -368,14 +368,58 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
             popupS.alert({
                 content: 'Schedule Saved'
             });
+            $log.info(res.status);
+            console.log('clicked');
+            console.log($scope.formData);
         });
     };
+//this deletes a venue document from th DB collection
+        $scope.deleteVenue = function(param){
 
-    // initialize arrayOrgs array that populates schedule header
-    var arrayOrgs = ["Appetite for Change", "Dream of Wild Health", "Youth Farm Frogtown", "Urban Roots", "Youth Farm Hawthorn", "Youth Farm Lyndale", "Youth Farm Powderhorn", "Youth Farm W.Side"];
+        console.log('delete clicked');
+
+            if(popupS.confirm({
+                content: 'Are you sure you want to delete this venue?',
+                onSubmit: function() {
+                    VenueEventsFactory.deleteVenue(param);
+                    VenueEventsFactory.getVenues();
+                }
+            }));
+
+            };
+
+
+//this deletes a event from the DB
+        $scope.deleteEvent = function(param1,param2){
+            param = {};
+            param.venue = param1;
+            param.event = param2;
+            console.log(param);
+
+            if (popupS.confirm({
+                    content: 'Are you sure you want to delete this event?',
+                    onSubmit: function() {
+                        VenueEventsFactory.deleteEvent(param);
+                        VenueEventsFactory.getVenues();
+                    }
+                }));
+
+        };
+
+        //    if (confirm("Are you sure you want to Delete this Event?") == true) {
+        //        VenueEventsFactory.deleteEvent(param);
+        //        VenueEventsFactory.getVenues();
+        //    }
+        //
+        //
+        //};
+
+
+
+        var arrayOrgs = ["Appetite for Change", "Dream of Wild Health", "Youth Farm Frogtown", "Urban Roots", "Youth Farm Hawthorn", "Youth Farm Lyndale", "Youth Farm Powderhorn", "Youth Farm W.Side"];
     $scope.$arrayOrgs = arrayOrgs;
 
-    // this function ensures that the preferences are accessible by view
+
     $scope.getOrgPreference = function($orgName, $currEventOrgArray) {
 
          ///loop through each organization that has replied to the event so far.
@@ -394,18 +438,6 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
         // return "cannot" if there isn't a preference.
         return "nores";
     };
-
-    $scope.printSchedule = function(){
-
-        // need an id on the schedule html, 'printArea' was used on Stack Overflow
-        var schedule = document.getElementById('printArea').innerHTML;
-        // the first two arguments to $window.open are a URL and a name.
-        //these were left blank but I imagine we could put it in later
-        var scheduleWindow = $window.open('', '', 'width=800', 'height=600');
-        scheduleWindow.document.write(schedule);
-        scheduleWindow.print();
-    };
-
 
 
 }]);

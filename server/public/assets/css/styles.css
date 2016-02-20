@@ -464,4 +464,25 @@ input {
     border: solid #EDB816 1px;
 }
 
+.delButtonVen {
+    border: none;
+    text-align: right;
+    margin: 16px 0px 0px 0px;
+    border-radius: 3px;
+    background-color: white;
+    color: #E25543;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.delButtonEven {
+    border: none;
+    background-color: white;
+    color: #E25543;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+}
+
 

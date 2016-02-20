@@ -23,6 +23,7 @@ router.post('/', function(req, res, next) {
             });
 
              events.push(event);
+
         }
         // create schedule object
         var schedule = new Schedule ({
