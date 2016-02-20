@@ -46,7 +46,7 @@ app.use(session({
     }
 }));
 
-when in production, use secure cookies
+//when in production, use secure cookies
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1); // trust first proxy
     session.cookie.secure = true; // serve secure cookies
