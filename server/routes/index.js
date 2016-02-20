@@ -11,7 +11,7 @@ var path = require('path');
 //});
 
 router.get('/', function(req, res) {
-    var file = 'views/index.html';
+    var file = '/views/index.html';
     res.sendFile(path.join(process.env.PWD, '../../public', file));
 });
 
