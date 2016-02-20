@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // favicon
-app.use(favicon(path.join(__dirname, '/public/favicon-1.ico')));
+app.use(favicon(path.join(__dirname, '../public/favicon-1.ico')));
 
 
 app.use(cookieParser());
@@ -66,7 +66,7 @@ require('../db/db');
 passport.init(app);
 
 // serve static public files
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // include route files
 var index = require('./routes/index');
