@@ -8,7 +8,7 @@ var concat = require('gulp-concat');
 gulp.task('default', ['nodemon', 'watch-build']);
 
 // create a jshint task to quickly check all current files
-gulp.task('jshint', ['jshint-server', 'jshint-public', 'jshint-db', 'jshint-auth']);
+gulp.task('jshint', ['jshint-routes', 'jshint-public', 'jshint-db', 'jshint-auth']);
 
 // configure the jshint-server task
 gulp.task('jshint-routes', function() {
@@ -69,7 +69,7 @@ gulp.task('nodemon', function() {
 
 // configure which files to watch and what tasks to use on file changes
 gulp.task('watch-jshint', function() {
-  gulp.watch('server/**/*.js', ['jshint-server']);
+  gulp.watch('server/**/*.js', ['jshint-routes']);
   gulp.watch('server/public/assets/js/**/*.js', ['jshint-public']);
   gulp.watch('server/db/*.js', ['jshint-db']);
   gulp.watch('server/auth/**/*.js', ['jshint-auth']);
@@ -79,4 +79,4 @@ gulp.task('watch-jshint', function() {
 gulp.task('watch-build', function() {
     gulp.watch('server/public/assets/js/Controllers/*.js', ['ctrl-build']);
     gulp.watch('server/public/assets/js/Factories/*.js', ['fact-build']);
-})
+});
