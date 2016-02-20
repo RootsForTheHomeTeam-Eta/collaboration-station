@@ -66,7 +66,7 @@ require('../db/db');
 passport.init(app);
 
 // serve static public files
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(process.env.PWD, '../public')));
 
 // include route files
 var index = require('./routes/index');
