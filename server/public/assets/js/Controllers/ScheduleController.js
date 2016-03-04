@@ -22,8 +22,8 @@ rootsApp.controller('ScheduleController',['$scope','$http', 'VenueEventsFactory'
                 content: 'Schedule Saved'
             });
             $log.info(res.status);
-            console.log('clicked');
-            console.log($scope.formData);
+        //    console.log('clicked');
+        //    console.log($scope.formData);
         });
     };
 //this deletes a venue document from th DB collection
