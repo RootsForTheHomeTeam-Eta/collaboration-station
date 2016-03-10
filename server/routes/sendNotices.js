@@ -19,10 +19,10 @@ router.post('/', function (req, res) {
     });
     //Mail options
     mailOpts = {
-        from: "",//will be sue in hidden variable
+        from: process.env.USER,
         to: recipient,
         subject: 'A message from Roots for the Home Team',
-        text: message + '\n from ' + "Sue" + '\n at ' + "Roots for the Home Team"
+        text: message + '\n from ' + "Sue" + '\n Roots for the Home Team'
     };
     // send mail
     smtpTrans.sendMail(mailOpts, function (error) {
