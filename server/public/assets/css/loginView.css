@@ -40,6 +40,12 @@
 
 }
 
+/*Flash message*/
+.flash {
+    background-color: #FA787E;
+    text-align: center;
+}
+
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
     .logOut{

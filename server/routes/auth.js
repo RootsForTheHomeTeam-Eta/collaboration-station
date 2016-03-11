@@ -20,7 +20,8 @@ router.post('/login', function(req, res, next) {
             res.status(200).json({isAdmin: user.isAdmin,
                                   status: 'Login successful!',
                                   orgName: user.orgName,
-                                  firstName: user.firstName});
+                                  firstName: user.firstName,
+                                  flash: req.flash});
         });
     })(req, res, next);
 });

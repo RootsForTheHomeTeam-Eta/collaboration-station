@@ -7,7 +7,7 @@
         <div class="loginHeader green ">
             <h2 class = 'whiteHeader'>Sign In</h2>
         </div>
-        <div ng-show="error" class="alert alert-danger"></div>
+        <div ng-show="error" class="alert alert-danger flash">{{ errorMessage }}</div>
         <form class="container-fluid loginForm css-form" ng-submit="login()">
             <div>
                 <input type="text" placeholder="Username" name="username" ng-model="loginForm.username" id="username" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>

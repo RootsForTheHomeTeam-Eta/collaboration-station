@@ -87,6 +87,8 @@ rootsApp.controller('LoginController', ['$scope', '$location', 'AuthService', '$
   function ($scope, $location, AuthService, $log) {
   // login function
   $scope.login = function () {
+
+
     // initial values
     $scope.error = false;
     $scope.disabled = true;
@@ -107,6 +109,10 @@ rootsApp.controller('LoginController', ['$scope', '$location', 'AuthService', '$
           // empty form
         $scope.loginForm = {};
       }, function () {
+          if(AuthService.flash){
+              $scope.error = true;
+              $scope.errorMessage = AuthService.flash;
+          }
           // handle error
           $scope.error = true;
           $scope.errorMessage = "Invalid username and/or password";

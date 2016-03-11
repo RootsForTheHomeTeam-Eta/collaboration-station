@@ -147,7 +147,7 @@ rootsApp.factory('User2AdminFactory', function($http) {
                 method: 'GET'
             }).success(function(result){
                     notifications.data = result;
-                    console.log('User2AdminFactory', notifications.data);
+                    //console.log('User2AdminFactory', notifications.data);
                 })
                 .error(function(data, status, headers, config) {
                     $log.warn(data, status, headers(), config);
@@ -161,7 +161,7 @@ rootsApp.factory('User2AdminFactory', function($http) {
                 method: 'delete',
                 data: param
             }).success(function(data, status, headers){
-                    console.log('delete info', status);
+                    //console.log('delete info', status);
                 })
                 .error(function(data, status, headers, config) {
                     $log.warn(data, status, headers(), config);
