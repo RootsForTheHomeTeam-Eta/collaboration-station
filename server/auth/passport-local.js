@@ -40,8 +40,8 @@ module.exports = {
     // login strategy named local-login
     passport.use('local-login', new LocalStrategy(options,function(req, username, password, done) {
       // look in User model for
+        console.log('password:',password);
       User.findOne({username: username}, function(err, user) {
-          console.log(password);
         // if an error, return an error
         if (err) {
           return done(err);
@@ -50,36 +50,19 @@ module.exports = {
         if (!user) {
           return done(null, false, req.flash('error', 'Invalid Username or Password.'));
         }
-
         // if user exists, verify password with bcrypt compare before returning user
         if (user) {
-          // generate salt to hash with
-          bcrypt.genSalt(10, function(err, salt) {
-            // hash req.body.password
-            bcrypt.hash(password, salt, function(err, hash) {
-                console.log('inside hash');
-                console.log('password:',password);
-                console.log('hash:',hash);
-              // compare hash with hash from db
-              bcrypt.compare(hash, user.password, function(err, res) {
-                  console.log('inside compare');
-                  console.log('hash: ',hash);
-                  console.log('user.password',user.password);
-                  console.log('err',err);
-                  console.log('res',res);
-                // if error in password compare, send flash message
-                if (err) {
-                  //return done(null, false, req.flash('error', 'Invalid Username or Password.'));
-                    return done(err);
-                }
-                // finish authentication and return user
-                if (!res) {
-                    return done(null, false, req.flash('error', 'Invalid Username or Password.'));
-                } else {
-                    return done(null, user);
-                }
-              });
-            });
+          bcrypt.compare(password, user.password, function(err, res) {
+            // if error in password compare, send flash message
+            if (err) {
+              return done(null, false, req.flash('error', 'Invalid Username or Password.'));
+            }
+            // finish authentication and return user
+            if (!res) {
+                return done(null, false, req.flash('error', 'Invalid Username or Password.'));
+            } else {
+                return done(null, user);
+            }
           });
         }
       });
